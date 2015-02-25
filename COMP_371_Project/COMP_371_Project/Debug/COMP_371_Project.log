@@ -1,12 +1,10 @@
-﻿Build started 2/24/15 6:15:00 PM.
-     1>Project "C:\Users\Awais\documents\visual studio 2013\Projects\COMP_371_Project\COMP_371_Project\COMP_371_Project.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2/25/15 5:08:04 PM.
+     1>Project "C:\Users\Awais\Source\Repos\COMP_371_3D_Space_Shooter\COMP_371_Project\COMP_371_Project\COMP_371_Project.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"../ThirdParty/glew-1.10.0/include" /I"../ThirdParty/glfw-3.0.4/include" /I../ThirdParty/glm /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\Source\AsteroidFactory.cpp
-         AsteroidFactory.cpp
-     1>c:\users\awais\documents\visual studio 2013\projects\comp_371_project\source\asteroidfactory.cpp(16): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\awais\documents\visual studio 2013\projects\comp_371_project\source\asteroidfactory.cpp(17): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"../ThirdParty/glew-1.10.0/include" /I"../ThirdParty/glfw-3.0.4/include" /I../ThirdParty/glm /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\Source\AsteroidModel.cpp
+         AsteroidModel.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Awais\documents\visual studio 2013\Projects\COMP_371_Project\Debug\COMP_371_Project.exe" /INCREMENTAL /NOLOGO /LIBPATH:"../ThirdParty/glew-1.10.0/lib/Release/Win32" /LIBPATH:"../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc120" opengl32.lib glew32s.lib glfw3.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Awais\documents\visual studio 2013\Projects\COMP_371_Project\Debug\COMP_371_Project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Awais\documents\visual studio 2013\Projects\COMP_371_Project\Debug\COMP_371_Project.lib" /MACHINE:X86 Debug\AsteroidFactory.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Awais\Source\Repos\COMP_371_3D_Space_Shooter\COMP_371_Project\Debug\COMP_371_Project.exe" /INCREMENTAL /NOLOGO /LIBPATH:"../ThirdParty/glew-1.10.0/lib/Release/Win32" /LIBPATH:"../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc120" opengl32.lib glew32s.lib glfw3.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Awais\Source\Repos\COMP_371_3D_Space_Shooter\COMP_371_Project\Debug\COMP_371_Project.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Awais\Source\Repos\COMP_371_3D_Space_Shooter\COMP_371_Project\Debug\COMP_371_Project.lib" /MACHINE:X86 Debug\AsteroidFactory.obj
          Debug\AsteroidModel.obj
          Debug\BSpline.obj
          Debug\BSplineCamera.obj
@@ -22,9 +20,12 @@
          Debug\ThirdPersonCamera.obj
          Debug\Variables.obj
          Debug\World.obj
-         COMP_371_Project.vcxproj -> C:\Users\Awais\documents\visual studio 2013\Projects\COMP_371_Project\Debug\COMP_371_Project.exe
-     1>Done Building Project "C:\Users\Awais\documents\visual studio 2013\Projects\COMP_371_Project\COMP_371_Project\COMP_371_Project.vcxproj" (Build target(s)).
+     1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc100.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\Awais\Source\Repos\COMP_371_3D_Space_Shooter\COMP_371_Project\Debug\vc100.pdb'; linking object as if no debug info
+         COMP_371_Project.vcxproj -> C:\Users\Awais\Source\Repos\COMP_371_3D_Space_Shooter\COMP_371_Project\Debug\COMP_371_Project.exe
+     1>Done Building Project "C:\Users\Awais\Source\Repos\COMP_371_3D_Space_Shooter\COMP_371_Project\COMP_371_Project\COMP_371_Project.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:03.64
+Time Elapsed 00:00:08.91
