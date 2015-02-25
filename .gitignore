@@ -1,2 +1,4 @@
-.DS_Store
+*.DS_Store
 *.opensdf
+*.sdf
+*.vcxproj
