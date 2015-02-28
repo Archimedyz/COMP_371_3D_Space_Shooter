@@ -18,6 +18,7 @@
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
+#include "BackgroundSphereModel.h"
 #include "Path.h"
 #include "BSpline.h"
 
@@ -263,6 +264,7 @@ void World::LoadScene(const char * scene_path)
 	//}
     
 	mModel.push_back(AsteroidFactory::createAsteroid());
+	mModel.push_back(BackgroundSphereModel::Draw());
 
     LoadCameras();
 }
