@@ -264,6 +264,8 @@ void World::LoadScene(const char * scene_path)
 	//}
     
 	mModel.push_back(AsteroidFactory::createAsteroid());
+	SphereModel* background = static_cast<SphereModel*>(BackgroundSphereModel(vec3(100.0f, 100.0f, 100.0f)));
+	mModel.push_back(background);
 	//mModel.push_back(BackgroundSphereModel::Draw());
 
     LoadCameras();

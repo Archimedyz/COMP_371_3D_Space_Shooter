@@ -6,7 +6,8 @@ using namespace std;
 
 AsteroidFactory::AsteroidFactory(){}
 AsteroidFactory::~AsteroidFactory(){}
-AsteroidModel* AsteroidFactory::createAsteroid(){
+AsteroidModel* AsteroidFactory::createAsteroid()
+{
 	AsteroidModel* asteroid = new AsteroidModel();
 
 	//Randomize these Elements
