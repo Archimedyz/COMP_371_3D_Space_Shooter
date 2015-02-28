@@ -264,7 +264,7 @@ void World::LoadScene(const char * scene_path)
 	//}
     
 	mModel.push_back(AsteroidFactory::createAsteroid());
-	mModel.push_back(BackgroundSphereModel::Draw());
+	//mModel.push_back(BackgroundSphereModel::Draw());
 
     LoadCameras();
 }
