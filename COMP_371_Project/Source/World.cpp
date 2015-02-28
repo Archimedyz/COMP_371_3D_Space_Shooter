@@ -184,7 +184,6 @@ void World::Draw()
 	Renderer::SetShader((ShaderType) prevShader);
 
 	Renderer::EndFrame();
-
 }
 
 void World::LoadScene(const char * scene_path)
