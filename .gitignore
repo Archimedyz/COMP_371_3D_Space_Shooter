@@ -1,6 +1,11 @@
 *.DS_Store
+
 *.opensdf
+
 *.sdf
+
 *.vcxproj
+
 *.obj
+
 *.tlog
