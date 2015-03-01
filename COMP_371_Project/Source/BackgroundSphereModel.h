@@ -5,9 +5,9 @@
 class BackgroundSphereModel : public Model
 {
 public:
-	BackgroundSphereModel(glm::vec3 size = glm::vec3(1.0f, 1.0f, 1.0f));
+	//BackgroundSphereModel(glm::vec3 size = glm::vec3(1.0f, 1.0f, 1.0f));
+	BackgroundSphereModel();
 	virtual ~BackgroundSphereModel(void);
-
 	virtual void Update(float dt);
 	virtual void Draw();
 
