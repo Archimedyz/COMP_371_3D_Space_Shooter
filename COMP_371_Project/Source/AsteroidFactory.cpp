@@ -11,8 +11,8 @@ AsteroidModel* AsteroidFactory::createAsteroid()
 	AsteroidModel* asteroid = new AsteroidModel();
 
 	//Randomize these Elements
-	int alpha = rand();
-	int beta = rand();
+	float alpha = rand();
+	float beta = rand();
 	float x = cosf((float)alpha)*cosf((float)beta);
 	float y = sinf(alpha);
 	float z = -cosf(alpha)*sinf(beta);
