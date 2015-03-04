@@ -27,6 +27,8 @@ public:
 	virtual void Update(float dt) = 0;
 	virtual void Draw() = 0;
 
+	void CheckCollisions(std::vector<Model*> &m);
+
 	void Load(ci_istringstream& iss);
 
 	virtual glm::mat4 GetWorldMatrix() const;
@@ -34,11 +36,18 @@ public:
 	void SetPosition(glm::vec3 position);
 	void SetScaling(glm::vec3 scaling);
 	void SetRotation(glm::vec3 axis, float angleDegrees);
+	void SetCollisionRadius(float r);
+	void SetDestroy(bool);
+
+	void ActivateCollisions(bool); // For debugging probably
+	bool CollisionsOn; // For debugging probably
 
 	glm::vec3 GetPosition() const		{ return mPosition; }
 	glm::vec3 GetScaling() const		{ return mScaling; }
 	glm::vec3 GetRotationAxis() const	{ return mRotationAxis; }
 	float     GetRotationAngle() const	{ return mRotationAngleInDegrees; }
+	float GetCollisionRadius() const	{ return mCollisionRadius; }
+	bool IsDestroyed() const			{ return mDestroyed; }
     ci_string GetName()                 { return mName; }
 
     void SetSpeed(float spd);
@@ -51,6 +60,8 @@ protected:
 	glm::vec3 mScaling;
 	glm::vec3 mRotationAxis;
 	float     mRotationAngleInDegrees;
+	float	  mCollisionRadius;
+	bool	  mDestroyed;
 
     // Makes the model follow a path defined by a set of waypoints
     Path* mPath;
