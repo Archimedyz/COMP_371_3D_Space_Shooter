@@ -1,18 +1,17 @@
 # Mac files
-
 *.DS_Store
 
+# VS Files
 *.opensdf
 *.sdf
+*.v12.suo
 
 # Logs
-
 *.tlog
 
-*.vcxproj.filters
-
 # System Specific Files
-
 COMP_371_Space_Shooter/Debug/
 Debug/
-COMP_371_3D_Space_Shooter.v12.suo
+
+# Others
+*.vcxproj.filters
