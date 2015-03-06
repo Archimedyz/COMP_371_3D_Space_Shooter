@@ -77,6 +77,9 @@
     <ClCompile Include="..\Source\Variables.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Source\Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\EventManager.h">
@@ -125,6 +128,9 @@
       <Filter>Header Files\Model</Filter>
     </ClInclude>
     <ClInclude Include="..\Source\Variables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\Projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
