@@ -67,7 +67,7 @@ void Renderer::Initialize()
 #if defined(PLATFORM_OSX)
     std::string shaderPathPrefix = "Shaders/";
 #else
-    std::string shaderPathPrefix = "../Source/Shaders/";
+    std::string shaderPathPrefix = "../Shaders/";
 #endif
 
 	sShaderProgramID.push_back(
