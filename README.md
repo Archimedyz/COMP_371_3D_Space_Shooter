@@ -1,2 +1,2 @@
-# COMP_371_Rubik
-COMP 371 Course Project: Rubik's Cube Game.
+# COMP_371_Space_Shooter
+COMP 371 Course Project: 3D Space Shooter.
