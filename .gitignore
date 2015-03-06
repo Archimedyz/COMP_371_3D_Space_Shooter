@@ -1,8 +1,18 @@
+# Mac files
+
 *.DS_Store
+
 *.opensdf
 *.sdf
+
+# Logs
+
 *.tlog
+
 *.vcxproj.filters
 
-..\COMP_371_3D_Space_Shooter\COMP_371_Space_Shooter\Debug\
-..\COMP_371_3D_Space_Shooter\Debug
+# System Specific Files
+
+COMP_371_Space_Shooter/Debug/
+Debug/
+COMP_371_3D_Space_Shooter.v12.suo
