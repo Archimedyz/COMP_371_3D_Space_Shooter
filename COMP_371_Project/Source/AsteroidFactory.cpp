@@ -17,10 +17,10 @@ const float AsteroidFactory::SPEED_MIN = 2.5f;
 
 AsteroidFactory::AsteroidFactory(){}
 AsteroidFactory::~AsteroidFactory(){}
-AsteroidModel* AsteroidFactory::createAsteroid(){
+AsteroidModel* AsteroidFactory::createAsteroid(int type){
 	AsteroidModel* asteroid = new AsteroidModel();
 
-	//Randomize these Elements
+	//Randomize these Elements fo use later.
 	float alpha = ALPHA_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX/(ALPHA_MAX - ALPHA_MIN));
 	float beta = BETA_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (BETA_MAX - BETA_MIN));
 	float x = cosf(alpha)*cosf(beta);
@@ -29,9 +29,15 @@ AsteroidModel* AsteroidFactory::createAsteroid(){
 	float scale_x = SCALE_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (SCALE_MAX - SCALE_MIN));
 	float scale_y = SCALE_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (SCALE_MAX - SCALE_MIN));
 	float scale_z = SCALE_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (SCALE_MAX - SCALE_MIN));
+	float axis_x = static_cast<float>(rand()) / static_cast<float>(RAND_MAX) - 0.5f;
+	float axis_y = static_cast<float>(rand()) / static_cast<float>(RAND_MAX) - 0.5f;
+	float axis_z = static_cast<float>(rand()) / static_cast<float>(RAND_MAX) - 0.5f;
+	// place asteroids on the edge of the inner sphere.
 	glm::vec3 initialPosition = Variables::InnerRadius*glm::normalize(glm::vec3(x, y, z)) - Variables::WorldCenter;
+	// initialize the scale.
 	glm::vec3 scale = glm::vec3(scale_x, scale_y, scale_z);
-	glm::vec3 rotationAxis = glm::vec3(x*rand(), -y*rand(), z*rand());
+	// randomize the rotation axis.
+	glm::vec3 rotationAxis = glm::vec3(axis_x, axis_y, axis_z);
 	//randomize initial rotation angle.
 	float initialRotationAngle = static_cast<float>(rand()) / static_cast<float>(RAND_MAX / 360.0f);
 	// randomized rotation speed

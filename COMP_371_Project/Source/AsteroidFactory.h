@@ -5,7 +5,7 @@
 class AsteroidFactory{
 public:
 	~AsteroidFactory();
-	static AsteroidModel* createAsteroid();
+	static AsteroidModel* createAsteroid(int type);
 private:
 	AsteroidFactory();
 

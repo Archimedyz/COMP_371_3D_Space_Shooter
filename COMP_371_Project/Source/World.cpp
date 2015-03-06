@@ -129,7 +129,7 @@ void World::Update(float dt)
 		}
 	}
 	if (++addCounter > 100){
-		mModel.push_back(AsteroidFactory::createAsteroid());
+		mModel.push_back(AsteroidFactory::createAsteroid(0));
 		addCounter = 0;
 	}
 	
@@ -262,7 +262,7 @@ void World::LoadScene(const char * scene_path)
 	//	(*it)->CreateVertexBuffer();
 	//}
     
-	mModel.push_back(AsteroidFactory::createAsteroid());
+	mModel.push_back(AsteroidFactory::createAsteroid(0));
 
     LoadCameras();
 }
