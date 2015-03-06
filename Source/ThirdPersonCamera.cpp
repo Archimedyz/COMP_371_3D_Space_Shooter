@@ -18,6 +18,8 @@
 
 #define pi 3.14159265
 
+#include "Projectile.h"
+
 using namespace glm;
 
 
@@ -58,7 +60,6 @@ void ThirdPersonCamera::Update(float dt)
 		// rotate horizontal
 		mHorizontalAngle += glm::atan(EventManager::GetMouseMotionX()/mRadius);
 		// 3 - Wrap Horizontal angle within [-180, 180] degrees
-	    mHorizontalAngle += (mHorizontalAngle > 180) ? -360 : ((mHorizontalAngle < -180) ? +360 : 0);
 
 		// rotate model
 		mTargetModel->SetRotation(vec3(0.0f, 1.0f, 0.0f), -mHorizontalAngle);
@@ -67,10 +68,8 @@ void ThirdPersonCamera::Update(float dt)
 		// rotate Verticle
 		// < 0 mouse moves up. -> look down
 		// > 0 mouse moves down. -> look up
-		mVerticalAngle += glm::atan(EventManager::GetMouseMotionY()/mRadius);
+		mVerticalAngle -= glm::atan(EventManager::GetMouseMotionY()/mRadius);
     // 2 - Clamp vertical angle to [-85, 0] degrees
-		mVerticalAngle = (mVerticalAngle < -85) ? -85 : ((mVerticalAngle > 0) ? 0 : mVerticalAngle);
-	
 	}
 
  
@@ -78,31 +77,28 @@ void ThirdPersonCamera::Update(float dt)
 	glm::vec3 currPosition = mTargetModel->GetPosition();
 	glm::vec3 forwardDirection = vec3(mRight.z, 0.0f, -mRight.x);
     // Press W to move Forward
-    if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_W ) == GLFW_PRESS)
+    if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_W ) == GLFW_PRESS) // Move forwards
     {
-		// @TODO - Move Model Forward
 		mTargetModel->SetPosition(currPosition + forwardDirection * (mSpeed*dt));
     }
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_S) == GLFW_PRESS)
+	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_S) == GLFW_PRESS) // Move backwards
 	{
-		// @TODO - Move Model Backward
 		mTargetModel->SetPosition(currPosition - forwardDirection * (mSpeed*dt));
 	}
-	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_A) == GLFW_PRESS)
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_A) == GLFW_PRESS) // Move left
 	{
-		// @TODO - Move Model Left
 		mTargetModel->SetPosition(currPosition - mRight * (mSpeed*dt));
 	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_D) == GLFW_PRESS)
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_D) == GLFW_PRESS) // Move right
 	{
-		// @TODO - Move Model Right
 		mTargetModel->SetPosition(currPosition + mRight * (mSpeed*dt));
 	}
-
-	
-	// @TODO
-    // Align target model with the horizontal angle
-
+	if (glfwGetMouseButton(EventManager::GetWindow(), GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && (time(NULL)-Projectile::GetLastFired() > 0)) // Shoot, if left click and enough time has elapsed.
+	{
+		Projectile *p = new Projectile(currPosition+mLookAt+mLookAt+mLookAt, mLookAt); // Start position should be determined differently probably.
+		World::GetInstance()->AddModel(p);
+		Projectile::SetLastFired(time(NULL)); // Set the last time fired to the current time.
+	}
     
     CalculateCameraBasis();
 }

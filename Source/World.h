@@ -11,6 +11,7 @@
 
 #include "ParsingHelper.h"
 #include <vector>
+#include <time.h>
 
 class Camera;
 class Model;
@@ -37,6 +38,8 @@ public:
     BSpline* FindSplineByIndex(unsigned int index);
     Model* FindModelByIndex(unsigned int index);
 
+	void AddModel(Model*);
+
 private:
     static World* instance;
 
@@ -45,4 +48,6 @@ private:
     std::vector<BSpline*> mSpline;
 	std::vector<Camera*> mCamera;
 	unsigned int mCurrentCamera;
+
+	clock_t Clock;
 };
