@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		034F0BC01A7017370028E1BA /* Scenes in CopyFiles */ = {isa = PBXBuildFile; fileRef = 034F0BB61A7014350028E1BA /* Scenes */; };
-		034F0BC11A7017370028E1BA /* Shaders in CopyFiles */ = {isa = PBXBuildFile; fileRef = 034F0BB41A70103C0028E1BA /* Shaders */; };
 		038B78851A6EBBCE00111E36 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B78841A6EBBCE00111E36 /* OpenGL.framework */; };
 		038B79161A6FF2E900111E36 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79151A6FF2E900111E36 /* Cocoa.framework */; };
 		038B791A1A6FF39000111E36 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79191A6FF39000111E36 /* CoreVideo.framework */; };
@@ -43,7 +42,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				034F0BC01A7017370028E1BA /* Scenes in CopyFiles */,
-				034F0BC11A7017370028E1BA /* Shaders in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,7 +49,6 @@
 
 /* Begin PBXFileReference section */
 		031A65F61A702EBB003BF698 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = "../ThirdParty/glfw-3.0.4/lib/osx/libglfw3.a"; sourceTree = "<group>"; };
-		034F0BB41A70103C0028E1BA /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ../Source/Shaders; sourceTree = "<group>"; };
 		034F0BB61A7014350028E1BA /* Scenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Scenes; path = ../Scenes; sourceTree = "<group>"; };
 		0371ABCB1A6EAF2E00029CF8 /* COMP371_Framework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = COMP371_Framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		038B78841A6EBBCE00111E36 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -60,6 +57,11 @@
 		038B79191A6FF39000111E36 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		038B791B1A6FF3D100111E36 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		038B791D1A6FF3EB00111E36 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		D4327FCF1AA9573A00202995 /* BlueColor.fragmentshader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BlueColor.fragmentshader; sourceTree = "<group>"; };
+		D4327FD01AA9573A00202995 /* PathLines.fragmentshader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PathLines.fragmentshader; sourceTree = "<group>"; };
+		D4327FD11AA9573A00202995 /* PathLines.vertexshader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = PathLines.vertexshader; sourceTree = "<group>"; };
+		D4327FD21AA9573A00202995 /* SolidColor.fragmentshader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SolidColor.fragmentshader; sourceTree = "<group>"; };
+		D4327FD31AA9573A00202995 /* SolidColor.vertexshader */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SolidColor.vertexshader; sourceTree = "<group>"; };
 		D462E3821AA93D3100D11B93 /* AsteroidFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AsteroidFactory.cpp; sourceTree = "<group>"; };
 		D462E3831AA93D3100D11B93 /* AsteroidFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsteroidFactory.h; sourceTree = "<group>"; };
 		D462E3841AA93D3100D11B93 /* AsteroidModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AsteroidModel.cpp; sourceTree = "<group>"; };
@@ -133,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				034F0BB61A7014350028E1BA /* Scenes */,
-				034F0BB41A70103C0028E1BA /* Shaders */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -142,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				038B785E1A6EB3F500111E36 /* Source */,
+				D4327FCE1AA9573A00202995 /* Shaders */,
 				034F0BB31A7010160028E1BA /* Resources */,
 				034F0BB11A700D0F0028E1BA /* Linked Frameworks */,
 				0371ABCC1A6EAF2E00029CF8 /* Products */,
@@ -198,6 +200,18 @@
 			);
 			name = Source;
 			path = ../Source;
+			sourceTree = "<group>";
+		};
+		D4327FCE1AA9573A00202995 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				D4327FCF1AA9573A00202995 /* BlueColor.fragmentshader */,
+				D4327FD01AA9573A00202995 /* PathLines.fragmentshader */,
+				D4327FD11AA9573A00202995 /* PathLines.vertexshader */,
+				D4327FD21AA9573A00202995 /* SolidColor.fragmentshader */,
+				D4327FD31AA9573A00202995 /* SolidColor.vertexshader */,
+			);
+			path = Shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
