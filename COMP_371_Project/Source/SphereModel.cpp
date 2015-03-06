@@ -1290,7 +1290,7 @@ SphereModel::SphereModel(vec3 size) : Model()
 
 SphereModel::~SphereModel()
 {
-    glDeleteBuffers(1, &mVertexBufferID);
+	glDeleteBuffers(1, &mVertexBufferID);
     glDeleteVertexArrays(1, &mVertexArrayID);
 }
 

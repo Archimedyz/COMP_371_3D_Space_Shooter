@@ -21,6 +21,7 @@
 #include "BackgroundFactory.h"
 #include "Path.h"
 #include "BSpline.h"
+#include "Projectile.h"
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
@@ -122,15 +123,20 @@ void World::Update(float dt)
 	for (int i = 0; i < mModel.size(); ++i)
 	{
 		mModel[i]->Update(dt);
-		if (AsteroidModel* ifcheck = dynamic_cast<AsteroidModel*>(mModel[i])){
-			if(dynamic_cast<AsteroidModel*>(mModel[i])->isDestroyed()){
-				std::cout << "destroyed!" << std::endl;
-				mModel.erase(mModel.begin() + i);
-			}
+
+		mModel[i]->CheckCollisions(mModel); // Check if the model is colliding with any other, and set their destroyed flags to true if they are.
+
+		if (mModel[i]->IsDestroyed())
+		{
+			// HANDLE COLLISIONS SOMEHOW
+			// Probably override a method from model which each type of object handles separately.
+			// Large asteroids fragment, projectiles explode, ship explodes and takes damage, etc.
+			mModel.erase(mModel.begin() + i); // Finally deletes model.
 		}
 	}
+
 	if (++addCounter > 100){
-		mModel.push_back(AsteroidFactory::createAsteroid());
+		mModel.push_back(AsteroidFactory::createAsteroid(0));
 		addCounter = 0;
 	}
 	
@@ -190,81 +196,16 @@ void World::Draw()
 
 void World::LoadScene(const char * scene_path)
 {
-	//// Using case-insensitive strings and streams for easier parsing
-	//ci_ifstream input;
-	//input.open(scene_path, ios::in);
-
-	//// Invalid file
-	//if(input.fail() )
-	//{	 
-	//	fprintf(stderr, "Error loading file: %s\n", scene_path);
-	//	getchar();
-	//	exit(-1);
-	//}
-
-	//ci_string item;
-	//while( std::getline( input, item, '[' ) )   
-	//{
- //       ci_istringstream iss( item );
-
-	//	ci_string result;
-	//	if( std::getline( iss, result, ']') )
-	//	{
-	//		if( result == "cube" )
-	//		{
-	//			// Box attributes
-	//			CubeModel* cube = new CubeModel();
-	//			cube->Load(iss);
-	//			mModel.push_back(cube);
-	//		}
- //           else if( result == "sphere" )
- //           {
- //               SphereModel* sphere = new SphereModel();
- //               sphere->Load(iss);
- //               mModel.push_back(sphere);
- //           }
- //           else if( result == "path" )
-	//		{
-	//			Path* path = new Path();
-	//			path->Load(iss);
- //               mPath.push_back(path);
-	//		}
- //           else if( result == "spline" )
-	//		{
-	//			BSpline* path = new BSpline();
-	//			path->Load(iss);
- //               mSpline.push_back(path);
-	//		}
-	//		else if ( result.empty() == false && result[0] == '#')
-	//		{
-	//			// this is a comment line
-	//		}
-	//		else
-	//		{
-	//			fprintf(stderr, "Error loading scene file... !");
-	//			getchar();
-	//			exit(-1);
-	//		}
-	//    }
-	//}
-	//input.close();
-
-	//// Set PATH vertex buffers
-	//for (vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
-	//{
-	//	// Draw model
-	//	(*it)->CreateVertexBuffer();
-	//}
-
- //   // Set B-SPLINE vertex buffers
- //   for (vector<BSpline*>::iterator it = mSpline.begin(); it < mSpline.end(); ++it)
-	//{
-	//	// Draw model
-	//	(*it)->CreateVertexBuffer();
-	//}
+	// All the commented out code that was used for the assignment to load paths and things is at the end of this file.
+	// I moved it there since it's just extra clutter to keep it here commented out, it can probably
+	// be deleted. -Nick
     
-	mModel.push_back(AsteroidFactory::createAsteroid());
-	mModel.push_back(BackgroundFactory::createBackgroundSphere());
+	mModel.push_back(AsteroidFactory::createAsteroid(0));
+	//SphereModel* background = static_cast<SphereModel*>(BackgroundSphereModel(vec3(100.0f, 100.0f, 100.0f)));
+	//mModel.push_back(background);
+	//mModel.push_back(BackgroundSphereModel::Draw());
+
+	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
 
     LoadCameras();
 }
@@ -279,7 +220,8 @@ void World::LoadCameras()
     // Cube Character controlled with Third Person Camera
     CubeModel* character = new CubeModel();
     character->SetPosition(vec3(0.0f, 0.0f, 0.0f));
-    mCamera.push_back(new ThirdPersonCamera(character));
+	character->ActivateCollisions(false);
+	mCamera.push_back(new ThirdPersonCamera(character));
     mModel.push_back(character);
     
     // BSpline Camera
@@ -330,3 +272,88 @@ Model* World::FindModelByIndex(unsigned int index)
 {
     return mModel.size() > 0 ? mModel[index % mModel.size()] : nullptr;
 }
+
+void World::AddModel(Model* mdl)
+{
+	mModel.push_back(mdl);
+}
+
+
+
+
+/*
+
+//// Using case-insensitive strings and streams for easier parsing
+//ci_ifstream input;
+//input.open(scene_path, ios::in);
+
+//// Invalid file
+//if(input.fail() )
+//{
+//	fprintf(stderr, "Error loading file: %s\n", scene_path);
+//	getchar();
+//	exit(-1);
+//}
+
+//ci_string item;
+//while( std::getline( input, item, '[' ) )
+//{
+//       ci_istringstream iss( item );
+
+//	ci_string result;
+//	if( std::getline( iss, result, ']') )
+//	{
+//		if( result == "cube" )
+//		{
+//			// Box attributes
+//			CubeModel* cube = new CubeModel();
+//			cube->Load(iss);
+//			mModel.push_back(cube);
+//		}
+//           else if( result == "sphere" )
+//           {
+//               SphereModel* sphere = new SphereModel();
+//               sphere->Load(iss);
+//               mModel.push_back(sphere);
+//           }
+//           else if( result == "path" )
+//		{
+//			Path* path = new Path();
+//			path->Load(iss);
+//               mPath.push_back(path);
+//		}
+//           else if( result == "spline" )
+//		{
+//			BSpline* path = new BSpline();
+//			path->Load(iss);
+//               mSpline.push_back(path);
+//		}
+//		else if ( result.empty() == false && result[0] == '#')
+//		{
+//			// this is a comment line
+//		}
+//		else
+//		{
+//			fprintf(stderr, "Error loading scene file... !");
+//			getchar();
+//			exit(-1);
+//		}
+//    }
+//}
+//input.close();
+
+//// Set PATH vertex buffers
+//for (vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
+//{
+//	// Draw model
+//	(*it)->CreateVertexBuffer();
+//}
+
+//   // Set B-SPLINE vertex buffers
+//   for (vector<BSpline*>::iterator it = mSpline.begin(); it < mSpline.end(); ++it)
+//{
+//	// Draw model
+//	(*it)->CreateVertexBuffer();
+//}
+
+*/
