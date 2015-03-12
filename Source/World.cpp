@@ -221,9 +221,15 @@ void World::LoadCameras()
     CubeModel* character = new CubeModel();
     character->SetPosition(vec3(0.0f, 0.0f, 0.0f));
 	character->ActivateCollisions(false);
-	mCamera.push_back(new ThirdPersonCamera(character));
     mModel.push_back(character);
-    
+
+	// Cube Character controlled with Third Person Camera
+	CubeModel* character2 = new CubeModel();
+	character2->SetPosition(vec3(20.0f, 10.0f, 10.0f));
+	character2->ActivateCollisions(false);
+	mCamera.push_back(new ThirdPersonCamera(character2));
+	mModel.push_back(character2);
+
     // BSpline Camera
     BSpline* spline = FindSpline("\"RollerCoaster\"");
     if (spline == nullptr)
