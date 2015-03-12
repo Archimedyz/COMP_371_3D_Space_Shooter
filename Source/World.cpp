@@ -217,13 +217,13 @@ void World::LoadCameras()
     mCamera.push_back(new StaticCamera(vec3(3.0f, 30.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     
-    // Cube Character controlled with Third Person Camera
+    // Cube Character at center of universe (TO BE REPLACED BY SPACE STATION)
     CubeModel* character = new CubeModel();
     character->SetPosition(vec3(0.0f, 0.0f, 0.0f));
 	character->ActivateCollisions(false);
     mModel.push_back(character);
 
-	// Cube Character controlled with Third Person Camera
+	// Cube "ship" Character controlled with Third Person Camera
 	CubeModel* character2 = new CubeModel();
 	character2->SetPosition(vec3(20.0f, 10.0f, 10.0f));
 	character2->ActivateCollisions(false);

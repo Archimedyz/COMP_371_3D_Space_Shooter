@@ -22,7 +22,7 @@ class Model
 {
 public:
 	Model();
-	Model(glm::vec3 position, glm::vec3 scaling, glm::vec3 horizontalRotationAxis);
+	Model(glm::vec3 position, glm::vec3 scaling, glm::vec3 lookAt);
 	virtual ~Model();
 
 	virtual void Update(float dt) = 0;
