@@ -90,7 +90,7 @@ void AsteroidModel::Update(float dt)
 	vec3 direction = Variables::WorldCenter - mPosition;
 	mPosition += normalize(direction)*mSpeed*dt;
 
-	mRotationAngleInDegrees += mRotationSpeed*dt;
+	mYRotationAngleInDegrees += mRotationSpeed*dt;
 	
 	if (glm::length(direction) <= 0.01){
 		Destroy();
