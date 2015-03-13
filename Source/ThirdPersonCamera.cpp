@@ -22,84 +22,259 @@
 
 using namespace glm;
 
+const float ThirdPersonCamera::SPEED_INCREASE_PERCENTAGE = 0.5f;
+const float ThirdPersonCamera::SPEED_DECREASE_PERCENTAGE = 0.5f;
+const float ThirdPersonCamera::MAX_ANIMATION_PITCH_ANGLE = 40.0f;
+const float ThirdPersonCamera::MAX_ANIMATION_YAW_ANGLE = 40.0f;
+const float ThirdPersonCamera::MAX_ANIMATION_ROLL_ANGLE = 40.0f;
 
 ThirdPersonCamera::ThirdPersonCamera(Model* targetModel)
-    : Camera(), mTargetModel(targetModel), mHorizontalAngle(0.0f), mVerticalAngle(0.0f), mRadius(10.0f)
-
+	: Camera(), mTargetModel(targetModel), mHorizontalAngle(0.0f), mVerticalAngle(0.0f), mRadius(10.0f),
+	mModelHorizontalSensitivity(25.0f), mModelVerticalSensitivity(15.0f), mModelStandardSpeed(3.5f),
+	mModelAcceration(1.0f), mModelDeceleration(-1.0f), mModelAnimationSpeed(100.0f), mModelCurrentPitch(0.0f),
+	mModelCurrentYaw(0.0f), mModelCurrentRoll(0.0f)
 {
-    assert(mTargetModel != nullptr);
-    CalculateCameraBasis();
-	mSpeed = 1.0;
-	mRadius = 10.0;
+	assert(mTargetModel != nullptr);
+	CalculateCameraBasis();
+	mModelCurrentSpeed = mModelStandardSpeed;
 }
 
 ThirdPersonCamera::~ThirdPersonCamera()
 {
-	mSpeed = 1.0;
-	mRadius = 10.0;
 }
 
 void ThirdPersonCamera::CalculateCameraBasis()
 {
-	// @TODO
-    // Calculate Camera Vectors (LookAt, Up, Right) from Spherical Coordinates
-    // Convert from Spherical to Cartesian Coordinates to get the lookAt Vector
-	mLookAt = vec3(glm::sin(mHorizontalAngle * pi / 180), glm::sin(mVerticalAngle * pi / 180), -glm::cos(mHorizontalAngle*pi / 180));
-	mRight = vec3(glm::cos(mHorizontalAngle * pi/180), 0.0f, glm::sin(mHorizontalAngle*pi/180));
-	mUp = glm::cross(mRight, mLookAt); //vec3(glm::sin(mHorizontalAngle * pi / 180), glm::cos(mVerticalAngle * pi / 180), -glm::sin(mVerticalAngle*pi / 180)* glm::cos(mHorizontalAngle*pi / 180));
-	// Easier to calculate the three camera vectors, and then just position the camera to -10*lookAt
-	mPosition = mTargetModel->GetPosition() - mRadius * mLookAt;
+	// Calculate Camera Vectors (LookAt, Up, Right) from Spherical Coordinates
+	// Convert from Spherical to Cartesian Coordinates to get the lookAt Vector
+	float x = mRadius * cosf(radians(mVerticalAngle)) * cosf(radians(mHorizontalAngle));
+	float y = mRadius * sinf(radians(mVerticalAngle));
+	float z = (-1) * mRadius * cosf(radians(mVerticalAngle)) * sinf(radians(mHorizontalAngle));
+
+	mLookAt = -vec3(x, y, z);
+	mLookAt = vec3(glm::rotate(mat4(1.0f), 90.0f, mTargetModel->GetYAxis()) * vec4(mLookAt.x, mLookAt.y, mLookAt.z, 0.0));
+	mPosition = mTargetModel->GetPosition() - mLookAt;
+	mRight = glm::normalize(glm::cross(mLookAt, vec3(0.0f, 1.0f, 0.0f)));
+	mUp = glm::cross(mRight, mLookAt);
 }
 
 void ThirdPersonCamera::Update(float dt)
 {
     EventManager::DisableMouseCursor();
-	// @TODO
-    // 1 - Map Mouse motion to Spherical Angles
-	if (EventManager::GetMouseMotionX() != 0){
-		// rotate horizontal
-		mHorizontalAngle += glm::atan(EventManager::GetMouseMotionX()/mRadius);
-		// 3 - Wrap Horizontal angle within [-180, 180] degrees
 
-		// rotate model
-		mTargetModel->SetRotation(vec3(0.0f, 1.0f, 0.0f), -mHorizontalAngle);
+	// ************************************************************************************************************
+	// Press SPACE bar to speed up
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_SPACE) == GLFW_PRESS)
+	{
+		// increase current model speed
+		mModelCurrentSpeed += mModelAcceration * dt;
+		if (mModelCurrentSpeed > (mModelStandardSpeed * (1 + SPEED_INCREASE_PERCENTAGE)))
+		{
+			mModelCurrentSpeed = mModelStandardSpeed * (1 + SPEED_INCREASE_PERCENTAGE);
+		}
 	}
-	if (EventManager::GetMouseMotionY() != 0){
-		// rotate Verticle
-		// < 0 mouse moves up. -> look down
-		// > 0 mouse moves down. -> look up
-		mVerticalAngle -= glm::atan(EventManager::GetMouseMotionY()/mRadius);
-    // 2 - Clamp vertical angle to [-85, 0] degrees
+	// if SPACE bar wasn't pressed and current speed is still above standard speed, then
+	// reduce model back to standard speed
+	else if (mModelCurrentSpeed > mModelStandardSpeed)
+	{
+		mModelCurrentSpeed -= mModelAcceration * dt;
+		// if the above line makes the value pass the standard speed, set to standard speed
+		if (mModelCurrentSpeed < mModelStandardSpeed)
+		{
+			mModelCurrentSpeed = mModelStandardSpeed;
+		}
 	}
 
- 
-    
-	glm::vec3 currPosition = mTargetModel->GetPosition();
-	glm::vec3 forwardDirection = vec3(mRight.z, 0.0f, -mRight.x);
-    // Press W to move Forward
-    if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_W ) == GLFW_PRESS) // Move forwards
-    {
-		mTargetModel->SetPosition(currPosition + forwardDirection * (mSpeed*dt));
-    }
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_S) == GLFW_PRESS) // Move backwards
+	// ************************************************************************************************************
+	// Press LEFT SHIFT to slow down
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
 	{
-		mTargetModel->SetPosition(currPosition - forwardDirection * (mSpeed*dt));
+		// decrease current model speed
+		mModelCurrentSpeed += mModelDeceleration * dt;		// TODO ASK should deceleration be positive and deducted, or negative and added (done here)
+		if (mModelCurrentSpeed < (mModelStandardSpeed * (1 - SPEED_INCREASE_PERCENTAGE)))
+		{
+			mModelCurrentSpeed = mModelStandardSpeed * (1 - SPEED_INCREASE_PERCENTAGE);
+		}
 	}
-	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_A) == GLFW_PRESS) // Move left
+	// if LEFT SHIFT wasn't pressed and current speed is still below standard speed, then
+	// reduce model back to standard speed
+	else if (mModelCurrentSpeed < mModelStandardSpeed)
 	{
-		mTargetModel->SetPosition(currPosition - mRight * (mSpeed*dt));
+		mModelCurrentSpeed -= mModelDeceleration * dt;
+		// if the above line makes the value pass the standard speed, set to standard speed
+		if (mModelCurrentSpeed > mModelStandardSpeed)
+		{
+			mModelCurrentSpeed = mModelStandardSpeed;
+		}
 	}
-	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_D) == GLFW_PRESS) // Move right
+
+	// ************************************************************************************************************
+	// Press W to tilt downward (decrease pitch) (inverted)
+	// also, make sure S is not pressed, so that if both bottons are pressed, animation state returns to normal
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_W) == GLFW_PRESS && glfwGetKey(EventManager::GetWindow(), GLFW_KEY_S) != GLFW_PRESS)
 	{
-		mTargetModel->SetPosition(currPosition + mRight * (mSpeed*dt));
+		// Tilt Camera downward
+		mVerticalAngle += mModelVerticalSensitivity * dt;
+
+		// Tilt Model downward for animation
+		mModelCurrentPitch += mModelAnimationSpeed * dt;
+		if (mModelCurrentPitch > MAX_ANIMATION_PITCH_ANGLE)
+		{
+			mModelCurrentPitch = MAX_ANIMATION_PITCH_ANGLE;
+		}
 	}
+	// if W was not pressed AND pitch is still downward, move model back to zero pitch (animation)
+	else if (mModelCurrentPitch > 0.0f)
+	{
+		mModelCurrentPitch -= mModelAnimationSpeed * dt;
+		// if the above line makes the value pass zero, set to zero
+		if (mModelCurrentPitch < 0.0f)
+		{
+			mModelCurrentPitch = 0.0f;
+		}
+	}
+
+	// ************************************************************************************************************
+	// Press A to turn left (decrease yaw)
+	// also, make sure D is not pressed, so that if both bottons are pressed, animation state returns to normal
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_A) == GLFW_PRESS && glfwGetKey(EventManager::GetWindow(), GLFW_KEY_D) != GLFW_PRESS)
+	{
+		// Turn Camera Left
+		mHorizontalAngle += mModelHorizontalSensitivity * dt;
+
+		// Turn Model Left for animation
+		mModelCurrentYaw += mModelAnimationSpeed * dt;
+		if (mModelCurrentYaw > MAX_ANIMATION_YAW_ANGLE)
+		{
+			mModelCurrentYaw = MAX_ANIMATION_YAW_ANGLE;
+		}
+
+		// Roll Model Left for animation
+		mModelCurrentRoll -= mModelAnimationSpeed * dt;
+		if (mModelCurrentRoll < -MAX_ANIMATION_ROLL_ANGLE)
+		{
+			mModelCurrentRoll = -MAX_ANIMATION_ROLL_ANGLE;
+		}
+	}
+	// if A was not pressed, move yaw and roll back to zero
+	else
+	{
+		// if yaw is still towards left, move towards zero
+		if (mModelCurrentYaw > 0.0f)
+		{
+			mModelCurrentYaw -= mModelAnimationSpeed * dt;
+			// if the above line makes the value pass zero, set to zero
+			if (mModelCurrentYaw < 0.0f)
+			{
+				mModelCurrentYaw = 0.0f;
+			}
+		}
+
+		// if roll is still towards left, move towards zero
+		if (mModelCurrentRoll < 0.0f)
+		{
+			mModelCurrentRoll += mModelAnimationSpeed * dt;
+			// if the above line makes the value pass zero, set to zero
+			if (mModelCurrentRoll > 0.0f)
+			{
+				mModelCurrentRoll = 0.0f;
+			}
+		}
+	}
+
+	// ************************************************************************************************************
+	// Press S to tilt upward (increase pitch) (inverted)
+	// also, make sure W is not pressed, so that if both bottons are pressed, animation state returns to normal
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_S) == GLFW_PRESS && glfwGetKey(EventManager::GetWindow(), GLFW_KEY_W) != GLFW_PRESS)
+	{
+		// Tilt Camera upward
+		mVerticalAngle -= mModelVerticalSensitivity * dt;
+
+		// Tilt Model upward for animation
+		mModelCurrentPitch -= mModelAnimationSpeed * dt;
+		if (mModelCurrentPitch < -MAX_ANIMATION_PITCH_ANGLE)
+		{
+			mModelCurrentPitch = -MAX_ANIMATION_PITCH_ANGLE;
+		}
+	}
+	// if S was not pressed AND pitch is still upward, move model back to zero pitch (animation)
+	else if (mModelCurrentPitch < 0.0f)
+	{
+		mModelCurrentPitch += mModelAnimationSpeed * dt;
+		// if the above line makes the value pass zero, set to zero
+		if (mModelCurrentPitch > 0.0f)
+		{
+			mModelCurrentPitch = 0.0f;
+		}
+	}
+
+	// ************************************************************************************************************
+	// Press D to turn right (increase yaw)
+	// also, make sure A is not pressed, so that if both bottons are pressed, animation state returns to normal
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_D) == GLFW_PRESS && glfwGetKey(EventManager::GetWindow(), GLFW_KEY_A) != GLFW_PRESS)
+	{
+		// Turn Camera Right (increase yaw)
+		mHorizontalAngle -= mModelHorizontalSensitivity * dt;
+
+		// Turn Model Right for animation
+		mModelCurrentYaw -= mModelAnimationSpeed * dt;
+		if (mModelCurrentYaw < -MAX_ANIMATION_YAW_ANGLE)
+		{
+			mModelCurrentYaw = -MAX_ANIMATION_YAW_ANGLE;
+		}
+
+		// Roll Model Right for animation
+		mModelCurrentRoll += mModelAnimationSpeed * dt;
+		if (mModelCurrentRoll > MAX_ANIMATION_ROLL_ANGLE)
+		{
+			mModelCurrentRoll = MAX_ANIMATION_ROLL_ANGLE;
+		}
+	}
+	// if D was not pressed, move yaw and roll back to zero
+	else
+	{
+		// if yaw is still towards right, move towards zero
+		if (mModelCurrentYaw < 0.0f)
+		{
+			mModelCurrentYaw += mModelAnimationSpeed * dt;
+			// if the above line makes the value pass zero, set to zero
+			if (mModelCurrentYaw > 0.0f)
+			{
+				mModelCurrentYaw = 0.0f;
+			}
+		}
+
+		// if roll is towards right, move towards zero
+		if (mModelCurrentRoll > 0.0f)
+		{
+			mModelCurrentRoll -= mModelAnimationSpeed * dt;
+			// if the above line makes the value pass zero, set to zero
+			if (mModelCurrentRoll < 0.0f)
+			{
+				mModelCurrentRoll = 0.0f;
+			}
+		}
+	}
+
+	vec3 currentPosition = mTargetModel->GetPosition();
+
 	if (glfwGetMouseButton(EventManager::GetWindow(), GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && (time(NULL)-Projectile::GetLastFired() > 0)) // Shoot, if left click and enough time has elapsed.
 	{
-		Projectile *p = new Projectile(currPosition+mLookAt+mLookAt+mLookAt, mLookAt); // Start position should be determined differently probably.
+		Projectile *p = new Projectile(currentPosition, mLookAt); // Start position should be set to a specific postion in relation the ship model's position AND direction should be adjusted to where ship is facing, not the lookAt
 		World::GetInstance()->AddModel(p);
 		Projectile::SetLastFired(time(NULL)); // Set the last time fired to the current time.
 	}
-    
+
+	// Adjust model according to changes
+	//std::cout << mModelCurrentSpeed << std::endl;													// view speed during execution
+	//if (mModelCurrentPitch != 0.0f || mModelCurrentYaw != 0.0f || mModelCurrentRoll != 0.0f)		// view pitch, yaw, and roll during execution
+	//{ std::cout << "current pitch: " << mModelCurrentPitch << "\t|\tcurrent yaw: " << mModelCurrentYaw << "\t|\tcurrent roll: " << mModelCurrentRoll << std::endl; }
+	vec3 modelDisplacement = glm::normalize(mLookAt) * mModelCurrentSpeed * dt;
+	mTargetModel->SetPosition(currentPosition + modelDisplacement);
+	mTargetModel->SetYRotation(mTargetModel->GetYAxis(), mHorizontalAngle + mModelCurrentYaw);
+	mTargetModel->SetXRotation(mTargetModel->GetXAxis(), mVerticalAngle + mModelCurrentPitch);
+	mTargetModel->SetZRotation(mTargetModel->GetZAxis(), mModelCurrentRoll);
+
     CalculateCameraBasis();
 }
 
