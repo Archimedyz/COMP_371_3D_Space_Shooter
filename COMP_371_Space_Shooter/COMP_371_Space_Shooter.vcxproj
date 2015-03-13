@@ -74,17 +74,24 @@
     <ClCompile Include="..\Source\BSpline.cpp" />
     <ClCompile Include="..\Source\BSplineCamera.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
+    <ClCompile Include="..\Source\controls.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
+    <ClCompile Include="..\Source\Loader.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Model.cpp" />
+    <ClCompile Include="..\Source\objloader.cpp" />
     <ClCompile Include="..\Source\Path.cpp" />
     <ClCompile Include="..\Source\Projectile.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
+    <ClCompile Include="..\Source\shader.cpp" />
+    <ClCompile Include="..\Source\ShipModel.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
+    <ClCompile Include="..\Source\texture.cpp" />
     <ClCompile Include="..\Source\ThirdPersonCamera.cpp" />
     <ClCompile Include="..\Source\Variables.cpp" />
+    <ClCompile Include="..\Source\vboindexer.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -95,17 +102,24 @@
     <ClInclude Include="..\Source\BSpline.h" />
     <ClInclude Include="..\Source\BSplineCamera.h" />
     <ClInclude Include="..\Source\Camera.h" />
+    <ClInclude Include="..\Source\controls.hpp" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
+    <ClInclude Include="..\Source\Loader.h" />
     <ClInclude Include="..\Source\Model.h" />
+    <ClInclude Include="..\Source\objloader.hpp" />
     <ClInclude Include="..\Source\ParsingHelper.h" />
     <ClInclude Include="..\Source\Path.h" />
     <ClInclude Include="..\Source\Projectile.h" />
     <ClInclude Include="..\Source\Renderer.h" />
+    <ClInclude Include="..\Source\shader.hpp" />
+    <ClInclude Include="..\Source\ShipModel.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
+    <ClInclude Include="..\Source\texture.hpp" />
     <ClInclude Include="..\Source\ThirdPersonCamera.h" />
     <ClInclude Include="..\Source\Variables.h" />
+    <ClInclude Include="..\Source\vboindexer.hpp" />
     <ClInclude Include="..\Source\World.h" />
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +131,9 @@
     <None Include="..\Shaders\PathLines.vertexshader" />
     <None Include="..\Shaders\SolidColor.fragmentshader" />
     <None Include="..\Shaders\SolidColor.vertexshader" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Resource\Models\uvmap.DDS" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
