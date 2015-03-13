@@ -201,7 +201,6 @@ void World::LoadScene(const char * scene_path)
 	// be deleted. -Nick
     
 	mModel.push_back(AsteroidFactory::createAsteroid(0));
-	mModel.push_back(BackgroundFactory::createBackgroundSphere());
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
 
