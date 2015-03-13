@@ -46,7 +46,7 @@ AsteroidModel* AsteroidFactory::createAsteroid(int type){
 	float speed = SPEED_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (SPEED_MAX - SPEED_MIN));
 
 	asteroid->SetPosition(initialPosition);
-	asteroid->SetRotation(rotationAxis, initialRotationAngle);
+	asteroid->SetYRotation(rotationAxis, initialRotationAngle);
 	asteroid->SetScaling(scale);
 	asteroid->SetSpeed(speed);
 	asteroid->SetRotationSpeed(rotationSpeed);
