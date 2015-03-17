@@ -17,8 +17,18 @@
 using namespace std;
 using namespace glm;
 
-Model::Model() : mName("UNNAMED"), mPosition(0.0f, 0.0f, 0.0f), mScaling(1.0f, 1.0f, 1.0f), mRotationAxis(0.0f, 1.0f, 0.0f), mRotationAngleInDegrees(0.0f), mPath(nullptr), mSpeed(0.0f), mTargetWaypoint(1), mSpline(nullptr), mSplineParameterT(0.0f), mCollisionRadius(1.0f), CollisionsOn(true), mDestroyed(false)
+Model::Model() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
+}
+
+Model::Model(glm::vec3 position, glm::vec3 scaling, glm::vec3 lookAt) : mName("UNNAMED"), mPosition(position),
+mScaling(scaling), mYRotationAngleInDegrees(0.0f), mXRotationAngleInDegrees(0.0f), mZRotationAngleInDegrees(0.0f),
+mPath(nullptr), mSpeed(0.0f), mTargetWaypoint(1), mSpline(nullptr), mSplineParameterT(0.0f), mCollisionRadius(1.0f),
+CollisionsOn(true), mDestroyed(false)
+{
+	mXAxis = glm::normalize(glm::cross(lookAt, vec3(0.0f, 1.0f, 0.0f)));
+	mYAxis = glm::cross(mXAxis, lookAt);
+	mZAxis = -lookAt;
 }
 
 Model::~Model()
@@ -111,12 +121,12 @@ bool Model::ParseLine(const std::vector<ci_string> &token)
 			assert(token.size() > 4);
 			assert(token[1] == "=");
 
-			mRotationAxis.x = static_cast<float>(atof(token[2].c_str()));
-			mRotationAxis.y = static_cast<float>(atof(token[3].c_str()));
-			mRotationAxis.z = static_cast<float>(atof(token[4].c_str()));
-			mRotationAngleInDegrees = static_cast<float>(atof(token[5].c_str()));
+			mYAxis.x = static_cast<float>(atof(token[2].c_str()));
+			mYAxis.y = static_cast<float>(atof(token[3].c_str()));
+			mYAxis.z = static_cast<float>(atof(token[4].c_str()));
+			mYRotationAngleInDegrees = static_cast<float>(atof(token[5].c_str()));
 
-			glm::normalize(mRotationAxis);
+			glm::normalize(mYAxis);
 		}
 		else if (token[0] == "scaling")
 		{
@@ -171,9 +181,11 @@ glm::mat4 Model::GetWorldMatrix() const
 	mat4 worldMatrix(1.0f);
 
 	mat4 t = glm::translate(mat4(1.0f), mPosition);
-	mat4 r = glm::rotate(mat4(1.0f), mRotationAngleInDegrees, mRotationAxis);
+	mat4 rx = glm::rotate(mat4(1.0f), mXRotationAngleInDegrees, mXAxis);
+	mat4 ry = glm::rotate(mat4(1.0f), mYRotationAngleInDegrees, mYAxis);
+	mat4 rz = glm::rotate(mat4(1.0f), mZRotationAngleInDegrees, mZAxis);
 	mat4 s = glm::scale(mat4(1.0f), mScaling);
-	worldMatrix = t * r * s;
+	worldMatrix = t * ry * rx * rz * s;
 
 	return worldMatrix;
 }
@@ -188,10 +200,22 @@ void Model::SetScaling(glm::vec3 scaling)
 	mScaling = scaling;
 }
 
-void Model::SetRotation(glm::vec3 axis, float angleDegrees)
+void Model::SetXRotation(glm::vec3 axis, float angleDegrees)
 {
-	mRotationAxis = axis;
-	mRotationAngleInDegrees = angleDegrees;
+	mXAxis = axis;
+	mXRotationAngleInDegrees = angleDegrees;
+}
+
+void Model::SetYRotation(glm::vec3 axis, float angleDegrees)
+{
+	mYAxis = axis;
+	mYRotationAngleInDegrees = angleDegrees;
+}
+
+void Model::SetZRotation(glm::vec3 axis, float angleDegrees)
+{
+	mZAxis = axis;
+	mZRotationAngleInDegrees = angleDegrees;
 }
 
 void Model::SetSpeed(float spd)

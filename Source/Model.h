@@ -22,6 +22,7 @@ class Model
 {
 public:
 	Model();
+	Model(glm::vec3 position, glm::vec3 scaling, glm::vec3 lookAt);
 	virtual ~Model();
 
 	virtual void Update(float dt) = 0;
@@ -35,7 +36,9 @@ public:
 
 	void SetPosition(glm::vec3 position);
 	void SetScaling(glm::vec3 scaling);
-	void SetRotation(glm::vec3 axis, float angleDegrees);
+	void SetXRotation(glm::vec3 axis, float angleDegrees);
+	void SetYRotation(glm::vec3 axis, float angleDegrees);
+	void SetZRotation(glm::vec3 axis, float angleDegrees);
 	void SetCollisionRadius(float r);
 	void SetDestroy(bool);
 
@@ -44,8 +47,12 @@ public:
 
 	glm::vec3 GetPosition() const		{ return mPosition; }
 	glm::vec3 GetScaling() const		{ return mScaling; }
-	glm::vec3 GetRotationAxis() const	{ return mRotationAxis; }
-	float     GetRotationAngle() const	{ return mRotationAngleInDegrees; }
+	glm::vec3 GetXAxis() const			{ return mXAxis; }
+	glm::vec3 GetYAxis() const			{ return mYAxis; }
+	glm::vec3 GetZAxis() const			{ return mZAxis; }
+	float     GetXRotationAngle() const	{ return mXRotationAngleInDegrees; }
+	float     GetYRotationAngle() const	{ return mYRotationAngleInDegrees; }
+	float     GetZRotationAngle() const	{ return mZRotationAngleInDegrees; }
 	float GetCollisionRadius() const	{ return mCollisionRadius; }
 	bool IsDestroyed() const			{ return mDestroyed; }
     ci_string GetName()                 { return mName; }
@@ -58,8 +65,12 @@ protected:
 	ci_string mName; // The model name is mainly for debugging
 	glm::vec3 mPosition;
 	glm::vec3 mScaling;
-	glm::vec3 mRotationAxis;
-	float     mRotationAngleInDegrees;
+	glm::vec3 mYAxis;
+	glm::vec3 mXAxis;
+	glm::vec3 mZAxis;
+	float     mXRotationAngleInDegrees;
+	float     mYRotationAngleInDegrees;
+	float     mZRotationAngleInDegrees;
 	float	  mCollisionRadius;
 	bool	  mDestroyed;
 
