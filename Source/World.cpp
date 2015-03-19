@@ -18,7 +18,6 @@
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
-#include "BackgroundFactory.h"
 #include "Path.h"
 #include "BSpline.h"
 #include "Projectile.h"
