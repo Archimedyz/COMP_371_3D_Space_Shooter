@@ -10,17 +10,16 @@
 #include "World.h"
 #include "Renderer.h"
 #include "ParsingHelper.h"
-
 #include "StaticCamera.h"
-#include "BSplineCamera.h"
 #include "ThirdPersonCamera.h"
-
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
+<<<<<<< HEAD
 #include "BackgroundFactory.h"
+=======
+>>>>>>> master
 #include "Path.h"
-#include "BSpline.h"
 #include "Projectile.h"
 
 #include <GLFW/glfw3.h>
@@ -54,13 +53,6 @@ World::~World()
 		delete *it;
 	}
 	mPath.clear();
-
-    // Splines
-    for (vector<BSpline*>::iterator it = mSpline.begin(); it < mSpline.end(); ++it)
-	{
-		delete *it;
-	}
-	mSpline.clear();
 
 	// Camera
 	for (vector<Camera*>::iterator it = mCamera.begin(); it < mCamera.end(); ++it)
@@ -180,13 +172,6 @@ void World::Draw()
 		(*it)->Draw();
 	}
 
-    // Draw B-Spline Lines (using the same shader for Path Lines)
-    for (vector<BSpline*>::iterator it = mSpline.begin(); it < mSpline.end(); ++it)
-	{
-		// Draw model
-		(*it)->Draw();
-	}
-
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);
 
@@ -205,10 +190,15 @@ void World::LoadScene(const char * scene_path)
 	mModel.push_back(BackgroundFactory::createBackgroundSphere());
 =======
 	mModel.push_back(AsteroidFactory::createAsteroid(0));
+<<<<<<< HEAD
 	//SphereModel* background = static_cast<SphereModel*>(BackgroundSphereModel(vec3(100.0f, 100.0f, 100.0f)));
 	//mModel.push_back(background);
 	//mModel.push_back(BackgroundSphereModel::Draw());
 >>>>>>> master:Source/World.cpp
+=======
+
+	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
+>>>>>>> master
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
 
@@ -235,18 +225,6 @@ void World::LoadCameras()
 	mCamera.push_back(new ThirdPersonCamera(character2));
 	mModel.push_back(character2);
 
-    // BSpline Camera
-    BSpline* spline = FindSpline("\"RollerCoaster\"");
-    if (spline == nullptr)
-    {
-        spline = FindSplineByIndex(0);
-    }
-    
-    if (spline != nullptr)
-    {
-        mCamera.push_back(new BSplineCamera(spline , 5.0f));
-    }
-    
     mCurrentCamera = 0;
 }
 
@@ -260,23 +238,6 @@ Path* World::FindPath(ci_string pathName)
         }
     }
     return nullptr;
-}
-
-BSpline* World::FindSpline(ci_string pathName)
-{
-    for(std::vector<BSpline*>::iterator it = mSpline.begin(); it < mSpline.end(); ++it)
-    {
-        if((*it)->GetName() == pathName)
-        {
-            return *it;
-        }
-    }
-    return nullptr;
-}
-
-BSpline* World::FindSplineByIndex(unsigned int index)
-{
-    return mSpline.size() > 0 ? mSpline[index % mSpline.size()] : nullptr;
 }
 
 Model* World::FindModelByIndex(unsigned int index)
