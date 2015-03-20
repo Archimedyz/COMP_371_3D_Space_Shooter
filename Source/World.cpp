@@ -221,20 +221,18 @@ void World::LoadCameras()
     mCamera.push_back(new StaticCamera(vec3(3.0f, 30.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     
-    // Cube Character at center of universe (TO BE REPLACED BY SPACE STATION)
-	//CubeModel * character = new CubeModel();
-	ShipModel* character = new ShipModel();
+	CubeModel * character = new CubeModel();
     character->SetPosition(vec3(0.0f, 0.0f, 0.0f));
 	character->ActivateCollisions(false);
     mModel.push_back(character);
 
 	// Cube "ship" Character controlled with Third Person Camera
-	//CubeModel * character2 = new CubeModel();
-	ShipModel * character2 = new ShipModel();
-	character2->SetPosition(vec3(20.0f, 10.0f, 10.0f));
-	character2->ActivateCollisions(false);
-	mCamera.push_back(new ThirdPersonCamera(character2));
-	mModel.push_back(character2);
+	CubeModel * ship_model = new CubeModel();
+	//ShipModel * ship_model = new ShipModel();
+	ship_model->SetPosition(vec3(2.0f, 1.0f, 1.0f));
+	ship_model->ActivateCollisions(false);
+	mCamera.push_back(new ThirdPersonCamera(ship_model));
+	mModel.push_back(ship_model);
 
     // BSpline Camera
     BSpline* spline = FindSpline("\"RollerCoaster\"");

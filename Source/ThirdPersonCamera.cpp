@@ -29,7 +29,7 @@ const float ThirdPersonCamera::MAX_ANIMATION_YAW_ANGLE = 40.0f;
 const float ThirdPersonCamera::MAX_ANIMATION_ROLL_ANGLE = 40.0f;
 
 ThirdPersonCamera::ThirdPersonCamera(Model* targetModel)
-	: Camera(), mTargetModel(targetModel), mHorizontalAngle(0.0f), mVerticalAngle(0.0f), mRadius(10.0f),
+	: Camera(), mTargetModel(targetModel), mHorizontalAngle(0.0f), mVerticalAngle(0.0f), mRadius(20.0f),
 	mModelHorizontalSensitivity(25.0f), mModelVerticalSensitivity(15.0f), mModelStandardSpeed(3.5f),
 	mModelAcceration(1.0f), mModelDeceleration(-1.0f), mModelAnimationSpeed(100.0f), mModelCurrentPitch(0.0f),
 	mModelCurrentYaw(0.0f), mModelCurrentRoll(0.0f)
@@ -53,7 +53,7 @@ void ThirdPersonCamera::CalculateCameraBasis()
 
 	mLookAt = -vec3(x, y, z);
 	mLookAt = vec3(glm::rotate(mat4(1.0f), 90.0f, mTargetModel->GetYAxis()) * vec4(mLookAt.x, mLookAt.y, mLookAt.z, 0.0));
-	mPosition = mTargetModel->GetPosition() - (2.0f*mLookAt);
+	mPosition = mTargetModel->GetPosition() - (mLookAt);
 	mRight = glm::normalize(glm::cross(mLookAt, vec3(0.0f, 1.0f, 0.0f)));
 	mUp = glm::cross(mRight, mLookAt);
 
@@ -61,12 +61,15 @@ void ThirdPersonCamera::CalculateCameraBasis()
 
 void ThirdPersonCamera::Update(float dt)
 {
+
 	EventManager::DisableMouseCursor();
 
 	// ************************************************************************************************************
 	// Press SPACE bar to speed up
 	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_SPACE) == GLFW_PRESS)
 	{
+		int a;
+		std::cin >> a;
 		// increase current model speed
 		mModelCurrentSpeed += mModelAcceration * dt;
 		if (mModelCurrentSpeed > (mModelStandardSpeed * (1 + SPEED_INCREASE_PERCENTAGE)))
@@ -271,6 +274,7 @@ void ThirdPersonCamera::Update(float dt)
 	//if (mModelCurrentPitch != 0.0f || mModelCurrentYaw != 0.0f || mModelCurrentRoll != 0.0f)		// view pitch, yaw, and roll during execution
 	//{ std::cout << "current pitch: " << mModelCurrentPitch << "\t|\tcurrent yaw: " << mModelCurrentYaw << "\t|\tcurrent roll: " << mModelCurrentRoll << std::endl; }
 	vec3 modelDisplacement = glm::normalize(mLookAt) * mModelCurrentSpeed * dt;
+	std::cout << mModelCurrentSpeed << "and " << dt << std::endl;
 	mTargetModel->SetPosition(currentPosition + modelDisplacement);
 	mTargetModel->SetYRotation(mTargetModel->GetYAxis(), mHorizontalAngle + mModelCurrentYaw);
 	mTargetModel->SetXRotation(mTargetModel->GetXAxis(), mVerticalAngle + mModelCurrentPitch);
