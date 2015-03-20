@@ -7,7 +7,6 @@ class AsteroidModel : public Model
 public:
 	AsteroidModel();
 	virtual ~AsteroidModel();
-
 	virtual void Update(float dt);
 	virtual void Draw();
 	bool isDestroyed();

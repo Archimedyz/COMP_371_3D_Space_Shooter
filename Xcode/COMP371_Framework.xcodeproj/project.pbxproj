@@ -7,20 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		034F0BC01A7017370028E1BA /* Scenes in CopyFiles */ = {isa = PBXBuildFile; fileRef = 034F0BB61A7014350028E1BA /* Scenes */; };
 		034F0BC11A7017370028E1BA /* Shaders in CopyFiles */ = {isa = PBXBuildFile; fileRef = 034F0BB41A70103C0028E1BA /* Shaders */; };
 		038B78851A6EBBCE00111E36 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B78841A6EBBCE00111E36 /* OpenGL.framework */; };
 		038B79161A6FF2E900111E36 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79151A6FF2E900111E36 /* Cocoa.framework */; };
 		038B791A1A6FF39000111E36 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79191A6FF39000111E36 /* CoreVideo.framework */; };
 		038B791E1A6FF3EB00111E36 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B791D1A6FF3EB00111E36 /* IOKit.framework */; };
+		D46301141ABBC27500BF8F32 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D46301121ABBC27500BF8F32 /* Renderer.cpp */; };
 		D4A9DC9B1A7AFBFF00CA6A53 /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79171A6FF35E00111E36 /* libGLEW.a */; };
 		D4A9DC9C1A7AFC1400CA6A53 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 031A65F61A702EBB003BF698 /* libglfw3.a */; };
 		D4BAD0791AAE78E300698FF2 /* AsteroidFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0531AAE78E300698FF2 /* AsteroidFactory.cpp */; };
 		D4BAD07A1AAE78E300698FF2 /* AsteroidModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0551AAE78E300698FF2 /* AsteroidModel.cpp */; };
-		D4BAD07B1AAE78E300698FF2 /* BackgroundFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0571AAE78E300698FF2 /* BackgroundFactory.cpp */; };
-		D4BAD07C1AAE78E300698FF2 /* BackgroundSphereModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0591AAE78E300698FF2 /* BackgroundSphereModel.cpp */; };
-		D4BAD07D1AAE78E300698FF2 /* BSpline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD05B1AAE78E300698FF2 /* BSpline.cpp */; };
-		D4BAD07E1AAE78E300698FF2 /* BSplineCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD05D1AAE78E300698FF2 /* BSplineCamera.cpp */; };
 		D4BAD07F1AAE78E300698FF2 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD05F1AAE78E300698FF2 /* Camera.cpp */; };
 		D4BAD0801AAE78E300698FF2 /* CubeModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0611AAE78E300698FF2 /* CubeModel.cpp */; };
 		D4BAD0811AAE78E300698FF2 /* EventManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0631AAE78E300698FF2 /* EventManager.cpp */; };
@@ -28,7 +24,6 @@
 		D4BAD0831AAE78E300698FF2 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0661AAE78E300698FF2 /* Model.cpp */; };
 		D4BAD0841AAE78E300698FF2 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0691AAE78E300698FF2 /* Path.cpp */; };
 		D4BAD0851AAE78E300698FF2 /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD06B1AAE78E300698FF2 /* Projectile.cpp */; };
-		D4BAD0861AAE78E300698FF2 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD06D1AAE78E300698FF2 /* Renderer.cpp */; };
 		D4BAD0871AAE78E300698FF2 /* SphereModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD06F1AAE78E300698FF2 /* SphereModel.cpp */; };
 		D4BAD0881AAE78E300698FF2 /* StaticCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0711AAE78E300698FF2 /* StaticCamera.cpp */; };
 		D4BAD0891AAE78E300698FF2 /* ThirdPersonCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0731AAE78E300698FF2 /* ThirdPersonCamera.cpp */; };
@@ -43,7 +38,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				034F0BC01A7017370028E1BA /* Scenes in CopyFiles */,
 				034F0BC11A7017370028E1BA /* Shaders in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -53,7 +47,6 @@
 /* Begin PBXFileReference section */
 		031A65F61A702EBB003BF698 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = "../ThirdParty/glfw-3.0.4/lib/osx/libglfw3.a"; sourceTree = "<group>"; };
 		034F0BB41A70103C0028E1BA /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ../Shaders; sourceTree = "<group>"; };
-		034F0BB61A7014350028E1BA /* Scenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Scenes; path = ../Scenes; sourceTree = "<group>"; };
 		0371ABCB1A6EAF2E00029CF8 /* COMP371_Framework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = COMP371_Framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		038B78841A6EBBCE00111E36 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		038B79151A6FF2E900111E36 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -61,18 +54,13 @@
 		038B79191A6FF39000111E36 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		038B791B1A6FF3D100111E36 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		038B791D1A6FF3EB00111E36 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		D46301121ABBC27500BF8F32 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
+		D46301131ABBC27500BF8F32 /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
+		D463011A1ABBC4EA00BF8F32 /* Scenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Scenes; path = ../Scenes; sourceTree = "<group>"; };
 		D4BAD0531AAE78E300698FF2 /* AsteroidFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AsteroidFactory.cpp; sourceTree = "<group>"; };
 		D4BAD0541AAE78E300698FF2 /* AsteroidFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsteroidFactory.h; sourceTree = "<group>"; };
 		D4BAD0551AAE78E300698FF2 /* AsteroidModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AsteroidModel.cpp; sourceTree = "<group>"; };
 		D4BAD0561AAE78E300698FF2 /* AsteroidModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsteroidModel.h; sourceTree = "<group>"; };
-		D4BAD0571AAE78E300698FF2 /* BackgroundFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroundFactory.cpp; sourceTree = "<group>"; };
-		D4BAD0581AAE78E300698FF2 /* BackgroundFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundFactory.h; sourceTree = "<group>"; };
-		D4BAD0591AAE78E300698FF2 /* BackgroundSphereModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BackgroundSphereModel.cpp; sourceTree = "<group>"; };
-		D4BAD05A1AAE78E300698FF2 /* BackgroundSphereModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundSphereModel.h; sourceTree = "<group>"; };
-		D4BAD05B1AAE78E300698FF2 /* BSpline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BSpline.cpp; sourceTree = "<group>"; };
-		D4BAD05C1AAE78E300698FF2 /* BSpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSpline.h; sourceTree = "<group>"; };
-		D4BAD05D1AAE78E300698FF2 /* BSplineCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BSplineCamera.cpp; sourceTree = "<group>"; };
-		D4BAD05E1AAE78E300698FF2 /* BSplineCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSplineCamera.h; sourceTree = "<group>"; };
 		D4BAD05F1AAE78E300698FF2 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		D4BAD0601AAE78E300698FF2 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		D4BAD0611AAE78E300698FF2 /* CubeModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CubeModel.cpp; sourceTree = "<group>"; };
@@ -87,8 +75,6 @@
 		D4BAD06A1AAE78E300698FF2 /* Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
 		D4BAD06B1AAE78E300698FF2 /* Projectile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
 		D4BAD06C1AAE78E300698FF2 /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projectile.h; sourceTree = "<group>"; };
-		D4BAD06D1AAE78E300698FF2 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
-		D4BAD06E1AAE78E300698FF2 /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		D4BAD06F1AAE78E300698FF2 /* SphereModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SphereModel.cpp; sourceTree = "<group>"; };
 		D4BAD0701AAE78E300698FF2 /* SphereModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SphereModel.h; sourceTree = "<group>"; };
 		D4BAD0711AAE78E300698FF2 /* StaticCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticCamera.cpp; sourceTree = "<group>"; };
@@ -135,7 +121,7 @@
 		034F0BB31A7010160028E1BA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				034F0BB61A7014350028E1BA /* Scenes */,
+				D463011A1ABBC4EA00BF8F32 /* Scenes */,
 				034F0BB41A70103C0028E1BA /* Shaders */,
 			);
 			name = Resources;
@@ -162,40 +148,19 @@
 		038B785E1A6EB3F500111E36 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D4BAD0531AAE78E300698FF2 /* AsteroidFactory.cpp */,
-				D4BAD0541AAE78E300698FF2 /* AsteroidFactory.h */,
-				D4BAD0551AAE78E300698FF2 /* AsteroidModel.cpp */,
-				D4BAD0561AAE78E300698FF2 /* AsteroidModel.h */,
-				D4BAD0571AAE78E300698FF2 /* BackgroundFactory.cpp */,
-				D4BAD0581AAE78E300698FF2 /* BackgroundFactory.h */,
-				D4BAD0591AAE78E300698FF2 /* BackgroundSphereModel.cpp */,
-				D4BAD05A1AAE78E300698FF2 /* BackgroundSphereModel.h */,
-				D4BAD05B1AAE78E300698FF2 /* BSpline.cpp */,
-				D4BAD05C1AAE78E300698FF2 /* BSpline.h */,
-				D4BAD05D1AAE78E300698FF2 /* BSplineCamera.cpp */,
-				D4BAD05E1AAE78E300698FF2 /* BSplineCamera.h */,
-				D4BAD05F1AAE78E300698FF2 /* Camera.cpp */,
-				D4BAD0601AAE78E300698FF2 /* Camera.h */,
-				D4BAD0611AAE78E300698FF2 /* CubeModel.cpp */,
-				D4BAD0621AAE78E300698FF2 /* CubeModel.h */,
+				D46301101ABBAB2B00BF8F32 /* Asteroids */,
+				D463010E1ABBA63000BF8F32 /* Cameras */,
+				D463010F1ABBA64300BF8F32 /* Models */,
 				D4BAD0631AAE78E300698FF2 /* EventManager.cpp */,
 				D4BAD0641AAE78E300698FF2 /* EventManager.h */,
 				D4BAD0651AAE78E300698FF2 /* main.cpp */,
-				D4BAD0661AAE78E300698FF2 /* Model.cpp */,
-				D4BAD0671AAE78E300698FF2 /* Model.h */,
 				D4BAD0681AAE78E300698FF2 /* ParsingHelper.h */,
 				D4BAD0691AAE78E300698FF2 /* Path.cpp */,
 				D4BAD06A1AAE78E300698FF2 /* Path.h */,
 				D4BAD06B1AAE78E300698FF2 /* Projectile.cpp */,
 				D4BAD06C1AAE78E300698FF2 /* Projectile.h */,
-				D4BAD06D1AAE78E300698FF2 /* Renderer.cpp */,
-				D4BAD06E1AAE78E300698FF2 /* Renderer.h */,
-				D4BAD06F1AAE78E300698FF2 /* SphereModel.cpp */,
-				D4BAD0701AAE78E300698FF2 /* SphereModel.h */,
-				D4BAD0711AAE78E300698FF2 /* StaticCamera.cpp */,
-				D4BAD0721AAE78E300698FF2 /* StaticCamera.h */,
-				D4BAD0731AAE78E300698FF2 /* ThirdPersonCamera.cpp */,
-				D4BAD0741AAE78E300698FF2 /* ThirdPersonCamera.h */,
+				D46301121ABBC27500BF8F32 /* Renderer.cpp */,
+				D46301131ABBC27500BF8F32 /* Renderer.h */,
 				D4BAD0751AAE78E300698FF2 /* Variables.cpp */,
 				D4BAD0761AAE78E300698FF2 /* Variables.h */,
 				D4BAD0771AAE78E300698FF2 /* World.cpp */,
@@ -203,6 +168,43 @@
 			);
 			name = Source;
 			path = ../Source;
+			sourceTree = "<group>";
+		};
+		D463010E1ABBA63000BF8F32 /* Cameras */ = {
+			isa = PBXGroup;
+			children = (
+				D4BAD05F1AAE78E300698FF2 /* Camera.cpp */,
+				D4BAD0601AAE78E300698FF2 /* Camera.h */,
+				D4BAD0711AAE78E300698FF2 /* StaticCamera.cpp */,
+				D4BAD0721AAE78E300698FF2 /* StaticCamera.h */,
+				D4BAD0731AAE78E300698FF2 /* ThirdPersonCamera.cpp */,
+				D4BAD0741AAE78E300698FF2 /* ThirdPersonCamera.h */,
+			);
+			name = Cameras;
+			sourceTree = "<group>";
+		};
+		D463010F1ABBA64300BF8F32 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D4BAD0551AAE78E300698FF2 /* AsteroidModel.cpp */,
+				D4BAD0561AAE78E300698FF2 /* AsteroidModel.h */,
+				D4BAD0611AAE78E300698FF2 /* CubeModel.cpp */,
+				D4BAD0621AAE78E300698FF2 /* CubeModel.h */,
+				D4BAD0661AAE78E300698FF2 /* Model.cpp */,
+				D4BAD0671AAE78E300698FF2 /* Model.h */,
+				D4BAD06F1AAE78E300698FF2 /* SphereModel.cpp */,
+				D4BAD0701AAE78E300698FF2 /* SphereModel.h */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		D46301101ABBAB2B00BF8F32 /* Asteroids */ = {
+			isa = PBXGroup;
+			children = (
+				D4BAD0531AAE78E300698FF2 /* AsteroidFactory.cpp */,
+				D4BAD0541AAE78E300698FF2 /* AsteroidFactory.h */,
+			);
+			name = Asteroids;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,22 +265,18 @@
 			files = (
 				D4BAD0811AAE78E300698FF2 /* EventManager.cpp in Sources */,
 				D4BAD0891AAE78E300698FF2 /* ThirdPersonCamera.cpp in Sources */,
-				D4BAD07D1AAE78E300698FF2 /* BSpline.cpp in Sources */,
 				D4BAD0881AAE78E300698FF2 /* StaticCamera.cpp in Sources */,
 				D4BAD08B1AAE78E300698FF2 /* World.cpp in Sources */,
 				D4BAD07A1AAE78E300698FF2 /* AsteroidModel.cpp in Sources */,
 				D4BAD07F1AAE78E300698FF2 /* Camera.cpp in Sources */,
-				D4BAD0861AAE78E300698FF2 /* Renderer.cpp in Sources */,
+				D46301141ABBC27500BF8F32 /* Renderer.cpp in Sources */,
 				D4BAD0791AAE78E300698FF2 /* AsteroidFactory.cpp in Sources */,
-				D4BAD07C1AAE78E300698FF2 /* BackgroundSphereModel.cpp in Sources */,
 				D4BAD08A1AAE78E300698FF2 /* Variables.cpp in Sources */,
 				D4BAD0871AAE78E300698FF2 /* SphereModel.cpp in Sources */,
 				D4BAD0841AAE78E300698FF2 /* Path.cpp in Sources */,
 				D4BAD0831AAE78E300698FF2 /* Model.cpp in Sources */,
-				D4BAD07E1AAE78E300698FF2 /* BSplineCamera.cpp in Sources */,
 				D4BAD0801AAE78E300698FF2 /* CubeModel.cpp in Sources */,
 				D4BAD0821AAE78E300698FF2 /* main.cpp in Sources */,
-				D4BAD07B1AAE78E300698FF2 /* BackgroundFactory.cpp in Sources */,
 				D4BAD0851AAE78E300698FF2 /* Projectile.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
