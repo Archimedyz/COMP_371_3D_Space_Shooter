@@ -377,16 +377,6 @@
 					"$(inherited)",
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
-					/Users/skyler/Google,
-					Drive/My,
-					Documents/Concordia/Winter,
-					2015/COMP,
-					"371/Assignments/Assignment1_v2/Assignment1/ThirdParty/glew-1.10.0/lib/Release/osx",
-					/Users/skyler/Google,
-					Drive/My,
-					Documents/Concordia/Winter,
-					2015/COMP,
-					"371/Assignments/Assignment1_v2/Assignment1/ThirdParty/glfw-3.0.4/lib/osx",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -407,16 +397,6 @@
 					"$(inherited)",
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
-					/Users/skyler/Google,
-					Drive/My,
-					Documents/Concordia/Winter,
-					2015/COMP,
-					"371/Assignments/Assignment1_v2/Assignment1/ThirdParty/glew-1.10.0/lib/Release/osx",
-					/Users/skyler/Google,
-					Drive/My,
-					Documents/Concordia/Winter,
-					2015/COMP,
-					"371/Assignments/Assignment1_v2/Assignment1/ThirdParty/glfw-3.0.4/lib/osx",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
