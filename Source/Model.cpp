@@ -166,16 +166,16 @@ glm::mat4 Model::GetWorldMatrix() const
 
 	mat4 t = glm::translate(mat4(1.0f), mPosition);
 
-	mat4 rx1 = glm::rotate(mat4(1.0f), mXRotationAngleInDegrees, mXAxis);
-	mat4 ry1 = glm::rotate(mat4(1.0f), mYRotationAngleInDegrees, mYAxis);
-	mat4 rz1 = glm::rotate(mat4(1.0f), mZRotationAngleInDegrees, mZAxis);
+	mat4 rx = glm::rotate(mat4(1.0f), mXRotationAngleInDegrees, mXAxis);
+	mat4 ry = glm::rotate(mat4(1.0f), mYRotationAngleInDegrees, mYAxis);
+	mat4 rz = glm::rotate(mat4(1.0f), mZRotationAngleInDegrees, mZAxis);
 
 	mat4 rcx = glm::rotate(mat4(1.0f), mCameraXRotationAngleInDegrees, mCamXAxis);
 	mat4 rcy = glm::rotate(mat4(1.0f), mCameraYRotationAngleInDegrees, mCamYAxis);
 	mat4 rcz = glm::rotate(mat4(1.0f), mCameraZRotationAngleInDegrees, mCamZAxis);
 
 	mat4 s = glm::scale(mat4(1.0f), mScaling);
-	worldMatrix = t * rcy * rcx * rcz * ry1 * rx1 * rz1 * s;
+	worldMatrix = t * rcy * rcx * rcz * ry * rx * rz * s;
 
 	return worldMatrix;
 }

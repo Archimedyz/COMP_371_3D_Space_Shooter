@@ -266,11 +266,6 @@ void ThirdPersonCamera::Update(float dt)
 		Projectile::SetLastFired(time(NULL)); // Set the last time fired to the current time.
 	}
 
-	//if (mModelCurrentPitch != 0.0f || mModelCurrentYaw != 0.0f || mModelCurrentRoll != 0.0f)		// view pitch, yaw, and roll during execution
-	{
-	//	std::cout << "pitch: " << mModelCurrentPitch << " | yaw: " << mModelCurrentYaw << " | roll: " << mModelCurrentRoll << " | H angle: " << mHorizontalAngle << " | V angle: " << mVerticalAngle << std::endl;
-	}
-
 	// Adjust model according to changes
 	vec3 modelDisplacement = glm::normalize(mLookAt) * mModelCurrentSpeed * dt;
 	mTargetModel->SetPosition(currentPosition + modelDisplacement);
@@ -281,11 +276,6 @@ void ThirdPersonCamera::Update(float dt)
 	mTargetModel->SetCamYRotation(mUp, mModelCurrentYaw);
 	mTargetModel->SetCamXRotation(mRight, mModelCurrentPitch);
 	mTargetModel->SetCamZRotation(mLookAt, mModelCurrentRoll);
-
-	//if (mTargetModel->GetXRotationAngle() != 0.0f || mTargetModel->GetYRotationAngle() != 0.0f || mTargetModel->GetZRotationAngle() != 0.0f)
-	{
-	//	std::cout << "pitch: " << mTargetModel->GetXRotationAngle() << " | yaw: " << mTargetModel->GetYRotationAngle() << " | roll: " << mTargetModel->GetZRotationAngle() << " | H angle: " << mTargetModel->GetCamHAngle() << " | V angle: " << mTargetModel->GetCamVAngle() << std::endl << std::endl;
-	}
 
     CalculateCameraBasis();
 }
