@@ -9,7 +9,6 @@
 
 #include "Model.h"
 #include "Path.h"
-#include "BSpline.h"
 #include "World.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/common.hpp>
@@ -53,15 +52,6 @@ void Model::Update(float dt)
 		{
 			++mTargetWaypoint;
 		}
-	}
-	else if (mSpline)
-	{
-		vec3 direction = mSpline->GetTangent(mSplineParameterT);
-		// I take the ratio of the instant speed as per the Spline and the desired speed. If the Spline is faster, I need to slow down, and if its slower, I need to speed up.
-		float speedRatio = mSpeed / glm::length(direction);
-		// We know that T repersents the seconds elapsed, so we add by dt*speedRatio.
-		mSplineParameterT += speedRatio*dt;
-		mPosition = mSpline->GetPosition(mSplineParameterT);
 	}
 }
 
@@ -154,17 +144,9 @@ bool Model::ParseLine(const std::vector<ci_string> &token)
 			World* w = World::GetInstance();
 			mPath = w->FindPath(pathName);
 
-			if (mPath == nullptr)
-			{
-				mSpline = w->FindSpline(pathName);
-			}
 			if (mPath != nullptr)
 			{
 				mPosition = mPath->GetWaypoint(0);
-			}
-			else if (mSpline)
-			{
-				mPosition = mSpline->GetPosition(mSplineParameterT);
 			}
 		}
 		else
