@@ -18,7 +18,6 @@
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
-#include "BackgroundSphereModel.h"
 #include "Path.h"
 #include "BSpline.h"
 #include "Projectile.h"
@@ -201,9 +200,8 @@ void World::LoadScene(const char * scene_path)
 	// be deleted. -Nick
     
 	mModel.push_back(AsteroidFactory::createAsteroid(0));
-	//SphereModel* background = static_cast<SphereModel*>(BackgroundSphereModel(vec3(100.0f, 100.0f, 100.0f)));
-	//mModel.push_back(background);
-	//mModel.push_back(BackgroundSphereModel::Draw());
+
+	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
 
