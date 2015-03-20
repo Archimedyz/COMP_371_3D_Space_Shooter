@@ -17,8 +17,6 @@
 		D4A9DC9C1A7AFC1400CA6A53 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 031A65F61A702EBB003BF698 /* libglfw3.a */; };
 		D4BAD0791AAE78E300698FF2 /* AsteroidFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0531AAE78E300698FF2 /* AsteroidFactory.cpp */; };
 		D4BAD07A1AAE78E300698FF2 /* AsteroidModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0551AAE78E300698FF2 /* AsteroidModel.cpp */; };
-		D4BAD07D1AAE78E300698FF2 /* BSpline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD05B1AAE78E300698FF2 /* BSpline.cpp */; };
-		D4BAD07E1AAE78E300698FF2 /* BSplineCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD05D1AAE78E300698FF2 /* BSplineCamera.cpp */; };
 		D4BAD07F1AAE78E300698FF2 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD05F1AAE78E300698FF2 /* Camera.cpp */; };
 		D4BAD0801AAE78E300698FF2 /* CubeModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0611AAE78E300698FF2 /* CubeModel.cpp */; };
 		D4BAD0811AAE78E300698FF2 /* EventManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0631AAE78E300698FF2 /* EventManager.cpp */; };
@@ -63,10 +61,6 @@
 		D4BAD0541AAE78E300698FF2 /* AsteroidFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsteroidFactory.h; sourceTree = "<group>"; };
 		D4BAD0551AAE78E300698FF2 /* AsteroidModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AsteroidModel.cpp; sourceTree = "<group>"; };
 		D4BAD0561AAE78E300698FF2 /* AsteroidModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsteroidModel.h; sourceTree = "<group>"; };
-		D4BAD05B1AAE78E300698FF2 /* BSpline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BSpline.cpp; sourceTree = "<group>"; };
-		D4BAD05C1AAE78E300698FF2 /* BSpline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSpline.h; sourceTree = "<group>"; };
-		D4BAD05D1AAE78E300698FF2 /* BSplineCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BSplineCamera.cpp; sourceTree = "<group>"; };
-		D4BAD05E1AAE78E300698FF2 /* BSplineCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSplineCamera.h; sourceTree = "<group>"; };
 		D4BAD05F1AAE78E300698FF2 /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		D4BAD0601AAE78E300698FF2 /* Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		D4BAD0611AAE78E300698FF2 /* CubeModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CubeModel.cpp; sourceTree = "<group>"; };
@@ -156,23 +150,12 @@
 		038B785E1A6EB3F500111E36 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D4BAD0531AAE78E300698FF2 /* AsteroidFactory.cpp */,
-				D4BAD0541AAE78E300698FF2 /* AsteroidFactory.h */,
-				D4BAD0551AAE78E300698FF2 /* AsteroidModel.cpp */,
-				D4BAD0561AAE78E300698FF2 /* AsteroidModel.h */,
-				D4BAD05B1AAE78E300698FF2 /* BSpline.cpp */,
-				D4BAD05C1AAE78E300698FF2 /* BSpline.h */,
-				D4BAD05D1AAE78E300698FF2 /* BSplineCamera.cpp */,
-				D4BAD05E1AAE78E300698FF2 /* BSplineCamera.h */,
-				D4BAD05F1AAE78E300698FF2 /* Camera.cpp */,
-				D4BAD0601AAE78E300698FF2 /* Camera.h */,
-				D4BAD0611AAE78E300698FF2 /* CubeModel.cpp */,
-				D4BAD0621AAE78E300698FF2 /* CubeModel.h */,
+				D46301101ABBAB2B00BF8F32 /* Asteroids */,
+				D463010E1ABBA63000BF8F32 /* Cameras */,
+				D463010F1ABBA64300BF8F32 /* Models */,
 				D4BAD0631AAE78E300698FF2 /* EventManager.cpp */,
 				D4BAD0641AAE78E300698FF2 /* EventManager.h */,
 				D4BAD0651AAE78E300698FF2 /* main.cpp */,
-				D4BAD0661AAE78E300698FF2 /* Model.cpp */,
-				D4BAD0671AAE78E300698FF2 /* Model.h */,
 				D4BAD0681AAE78E300698FF2 /* ParsingHelper.h */,
 				D4BAD0691AAE78E300698FF2 /* Path.cpp */,
 				D4BAD06A1AAE78E300698FF2 /* Path.h */,
@@ -180,12 +163,6 @@
 				D4BAD06C1AAE78E300698FF2 /* Projectile.h */,
 				D4BAD06D1AAE78E300698FF2 /* Renderer.cpp */,
 				D4BAD06E1AAE78E300698FF2 /* Renderer.h */,
-				D4BAD06F1AAE78E300698FF2 /* SphereModel.cpp */,
-				D4BAD0701AAE78E300698FF2 /* SphereModel.h */,
-				D4BAD0711AAE78E300698FF2 /* StaticCamera.cpp */,
-				D4BAD0721AAE78E300698FF2 /* StaticCamera.h */,
-				D4BAD0731AAE78E300698FF2 /* ThirdPersonCamera.cpp */,
-				D4BAD0741AAE78E300698FF2 /* ThirdPersonCamera.h */,
 				D4BAD0751AAE78E300698FF2 /* Variables.cpp */,
 				D4BAD0761AAE78E300698FF2 /* Variables.h */,
 				D4BAD0771AAE78E300698FF2 /* World.cpp */,
@@ -193,6 +170,43 @@
 			);
 			name = Source;
 			path = ../Source;
+			sourceTree = "<group>";
+		};
+		D463010E1ABBA63000BF8F32 /* Cameras */ = {
+			isa = PBXGroup;
+			children = (
+				D4BAD05F1AAE78E300698FF2 /* Camera.cpp */,
+				D4BAD0601AAE78E300698FF2 /* Camera.h */,
+				D4BAD0711AAE78E300698FF2 /* StaticCamera.cpp */,
+				D4BAD0721AAE78E300698FF2 /* StaticCamera.h */,
+				D4BAD0731AAE78E300698FF2 /* ThirdPersonCamera.cpp */,
+				D4BAD0741AAE78E300698FF2 /* ThirdPersonCamera.h */,
+			);
+			name = Cameras;
+			sourceTree = "<group>";
+		};
+		D463010F1ABBA64300BF8F32 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D4BAD0551AAE78E300698FF2 /* AsteroidModel.cpp */,
+				D4BAD0561AAE78E300698FF2 /* AsteroidModel.h */,
+				D4BAD0611AAE78E300698FF2 /* CubeModel.cpp */,
+				D4BAD0621AAE78E300698FF2 /* CubeModel.h */,
+				D4BAD0661AAE78E300698FF2 /* Model.cpp */,
+				D4BAD0671AAE78E300698FF2 /* Model.h */,
+				D4BAD06F1AAE78E300698FF2 /* SphereModel.cpp */,
+				D4BAD0701AAE78E300698FF2 /* SphereModel.h */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		D46301101ABBAB2B00BF8F32 /* Asteroids */ = {
+			isa = PBXGroup;
+			children = (
+				D4BAD0531AAE78E300698FF2 /* AsteroidFactory.cpp */,
+				D4BAD0541AAE78E300698FF2 /* AsteroidFactory.h */,
+			);
+			name = Asteroids;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,7 +267,6 @@
 			files = (
 				D4BAD0811AAE78E300698FF2 /* EventManager.cpp in Sources */,
 				D4BAD0891AAE78E300698FF2 /* ThirdPersonCamera.cpp in Sources */,
-				D4BAD07D1AAE78E300698FF2 /* BSpline.cpp in Sources */,
 				D4BAD0881AAE78E300698FF2 /* StaticCamera.cpp in Sources */,
 				D4BAD08B1AAE78E300698FF2 /* World.cpp in Sources */,
 				D4BAD07A1AAE78E300698FF2 /* AsteroidModel.cpp in Sources */,
@@ -264,7 +277,6 @@
 				D4BAD0871AAE78E300698FF2 /* SphereModel.cpp in Sources */,
 				D4BAD0841AAE78E300698FF2 /* Path.cpp in Sources */,
 				D4BAD0831AAE78E300698FF2 /* Model.cpp in Sources */,
-				D4BAD07E1AAE78E300698FF2 /* BSplineCamera.cpp in Sources */,
 				D4BAD0801AAE78E300698FF2 /* CubeModel.cpp in Sources */,
 				D4BAD0821AAE78E300698FF2 /* main.cpp in Sources */,
 				D4BAD0851AAE78E300698FF2 /* Projectile.cpp in Sources */,
