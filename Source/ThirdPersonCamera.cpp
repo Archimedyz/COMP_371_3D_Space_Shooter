@@ -108,7 +108,6 @@ void ThirdPersonCamera::Update(float dt)
 		}
 	}
 
-
 	// ************************************************************************************************************
 	// Press A to turn left (decrease yaw)
 	// also, make sure D is not pressed, so that if both bottons are pressed, animation state returns to normal
@@ -257,6 +256,8 @@ void ThirdPersonCamera::Update(float dt)
 		}
 	}
 
+	// ************************************************************************************************************
+	// Click LEFT MOUSE BUTTON to fire projectile
 	vec3 currentPosition = mTargetModel->GetPosition();
 
 	if (glfwGetMouseButton(EventManager::GetWindow(), GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && (time(NULL)-Projectile::GetLastFired() > 0)) // Shoot, if left click and enough time has elapsed.
@@ -272,9 +273,9 @@ void ThirdPersonCamera::Update(float dt)
 
 	mTargetModel->SetXRotation(mTargetModel->GetXAxis(), mVerticalAngle);
 	mTargetModel->SetYRotation(mTargetModel->GetYAxis(), mHorizontalAngle);
-	
-	mTargetModel->SetCamYRotation(mUp, mModelCurrentYaw);
+
 	mTargetModel->SetCamXRotation(mRight, mModelCurrentPitch);
+	mTargetModel->SetCamYRotation(mUp, mModelCurrentYaw);
 	mTargetModel->SetCamZRotation(mLookAt, mModelCurrentRoll);
 
     CalculateCameraBasis();
