@@ -156,23 +156,15 @@
 		038B785E1A6EB3F500111E36 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D463010F1ABBA64300BF8F32 /* Model */,
+				D463010E1ABBA63000BF8F32 /* Camera */,
 				D4BAD0531AAE78E300698FF2 /* AsteroidFactory.cpp */,
 				D4BAD0541AAE78E300698FF2 /* AsteroidFactory.h */,
-				D4BAD0551AAE78E300698FF2 /* AsteroidModel.cpp */,
-				D4BAD0561AAE78E300698FF2 /* AsteroidModel.h */,
 				D4BAD05B1AAE78E300698FF2 /* BSpline.cpp */,
 				D4BAD05C1AAE78E300698FF2 /* BSpline.h */,
-				D4BAD05D1AAE78E300698FF2 /* BSplineCamera.cpp */,
-				D4BAD05E1AAE78E300698FF2 /* BSplineCamera.h */,
-				D4BAD05F1AAE78E300698FF2 /* Camera.cpp */,
-				D4BAD0601AAE78E300698FF2 /* Camera.h */,
-				D4BAD0611AAE78E300698FF2 /* CubeModel.cpp */,
-				D4BAD0621AAE78E300698FF2 /* CubeModel.h */,
 				D4BAD0631AAE78E300698FF2 /* EventManager.cpp */,
 				D4BAD0641AAE78E300698FF2 /* EventManager.h */,
 				D4BAD0651AAE78E300698FF2 /* main.cpp */,
-				D4BAD0661AAE78E300698FF2 /* Model.cpp */,
-				D4BAD0671AAE78E300698FF2 /* Model.h */,
 				D4BAD0681AAE78E300698FF2 /* ParsingHelper.h */,
 				D4BAD0691AAE78E300698FF2 /* Path.cpp */,
 				D4BAD06A1AAE78E300698FF2 /* Path.h */,
@@ -180,12 +172,6 @@
 				D4BAD06C1AAE78E300698FF2 /* Projectile.h */,
 				D4BAD06D1AAE78E300698FF2 /* Renderer.cpp */,
 				D4BAD06E1AAE78E300698FF2 /* Renderer.h */,
-				D4BAD06F1AAE78E300698FF2 /* SphereModel.cpp */,
-				D4BAD0701AAE78E300698FF2 /* SphereModel.h */,
-				D4BAD0711AAE78E300698FF2 /* StaticCamera.cpp */,
-				D4BAD0721AAE78E300698FF2 /* StaticCamera.h */,
-				D4BAD0731AAE78E300698FF2 /* ThirdPersonCamera.cpp */,
-				D4BAD0741AAE78E300698FF2 /* ThirdPersonCamera.h */,
 				D4BAD0751AAE78E300698FF2 /* Variables.cpp */,
 				D4BAD0761AAE78E300698FF2 /* Variables.h */,
 				D4BAD0771AAE78E300698FF2 /* World.cpp */,
@@ -193,6 +179,36 @@
 			);
 			name = Source;
 			path = ../Source;
+			sourceTree = "<group>";
+		};
+		D463010E1ABBA63000BF8F32 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				D4BAD05D1AAE78E300698FF2 /* BSplineCamera.cpp */,
+				D4BAD05E1AAE78E300698FF2 /* BSplineCamera.h */,
+				D4BAD05F1AAE78E300698FF2 /* Camera.cpp */,
+				D4BAD0601AAE78E300698FF2 /* Camera.h */,
+				D4BAD0711AAE78E300698FF2 /* StaticCamera.cpp */,
+				D4BAD0721AAE78E300698FF2 /* StaticCamera.h */,
+				D4BAD0731AAE78E300698FF2 /* ThirdPersonCamera.cpp */,
+				D4BAD0741AAE78E300698FF2 /* ThirdPersonCamera.h */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+		D463010F1ABBA64300BF8F32 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D4BAD0551AAE78E300698FF2 /* AsteroidModel.cpp */,
+				D4BAD0561AAE78E300698FF2 /* AsteroidModel.h */,
+				D4BAD0611AAE78E300698FF2 /* CubeModel.cpp */,
+				D4BAD0621AAE78E300698FF2 /* CubeModel.h */,
+				D4BAD0661AAE78E300698FF2 /* Model.cpp */,
+				D4BAD0671AAE78E300698FF2 /* Model.h */,
+				D4BAD06F1AAE78E300698FF2 /* SphereModel.cpp */,
+				D4BAD0701AAE78E300698FF2 /* SphereModel.h */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
