@@ -69,10 +69,6 @@
   <ItemGroup>
     <ClCompile Include="..\Source\AsteroidFactory.cpp" />
     <ClCompile Include="..\Source\AsteroidModel.cpp" />
-    <ClCompile Include="..\Source\BackgroundFactory.cpp" />
-    <ClCompile Include="..\Source\BackgroundSphereModel.cpp" />
-    <ClCompile Include="..\Source\BSpline.cpp" />
-    <ClCompile Include="..\Source\BSplineCamera.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
@@ -90,10 +86,6 @@
   <ItemGroup>
     <ClInclude Include="..\Source\AsteroidFactory.h" />
     <ClInclude Include="..\Source\AsteroidModel.h" />
-    <ClInclude Include="..\Source\BackgroundFactory.h" />
-    <ClInclude Include="..\Source\BackgroundSphereModel.h" />
-    <ClInclude Include="..\Source\BSpline.h" />
-    <ClInclude Include="..\Source\BSplineCamera.h" />
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
@@ -109,7 +101,6 @@
     <ClInclude Include="..\Source\World.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Scenes\BSplineScene.scene" />
     <None Include="..\Scenes\CoordinateSystem.scene" />
     <None Include="..\Scenes\PathScene.scene" />
     <None Include="..\Shaders\BlueColor.fragmentshader" />
