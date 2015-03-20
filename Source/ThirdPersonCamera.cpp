@@ -53,14 +53,15 @@ void ThirdPersonCamera::CalculateCameraBasis()
 
 	mLookAt = -vec3(x, y, z);
 	mLookAt = vec3(glm::rotate(mat4(1.0f), 90.0f, mTargetModel->GetYAxis()) * vec4(mLookAt.x, mLookAt.y, mLookAt.z, 0.0));
-	mPosition = mTargetModel->GetPosition() - mLookAt;
+	mPosition = mTargetModel->GetPosition() - (2.0f*mLookAt);
 	mRight = glm::normalize(glm::cross(mLookAt, vec3(0.0f, 1.0f, 0.0f)));
 	mUp = glm::cross(mRight, mLookAt);
+
 }
 
 void ThirdPersonCamera::Update(float dt)
 {
-    EventManager::DisableMouseCursor();
+	EventManager::DisableMouseCursor();
 
 	// ************************************************************************************************************
 	// Press SPACE bar to speed up
@@ -256,7 +257,7 @@ void ThirdPersonCamera::Update(float dt)
 		}
 	}
 
-	vec3 currentPosition = mTargetModel->GetPosition();
+	vec3 currentPosition = mTargetModel->GetPosition() - mLookAt;
 
 	if (glfwGetMouseButton(EventManager::GetWindow(), GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && (time(NULL)-Projectile::GetLastFired() > 0)) // Shoot, if left click and enough time has elapsed.
 	{
