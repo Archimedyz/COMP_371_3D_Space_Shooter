@@ -12,6 +12,14 @@
 		038B79161A6FF2E900111E36 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79151A6FF2E900111E36 /* Cocoa.framework */; };
 		038B791A1A6FF39000111E36 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79191A6FF39000111E36 /* CoreVideo.framework */; };
 		038B791E1A6FF3EB00111E36 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B791D1A6FF3EB00111E36 /* IOKit.framework */; };
+		D41ECDB51ABF50F200DC0F64 /* Skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D41ECDB31ABF50F200DC0F64 /* Skybox.cpp */; };
+		D41ECDB91ABF538600DC0F64 /* Textures.c in Sources */ = {isa = PBXBuildFile; fileRef = D41ECDB71ABF538600DC0F64 /* Textures.c */; };
+		D41ECDBD1ABF53F200DC0F64 /* Print.c in Sources */ = {isa = PBXBuildFile; fileRef = D41ECDBB1ABF53F200DC0F64 /* Print.c */; };
+		D41ECDC01ABF540C00DC0F64 /* Fatal.c in Sources */ = {isa = PBXBuildFile; fileRef = D41ECDBE1ABF540C00DC0F64 /* Fatal.c */; };
+		D41ECDC51ABF542800DC0F64 /* Display.c in Sources */ = {isa = PBXBuildFile; fileRef = D41ECDC11ABF542800DC0F64 /* Display.c */; };
+		D41ECDC61ABF542800DC0F64 /* Error.c in Sources */ = {isa = PBXBuildFile; fileRef = D41ECDC31ABF542800DC0F64 /* Error.c */; };
+		D41ECDC91ABF548600DC0F64 /* Globals.c in Sources */ = {isa = PBXBuildFile; fileRef = D41ECDC81ABF548600DC0F64 /* Globals.c */; };
+		D41ECDCB1ABF54C200DC0F64 /* Skybox2.c in Sources */ = {isa = PBXBuildFile; fileRef = D41ECDCA1ABF54C200DC0F64 /* Skybox2.c */; };
 		D46301141ABBC27500BF8F32 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D46301121ABBC27500BF8F32 /* Renderer.cpp */; };
 		D4A9DC9B1A7AFBFF00CA6A53 /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79171A6FF35E00111E36 /* libGLEW.a */; };
 		D4A9DC9C1A7AFC1400CA6A53 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 031A65F61A702EBB003BF698 /* libglfw3.a */; };
@@ -54,6 +62,22 @@
 		038B79191A6FF39000111E36 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		038B791B1A6FF3D100111E36 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		038B791D1A6FF3EB00111E36 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		D41ECDB31ABF50F200DC0F64 /* Skybox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Skybox.cpp; sourceTree = "<group>"; };
+		D41ECDB41ABF50F200DC0F64 /* Skybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skybox.h; sourceTree = "<group>"; };
+		D41ECDB61ABF538600DC0F64 /* Screencasts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screencasts.h; sourceTree = "<group>"; };
+		D41ECDB71ABF538600DC0F64 /* Textures.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Textures.c; sourceTree = "<group>"; };
+		D41ECDB81ABF538600DC0F64 /* Textures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Textures.h; sourceTree = "<group>"; };
+		D41ECDBB1ABF53F200DC0F64 /* Print.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Print.c; sourceTree = "<group>"; };
+		D41ECDBC1ABF53F200DC0F64 /* Print.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Print.h; sourceTree = "<group>"; };
+		D41ECDBE1ABF540C00DC0F64 /* Fatal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Fatal.c; sourceTree = "<group>"; };
+		D41ECDBF1ABF540C00DC0F64 /* Fatal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fatal.h; sourceTree = "<group>"; };
+		D41ECDC11ABF542800DC0F64 /* Display.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Display.c; sourceTree = "<group>"; };
+		D41ECDC21ABF542800DC0F64 /* Display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
+		D41ECDC31ABF542800DC0F64 /* Error.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Error.c; sourceTree = "<group>"; };
+		D41ECDC41ABF542800DC0F64 /* Error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Error.h; sourceTree = "<group>"; };
+		D41ECDC71ABF545700DC0F64 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		D41ECDC81ABF548600DC0F64 /* Globals.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Globals.c; sourceTree = "<group>"; };
+		D41ECDCA1ABF54C200DC0F64 /* Skybox2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Skybox2.c; sourceTree = "<group>"; };
 		D46301121ABBC27500BF8F32 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		D46301131ABBC27500BF8F32 /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		D463011A1ABBC4EA00BF8F32 /* Scenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Scenes; path = ../Scenes; sourceTree = "<group>"; };
@@ -161,6 +185,7 @@
 				D4BAD06C1AAE78E300698FF2 /* Projectile.h */,
 				D46301121ABBC27500BF8F32 /* Renderer.cpp */,
 				D46301131ABBC27500BF8F32 /* Renderer.h */,
+				D41ECDBA1ABF53D800DC0F64 /* Skybox */,
 				D4BAD0751AAE78E300698FF2 /* Variables.cpp */,
 				D4BAD0761AAE78E300698FF2 /* Variables.h */,
 				D4BAD0771AAE78E300698FF2 /* World.cpp */,
@@ -168,6 +193,29 @@
 			);
 			name = Source;
 			path = ../Source;
+			sourceTree = "<group>";
+		};
+		D41ECDBA1ABF53D800DC0F64 /* Skybox */ = {
+			isa = PBXGroup;
+			children = (
+				D41ECDC71ABF545700DC0F64 /* Common.h */,
+				D41ECDC11ABF542800DC0F64 /* Display.c */,
+				D41ECDC21ABF542800DC0F64 /* Display.h */,
+				D41ECDC31ABF542800DC0F64 /* Error.c */,
+				D41ECDC41ABF542800DC0F64 /* Error.h */,
+				D41ECDBE1ABF540C00DC0F64 /* Fatal.c */,
+				D41ECDBF1ABF540C00DC0F64 /* Fatal.h */,
+				D41ECDC81ABF548600DC0F64 /* Globals.c */,
+				D41ECDBB1ABF53F200DC0F64 /* Print.c */,
+				D41ECDBC1ABF53F200DC0F64 /* Print.h */,
+				D41ECDB61ABF538600DC0F64 /* Screencasts.h */,
+				D41ECDB71ABF538600DC0F64 /* Textures.c */,
+				D41ECDB81ABF538600DC0F64 /* Textures.h */,
+				D41ECDB31ABF50F200DC0F64 /* Skybox.cpp */,
+				D41ECDB41ABF50F200DC0F64 /* Skybox.h */,
+				D41ECDCA1ABF54C200DC0F64 /* Skybox2.c */,
+			);
+			name = Skybox;
 			sourceTree = "<group>";
 		};
 		D463010E1ABBA63000BF8F32 /* Cameras */ = {
@@ -266,6 +314,8 @@
 				D4BAD0811AAE78E300698FF2 /* EventManager.cpp in Sources */,
 				D4BAD0891AAE78E300698FF2 /* ThirdPersonCamera.cpp in Sources */,
 				D4BAD0881AAE78E300698FF2 /* StaticCamera.cpp in Sources */,
+				D41ECDBD1ABF53F200DC0F64 /* Print.c in Sources */,
+				D41ECDC51ABF542800DC0F64 /* Display.c in Sources */,
 				D4BAD08B1AAE78E300698FF2 /* World.cpp in Sources */,
 				D4BAD07A1AAE78E300698FF2 /* AsteroidModel.cpp in Sources */,
 				D4BAD07F1AAE78E300698FF2 /* Camera.cpp in Sources */,
@@ -273,10 +323,16 @@
 				D4BAD0791AAE78E300698FF2 /* AsteroidFactory.cpp in Sources */,
 				D4BAD08A1AAE78E300698FF2 /* Variables.cpp in Sources */,
 				D4BAD0871AAE78E300698FF2 /* SphereModel.cpp in Sources */,
+				D41ECDC61ABF542800DC0F64 /* Error.c in Sources */,
 				D4BAD0841AAE78E300698FF2 /* Path.cpp in Sources */,
+				D41ECDB91ABF538600DC0F64 /* Textures.c in Sources */,
+				D41ECDC01ABF540C00DC0F64 /* Fatal.c in Sources */,
+				D41ECDB51ABF50F200DC0F64 /* Skybox.cpp in Sources */,
 				D4BAD0831AAE78E300698FF2 /* Model.cpp in Sources */,
 				D4BAD0801AAE78E300698FF2 /* CubeModel.cpp in Sources */,
 				D4BAD0821AAE78E300698FF2 /* main.cpp in Sources */,
+				D41ECDC91ABF548600DC0F64 /* Globals.c in Sources */,
+				D41ECDCB1ABF54C200DC0F64 /* Skybox2.c in Sources */,
 				D4BAD0851AAE78E300698FF2 /* Projectile.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +417,7 @@
 		0371ABD31A6EAF2E00029CF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"DEBUG=1",
@@ -385,6 +442,7 @@
 		0371ABD41A6EAF2E00029CF8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = "PLATFORM_OSX=1";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
