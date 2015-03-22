@@ -7,23 +7,23 @@
 //
 
 #include "Skybox.h"
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <glm/common.hpp>
 
-void initSkybox()
+Skybox::Skybox(GLuint& texture)
 {
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-    //GL_TEXTURE_MAG_FILTER(GL_NEAREST);
-    //GL_TEXTURE_MIN_FILTER(GL_NEAREST);
-    
-    glPushMatrix();
-    
-    glLoadIdentity();
-    //gluLookAt(
-    //          0,0,0,
-    //          camera->x(),camera->y(),camera->z(),
-    //          0,1,0);
+	setupCubeMap(texture);
 }
+
+void setupCubeMap(GLuint& texture) {
+	glActiveTexture(GL_TEXTURE0);
+	glEnable(GL_TEXTURE_CUBE_MAP);
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, texture);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+}
+
+int glPushMatrix();
 
