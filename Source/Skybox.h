@@ -1,7 +1,9 @@
+//
+// Some code taken from https://procedural.googlecode.com/svn/trunk/v1/POC/
+
+
 #ifndef SKYBOX_H
 #define SKYBOX_H
-
-#include "Vector3.h"
 
 class Skybox{
 
@@ -17,7 +19,7 @@ private:
 public:
 	Skybox();
 	void LoadTexture(char*, GLuint&, GLuint);
-	void RenderSkybox(Vector3<float>);
+	void RenderSkybox();
 
 };
 

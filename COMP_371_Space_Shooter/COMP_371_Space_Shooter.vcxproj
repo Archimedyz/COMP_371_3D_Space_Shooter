@@ -90,6 +90,7 @@
     <ClInclude Include="..\Source\AsteroidFactory.h" />
     <ClInclude Include="..\Source\AsteroidModel.h" />
     <ClInclude Include="..\Source\Camera.h" />
+    <ClInclude Include="..\Source\CubemapTexture.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
     <ClInclude Include="..\Source\Model.h" />

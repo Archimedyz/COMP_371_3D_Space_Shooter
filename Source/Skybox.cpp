@@ -9,33 +9,7 @@ Skybox::Skybox(){
 
 
 void Skybox::LoadTexture(char* end, GLuint& texture, GLuint textureIndex){
-	//Load textures
-	ILuint image_name;
-
-	ilGenImages(1, &image_name); /* Generation of one image name */
-	ilBindImage(image_name); /* Binding of image name */
-	if (!ilLoadImage(end)){ /* Loading of image "image.jpg" */
-		glfwTerminate();
-		cout << "Error loading texture ";
-		cout << end;
-		cout << "\n";
-
-	}
-
-	//glActiveTextureARB(textureIndex);
-	glGenTextures(1, &texture); /* Texture name generation */
-	glBindTexture(GL_TEXTURE_2D, texture); /* Binding of texture name */
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-
-	glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_BPP), ilGetInteger(IL_IMAGE_WIDTH),
-		ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
-
-
-
-	/*
+	
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
 
@@ -44,14 +18,11 @@ void Skybox::LoadTexture(char* end, GLuint& texture, GLuint textureIndex){
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	*/
-
-	ilDeleteImages(1, &image_name); /* Because we have already copied image data into texture data
-									we can release memory used by image. */
+	
 
 }
 
-void Skybox::RenderSkybox(Vector3<float> camera_position){
+void Skybox::RenderSkybox(){
 
 	//Skybox
 	glDisable(GL_CULL_FACE);
@@ -69,7 +40,7 @@ void Skybox::RenderSkybox(Vector3<float> camera_position){
 	glPushMatrix();
 
 	// Second Move the render space to the correct position (Translate)
-	glTranslatef(camera_position.GetX(), camera_position.GetY(), camera_position.GetZ());
+	//glTranslatef(camera_position.GetX(), camera_position.GetY(), camera_position.GetZ());
 	//glTranslatef(0,0,0);
 
 	// First apply scale matrix
@@ -133,8 +104,6 @@ void Skybox::RenderSkybox(Vector3<float> camera_position){
 
 	// Load Saved Matrix
 	glPopMatrix();
-
-
 
 	//glEnable(GL_LIGHTING);
 	glEnable(GL_DEPTH_TEST);
