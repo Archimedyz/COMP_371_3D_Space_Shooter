@@ -7,8 +7,6 @@
 // Copyright (c) 2014-2015 Concordia University. All rights reserved.
 //
 
-// test comment ZACK!!!
-
 #include "Model.h"
 #include "Path.h"
 #include "World.h"
