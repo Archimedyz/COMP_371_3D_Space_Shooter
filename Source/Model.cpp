@@ -7,9 +7,10 @@
 // Copyright (c) 2014-2015 Concordia University. All rights reserved.
 //
 
+// test comment ZACK!!!
+
 #include "Model.h"
 #include "Path.h"
-#include "BSpline.h"
 #include "World.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/common.hpp>
@@ -24,7 +25,9 @@ Model::Model() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f),
 Model::Model(glm::vec3 position, glm::vec3 scaling, glm::vec3 lookAt) : mName("UNNAMED"), mPosition(position),
 mScaling(scaling), mYRotationAngleInDegrees(0.0f), mXRotationAngleInDegrees(0.0f), mZRotationAngleInDegrees(0.0f),
 mPath(nullptr), mSpeed(0.0f), mTargetWaypoint(1), mSpline(nullptr), mSplineParameterT(0.0f), mCollisionRadius(1.0f),
-CollisionsOn(true), mDestroyed(false)
+CollisionsOn(true), mDestroyed(false),
+mCamXAxis(glm::vec3(1.0f, 0.0f, 0.0f)), mCamYAxis(glm::vec3(0.0f, 1.0f, 0.0f)), mCamZAxis(glm::vec3(0.0f, 0.0f, 1.0f)),
+mCameraYRotationAngleInDegrees(0.0f), mCameraXRotationAngleInDegrees(0.0f), mCameraZRotationAngleInDegrees(0.0f)
 {
 	mXAxis = glm::normalize(glm::cross(lookAt, vec3(0.0f, 1.0f, 0.0f)));
 	mYAxis = glm::cross(mXAxis, lookAt);
@@ -53,15 +56,6 @@ void Model::Update(float dt)
 		{
 			++mTargetWaypoint;
 		}
-	}
-	else if (mSpline)
-	{
-		vec3 direction = mSpline->GetTangent(mSplineParameterT);
-		// I take the ratio of the instant speed as per the Spline and the desired speed. If the Spline is faster, I need to slow down, and if its slower, I need to speed up.
-		float speedRatio = mSpeed / glm::length(direction);
-		// We know that T repersents the seconds elapsed, so we add by dt*speedRatio.
-		mSplineParameterT += speedRatio*dt;
-		mPosition = mSpline->GetPosition(mSplineParameterT);
 	}
 }
 
@@ -154,17 +148,9 @@ bool Model::ParseLine(const std::vector<ci_string> &token)
 			World* w = World::GetInstance();
 			mPath = w->FindPath(pathName);
 
-			if (mPath == nullptr)
-			{
-				mSpline = w->FindSpline(pathName);
-			}
 			if (mPath != nullptr)
 			{
 				mPosition = mPath->GetWaypoint(0);
-			}
-			else if (mSpline)
-			{
-				mPosition = mSpline->GetPosition(mSplineParameterT);
 			}
 		}
 		else
@@ -181,11 +167,17 @@ glm::mat4 Model::GetWorldMatrix() const
 	mat4 worldMatrix(1.0f);
 
 	mat4 t = glm::translate(mat4(1.0f), mPosition);
+
 	mat4 rx = glm::rotate(mat4(1.0f), mXRotationAngleInDegrees, mXAxis);
 	mat4 ry = glm::rotate(mat4(1.0f), mYRotationAngleInDegrees, mYAxis);
 	mat4 rz = glm::rotate(mat4(1.0f), mZRotationAngleInDegrees, mZAxis);
+
+	mat4 rcx = glm::rotate(mat4(1.0f), mCameraXRotationAngleInDegrees, mCamXAxis);
+	mat4 rcy = glm::rotate(mat4(1.0f), mCameraYRotationAngleInDegrees, mCamYAxis);
+	mat4 rcz = glm::rotate(mat4(1.0f), mCameraZRotationAngleInDegrees, mCamZAxis);
+
 	mat4 s = glm::scale(mat4(1.0f), mScaling);
-	worldMatrix = t * ry * rx * rz * s;
+	worldMatrix = t * rcy * rcx * rcz * ry * rx * rz * s;
 
 	return worldMatrix;
 }
@@ -216,6 +208,24 @@ void Model::SetZRotation(glm::vec3 axis, float angleDegrees)
 {
 	mZAxis = axis;
 	mZRotationAngleInDegrees = angleDegrees;
+}
+
+void Model::SetCamXRotation(glm::vec3 axis, float angleDegrees)
+{
+	mCamXAxis = axis;
+	mCameraXRotationAngleInDegrees = angleDegrees;
+}
+
+void Model::SetCamYRotation(glm::vec3 axis, float angleDegrees)
+{
+	mCamYAxis = axis;
+	mCameraYRotationAngleInDegrees = angleDegrees;
+}
+
+void Model::SetCamZRotation(glm::vec3 axis, float angleDegrees)
+{
+	mCamZAxis = axis;
+	mCameraZRotationAngleInDegrees = angleDegrees;
 }
 
 void Model::SetSpeed(float spd)
