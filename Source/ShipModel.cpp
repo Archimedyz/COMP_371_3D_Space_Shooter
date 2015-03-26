@@ -11,7 +11,7 @@
 
 ShipModel::ShipModel()
 {
-	Loader::loadModel("../Resource/Models/X_WING_2.obj");
+	Loader::loadModel("../Resources/Models/X_WING_2.obj");
 }
 
 

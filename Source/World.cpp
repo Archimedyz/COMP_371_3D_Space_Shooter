@@ -18,7 +18,6 @@
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
-#include "BackgroundSphereModel.h"
 #include "Path.h"
 #include "BSpline.h"
 #include "Projectile.h"
@@ -228,11 +227,11 @@ void World::LoadCameras()
 
 	// Cube "ship" Character controlled with Third Person Camera
 	//CubeModel * ship_model = new CubeModel();
-	ShipModel * ship_model = new ShipModel();
-	ship_model->SetPosition(vec3(2.0f, 1.0f, 1.0f));
-	ship_model->ActivateCollisions(false);
-	mCamera.push_back(new ThirdPersonCamera(ship_model));
-	mModel.push_back(ship_model);
+	//ShipModel * ship_model = new ShipModel();
+	//ship_model->SetPosition(vec3(2.0f, 1.0f, 1.0f));
+	//ship_model->ActivateCollisions(false);
+	//mCamera.push_back(new ThirdPersonCamera(ship_model));
+	//mModel.push_back(ship_model);
 
     // BSpline Camera
     BSpline* spline = FindSpline("\"RollerCoaster\"");
