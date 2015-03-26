@@ -29,12 +29,12 @@
 		D4BAD0891AAE78E300698FF2 /* ThirdPersonCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0731AAE78E300698FF2 /* ThirdPersonCamera.cpp */; };
 		D4BAD08A1AAE78E300698FF2 /* Variables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0751AAE78E300698FF2 /* Variables.cpp */; };
 		D4BAD08B1AAE78E300698FF2 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0771AAE78E300698FF2 /* World.cpp */; };
-		D4F9C7DA1AC4CF3200F5AB97 /* Loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7CE1AC4CF3200F5AB97 /* Loader.cpp */; };
-		D4F9C7DB1AC4CF3200F5AB97 /* objloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7D01AC4CF3200F5AB97 /* objloader.cpp */; };
-		D4F9C7DC1AC4CF3200F5AB97 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7D21AC4CF3200F5AB97 /* shader.cpp */; };
-		D4F9C7DD1AC4CF3200F5AB97 /* ShipModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7D41AC4CF3200F5AB97 /* ShipModel.cpp */; };
-		D4F9C7DE1AC4CF3200F5AB97 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7D61AC4CF3200F5AB97 /* texture.cpp */; };
-		D4F9C7DF1AC4CF3200F5AB97 /* vboindexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7D81AC4CF3200F5AB97 /* vboindexer.cpp */; };
+		D4F9C7EC1AC4D1F800F5AB97 /* Loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E01AC4D1F800F5AB97 /* Loader.cpp */; };
+		D4F9C7ED1AC4D1F800F5AB97 /* objloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E21AC4D1F800F5AB97 /* objloader.cpp */; };
+		D4F9C7EE1AC4D1F800F5AB97 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E41AC4D1F800F5AB97 /* shader.cpp */; };
+		D4F9C7EF1AC4D1F800F5AB97 /* ShipModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E61AC4D1F800F5AB97 /* ShipModel.cpp */; };
+		D4F9C7F01AC4D1F800F5AB97 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E81AC4D1F800F5AB97 /* texture.cpp */; };
+		D4F9C7F11AC4D1F800F5AB97 /* vboindexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7EA1AC4D1F800F5AB97 /* vboindexer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -92,18 +92,18 @@
 		D4BAD0771AAE78E300698FF2 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
 		D4BAD0781AAE78E300698FF2 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
 		D4F9C7C91AC4CD5700F5AB97 /* X_WING_2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = X_WING_2.obj; path = ../Resources/Models/X_WING_2.obj; sourceTree = "<group>"; };
-		D4F9C7CE1AC4CF3200F5AB97 /* Loader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Loader.cpp; path = ../../../Desktop/COMP_371_3D_Space_Shooter/Source/Loader.cpp; sourceTree = "<group>"; };
-		D4F9C7CF1AC4CF3200F5AB97 /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Loader.h; path = ../../../Desktop/COMP_371_3D_Space_Shooter/Source/Loader.h; sourceTree = "<group>"; };
-		D4F9C7D01AC4CF3200F5AB97 /* objloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = objloader.cpp; path = ../../../Desktop/COMP_371_3D_Space_Shooter/Source/objloader.cpp; sourceTree = "<group>"; };
-		D4F9C7D11AC4CF3200F5AB97 /* objloader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = objloader.hpp; path = ../../../Desktop/COMP_371_3D_Space_Shooter/Source/objloader.hpp; sourceTree = "<group>"; };
-		D4F9C7D21AC4CF3200F5AB97 /* shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader.cpp; path = ../../../Desktop/COMP_371_3D_Space_Shooter/Source/shader.cpp; sourceTree = "<group>"; };
-		D4F9C7D31AC4CF3200F5AB97 /* shader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = shader.hpp; path = ../../../Desktop/COMP_371_3D_Space_Shooter/Source/shader.hpp; sourceTree = "<group>"; };
-		D4F9C7D41AC4CF3200F5AB97 /* ShipModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShipModel.cpp; path = ../../../Desktop/COMP_371_3D_Space_Shooter/Source/ShipModel.cpp; sourceTree = "<group>"; };
-		D4F9C7D51AC4CF3200F5AB97 /* ShipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShipModel.h; path = ../../../Desktop/COMP_371_3D_Space_Shooter/Source/ShipModel.h; sourceTree = "<group>"; };
-		D4F9C7D61AC4CF3200F5AB97 /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = texture.cpp; path = ../../../Desktop/COMP_371_3D_Space_Shooter/Source/texture.cpp; sourceTree = "<group>"; };
-		D4F9C7D71AC4CF3200F5AB97 /* texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = texture.hpp; path = ../../../Desktop/COMP_371_3D_Space_Shooter/Source/texture.hpp; sourceTree = "<group>"; };
-		D4F9C7D81AC4CF3200F5AB97 /* vboindexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vboindexer.cpp; path = ../../../Desktop/COMP_371_3D_Space_Shooter/Source/vboindexer.cpp; sourceTree = "<group>"; };
-		D4F9C7D91AC4CF3200F5AB97 /* vboindexer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = vboindexer.hpp; path = ../../../Desktop/COMP_371_3D_Space_Shooter/Source/vboindexer.hpp; sourceTree = "<group>"; };
+		D4F9C7E01AC4D1F800F5AB97 /* Loader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Loader.cpp; sourceTree = "<group>"; };
+		D4F9C7E11AC4D1F800F5AB97 /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
+		D4F9C7E21AC4D1F800F5AB97 /* objloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objloader.cpp; sourceTree = "<group>"; };
+		D4F9C7E31AC4D1F800F5AB97 /* objloader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = objloader.hpp; sourceTree = "<group>"; };
+		D4F9C7E41AC4D1F800F5AB97 /* shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
+		D4F9C7E51AC4D1F800F5AB97 /* shader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
+		D4F9C7E61AC4D1F800F5AB97 /* ShipModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShipModel.cpp; sourceTree = "<group>"; };
+		D4F9C7E71AC4D1F800F5AB97 /* ShipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipModel.h; sourceTree = "<group>"; };
+		D4F9C7E81AC4D1F800F5AB97 /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
+		D4F9C7E91AC4D1F800F5AB97 /* texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = texture.hpp; sourceTree = "<group>"; };
+		D4F9C7EA1AC4D1F800F5AB97 /* vboindexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vboindexer.cpp; sourceTree = "<group>"; };
+		D4F9C7EB1AC4D1F800F5AB97 /* vboindexer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vboindexer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,18 +231,18 @@
 		D4F9C7CD1AC4CF0C00F5AB97 /* Ship */ = {
 			isa = PBXGroup;
 			children = (
-				D4F9C7CE1AC4CF3200F5AB97 /* Loader.cpp */,
-				D4F9C7CF1AC4CF3200F5AB97 /* Loader.h */,
-				D4F9C7D01AC4CF3200F5AB97 /* objloader.cpp */,
-				D4F9C7D11AC4CF3200F5AB97 /* objloader.hpp */,
-				D4F9C7D21AC4CF3200F5AB97 /* shader.cpp */,
-				D4F9C7D31AC4CF3200F5AB97 /* shader.hpp */,
-				D4F9C7D41AC4CF3200F5AB97 /* ShipModel.cpp */,
-				D4F9C7D51AC4CF3200F5AB97 /* ShipModel.h */,
-				D4F9C7D61AC4CF3200F5AB97 /* texture.cpp */,
-				D4F9C7D71AC4CF3200F5AB97 /* texture.hpp */,
-				D4F9C7D81AC4CF3200F5AB97 /* vboindexer.cpp */,
-				D4F9C7D91AC4CF3200F5AB97 /* vboindexer.hpp */,
+				D4F9C7E01AC4D1F800F5AB97 /* Loader.cpp */,
+				D4F9C7E11AC4D1F800F5AB97 /* Loader.h */,
+				D4F9C7E21AC4D1F800F5AB97 /* objloader.cpp */,
+				D4F9C7E31AC4D1F800F5AB97 /* objloader.hpp */,
+				D4F9C7E41AC4D1F800F5AB97 /* shader.cpp */,
+				D4F9C7E51AC4D1F800F5AB97 /* shader.hpp */,
+				D4F9C7E61AC4D1F800F5AB97 /* ShipModel.cpp */,
+				D4F9C7E71AC4D1F800F5AB97 /* ShipModel.h */,
+				D4F9C7E81AC4D1F800F5AB97 /* texture.cpp */,
+				D4F9C7E91AC4D1F800F5AB97 /* texture.hpp */,
+				D4F9C7EA1AC4D1F800F5AB97 /* vboindexer.cpp */,
+				D4F9C7EB1AC4D1F800F5AB97 /* vboindexer.hpp */,
 			);
 			name = Ship;
 			sourceTree = "<group>";
@@ -303,27 +303,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4F9C7DF1AC4CF3200F5AB97 /* vboindexer.cpp in Sources */,
+				D4F9C7ED1AC4D1F800F5AB97 /* objloader.cpp in Sources */,
 				D4BAD0811AAE78E300698FF2 /* EventManager.cpp in Sources */,
 				D4BAD0891AAE78E300698FF2 /* ThirdPersonCamera.cpp in Sources */,
+				D4F9C7EC1AC4D1F800F5AB97 /* Loader.cpp in Sources */,
 				D4BAD0881AAE78E300698FF2 /* StaticCamera.cpp in Sources */,
 				D4BAD08B1AAE78E300698FF2 /* World.cpp in Sources */,
 				D4BAD07A1AAE78E300698FF2 /* AsteroidModel.cpp in Sources */,
 				D4BAD07F1AAE78E300698FF2 /* Camera.cpp in Sources */,
 				D46301141ABBC27500BF8F32 /* Renderer.cpp in Sources */,
-				D4F9C7DD1AC4CF3200F5AB97 /* ShipModel.cpp in Sources */,
+				D4F9C7F01AC4D1F800F5AB97 /* texture.cpp in Sources */,
 				D4BAD0791AAE78E300698FF2 /* AsteroidFactory.cpp in Sources */,
 				D4BAD08A1AAE78E300698FF2 /* Variables.cpp in Sources */,
-				D4F9C7DC1AC4CF3200F5AB97 /* shader.cpp in Sources */,
-				D4F9C7DA1AC4CF3200F5AB97 /* Loader.cpp in Sources */,
 				D4BAD0871AAE78E300698FF2 /* SphereModel.cpp in Sources */,
+				D4F9C7EE1AC4D1F800F5AB97 /* shader.cpp in Sources */,
+				D4F9C7EF1AC4D1F800F5AB97 /* ShipModel.cpp in Sources */,
+				D4F9C7F11AC4D1F800F5AB97 /* vboindexer.cpp in Sources */,
 				D4BAD0841AAE78E300698FF2 /* Path.cpp in Sources */,
-				D4F9C7DB1AC4CF3200F5AB97 /* objloader.cpp in Sources */,
 				D4BAD0831AAE78E300698FF2 /* Model.cpp in Sources */,
 				D4BAD0801AAE78E300698FF2 /* CubeModel.cpp in Sources */,
 				D4BAD0821AAE78E300698FF2 /* main.cpp in Sources */,
 				D4BAD0851AAE78E300698FF2 /* Projectile.cpp in Sources */,
-				D4F9C7DE1AC4CF3200F5AB97 /* texture.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
