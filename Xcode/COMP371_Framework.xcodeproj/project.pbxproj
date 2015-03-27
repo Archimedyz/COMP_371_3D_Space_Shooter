@@ -35,6 +35,8 @@
 		D4F9C7EF1AC4D1F800F5AB97 /* ShipModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E61AC4D1F800F5AB97 /* ShipModel.cpp */; };
 		D4F9C7F01AC4D1F800F5AB97 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E81AC4D1F800F5AB97 /* texture.cpp */; };
 		D4F9C7F11AC4D1F800F5AB97 /* vboindexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7EA1AC4D1F800F5AB97 /* vboindexer.cpp */; };
+		D4F9C7F41AC4DAF300F5AB97 /* Models in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4F9C7F31AC4DA6500F5AB97 /* Models */; };
+		D4F9C7F51AC4DAF300F5AB97 /* Scenes in CopyFiles */ = {isa = PBXBuildFile; fileRef = D463011A1ABBC4EA00BF8F32 /* Scenes */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +46,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				D4F9C7F41AC4DAF300F5AB97 /* Models in CopyFiles */,
+				D4F9C7F51AC4DAF300F5AB97 /* Scenes in CopyFiles */,
 				034F0BC11A7017370028E1BA /* Shaders in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,7 +95,6 @@
 		D4BAD0761AAE78E300698FF2 /* Variables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Variables.h; sourceTree = "<group>"; };
 		D4BAD0771AAE78E300698FF2 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
 		D4BAD0781AAE78E300698FF2 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
-		D4F9C7C91AC4CD5700F5AB97 /* X_WING_2.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = X_WING_2.obj; path = ../Resources/Models/X_WING_2.obj; sourceTree = "<group>"; };
 		D4F9C7E01AC4D1F800F5AB97 /* Loader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Loader.cpp; sourceTree = "<group>"; };
 		D4F9C7E11AC4D1F800F5AB97 /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
 		D4F9C7E21AC4D1F800F5AB97 /* objloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objloader.cpp; sourceTree = "<group>"; };
@@ -104,6 +107,7 @@
 		D4F9C7E91AC4D1F800F5AB97 /* texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = texture.hpp; sourceTree = "<group>"; };
 		D4F9C7EA1AC4D1F800F5AB97 /* vboindexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vboindexer.cpp; sourceTree = "<group>"; };
 		D4F9C7EB1AC4D1F800F5AB97 /* vboindexer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vboindexer.hpp; sourceTree = "<group>"; };
+		D4F9C7F31AC4DA6500F5AB97 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = ../Resources/Models; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +144,7 @@
 		034F0BB31A7010160028E1BA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D4F9C7C91AC4CD5700F5AB97 /* X_WING_2.obj */,
+				D4F9C7F31AC4DA6500F5AB97 /* Models */,
 				D463011A1ABBC4EA00BF8F32 /* Scenes */,
 				034F0BB41A70103C0028E1BA /* Shaders */,
 			);
