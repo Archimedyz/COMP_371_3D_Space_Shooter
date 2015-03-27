@@ -34,12 +34,12 @@ World::World()
     Skybox();
     
     //Load textures for Skybox
-    GLuint imageBK = loadBMP_custom("GalaxySkybox/Galaxy_BK.bmp");
-    GLuint imageFT = loadBMP_custom("GalaxySkybox/Galaxy_FT.bmp");
-    GLuint imageRT = loadBMP_custom("GalaxySkybox/Galaxy_RT.bmp");
-    GLuint imageLT = loadBMP_custom("GalaxySkybox/Galaxy_LT.bmp");
-    GLuint imageUP = loadBMP_custom("GalaxySkybox/Galaxy_UP.bmp");
-    GLuint imageDN = loadBMP_custom("GalaxySkybox/Galaxy_DN.bmp");
+//    GLuint imageBK = loadBMP_custom("GalaxySkybox/Galaxy_BK.bmp");
+//    GLuint imageFT = loadBMP_custom("GalaxySkybox/Galaxy_FT.bmp");
+//    GLuint imageRT = loadBMP_custom("GalaxySkybox/Galaxy_RT.bmp");
+//    GLuint imageLT = loadBMP_custom("GalaxySkybox/Galaxy_LT.bmp");
+//    GLuint imageUP = loadBMP_custom("GalaxySkybox/Galaxy_UP.bmp");
+//    GLuint imageDN = loadBMP_custom("GalaxySkybox/Galaxy_DN.bmp");
 }
 
 World::~World()
