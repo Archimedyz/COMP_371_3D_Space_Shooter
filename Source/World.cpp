@@ -186,11 +186,6 @@ void World::Draw()
 
 void World::LoadScene(const char * scene_path)
 {
-<<<<<<< HEAD
-    
-	mModel.push_back(AsteroidFactory::createAsteroid(0));
-	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
-=======
 	// Using case-insensitive strings and streams for easier parsing
 	ci_ifstream input;
 	input.open(scene_path, ios::in);
@@ -280,7 +275,6 @@ void World::LoadGame()
 
 	//Loader::loadModel();
 
->>>>>>> Zack
     LoadCameras();
 }
 
@@ -296,15 +290,8 @@ void World::LoadCameras()
 	character->ActivateCollisions(false);
     mModel.push_back(character);
 
-<<<<<<< HEAD
-	//Ship controlled with Third Person Camera
-    ShipModel * ship_model = new ShipModel();
-	ship_model->SetPosition(vec3(2.0f, 1.0f, 1.0f));
-=======
-	// Cube "ship" Character controlled with Third Person Camera
-	//CubeModel * ship_model = new CubeModel();
+	//Ship Character controlled with Third Person Camera
 	ShipModel * ship_model = new ShipModel(vec3(5.0f, 0.0f, 0.0f), vec3(0.5f, 0.5f, 0.5f));
->>>>>>> Zack
 	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);

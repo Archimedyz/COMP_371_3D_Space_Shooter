@@ -18,11 +18,6 @@ int main(int argc, char*argv[])
 	else
 	{
 #if defined(PLATFORM_OSX)
-<<<<<<< HEAD
-        world.LoadScene("Scenes/PathScene.scene");
-#else
-        world.LoadScene("../Scenes/PathScene.scene");
-=======
         //world.LoadScene("Scenes/CoordinateSystem.scene");
         //world.LoadScene("Scenes/PathScene.scene");
         //world.LoadScene("Scenes/BSplineScene.scene");
@@ -32,7 +27,6 @@ int main(int argc, char*argv[])
         //world.LoadScene("../Scenes/PathScene.scene");
         //world.LoadScene("../Scenes/BSplineScene.scene");
 		world.LoadGame();
->>>>>>> Zack
 #endif
 	}
 
