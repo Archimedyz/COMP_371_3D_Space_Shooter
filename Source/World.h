@@ -31,6 +31,7 @@ public:
 	void Draw();
 
 	void LoadScene(const char * scene_path);
+	void LoadGame();
     void LoadCameras();
 
     Path* FindPath(ci_string pathName);
