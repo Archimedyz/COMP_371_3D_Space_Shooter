@@ -7,8 +7,6 @@
 // Copyright (c) 2014-2015 Concordia University. All rights reserved.
 //
 
-// test comment ZACK!!!
-
 #include "Model.h"
 #include "Path.h"
 #include "World.h"
@@ -19,6 +17,10 @@ using namespace std;
 using namespace glm;
 
 Model::Model() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, -1.0f))
+{
+}
+
+Model::Model(glm::vec3 position, glm::vec3 scaling) : Model(position, scaling, glm::vec3(0.0f, 0.0f, -1.0f))
 {
 }
 
