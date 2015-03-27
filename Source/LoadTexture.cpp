@@ -1,6 +1,8 @@
+// From http://learnopengl.com/code_viewer.php?code=advanced/cubemaps-exercise1
+
 #include "LoadTexture.h"
 #include "SOIL.h"
-#include <GL/glew.h>
+
 
 GLuint loadTexture(GLchar* path)
 {

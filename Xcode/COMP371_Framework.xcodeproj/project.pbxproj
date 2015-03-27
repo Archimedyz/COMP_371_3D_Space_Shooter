@@ -43,6 +43,7 @@
 		D4F9C8101AC5D17100F5AB97 /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C8061AC5D17100F5AB97 /* image_helper.c */; };
 		D4F9C8111AC5D17100F5AB97 /* SOIL.c in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C8081AC5D17100F5AB97 /* SOIL.c */; };
 		D4F9C8121AC5D17100F5AB97 /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C80A1AC5D17100F5AB97 /* stb_image_aug.c */; };
+		D4F9C8161AC5D27200F5AB97 /* LoadCubeMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C8141AC5D27200F5AB97 /* LoadCubeMap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -128,6 +129,8 @@
 		D4F9C80B1AC5D17100F5AB97 /* stb_image_aug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_image_aug.h; path = ../ThirdParty/SOIL/src/stb_image_aug.h; sourceTree = "<group>"; };
 		D4F9C80C1AC5D17100F5AB97 /* stbi_DDS_aug_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stbi_DDS_aug_c.h; path = ../ThirdParty/SOIL/src/stbi_DDS_aug_c.h; sourceTree = "<group>"; };
 		D4F9C80D1AC5D17100F5AB97 /* stbi_DDS_aug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stbi_DDS_aug.h; path = ../ThirdParty/SOIL/src/stbi_DDS_aug.h; sourceTree = "<group>"; };
+		D4F9C8141AC5D27200F5AB97 /* LoadCubeMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadCubeMap.cpp; sourceTree = "<group>"; };
+		D4F9C8151AC5D27200F5AB97 /* LoadCubeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadCubeMap.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,7 +195,6 @@
 		038B785E1A6EB3F500111E36 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D4F9C8031AC5D16100F5AB97 /* SOIL */,
 				D46301101ABBAB2B00BF8F32 /* Asteroids */,
 				D463010E1ABBA63000BF8F32 /* Cameras */,
 				D463010F1ABBA64300BF8F32 /* Models */,
@@ -276,10 +278,13 @@
 		D4F9C7F91AC4E1F000F5AB97 /* Skybox */ = {
 			isa = PBXGroup;
 			children = (
-				D4F9C7F61AC4E1E700F5AB97 /* Skybox.cpp */,
-				D4F9C7F71AC4E1E700F5AB97 /* Skybox.h */,
+				D4F9C8031AC5D16100F5AB97 /* SOIL */,
+				D4F9C8141AC5D27200F5AB97 /* LoadCubeMap.cpp */,
+				D4F9C8151AC5D27200F5AB97 /* LoadCubeMap.h */,
 				D4F9C7FA1AC5155500F5AB97 /* LoadTexture.cpp */,
 				D4F9C7FB1AC5155500F5AB97 /* LoadTexture.h */,
+				D4F9C7F61AC4E1E700F5AB97 /* Skybox.cpp */,
+				D4F9C7F71AC4E1E700F5AB97 /* Skybox.h */,
 			);
 			name = Skybox;
 			sourceTree = "<group>";
@@ -362,6 +367,7 @@
 				D4BAD0811AAE78E300698FF2 /* EventManager.cpp in Sources */,
 				D4BAD0891AAE78E300698FF2 /* ThirdPersonCamera.cpp in Sources */,
 				D4F9C7EC1AC4D1F800F5AB97 /* Loader.cpp in Sources */,
+				D4F9C8161AC5D27200F5AB97 /* LoadCubeMap.cpp in Sources */,
 				D4BAD0881AAE78E300698FF2 /* StaticCamera.cpp in Sources */,
 				D4F9C7FC1AC5155500F5AB97 /* LoadTexture.cpp in Sources */,
 				D4F9C7F81AC4E1E700F5AB97 /* Skybox.cpp in Sources */,

@@ -70,6 +70,10 @@ void Renderer::Initialize()
                 LoadShaders(shaderPathPrefix + "SolidColor.vertexshader",
                             shaderPathPrefix + "BlueColor.fragmentshader")
                                );
+    sShaderProgramID.push_back(
+                LoadShaders(shaderPathPrefix + "Skybox.vs",
+                            shaderPathPrefix + "Skybox.frag")
+                               );
 	sCurrentShader = 0;
 
 }

@@ -9,20 +9,11 @@
 class Skybox{
 
 private:
-	//Textures
-	GLuint imageFT;
-	GLuint imageBK;
-	GLuint imageLT;
-	GLuint imageRT;
-	GLuint imageUP;
-	GLuint imageDN;
 
 public:
 	Skybox();
     ~Skybox();
-	void LoadTextures(GLuint imageBK, GLuint imageFT, GLuint imageRT, GLuint imageLT, GLuint imageUP, GLuint imageDN);
-	void RenderSkybox();
-
+    void RenderSkybox();
 };
 
 #endif
