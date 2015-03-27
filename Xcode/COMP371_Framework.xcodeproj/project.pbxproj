@@ -425,6 +425,7 @@
 		0371ABD31A6EAF2E00029CF8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"DEBUG=1",
@@ -442,6 +443,7 @@
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -449,6 +451,7 @@
 		0371ABD41A6EAF2E00029CF8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_PREPROCESSOR_DEFINITIONS = "PLATFORM_OSX=1";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -462,6 +465,7 @@
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

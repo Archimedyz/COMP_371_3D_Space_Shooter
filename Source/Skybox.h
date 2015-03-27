@@ -10,10 +10,10 @@ class Skybox{
 
 private:
 	//Textures
-	GLuint imageBK;
 	GLuint imageFT;
-	GLuint imageRT;
+	GLuint imageBK;
 	GLuint imageLT;
+	GLuint imageRT;
 	GLuint imageUP;
 	GLuint imageDN;
 

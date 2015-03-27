@@ -4,6 +4,8 @@
 #include <vector>
 #include <time.h>
 
+#include "Skybox.h"
+
 class Camera;
 class Model;
 class Path;
@@ -34,7 +36,8 @@ public:
 
 private:
     static World* instance;
-
+    static Skybox* skybox;
+    
 	std::vector<Model*> mModel;
     std::vector<Path*> mPath;
     std::vector<BSpline*> mSpline;
