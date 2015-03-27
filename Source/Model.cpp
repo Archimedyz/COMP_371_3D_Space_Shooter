@@ -20,6 +20,10 @@ Model::Model() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f),
 {
 }
 
+Model::Model(glm::vec3 position, glm::vec3 scaling) : Model(position, scaling, glm::vec3(0.0f, 0.0f, -1.0f))
+{
+}
+
 Model::Model(glm::vec3 position, glm::vec3 scaling, glm::vec3 lookAt) : mName("UNNAMED"), mPosition(position),
 mScaling(scaling), mYRotationAngleInDegrees(0.0f), mXRotationAngleInDegrees(0.0f), mZRotationAngleInDegrees(0.0f),
 mPath(nullptr), mSpeed(0.0f), mTargetWaypoint(1), mSpline(nullptr), mSplineParameterT(0.0f), mCollisionRadius(1.0f),

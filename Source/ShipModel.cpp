@@ -9,7 +9,10 @@
 #include "objloader.hpp"
 #include "vboindexer.hpp"
 
-ShipModel::ShipModel()
+ShipModel::ShipModel() : ShipModel(glm::vec3(40.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f))
+{}
+
+ShipModel::ShipModel(glm::vec3 position, glm::vec3 scaling) : Model(position, scaling)
 {
 #if defined(PLATFORM_OSX)
     const char * modelPath = "Models/X_WING_2.obj";

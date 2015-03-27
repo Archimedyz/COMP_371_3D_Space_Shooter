@@ -208,8 +208,7 @@ void World::LoadCameras()
 
 	// Cube "ship" Character controlled with Third Person Camera
 	//CubeModel * ship_model = new CubeModel();
-	ShipModel * ship_model = new ShipModel();
-	ship_model->SetPosition(vec3(2.0f, 1.0f, 1.0f));
+	ShipModel * ship_model = new ShipModel(vec3(5.0f, 0.0f, 0.0f), vec3(0.5f, 0.5f, 0.5f));
 	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
