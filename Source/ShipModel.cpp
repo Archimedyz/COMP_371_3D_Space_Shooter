@@ -14,7 +14,7 @@ ShipModel::ShipModel()
 #if defined(PLATFORM_OSX)
     const char * modelPath = "Models/X_WING_2.obj";
 #else
-    const char * modelPath = "../Models/X_WING_2.obj";
+    const char * modelPath = "../Resources/Models/X_WING_2.obj";
 #endif
     Loader::loadModel(modelPath);
 }
