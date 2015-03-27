@@ -30,17 +30,17 @@ World::World()
 {
     instance = this;
 	addCounter = 0;
-    skybox = new Skybox();
-    
-    GLuint imageFT = loadBMP_custom("GalaxySkybox/Galaxy_FT.bmp");
-    GLuint imageBK = loadBMP_custom("GalaxySkybox/Galaxy_BK.bmp");
-    GLuint imageLT = loadBMP_custom("GalaxySkybox/Galaxy_LT.bmp");
-    GLuint imageRT = loadBMP_custom("GalaxySkybox/Galaxy_RT.bmp");
-    GLuint imageUP = loadBMP_custom("GalaxySkybox/Galaxy_UP.bmp");
-    GLuint imageDN = loadBMP_custom("GalaxySkybox/Galaxy_DN.bmp");
-    
-    skybox->LoadTextures(imageFT, imageBK, imageLT, imageRT, imageUP, imageDN);
-    skybox->RenderSkybox();
+//    skybox = new Skybox();
+//    
+//    GLuint imageFT = loadBMP_custom("GalaxySkybox/Galaxy_FT.bmp");
+//    GLuint imageBK = loadBMP_custom("GalaxySkybox/Galaxy_BK.bmp");
+//    GLuint imageLT = loadBMP_custom("GalaxySkybox/Galaxy_LT.bmp");
+//    GLuint imageRT = loadBMP_custom("GalaxySkybox/Galaxy_RT.bmp");
+//    GLuint imageUP = loadBMP_custom("GalaxySkybox/Galaxy_UP.bmp");
+//    GLuint imageDN = loadBMP_custom("GalaxySkybox/Galaxy_DN.bmp");
+//    
+//    skybox->LoadTextures(imageFT, imageBK, imageLT, imageRT, imageUP, imageDN);
+//    skybox->RenderSkybox();
 }
 
 World::~World()
@@ -66,7 +66,7 @@ World::~World()
 		delete *it;
 	}
 	mCamera.clear();
-    delete skybox;
+    //delete skybox;
 }
 
 World* World::GetInstance()

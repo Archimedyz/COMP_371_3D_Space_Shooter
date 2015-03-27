@@ -28,8 +28,6 @@ public:
     void LoadCameras();
 
     Path* FindPath(ci_string pathName);
-    BSpline* FindSpline(ci_string pathName);
-    BSpline* FindSplineByIndex(unsigned int index);
     Model* FindModelByIndex(unsigned int index);
 
 	void AddModel(Model*);
@@ -40,7 +38,6 @@ private:
     
 	std::vector<Model*> mModel;
     std::vector<Path*> mPath;
-    std::vector<BSpline*> mSpline;
 	std::vector<Camera*> mCamera;
 	unsigned int mCurrentCamera;
 
