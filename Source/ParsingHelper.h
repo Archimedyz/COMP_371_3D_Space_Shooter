@@ -1,12 +1,3 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
-
 #pragma once
 
 #include <string>
@@ -18,10 +9,6 @@
 #include <sstream>
 #include <iterator>
 #include <algorithm>
-
-// Case insensitive strings (eg: Hello == HELLo) 
-// This is used for parsing scene files
-// Stolen from: Herb Suter - http://www.gotw.ca/gotw/029.htm
 
 struct ci_char_traits : public std::char_traits<char>
               // just inherit all the other functions
@@ -42,9 +29,7 @@ struct ci_char_traits : public std::char_traits<char>
 #else
       return _memicmp( s1, s2, n );
 #endif
-      // if available on your compiler,
-             //  otherwise you can roll your own
-    }
+}
 
     static const char*
     find( const char* s, int n, char a ) {

@@ -2,8 +2,14 @@
 #include "Texture.hpp"
 #include <GLFW/glfw3.h>
 
-Skybox::Skybox(){
+Skybox::Skybox()
+{
 	
+}
+
+Skybox::~Skybox()
+{
+    
 }
 
 void Skybox::LoadTextures(GLuint imageBK, GLuint imageFT, GLuint imageRT, GLuint imageLT, GLuint imageUP, GLuint imageDN){
@@ -27,8 +33,6 @@ void Skybox::RenderSkybox(){
 	glDisable(GL_DEPTH_TEST);
 	//glDisable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
-
-
 
 	// Begin DrawSkybox
 	glColor4f(1.0, 1.0, 1.0, 1.0f);
@@ -108,7 +112,5 @@ void Skybox::RenderSkybox(){
 	glEnable(GL_COLOR_MATERIAL);
 	glCullFace(GL_BACK);
 	glDisable(GL_TEXTURE_2D);
-
-
 
 }

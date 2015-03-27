@@ -1,25 +1,23 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
-
 #include "World.h"
 #include "Renderer.h"
 #include "ParsingHelper.h"
+
 #include "StaticCamera.h"
 #include "ThirdPersonCamera.h"
+
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
 #include "Path.h"
 #include "Projectile.h"
+
 #include "ShipModel.h"
 #include "Loader.h"
 
+#include "Skybox.h"
+#include "Texture.hpp"
+
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
 
@@ -33,6 +31,15 @@ World::World()
 {
     instance = this;
 	addCounter = 0;
+    Skybox();
+    
+    //Load textures for Skybox
+    GLuint imageBK = loadBMP_custom("GalaxySkybox/Galaxy_BK.bmp");
+    GLuint imageFT = loadBMP_custom("GalaxySkybox/Galaxy_FT.bmp");
+    GLuint imageRT = loadBMP_custom("GalaxySkybox/Galaxy_RT.bmp");
+    GLuint imageLT = loadBMP_custom("GalaxySkybox/Galaxy_LT.bmp");
+    GLuint imageUP = loadBMP_custom("GalaxySkybox/Galaxy_UP.bmp");
+    GLuint imageDN = loadBMP_custom("GalaxySkybox/Galaxy_DN.bmp");
 }
 
 World::~World()
@@ -181,9 +188,6 @@ void World::LoadScene(const char * scene_path)
 {
     
 	mModel.push_back(AsteroidFactory::createAsteroid(0));
-
-	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
-
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
     LoadCameras();
 }

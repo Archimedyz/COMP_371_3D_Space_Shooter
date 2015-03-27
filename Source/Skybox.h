@@ -19,6 +19,7 @@ private:
 
 public:
 	Skybox();
+    ~Skybox();
 	void LoadTextures(GLuint imageBK, GLuint imageFT, GLuint imageRT, GLuint imageLT, GLuint imageUP, GLuint imageDN);
 	void RenderSkybox();
 

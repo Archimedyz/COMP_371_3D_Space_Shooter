@@ -1,16 +1,5 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
-
 #include "Path.h"
 #include "Renderer.h"
-
-// Include GLEW - OpenGL Extension Wrangler
 #include <GL/glew.h>
 
 using namespace glm;
@@ -98,7 +87,5 @@ void Path::ClearWaypoints()
 
 vec3 Path::GetWaypoint(unsigned int index)
 {
-	// Need to consider the position/rotation/scaling of the path in the world
-	// + the relative position of the waypoint
 	return  vec3(GetWorldMatrix() *  vec4(mWaypoints[index % mWaypoints.size()], 1.0f));
 }

@@ -1,14 +1,4 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
-
 #include "Renderer.h"
-
 
 #include <stdio.h>
 #include <string>
@@ -25,11 +15,9 @@ using namespace std;
 
 #include <GLFW/glfw3.h>
 
-
 #if defined(PLATFORM_OSX)
 #define fscanf_s fscanf
 #endif
-
 
 std::vector<unsigned int> Renderer::sShaderProgramID;
 unsigned int Renderer::sCurrentShader;
@@ -121,10 +109,6 @@ void Renderer::SetShader(ShaderType type)
 	}
 }
 
-//
-// The following code is taken from
-// www.opengl-tutorial.org
-//
 GLuint Renderer::LoadShaders(std::string vertex_shader_path,std::string fragment_shader_path)
 {
 	// Create the shaders
