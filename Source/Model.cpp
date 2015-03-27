@@ -7,6 +7,8 @@
 // Copyright (c) 2014-2015 Concordia University. All rights reserved.
 //
 
+// test comment ZACK!!!
+
 #include "Model.h"
 #include "Path.h"
 #include "World.h"
@@ -23,7 +25,9 @@ Model::Model() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f),
 Model::Model(glm::vec3 position, glm::vec3 scaling, glm::vec3 lookAt) : mName("UNNAMED"), mPosition(position),
 mScaling(scaling), mYRotationAngleInDegrees(0.0f), mXRotationAngleInDegrees(0.0f), mZRotationAngleInDegrees(0.0f),
 mPath(nullptr), mSpeed(0.0f), mTargetWaypoint(1), mSpline(nullptr), mSplineParameterT(0.0f), mCollisionRadius(1.0f),
-CollisionsOn(true), mDestroyed(false)
+CollisionsOn(true), mDestroyed(false),
+mCamXAxis(glm::vec3(1.0f, 0.0f, 0.0f)), mCamYAxis(glm::vec3(0.0f, 1.0f, 0.0f)), mCamZAxis(glm::vec3(0.0f, 0.0f, 1.0f)),
+mCameraYRotationAngleInDegrees(0.0f), mCameraXRotationAngleInDegrees(0.0f), mCameraZRotationAngleInDegrees(0.0f)
 {
 	mXAxis = glm::normalize(glm::cross(lookAt, vec3(0.0f, 1.0f, 0.0f)));
 	mYAxis = glm::cross(mXAxis, lookAt);
@@ -163,11 +167,17 @@ glm::mat4 Model::GetWorldMatrix() const
 	mat4 worldMatrix(1.0f);
 
 	mat4 t = glm::translate(mat4(1.0f), mPosition);
+
 	mat4 rx = glm::rotate(mat4(1.0f), mXRotationAngleInDegrees, mXAxis);
 	mat4 ry = glm::rotate(mat4(1.0f), mYRotationAngleInDegrees, mYAxis);
 	mat4 rz = glm::rotate(mat4(1.0f), mZRotationAngleInDegrees, mZAxis);
+
+	mat4 rcx = glm::rotate(mat4(1.0f), mCameraXRotationAngleInDegrees, mCamXAxis);
+	mat4 rcy = glm::rotate(mat4(1.0f), mCameraYRotationAngleInDegrees, mCamYAxis);
+	mat4 rcz = glm::rotate(mat4(1.0f), mCameraZRotationAngleInDegrees, mCamZAxis);
+
 	mat4 s = glm::scale(mat4(1.0f), mScaling);
-	worldMatrix = t * ry * rx * rz * s;
+	worldMatrix = t * rcy * rcx * rcz * ry * rx * rz * s;
 
 	return worldMatrix;
 }
@@ -198,6 +208,24 @@ void Model::SetZRotation(glm::vec3 axis, float angleDegrees)
 {
 	mZAxis = axis;
 	mZRotationAngleInDegrees = angleDegrees;
+}
+
+void Model::SetCamXRotation(glm::vec3 axis, float angleDegrees)
+{
+	mCamXAxis = axis;
+	mCameraXRotationAngleInDegrees = angleDegrees;
+}
+
+void Model::SetCamYRotation(glm::vec3 axis, float angleDegrees)
+{
+	mCamYAxis = axis;
+	mCameraYRotationAngleInDegrees = angleDegrees;
+}
+
+void Model::SetCamZRotation(glm::vec3 axis, float angleDegrees)
+{
+	mCamZAxis = axis;
+	mCameraZRotationAngleInDegrees = angleDegrees;
 }
 
 void Model::SetSpeed(float spd)
