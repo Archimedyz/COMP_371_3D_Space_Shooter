@@ -31,7 +31,7 @@ World::World()
     instance = this;
 	addCounter = 0;
 //    skybox = new Skybox();
-//    
+   
 //    GLuint imageFT = loadBMP_custom("GalaxySkybox/Galaxy_FT.bmp");
 //    GLuint imageBK = loadBMP_custom("GalaxySkybox/Galaxy_BK.bmp");
 //    GLuint imageLT = loadBMP_custom("GalaxySkybox/Galaxy_LT.bmp");

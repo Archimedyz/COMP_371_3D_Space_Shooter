@@ -9,7 +9,6 @@
 class Camera;
 class Model;
 class Path;
-class BSpline;
 
 class World
 {
@@ -34,7 +33,7 @@ public:
 
 private:
     static World* instance;
-    static Skybox* skybox;
+    //static Skybox* skybox;
     
 	std::vector<Model*> mModel;
     std::vector<Path*> mPath;
