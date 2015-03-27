@@ -21,6 +21,8 @@
 >>>>>>> master
 #include "Path.h"
 #include "Projectile.h"
+#include "ShipModel.h"
+#include "Loader.h"
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
@@ -205,6 +207,8 @@ void World::LoadScene(const char * scene_path)
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
 
+	//Loader::loadModel();
+
     LoadCameras();
 }
 
@@ -215,18 +219,18 @@ void World::LoadCameras()
     mCamera.push_back(new StaticCamera(vec3(3.0f, 30.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     
-    // Cube Character at center of universe (TO BE REPLACED BY SPACE STATION)
-    CubeModel* character = new CubeModel();
+	CubeModel * character = new CubeModel();
     character->SetPosition(vec3(0.0f, 0.0f, 0.0f));
 	character->ActivateCollisions(false);
     mModel.push_back(character);
 
 	// Cube "ship" Character controlled with Third Person Camera
-	CubeModel* character2 = new CubeModel();
-	character2->SetPosition(vec3(20.0f, 10.0f, 10.0f));
-	character2->ActivateCollisions(false);
-	mCamera.push_back(new ThirdPersonCamera(character2));
-	mModel.push_back(character2);
+	//CubeModel * ship_model = new CubeModel();
+	ShipModel * ship_model = new ShipModel();
+	ship_model->SetPosition(vec3(2.0f, 1.0f, 1.0f));
+	ship_model->ActivateCollisions(false);
+	mCamera.push_back(new ThirdPersonCamera(ship_model));
+	mModel.push_back(ship_model);
 
     mCurrentCamera = 0;
 }
