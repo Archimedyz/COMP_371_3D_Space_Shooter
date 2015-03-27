@@ -1,3 +1,4 @@
+#pragma warning(disable: 4996)
 //From http://www.opengl-tutorial.org/beginners-tutorials/tutorial-5-a-textured-cube/
 
 #include <stdio.h>
