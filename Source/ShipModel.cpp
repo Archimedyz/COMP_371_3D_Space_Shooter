@@ -4,10 +4,10 @@
 #include <stdlib.h>
 #include <vector>
 
-#include "shader.hpp"
-#include "texture.hpp"
-#include "objloader.hpp"
-#include "vboindexer.hpp"
+#include "Shader.hpp"
+#include "Texture.hpp"
+#include "Objloader.hpp"
+#include "VBOindexer.hpp"
 
 ShipModel::ShipModel()
 {

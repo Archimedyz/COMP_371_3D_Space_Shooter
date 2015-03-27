@@ -9,6 +9,8 @@
 
 #include <GLFW/glfw3.h>
 
+#include "Texture.hpp"
+
 
 // Load textures for Skybox
 //GLuint imageBK = loadBMP_custom("GalaxySkybox/Galaxy_BK.bmp");

@@ -3,7 +3,7 @@
 
 #include <glm/glm.hpp>
 
-#include "vboindexer.hpp"
+#include "VBOindexer.hpp"
 
 #include <string.h> // for memcmp
 

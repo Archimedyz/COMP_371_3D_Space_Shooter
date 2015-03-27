@@ -1,7 +1,6 @@
 #pragma once
 #include "Model.h"
 // Include GLEW
-#define GLEW_STATIC
 #include <GL/glew.h>
 
 // Include GLFW

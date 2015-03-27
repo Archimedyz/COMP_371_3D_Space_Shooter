@@ -5,10 +5,10 @@
 #include <vector>
 #include <string>
 
-#include "shader.hpp"
-#include "texture.hpp"
-#include "objloader.hpp"
-#include "vboindexer.hpp"
+#include "Shader.hpp"
+#include "Texture.hpp"
+#include "Objloader.hpp"
+#include "VBOindexer.hpp"
 
 
 Loader::Loader()
@@ -30,7 +30,7 @@ void Loader::loadModel(const char * filePath)
 	std::vector<glm::vec2> uvs;
 	std::vector<glm::vec3> normals;
 
-	bool res = loadOBJ(filePath, vertices, uvs, normals);
+	loadOBJ(filePath, vertices, uvs, normals);
 
 	std::vector<glm::vec3> indexed_vertices;
 	std::vector<glm::vec2> indexed_uvs;

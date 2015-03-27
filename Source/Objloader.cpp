@@ -6,7 +6,7 @@
 
 #include <glm/glm.hpp>
 
-#include "objloader.hpp"
+#include "Objloader.hpp"
 
 bool loadOBJ(
 	const char * path, 
