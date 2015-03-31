@@ -88,6 +88,7 @@
     <ClCompile Include="..\Source\Variables.cpp" />
     <ClCompile Include="..\Source\vboindexer.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
+    <ClCompile Include="Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\AsteroidFactory.h" />
@@ -111,6 +112,7 @@
     <ClInclude Include="..\Source\Variables.h" />
     <ClInclude Include="..\Source\vboindexer.hpp" />
     <ClInclude Include="..\Source\World.h" />
+    <ClInclude Include="Game.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Scenes\CoordinateSystem.scene" />
