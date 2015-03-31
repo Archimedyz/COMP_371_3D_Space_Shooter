@@ -9,7 +9,7 @@ using namespace glm;
 
 AsteroidModel::AsteroidModel() : Model()
 {
-	std::cout << "created" << std::endl;
+	//std::cout << "created" << std::endl;
 	destroyed = false;
 	// Create Vertex Buffer for all the verices of the Cube
 	vec3 halfSize = vec3(1.0f, 1.0f, 1.0f) * 0.5f;
