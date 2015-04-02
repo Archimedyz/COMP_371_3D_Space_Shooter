@@ -69,7 +69,11 @@ void Renderer::Initialize()
 #else
     std::string shaderPathPrefix = "../Shaders/";
 #endif
-
+	
+	sShaderProgramID.push_back(
+		LoadShaders(shaderPathPrefix + "Phong.vertexshader",
+		shaderPathPrefix + "Phong.fragmentshader")
+							   );
 	sShaderProgramID.push_back(
                 LoadShaders(shaderPathPrefix + "SolidColor.vertexshader",
                             shaderPathPrefix + "SolidColor.fragmentshader")

@@ -17,6 +17,12 @@ using namespace glm;
 
 CubeModel::CubeModel(vec3 size) : Model()
 {
+
+	ka = 0.3f;
+	kd = 0.1f;
+	ks = 0.7f;
+	n = 100.0f;
+
 	// Create Vertex Buffer for all the verices of the Cube
 	vec3 halfSize = size * 0.5f;
 	
@@ -97,6 +103,7 @@ void CubeModel::Update(float dt)
 
 void CubeModel::Draw()
 {
+	Model::Draw();
 	// Draw the Vertex Buffer
 	// Note this draws a unit Cube
 	// The Model View Projection transforms are computed in the Vertex Shader

@@ -14,6 +14,9 @@
 #include "World.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/common.hpp>
+#include "Renderer.h"
+
+#include <GL/glew.h>
 
 using namespace std;
 using namespace glm;
@@ -61,6 +64,8 @@ void Model::Update(float dt)
 
 void Model::Draw()
 {
+	GLuint MaterialID = glGetUniformLocation(Renderer::GetShaderProgramID(), "materialCoefficients");
+	glUniform4f(MaterialID, ka, kd, ks, n);
 }
 
 

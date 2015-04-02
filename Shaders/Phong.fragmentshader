@@ -1,0 +1,57 @@
+#version 330 core
+
+
+// Light and Material Uniform Variables
+uniform vec4 materialCoefficients; // x: ambient   y: diffuse   z: specular   w: specular exponent
+
+uniform vec3 lightColor;
+uniform vec3 lightAttenuation; // x: kC  y: kL  z: kQ
+
+
+// Inputs
+in vec3 v_color;		 // vertex color: also diffuse color
+
+in vec3 normal;          // Transformed normal in View Space
+in vec3 eyeVector;       // Vector from the vertex to the Camera in View Space
+in vec4 lightVector;     // Vector from the vertex to the Light in View Space
+						 // Length of lightVector is the distance between light and vertex
+						 // if w = 1: Point light, if w = 0: directional light
+
+// Ouput data
+out vec3 color;
+
+
+void main()
+{
+	// Implment Phong Shading based on the parameters above
+	// Remember that directional light don't have attenuation
+	
+	float a_factor = 1.0f;
+	
+	vec3 normal_vector = normalize(normal);
+	vec3 light_vector = vec3(normalize(lightVector));
+	vec3 reflected_vector = 2.0f * clamp(dot(normal_vector, light_vector), 0.0f, 1.0f) * normal_vector - light_vector;
+	vec3 eye_vector = normalize(eyeVector);
+
+	a_factor = 1.0f;
+	if(lightVector.w == 1){
+		// point, meaning light goes in all directions
+		a_factor = 1.0f / pow(length(lightVector), 2);
+	}
+
+	vec3 i_amb = v_color;
+	vec3 i_light = vec3(lightColor);
+
+	float k_amb = materialCoefficients.x;
+	float k_diff = materialCoefficients.y;
+	float k_spec = materialCoefficients.z;
+	float n_shiny = materialCoefficients.w;
+
+	vec3 amb_intensity = i_amb * k_amb;
+	vec3 diff_intensity = i_light * a_factor * k_diff * clamp(dot(normal_vector, light_vector), 0.0f, 1.0f); 
+	vec3 spec_intensity = i_light * k_spec * pow(clamp(dot(reflected_vector, eye_vector), 0.0f, 1.0f), n_shiny);
+
+	vec3 total_intensity = amb_intensity + diff_intensity + spec_intensity;
+
+	color = v_color * total_intensity;
+}

@@ -89,4 +89,10 @@ protected:
 	float mSplineParameterT;
     float mSpeed;
     unsigned int mTargetWaypoint;
+
+	// Material Constants
+	float ka;
+	float kd;
+	float ks;
+	float n;
 };

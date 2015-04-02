@@ -9,8 +9,13 @@
 #include "objloader.hpp"
 #include "vboindexer.hpp"
 
-ShipModel::ShipModel()
+ShipModel::ShipModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
+	ka = 1.0f;
+	kd = 0.1f;
+	ks = 0.8f;
+	n = 100.0f;
+
 #if defined(PLATFORM_OSX)
     const char * modelPath = "Models/X_WING_2.obj";
 #else
@@ -35,6 +40,8 @@ void ShipModel::Update(float dt)
 
 void ShipModel::Draw()
 {
+	Model::Draw();
+
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 

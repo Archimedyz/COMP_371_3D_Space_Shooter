@@ -9,6 +9,11 @@ using namespace glm;
 
 AsteroidModel::AsteroidModel() : Model()
 {
+	ka = 0.2f;
+	kd = 0.0f;
+	ks = 0.7f;
+	n = 100.0f;
+
 	//std::cout << "created" << std::endl;
 	destroyed = false;
 	// Create Vertex Buffer for all the verices of the Cube
@@ -102,6 +107,8 @@ void AsteroidModel::Update(float dt)
 
 void AsteroidModel::Draw()
 {
+	Model::Draw();
+
 	// Draw the Vertex Buffer
 	// Note this draws a unit Cube
 	// The Model View Projection transforms are computed in the Vertex Shader

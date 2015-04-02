@@ -29,6 +29,13 @@ using namespace glm;
 World* World::instance;
 int World::addCounter;
 
+// Light Coefficients. We are using directional light.
+const vec3 lightColor(1.0f, 1.0f, 1.0f);
+const float lightKc = 0.0f;
+const float lightKl = 1.0f;
+const float lightKq = 2.0f;
+const vec4 lightPosition(5.0f, 5.0f, -5.0f, 0.0f);
+
 World::World()
 {
     instance = this;
@@ -68,7 +75,7 @@ World* World::GetInstance()
 void World::Update(float dt)
 {
 	// User Inputs
-	// 0 1 2 3 to change the Camera
+	// 1 2 3 4 to change the Camera
 	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1 ) == GLFW_PRESS)
 	{
 		mCurrentCamera = 0;
@@ -103,7 +110,7 @@ void World::Update(float dt)
 	}
 	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_9 ) == GLFW_PRESS)
 	{
-		Renderer::SetShader(SHADER_BLUE);
+		Renderer::SetShader(SHADER_PHONG);
 	}
 
 	// Update current Camera
@@ -136,6 +143,17 @@ void World::Draw()
 {
 	Renderer::BeginFrame();
 	
+	//Setting variable for light:
+	GLuint WorldMatrixID = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
+	GLuint ViewMatrixID = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewTransform");
+	GLuint ProjMatrixID = glGetUniformLocation(Renderer::GetShaderProgramID(), "ProjectonTransform");
+
+	// Get a handle for Light Attributes uniform
+	GLuint LightPositionID = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldLightPosition");
+	GLuint LightColorID = glGetUniformLocation(Renderer::GetShaderProgramID(), "lightColor");
+	GLuint LightAttenuationID = glGetUniformLocation(Renderer::GetShaderProgramID(), "lightAttenuation");
+
+
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
 
@@ -145,6 +163,21 @@ void World::Draw()
 	// Send the view projection constants to the shader
 	mat4 VP = mCamera[mCurrentCamera]->GetViewProjectionMatrix();
 	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
+
+	// get the transformation matrices
+	glm::mat4 worldMatrix(1.0f);
+	glm::mat4 viewMatrix = mCamera[mCurrentCamera]->GetViewMatrix();
+	glm::mat4 projectionMatrix = mCamera[mCurrentCamera]->GetProjectionMatrix();
+
+	// assign the transform matrices for the shader.
+	glUniformMatrix4fv(WorldMatrixID, 1, GL_FALSE, &worldMatrix[0][0]);
+	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &viewMatrix[0][0]);
+	glUniformMatrix4fv(ProjMatrixID, 1, GL_FALSE, &projectionMatrix[0][0]);
+
+	// Shader constants for Light
+	glUniform4f(LightPositionID, lightPosition.x, lightPosition.y, lightPosition.z, lightPosition.w);
+	glUniform3f(LightColorID, lightColor.r, lightColor.g, lightColor.b);
+	glUniform3f(LightAttenuationID, lightKc, lightKl, lightKq);
 
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
