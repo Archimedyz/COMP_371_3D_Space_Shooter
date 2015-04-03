@@ -27,7 +27,6 @@ public:
 
 	virtual void Update(float dt) = 0;
 	virtual void Draw() = 0;
-	virtual void Collide() = 0;
 
 	void CheckCollisions(std::vector<Model*> &m);
 
@@ -47,7 +46,6 @@ public:
 	void SetDestroy(bool);
 
 	void ActivateCollisions(bool); // For debugging probably
-	bool CollisionsOn; // For debugging probably
 
 	glm::vec3 GetPosition() const		{ return mPosition; }
 	glm::vec3 GetScaling() const		{ return mScaling; }
@@ -64,7 +62,7 @@ public:
     void SetSpeed(float spd);
 
 protected:
-	virtual bool ParseLine(const std::vector<ci_string> &token) = 0;
+	virtual bool ParseLine(const std::vector<ci_string> &token);
 
 	ci_string mName; // The model name is mainly for debugging
 	glm::vec3 mPosition;
@@ -83,6 +81,7 @@ protected:
 	glm::vec3 mCamZAxis;
 	float	  mCollisionRadius;
 	bool	  mDestroyed;
+	bool CollisionsOn; // For debugging probably
 
     // Makes the model follow a path defined by a set of waypoints
     Path* mPath;

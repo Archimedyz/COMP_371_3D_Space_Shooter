@@ -19,6 +19,7 @@
 #define pi 3.14159265
 
 #include "Projectile.h"
+#include "Laser.h"
 
 using namespace glm;
 
@@ -262,7 +263,7 @@ void ThirdPersonCamera::Update(float dt)
 
 	if (glfwGetMouseButton(EventManager::GetWindow(), GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && (time(NULL)-Projectile::GetLastFired() > 0)) // Shoot, if left click and enough time has elapsed.
 	{
-		Projectile *p = new Projectile(currentPosition, mLookAt); // Start position should be set to a specific postion in relation the ship model's position AND direction should be adjusted to where ship is facing, not the lookAt
+		Laser *p = new Laser(currentPosition + normalize(mLookAt), currentPosition); // Start position should be set to a specific postion in relation the ship model's position AND direction should be adjusted to where ship is facing, not the lookAt
 		World::GetInstance()->AddModel(p);
 		Projectile::SetLastFired(time(NULL)); // Set the last time fired to the current time.
 	}

@@ -17,6 +17,7 @@
 #include "SphereModel.h"
 #include "Path.h"
 #include "Projectile.h"
+#include "Laser.h"
 #include "ShipModel.h"
 #include "Loader.h"
 

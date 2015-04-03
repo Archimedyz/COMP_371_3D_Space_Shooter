@@ -72,6 +72,8 @@
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
+    <ClCompile Include="..\Source\Game.cpp" />
+    <ClCompile Include="..\Source\Laser.cpp" />
     <ClCompile Include="..\Source\Loader.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Model.cpp" />
@@ -88,7 +90,6 @@
     <ClCompile Include="..\Source\Variables.cpp" />
     <ClCompile Include="..\Source\vboindexer.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
-    <ClCompile Include="Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\AsteroidFactory.h" />
@@ -96,6 +97,8 @@
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
+    <ClInclude Include="..\Source\Game.h" />
+    <ClInclude Include="..\Source\Laser.h" />
     <ClInclude Include="..\Source\Loader.h" />
     <ClInclude Include="..\Source\Model.h" />
     <ClInclude Include="..\Source\objloader.hpp" />
@@ -112,7 +115,6 @@
     <ClInclude Include="..\Source\Variables.h" />
     <ClInclude Include="..\Source\vboindexer.hpp" />
     <ClInclude Include="..\Source\World.h" />
-    <ClInclude Include="Game.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Scenes\CoordinateSystem.scene" />
