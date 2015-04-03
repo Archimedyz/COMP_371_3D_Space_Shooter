@@ -139,162 +139,151 @@ void World::Draw()
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
     
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-#if defined(PLATFORM_OSX)
-    std::string shaderPathPrefix = "Shaders/";
-#else
-    std::string shaderPathPrefix = "../Shaders/";
-#endif
-    Renderer::LoadShaders(shaderPathPrefix + "cubemaps.vs", shaderPathPrefix + "cubemaps.frag");
-    Renderer::LoadShaders(shaderPathPrefix + "Skybox.vs", shaderPathPrefix + "Skybox.frag");
-    
-#pragma region "object_initialization"
-    GLfloat cubeVertices[] = {
-        // Positions          // Texture Coords
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-        0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-        
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-        0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-        0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        
-        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-        0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-        0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-        
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-    };
-    
-    GLfloat skyboxVertices[] = {
-        // Positions
-        -1.0f,  1.0f, -1.0f,
-        -1.0f, -1.0f, -1.0f,
-        1.0f, -1.0f, -1.0f,
-        1.0f, -1.0f, -1.0f,
-        1.0f,  1.0f, -1.0f,
-        -1.0f,  1.0f, -1.0f,
-        
-        -1.0f, -1.0f,  1.0f,
-        -1.0f, -1.0f, -1.0f,
-        -1.0f,  1.0f, -1.0f,
-        -1.0f,  1.0f, -1.0f,
-        -1.0f,  1.0f,  1.0f,
-        -1.0f, -1.0f,  1.0f,
-        
-        1.0f, -1.0f, -1.0f,
-        1.0f, -1.0f,  1.0f,
-        1.0f,  1.0f,  1.0f,
-        1.0f,  1.0f,  1.0f,
-        1.0f,  1.0f, -1.0f,
-        1.0f, -1.0f, -1.0f,
-        
-        -1.0f, -1.0f,  1.0f,
-        -1.0f,  1.0f,  1.0f,
-        1.0f,  1.0f,  1.0f,
-        1.0f,  1.0f,  1.0f,
-        1.0f, -1.0f,  1.0f,
-        -1.0f, -1.0f,  1.0f,
-        
-        -1.0f,  1.0f, -1.0f,
-        1.0f,  1.0f, -1.0f,
-        1.0f,  1.0f,  1.0f,
-        1.0f,  1.0f,  1.0f,
-        -1.0f,  1.0f,  1.0f,
-        -1.0f,  1.0f, -1.0f,
-        
-        -1.0f, -1.0f, -1.0f,
-        -1.0f, -1.0f,  1.0f,
-        1.0f, -1.0f, -1.0f,
-        1.0f, -1.0f, -1.0f,
-        -1.0f, -1.0f,  1.0f,
-        1.0f, -1.0f,  1.0f
-    };
-    
-#pragma endregion
-    
-    // Setup cube VAO
-    GLuint cubeVAO, cubeVBO;
-    glGenVertexArrays(1, &cubeVAO);
-    glGenBuffers(1, &cubeVBO);
-    glBindVertexArray(cubeVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), &cubeVertices, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
-    glBindVertexArray(0);
-    
-    // Setup skybox VAO
-    GLuint skyboxVAO, skyboxVBO;
-    glGenVertexArrays(1, &skyboxVAO);
-    glGenBuffers(1, &skyboxVBO);
-    glBindVertexArray(skyboxVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
-    glBindVertexArray(0);
-    
-    
-    vector<const GLchar*> faces;
-    faces.push_back("GalaxySkybox/Galaxy_RT.bmp");
-    faces.push_back("GalaxySkybox/Galaxy_LT.bmp");
-    faces.push_back("GalaxySkybox/Galaxy_UP.bmp");
-    faces.push_back("GalaxySkybox/Galaxy_DN.bmp");
-    faces.push_back("GalaxySkybox/Galaxy_BK.bmp");
-    faces.push_back("GalaxySkybox/Galaxy_FT.bmp");
-    GLuint cubemapTexture = LoadCubemap(faces);
-    cout << "all textures loaded";
-    
-    
-    glDepthMask(GL_FALSE);
-    // ... Set view and projection matrix
-    glBindVertexArray(skyboxVAO);
-    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    glBindVertexArray(0);
-    glDepthMask(GL_TRUE);
-    
+//#if defined(PLATFORM_OSX)
+//    std::string shaderPathPrefix = "Shaders/";
+//#else
+//    std::string shaderPathPrefix = "../Shaders/";
+//#endif
+//    Renderer::LoadShaders(shaderPathPrefix + "cubemaps.vs", shaderPathPrefix + "cubemaps.frag");
+//    Renderer::LoadShaders(shaderPathPrefix + "Skybox.vs", shaderPathPrefix + "Skybox.frag");
+//    
+//#pragma region "object_initialization"
+//    GLfloat cubeVertices[] = {
+//        // Positions          // Texture Coords
+//        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+//        0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+//        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+//        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+//        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+//        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+//        
+//        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+//        0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+//        0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+//        0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+//        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+//        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+//        
+//        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+//        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+//        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+//        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+//        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+//        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+//        
+//        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+//        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+//        0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+//        0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+//        0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+//        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+//        
+//        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+//        0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+//        0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+//        0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+//        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+//        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+//        
+//        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+//        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+//        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+//        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+//        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+//        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+//    };
+//    
+//    GLfloat skyboxVertices[] = {
+//        // Positions
+//        -1.0f,  1.0f, -1.0f,
+//        -1.0f, -1.0f, -1.0f,
+//        1.0f, -1.0f, -1.0f,
+//        1.0f, -1.0f, -1.0f,
+//        1.0f,  1.0f, -1.0f,
+//        -1.0f,  1.0f, -1.0f,
+//        
+//        -1.0f, -1.0f,  1.0f,
+//        -1.0f, -1.0f, -1.0f,
+//        -1.0f,  1.0f, -1.0f,
+//        -1.0f,  1.0f, -1.0f,
+//        -1.0f,  1.0f,  1.0f,
+//        -1.0f, -1.0f,  1.0f,
+//        
+//        1.0f, -1.0f, -1.0f,
+//        1.0f, -1.0f,  1.0f,
+//        1.0f,  1.0f,  1.0f,
+//        1.0f,  1.0f,  1.0f,
+//        1.0f,  1.0f, -1.0f,
+//        1.0f, -1.0f, -1.0f,
+//        
+//        -1.0f, -1.0f,  1.0f,
+//        -1.0f,  1.0f,  1.0f,
+//        1.0f,  1.0f,  1.0f,
+//        1.0f,  1.0f,  1.0f,
+//        1.0f, -1.0f,  1.0f,
+//        -1.0f, -1.0f,  1.0f,
+//        
+//        -1.0f,  1.0f, -1.0f,
+//        1.0f,  1.0f, -1.0f,
+//        1.0f,  1.0f,  1.0f,
+//        1.0f,  1.0f,  1.0f,
+//        -1.0f,  1.0f,  1.0f,
+//        -1.0f,  1.0f, -1.0f,
+//        
+//        -1.0f, -1.0f, -1.0f,
+//        -1.0f, -1.0f,  1.0f,
+//        1.0f, -1.0f, -1.0f,
+//        1.0f, -1.0f, -1.0f,
+//        -1.0f, -1.0f,  1.0f,
+//        1.0f, -1.0f,  1.0f
+//    };
+//    
+//#pragma endregion
+//    
+//    // Setup cube VAO
+//    GLuint cubeVAO, cubeVBO;
+//    glGenVertexArrays(1, &cubeVAO);
+//    glGenBuffers(1, &cubeVBO);
+//    glBindVertexArray(cubeVAO);
+//    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
+//    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), &cubeVertices, GL_STATIC_DRAW);
+//    glEnableVertexAttribArray(0);
+//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
+//    glEnableVertexAttribArray(1);
+//    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+//    glBindVertexArray(0);
+//    
+//    // Setup skybox VAO
+//    GLuint skyboxVAO, skyboxVBO;
+//    glGenVertexArrays(1, &skyboxVAO);
+//    glGenBuffers(1, &skyboxVBO);
+//    glBindVertexArray(skyboxVAO);
+//    glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+//    glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+//    glEnableVertexAttribArray(0);
+//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+//    glBindVertexArray(0);
+//    
+//    
+//    vector<const GLchar*> faces;
+//    faces.push_back("GalaxySkybox/Galaxy_RT.bmp");
+//    faces.push_back("GalaxySkybox/Galaxy_LT.bmp");
+//    faces.push_back("GalaxySkybox/Galaxy_UP.bmp");
+//    faces.push_back("GalaxySkybox/Galaxy_DN.bmp");
+//    faces.push_back("GalaxySkybox/Galaxy_BK.bmp");
+//    faces.push_back("GalaxySkybox/Galaxy_FT.bmp");
+//    GLuint cubemapTexture = LoadCubemap(faces);
+//    cout << "all textures loaded";
+//    
+//    
+//    glDepthMask(GL_FALSE);
+//    // ... Set view and projection matrix
+//    glBindVertexArray(skyboxVAO);
+//    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+//    glDrawArrays(GL_TRIANGLES, 0, 36);
+//    glBindVertexArray(0);
+//    glDepthMask(GL_TRUE);
+//    
     
 //    
 //    

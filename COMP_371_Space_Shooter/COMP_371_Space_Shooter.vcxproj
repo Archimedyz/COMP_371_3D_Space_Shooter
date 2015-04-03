@@ -44,11 +44,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../ThirdParty/glew-1.10.0/lib/Release/Win32;../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc110</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../ThirdParty/glew-1.10.0/lib/Release/Win32;../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc110;</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -72,9 +72,7 @@
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
-    <ClCompile Include="..\Source\LoadCubeMap.cpp" />
     <ClCompile Include="..\Source\Loader.cpp" />
-    <ClCompile Include="..\Source\LoadTexture.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Model.cpp" />
     <ClCompile Include="..\Source\objloader.cpp" />
@@ -91,10 +89,6 @@
     <ClCompile Include="..\Source\Variables.cpp" />
     <ClCompile Include="..\Source\vboindexer.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
-    <ClCompile Include="..\ThirdParty\SOIL\src\image_DXT.c" />
-    <ClCompile Include="..\ThirdParty\SOIL\src\image_helper.c" />
-    <ClCompile Include="..\ThirdParty\SOIL\src\SOIL.c" />
-    <ClCompile Include="..\ThirdParty\SOIL\src\stb_image_aug.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\AsteroidFactory.h" />
@@ -121,12 +115,6 @@
     <ClInclude Include="..\Source\Variables.h" />
     <ClInclude Include="..\Source\vboindexer.hpp" />
     <ClInclude Include="..\Source\World.h" />
-    <ClInclude Include="..\ThirdParty\SOIL\src\image_DXT.h" />
-    <ClInclude Include="..\ThirdParty\SOIL\src\image_helper.h" />
-    <ClInclude Include="..\ThirdParty\SOIL\src\SOIL.h" />
-    <ClInclude Include="..\ThirdParty\SOIL\src\stbi_DDS_aug.h" />
-    <ClInclude Include="..\ThirdParty\SOIL\src\stbi_DDS_aug_c.h" />
-    <ClInclude Include="..\ThirdParty\SOIL\src\stb_image_aug.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Scenes\CoordinateSystem.scene" />
@@ -149,6 +137,9 @@
     <Image Include="..\Source\Galaxy_LT.bmp" />
     <Image Include="..\Source\Galaxy_RT.bmp" />
     <Image Include="..\Source\Galaxy_UP.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="COMP_371_Space_Shooter.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

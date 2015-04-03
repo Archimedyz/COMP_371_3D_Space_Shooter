@@ -4,6 +4,7 @@
 #include "SOIL.h"
 
 
+
 GLuint loadTexture(GLchar* path)
 {
     //Generate texture ID and load texture data
