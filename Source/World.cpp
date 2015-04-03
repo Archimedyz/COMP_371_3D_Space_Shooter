@@ -155,7 +155,7 @@ void World::Draw()
 #else
     std::string shaderPathPrefix = "../Shaders/";
 #endif
-    
+    Renderer::LoadShaders(shaderPathPrefix + "cubemaps.vs", shaderPathPrefix + "cubemaps.frag");
     Renderer::LoadShaders(shaderPathPrefix + "Skybox.vs", shaderPathPrefix + "Skybox.frag");
     
 #pragma region "object_initialization"
