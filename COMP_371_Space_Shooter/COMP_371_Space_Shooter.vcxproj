@@ -72,7 +72,9 @@
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
+    <ClCompile Include="..\Source\LoadCubeMap.cpp" />
     <ClCompile Include="..\Source\Loader.cpp" />
+    <ClCompile Include="..\Source\LoadTexture.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Model.cpp" />
     <ClCompile Include="..\Source\objloader.cpp" />
@@ -89,15 +91,20 @@
     <ClCompile Include="..\Source\Variables.cpp" />
     <ClCompile Include="..\Source\vboindexer.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
+    <ClCompile Include="..\ThirdParty\SOIL\src\image_DXT.c" />
+    <ClCompile Include="..\ThirdParty\SOIL\src\image_helper.c" />
+    <ClCompile Include="..\ThirdParty\SOIL\src\SOIL.c" />
+    <ClCompile Include="..\ThirdParty\SOIL\src\stb_image_aug.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\AsteroidFactory.h" />
     <ClInclude Include="..\Source\AsteroidModel.h" />
     <ClInclude Include="..\Source\Camera.h" />
-    <ClInclude Include="..\Source\CubemapTexture.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
+    <ClInclude Include="..\Source\LoadCubeMap.h" />
     <ClInclude Include="..\Source\Loader.h" />
+    <ClInclude Include="..\Source\LoadTexture.h" />
     <ClInclude Include="..\Source\Model.h" />
     <ClInclude Include="..\Source\objloader.hpp" />
     <ClInclude Include="..\Source\ParsingHelper.h" />
@@ -114,13 +121,23 @@
     <ClInclude Include="..\Source\Variables.h" />
     <ClInclude Include="..\Source\vboindexer.hpp" />
     <ClInclude Include="..\Source\World.h" />
+    <ClInclude Include="..\ThirdParty\SOIL\src\image_DXT.h" />
+    <ClInclude Include="..\ThirdParty\SOIL\src\image_helper.h" />
+    <ClInclude Include="..\ThirdParty\SOIL\src\SOIL.h" />
+    <ClInclude Include="..\ThirdParty\SOIL\src\stbi_DDS_aug.h" />
+    <ClInclude Include="..\ThirdParty\SOIL\src\stbi_DDS_aug_c.h" />
+    <ClInclude Include="..\ThirdParty\SOIL\src\stb_image_aug.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Scenes\CoordinateSystem.scene" />
     <None Include="..\Scenes\PathScene.scene" />
     <None Include="..\Shaders\BlueColor.fragmentshader" />
+    <None Include="..\Shaders\cubemaps.frag" />
+    <None Include="..\Shaders\cubemaps.vs" />
     <None Include="..\Shaders\PathLines.fragmentshader" />
     <None Include="..\Shaders\PathLines.vertexshader" />
+    <None Include="..\Shaders\skybox.frag" />
+    <None Include="..\Shaders\Skybox.vs" />
     <None Include="..\Shaders\SolidColor.fragmentshader" />
     <None Include="..\Shaders\SolidColor.vertexshader" />
   </ItemGroup>
