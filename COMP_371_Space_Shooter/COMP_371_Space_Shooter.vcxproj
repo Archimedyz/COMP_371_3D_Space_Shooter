@@ -49,9 +49,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../ThirdParty/glew-1.10.0/lib/Release/Win32;../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc110</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);</AdditionalDependencies>
-      <SubSystem>
-      </SubSystem>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -74,16 +72,22 @@
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
+    <ClCompile Include="..\Source\Loader.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Model.cpp" />
+    <ClCompile Include="..\Source\objloader.cpp" />
     <ClCompile Include="..\Source\Path.cpp" />
     <ClCompile Include="..\Source\Projectile.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
+    <ClCompile Include="..\Source\shader.cpp" />
     <ClCompile Include="..\Source\Skybox.cpp" />
+    <ClCompile Include="..\Source\ShipModel.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
+    <ClCompile Include="..\Source\texture.cpp" />
     <ClCompile Include="..\Source\ThirdPersonCamera.cpp" />
     <ClCompile Include="..\Source\Variables.cpp" />
+    <ClCompile Include="..\Source\vboindexer.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -93,16 +97,22 @@
     <ClInclude Include="..\Source\CubemapTexture.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
+    <ClInclude Include="..\Source\Loader.h" />
     <ClInclude Include="..\Source\Model.h" />
+    <ClInclude Include="..\Source\objloader.hpp" />
     <ClInclude Include="..\Source\ParsingHelper.h" />
     <ClInclude Include="..\Source\Path.h" />
     <ClInclude Include="..\Source\Projectile.h" />
     <ClInclude Include="..\Source\Renderer.h" />
     <ClInclude Include="..\Source\Skybox.h" />
+    <ClInclude Include="..\Source\shader.hpp" />
+    <ClInclude Include="..\Source\ShipModel.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
+    <ClInclude Include="..\Source\texture.hpp" />
     <ClInclude Include="..\Source\ThirdPersonCamera.h" />
     <ClInclude Include="..\Source\Variables.h" />
+    <ClInclude Include="..\Source\vboindexer.hpp" />
     <ClInclude Include="..\Source\World.h" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Source\Galaxy_BK.bmp" />
+    <Image Include="..\Resources\Models\uvmap.DDS" />
     <Image Include="..\Source\Galaxy_DN.bmp" />
     <Image Include="..\Source\Galaxy_FT.bmp" />
     <Image Include="..\Source\Galaxy_LT.bmp" />

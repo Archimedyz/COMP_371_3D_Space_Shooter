@@ -29,6 +29,21 @@
 		D4BAD0891AAE78E300698FF2 /* ThirdPersonCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0731AAE78E300698FF2 /* ThirdPersonCamera.cpp */; };
 		D4BAD08A1AAE78E300698FF2 /* Variables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0751AAE78E300698FF2 /* Variables.cpp */; };
 		D4BAD08B1AAE78E300698FF2 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0771AAE78E300698FF2 /* World.cpp */; };
+		D4F9C7EC1AC4D1F800F5AB97 /* Loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E01AC4D1F800F5AB97 /* Loader.cpp */; };
+		D4F9C7ED1AC4D1F800F5AB97 /* Objloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E21AC4D1F800F5AB97 /* Objloader.cpp */; };
+		D4F9C7EE1AC4D1F800F5AB97 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E41AC4D1F800F5AB97 /* Shader.cpp */; };
+		D4F9C7EF1AC4D1F800F5AB97 /* ShipModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E61AC4D1F800F5AB97 /* ShipModel.cpp */; };
+		D4F9C7F01AC4D1F800F5AB97 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E81AC4D1F800F5AB97 /* Texture.cpp */; };
+		D4F9C7F11AC4D1F800F5AB97 /* VBOindexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7EA1AC4D1F800F5AB97 /* VBOindexer.cpp */; };
+		D4F9C7F41AC4DAF300F5AB97 /* Models in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4F9C7F31AC4DA6500F5AB97 /* Models */; };
+		D4F9C7F51AC4DAF300F5AB97 /* Scenes in CopyFiles */ = {isa = PBXBuildFile; fileRef = D463011A1ABBC4EA00BF8F32 /* Scenes */; };
+		D4F9C7F81AC4E1E700F5AB97 /* Skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7F61AC4E1E700F5AB97 /* Skybox.cpp */; };
+		D4F9C7FC1AC5155500F5AB97 /* LoadTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7FA1AC5155500F5AB97 /* LoadTexture.cpp */; };
+		D4F9C80F1AC5D17100F5AB97 /* image_DXT.c in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C8041AC5D17100F5AB97 /* image_DXT.c */; };
+		D4F9C8101AC5D17100F5AB97 /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C8061AC5D17100F5AB97 /* image_helper.c */; };
+		D4F9C8111AC5D17100F5AB97 /* SOIL.c in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C8081AC5D17100F5AB97 /* SOIL.c */; };
+		D4F9C8121AC5D17100F5AB97 /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C80A1AC5D17100F5AB97 /* stb_image_aug.c */; };
+		D4F9C8161AC5D27200F5AB97 /* LoadCubeMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C8141AC5D27200F5AB97 /* LoadCubeMap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +53,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				D4F9C7F41AC4DAF300F5AB97 /* Models in CopyFiles */,
+				D4F9C7F51AC4DAF300F5AB97 /* Scenes in CopyFiles */,
 				034F0BC11A7017370028E1BA /* Shaders in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +102,35 @@
 		D4BAD0761AAE78E300698FF2 /* Variables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Variables.h; sourceTree = "<group>"; };
 		D4BAD0771AAE78E300698FF2 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
 		D4BAD0781AAE78E300698FF2 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
+		D4F9C7E01AC4D1F800F5AB97 /* Loader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Loader.cpp; sourceTree = "<group>"; };
+		D4F9C7E11AC4D1F800F5AB97 /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
+		D4F9C7E21AC4D1F800F5AB97 /* Objloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Objloader.cpp; sourceTree = "<group>"; };
+		D4F9C7E31AC4D1F800F5AB97 /* Objloader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Objloader.hpp; sourceTree = "<group>"; };
+		D4F9C7E41AC4D1F800F5AB97 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
+		D4F9C7E51AC4D1F800F5AB97 /* Shader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
+		D4F9C7E61AC4D1F800F5AB97 /* ShipModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShipModel.cpp; sourceTree = "<group>"; };
+		D4F9C7E71AC4D1F800F5AB97 /* ShipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipModel.h; sourceTree = "<group>"; };
+		D4F9C7E81AC4D1F800F5AB97 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
+		D4F9C7E91AC4D1F800F5AB97 /* Texture.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Texture.hpp; sourceTree = "<group>"; };
+		D4F9C7EA1AC4D1F800F5AB97 /* VBOindexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VBOindexer.cpp; sourceTree = "<group>"; };
+		D4F9C7EB1AC4D1F800F5AB97 /* VBOindexer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VBOindexer.hpp; sourceTree = "<group>"; };
+		D4F9C7F31AC4DA6500F5AB97 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = ../Resources/Models; sourceTree = "<group>"; };
+		D4F9C7F61AC4E1E700F5AB97 /* Skybox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Skybox.cpp; sourceTree = "<group>"; };
+		D4F9C7F71AC4E1E700F5AB97 /* Skybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skybox.h; sourceTree = "<group>"; };
+		D4F9C7FA1AC5155500F5AB97 /* LoadTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadTexture.cpp; sourceTree = "<group>"; };
+		D4F9C7FB1AC5155500F5AB97 /* LoadTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadTexture.h; sourceTree = "<group>"; };
+		D4F9C8041AC5D17100F5AB97 /* image_DXT.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = image_DXT.c; path = ../ThirdParty/SOIL/src/image_DXT.c; sourceTree = "<group>"; };
+		D4F9C8051AC5D17100F5AB97 /* image_DXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = image_DXT.h; path = ../ThirdParty/SOIL/src/image_DXT.h; sourceTree = "<group>"; };
+		D4F9C8061AC5D17100F5AB97 /* image_helper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = image_helper.c; path = ../ThirdParty/SOIL/src/image_helper.c; sourceTree = "<group>"; };
+		D4F9C8071AC5D17100F5AB97 /* image_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = image_helper.h; path = ../ThirdParty/SOIL/src/image_helper.h; sourceTree = "<group>"; };
+		D4F9C8081AC5D17100F5AB97 /* SOIL.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SOIL.c; path = ../ThirdParty/SOIL/src/SOIL.c; sourceTree = "<group>"; };
+		D4F9C8091AC5D17100F5AB97 /* SOIL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOIL.h; path = ../ThirdParty/SOIL/src/SOIL.h; sourceTree = "<group>"; };
+		D4F9C80A1AC5D17100F5AB97 /* stb_image_aug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = stb_image_aug.c; path = ../ThirdParty/SOIL/src/stb_image_aug.c; sourceTree = "<group>"; };
+		D4F9C80B1AC5D17100F5AB97 /* stb_image_aug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_image_aug.h; path = ../ThirdParty/SOIL/src/stb_image_aug.h; sourceTree = "<group>"; };
+		D4F9C80C1AC5D17100F5AB97 /* stbi_DDS_aug_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stbi_DDS_aug_c.h; path = ../ThirdParty/SOIL/src/stbi_DDS_aug_c.h; sourceTree = "<group>"; };
+		D4F9C80D1AC5D17100F5AB97 /* stbi_DDS_aug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stbi_DDS_aug.h; path = ../ThirdParty/SOIL/src/stbi_DDS_aug.h; sourceTree = "<group>"; };
+		D4F9C8141AC5D27200F5AB97 /* LoadCubeMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadCubeMap.cpp; sourceTree = "<group>"; };
+		D4F9C8151AC5D27200F5AB97 /* LoadCubeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadCubeMap.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +167,7 @@
 		034F0BB31A7010160028E1BA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D4F9C7F31AC4DA6500F5AB97 /* Models */,
 				D463011A1ABBC4EA00BF8F32 /* Scenes */,
 				034F0BB41A70103C0028E1BA /* Shaders */,
 			);
@@ -151,6 +198,8 @@
 				D46301101ABBAB2B00BF8F32 /* Asteroids */,
 				D463010E1ABBA63000BF8F32 /* Cameras */,
 				D463010F1ABBA64300BF8F32 /* Models */,
+				D4F9C7CD1AC4CF0C00F5AB97 /* Ship */,
+				D4F9C7F91AC4E1F000F5AB97 /* Skybox */,
 				D4BAD0631AAE78E300698FF2 /* EventManager.cpp */,
 				D4BAD0641AAE78E300698FF2 /* EventManager.h */,
 				D4BAD0651AAE78E300698FF2 /* main.cpp */,
@@ -205,6 +254,56 @@
 				D4BAD0541AAE78E300698FF2 /* AsteroidFactory.h */,
 			);
 			name = Asteroids;
+			sourceTree = "<group>";
+		};
+		D4F9C7CD1AC4CF0C00F5AB97 /* Ship */ = {
+			isa = PBXGroup;
+			children = (
+				D4F9C7E01AC4D1F800F5AB97 /* Loader.cpp */,
+				D4F9C7E11AC4D1F800F5AB97 /* Loader.h */,
+				D4F9C7E21AC4D1F800F5AB97 /* Objloader.cpp */,
+				D4F9C7E31AC4D1F800F5AB97 /* Objloader.hpp */,
+				D4F9C7E41AC4D1F800F5AB97 /* Shader.cpp */,
+				D4F9C7E51AC4D1F800F5AB97 /* Shader.hpp */,
+				D4F9C7E61AC4D1F800F5AB97 /* ShipModel.cpp */,
+				D4F9C7E71AC4D1F800F5AB97 /* ShipModel.h */,
+				D4F9C7E81AC4D1F800F5AB97 /* Texture.cpp */,
+				D4F9C7E91AC4D1F800F5AB97 /* Texture.hpp */,
+				D4F9C7EA1AC4D1F800F5AB97 /* VBOindexer.cpp */,
+				D4F9C7EB1AC4D1F800F5AB97 /* VBOindexer.hpp */,
+			);
+			name = Ship;
+			sourceTree = "<group>";
+		};
+		D4F9C7F91AC4E1F000F5AB97 /* Skybox */ = {
+			isa = PBXGroup;
+			children = (
+				D4F9C8031AC5D16100F5AB97 /* SOIL */,
+				D4F9C8141AC5D27200F5AB97 /* LoadCubeMap.cpp */,
+				D4F9C8151AC5D27200F5AB97 /* LoadCubeMap.h */,
+				D4F9C7FA1AC5155500F5AB97 /* LoadTexture.cpp */,
+				D4F9C7FB1AC5155500F5AB97 /* LoadTexture.h */,
+				D4F9C7F61AC4E1E700F5AB97 /* Skybox.cpp */,
+				D4F9C7F71AC4E1E700F5AB97 /* Skybox.h */,
+			);
+			name = Skybox;
+			sourceTree = "<group>";
+		};
+		D4F9C8031AC5D16100F5AB97 /* SOIL */ = {
+			isa = PBXGroup;
+			children = (
+				D4F9C8041AC5D17100F5AB97 /* image_DXT.c */,
+				D4F9C8051AC5D17100F5AB97 /* image_DXT.h */,
+				D4F9C8061AC5D17100F5AB97 /* image_helper.c */,
+				D4F9C8071AC5D17100F5AB97 /* image_helper.h */,
+				D4F9C8081AC5D17100F5AB97 /* SOIL.c */,
+				D4F9C8091AC5D17100F5AB97 /* SOIL.h */,
+				D4F9C80A1AC5D17100F5AB97 /* stb_image_aug.c */,
+				D4F9C80B1AC5D17100F5AB97 /* stb_image_aug.h */,
+				D4F9C80C1AC5D17100F5AB97 /* stbi_DDS_aug_c.h */,
+				D4F9C80D1AC5D17100F5AB97 /* stbi_DDS_aug.h */,
+			);
+			name = SOIL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,16 +362,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F9C8111AC5D17100F5AB97 /* SOIL.c in Sources */,
+				D4F9C7ED1AC4D1F800F5AB97 /* Objloader.cpp in Sources */,
 				D4BAD0811AAE78E300698FF2 /* EventManager.cpp in Sources */,
 				D4BAD0891AAE78E300698FF2 /* ThirdPersonCamera.cpp in Sources */,
+				D4F9C7EC1AC4D1F800F5AB97 /* Loader.cpp in Sources */,
+				D4F9C8161AC5D27200F5AB97 /* LoadCubeMap.cpp in Sources */,
 				D4BAD0881AAE78E300698FF2 /* StaticCamera.cpp in Sources */,
+				D4F9C7FC1AC5155500F5AB97 /* LoadTexture.cpp in Sources */,
+				D4F9C7F81AC4E1E700F5AB97 /* Skybox.cpp in Sources */,
 				D4BAD08B1AAE78E300698FF2 /* World.cpp in Sources */,
 				D4BAD07A1AAE78E300698FF2 /* AsteroidModel.cpp in Sources */,
 				D4BAD07F1AAE78E300698FF2 /* Camera.cpp in Sources */,
 				D46301141ABBC27500BF8F32 /* Renderer.cpp in Sources */,
+				D4F9C7F01AC4D1F800F5AB97 /* Texture.cpp in Sources */,
+				D4F9C8101AC5D17100F5AB97 /* image_helper.c in Sources */,
 				D4BAD0791AAE78E300698FF2 /* AsteroidFactory.cpp in Sources */,
+				D4F9C8121AC5D17100F5AB97 /* stb_image_aug.c in Sources */,
 				D4BAD08A1AAE78E300698FF2 /* Variables.cpp in Sources */,
+				D4F9C80F1AC5D17100F5AB97 /* image_DXT.c in Sources */,
 				D4BAD0871AAE78E300698FF2 /* SphereModel.cpp in Sources */,
+				D4F9C7EE1AC4D1F800F5AB97 /* Shader.cpp in Sources */,
+				D4F9C7EF1AC4D1F800F5AB97 /* ShipModel.cpp in Sources */,
+				D4F9C7F11AC4D1F800F5AB97 /* VBOindexer.cpp in Sources */,
 				D4BAD0841AAE78E300698FF2 /* Path.cpp in Sources */,
 				D4BAD0831AAE78E300698FF2 /* Model.cpp in Sources */,
 				D4BAD0801AAE78E300698FF2 /* CubeModel.cpp in Sources */,
@@ -379,6 +491,7 @@
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -400,6 +513,7 @@
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
