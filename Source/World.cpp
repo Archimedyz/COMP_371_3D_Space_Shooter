@@ -1,23 +1,24 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
-
 #include "World.h"
 #include "Renderer.h"
 #include "ParsingHelper.h"
+
 #include "StaticCamera.h"
 #include "ThirdPersonCamera.h"
+
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
 #include "Path.h"
 #include "Projectile.h"
 
+#include "ShipModel.h"
+#include "Loader.h"
+
+#include "Skybox.h"
+#include "LoadCubeMap.h"
+#include "LoadTexture.h"
+
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
 
@@ -56,6 +57,7 @@ World::~World()
 		delete *it;
 	}
 	mCamera.clear();
+    //delete skybox;
 }
 
 World* World::GetInstance()
@@ -136,7 +138,225 @@ void World::Draw()
 	
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
+    
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+#if defined(PLATFORM_OSX)
+    std::string shaderPathPrefix = "Shaders/";
+#else
+    std::string shaderPathPrefix = "../Shaders/";
+#endif
+    
+    Renderer::LoadShaders(shaderPathPrefix + "Skybox.vs", shaderPathPrefix + "Skybox.frag");
+    
+#pragma region "object_initialization"
+    GLfloat cubeVertices[] = {
+        // Positions          // Texture Coords
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+        0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+        
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+        0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+        0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        
+        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+        0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+        0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+        0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+    };
+    
+    GLfloat skyboxVertices[] = {
+        // Positions
+        -1.0f,  1.0f, -1.0f,
+        -1.0f, -1.0f, -1.0f,
+        1.0f, -1.0f, -1.0f,
+        1.0f, -1.0f, -1.0f,
+        1.0f,  1.0f, -1.0f,
+        -1.0f,  1.0f, -1.0f,
+        
+        -1.0f, -1.0f,  1.0f,
+        -1.0f, -1.0f, -1.0f,
+        -1.0f,  1.0f, -1.0f,
+        -1.0f,  1.0f, -1.0f,
+        -1.0f,  1.0f,  1.0f,
+        -1.0f, -1.0f,  1.0f,
+        
+        1.0f, -1.0f, -1.0f,
+        1.0f, -1.0f,  1.0f,
+        1.0f,  1.0f,  1.0f,
+        1.0f,  1.0f,  1.0f,
+        1.0f,  1.0f, -1.0f,
+        1.0f, -1.0f, -1.0f,
+        
+        -1.0f, -1.0f,  1.0f,
+        -1.0f,  1.0f,  1.0f,
+        1.0f,  1.0f,  1.0f,
+        1.0f,  1.0f,  1.0f,
+        1.0f, -1.0f,  1.0f,
+        -1.0f, -1.0f,  1.0f,
+        
+        -1.0f,  1.0f, -1.0f,
+        1.0f,  1.0f, -1.0f,
+        1.0f,  1.0f,  1.0f,
+        1.0f,  1.0f,  1.0f,
+        -1.0f,  1.0f,  1.0f,
+        -1.0f,  1.0f, -1.0f,
+        
+        -1.0f, -1.0f, -1.0f,
+        -1.0f, -1.0f,  1.0f,
+        1.0f, -1.0f, -1.0f,
+        1.0f, -1.0f, -1.0f,
+        -1.0f, -1.0f,  1.0f,
+        1.0f, -1.0f,  1.0f
+    };
+    
+#pragma endregion
+    
+    // Setup cube VAO
+    GLuint cubeVAO, cubeVBO;
+    glGenVertexArrays(1, &cubeVAO);
+    glGenBuffers(1, &cubeVBO);
+    glBindVertexArray(cubeVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, cubeVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), &cubeVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+    glBindVertexArray(0);
+    
+    // Setup skybox VAO
+    GLuint skyboxVAO, skyboxVBO;
+    glGenVertexArrays(1, &skyboxVAO);
+    glGenBuffers(1, &skyboxVBO);
+    glBindVertexArray(skyboxVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+    glBindVertexArray(0);
+    
+    
+    vector<const GLchar*> faces;
+    faces.push_back("GalaxySkybox/Galaxy_RT.bmp");
+    faces.push_back("GalaxySkybox/Galaxy_LT.bmp");
+    faces.push_back("GalaxySkybox/Galaxy_UP.bmp");
+    faces.push_back("GalaxySkybox/Galaxy_DN.bmp");
+    faces.push_back("GalaxySkybox/Galaxy_BK.bmp");
+    faces.push_back("GalaxySkybox/Galaxy_FT.bmp");
+    GLuint cubemapTexture = LoadCubemap(faces);
+    cout << "all textures loaded";
+    
+    
+    glDepthMask(GL_FALSE);
+    // ... Set view and projection matrix
+    glBindVertexArray(skyboxVAO);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glBindVertexArray(0);
+    glDepthMask(GL_TRUE);
+    
+    
+//    
+//    
+//    // Game loop
+//    while(!glfwWindowShouldClose(window))
+//    {
+//        // Set frame time
+//        GLfloat currentFrame = glfwGetTime();
+//        deltaTime = currentFrame - lastFrame;
+//        lastFrame = currentFrame;
+//        
+//        // Check and call events
+//        glfwPollEvents();
+//        Do_Movement();
+//        
+//        // Clear buffers
+//        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+//        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//        
+//        
+//        // Draw skybox first
+//        glDepthMask(GL_FALSE);// Remember to turn depth writing off
+//        skyboxShader.Use();
+//        glm::mat4 view = glm::mat4(glm::mat3(camera.GetViewMatrix()));	// Remove any translation component of the view matrix
+//        glm::mat4 projection = glm::perspective(camera.Zoom, (float)screenWidth/(float)screenHeight, 0.1f, 100.0f);
+//        glUniformMatrix4fv(glGetUniformLocation(skyboxShader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
+//        glUniformMatrix4fv(glGetUniformLocation(skyboxShader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+//        // skybox cube
+//        glBindVertexArray(skyboxVAO);
+//        glActiveTexture(GL_TEXTURE0);
+//        glUniform1i(glGetUniformLocation(shader.Program, "skybox"), 0);
+//        glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+//        glDrawArrays(GL_TRIANGLES, 0, 36);
+//        glBindVertexArray(0);
+//        glDepthMask(GL_TRUE);
+//        
+//        // Then draw scene as normal
+//        shader.Use();
+//        glm::mat4 model;
+//        view = camera.GetViewMatrix();
+//        
+//        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "model"), 1, GL_FALSE, glm::value_ptr(model));
+//        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "view"), 1, GL_FALSE, glm::value_ptr(view));
+//        glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+//        // Cubes
+//        glBindVertexArray(cubeVAO);
+//        glActiveTexture(GL_TEXTURE0);
+//        glUniform1i(glGetUniformLocation(shader.Program, "texture_diffuse1"), 0);
+//        glBindTexture(GL_TEXTURE_2D, cubeTexture);
+//        glDrawArrays(GL_TRIANGLES, 0, 36);
+//        glBindVertexArray(0);
+//        
+//        
+//        // Swap the buffers
+//        glfwSwapBuffers(window);
+//    }
+    
+
+    
+    
+    
+    
 	// This looks for the MVP Uniform variable in the Vertex Program
 	GLuint VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform"); 
 
@@ -177,6 +397,85 @@ void World::Draw()
 
 void World::LoadScene(const char * scene_path)
 {
+	// Using case-insensitive strings and streams for easier parsing
+	ci_ifstream input;
+	input.open(scene_path, ios::in);
+
+	// Invalid file
+	if(input.fail() )
+	{
+		fprintf(stderr, "Error loading file: %s\n", scene_path);
+		getchar();
+		exit(-1);
+	}
+
+	ci_string item;
+	while( std::getline( input, item, '[' ) )
+	{
+	       ci_istringstream iss( item );
+
+		ci_string result;
+		if( std::getline( iss, result, ']') )
+		{
+			if( result == "cube" )
+			{
+				// Box attributes
+				CubeModel* cube = new CubeModel();
+				cube->Load(iss);
+				mModel.push_back(cube);
+			}
+	           else if( result == "sphere" )
+	           {
+	               SphereModel* sphere = new SphereModel();
+	               sphere->Load(iss);
+	               mModel.push_back(sphere);
+	           }
+	           else if( result == "path" )
+			{
+				Path* path = new Path();
+				path->Load(iss);
+	               mPath.push_back(path);
+			}
+			/*
+	        else if( result == "spline" )
+			{
+				BSpline* path = new BSpline();
+				path->Load(iss);
+	               mSpline.push_back(path);
+			}
+			*/
+			else if ( result.empty() == false && result[0] == '#')
+			{
+				// this is a comment line
+			}
+			else
+			{
+				fprintf(stderr, "Error loading scene file... !");
+				getchar();
+				exit(-1);
+			}
+	    }
+	}
+	input.close();
+
+	// Set PATH vertex buffers
+	for (vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
+	{
+		// Draw model
+		(*it)->CreateVertexBuffer();
+	}
+	/*
+	// Set B-SPLINE vertex buffers
+	for (vector<BSpline*>::iterator it = mSpline.begin(); it < mSpline.end(); ++it)
+	{
+		// Draw model
+		(*it)->CreateVertexBuffer();
+	}
+	*/
+}
+
+void World::LoadGame()
+{
 	// All the commented out code that was used for the assignment to load paths and things is at the end of this file.
 	// I moved it there since it's just extra clutter to keep it here commented out, it can probably
 	// be deleted. -Nick
@@ -185,7 +484,7 @@ void World::LoadScene(const char * scene_path)
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
 
-	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
+	//Loader::loadModel();
 
     LoadCameras();
 }
@@ -197,18 +496,16 @@ void World::LoadCameras()
     mCamera.push_back(new StaticCamera(vec3(3.0f, 30.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     
-    // Cube Character at center of universe (TO BE REPLACED BY SPACE STATION)
-    CubeModel* character = new CubeModel();
+	CubeModel * character = new CubeModel();
     character->SetPosition(vec3(0.0f, 0.0f, 0.0f));
 	character->ActivateCollisions(false);
     mModel.push_back(character);
 
-	// Cube "ship" Character controlled with Third Person Camera
-	CubeModel* character2 = new CubeModel();
-	character2->SetPosition(vec3(20.0f, 10.0f, 10.0f));
-	character2->ActivateCollisions(false);
-	mCamera.push_back(new ThirdPersonCamera(character2));
-	mModel.push_back(character2);
+	//Ship Character controlled with Third Person Camera
+	ShipModel * ship_model = new ShipModel(vec3(5.0f, 0.0f, 0.0f), vec3(0.5f, 0.5f, 0.5f));
+	ship_model->ActivateCollisions(false);
+	mCamera.push_back(new ThirdPersonCamera(ship_model));
+	mModel.push_back(ship_model);
 
     mCurrentCamera = 0;
 }
@@ -234,83 +531,3 @@ void World::AddModel(Model* mdl)
 {
 	mModel.push_back(mdl);
 }
-
-
-
-
-/*
-
-//// Using case-insensitive strings and streams for easier parsing
-//ci_ifstream input;
-//input.open(scene_path, ios::in);
-
-//// Invalid file
-//if(input.fail() )
-//{
-//	fprintf(stderr, "Error loading file: %s\n", scene_path);
-//	getchar();
-//	exit(-1);
-//}
-
-//ci_string item;
-//while( std::getline( input, item, '[' ) )
-//{
-//       ci_istringstream iss( item );
-
-//	ci_string result;
-//	if( std::getline( iss, result, ']') )
-//	{
-//		if( result == "cube" )
-//		{
-//			// Box attributes
-//			CubeModel* cube = new CubeModel();
-//			cube->Load(iss);
-//			mModel.push_back(cube);
-//		}
-//           else if( result == "sphere" )
-//           {
-//               SphereModel* sphere = new SphereModel();
-//               sphere->Load(iss);
-//               mModel.push_back(sphere);
-//           }
-//           else if( result == "path" )
-//		{
-//			Path* path = new Path();
-//			path->Load(iss);
-//               mPath.push_back(path);
-//		}
-//           else if( result == "spline" )
-//		{
-//			BSpline* path = new BSpline();
-//			path->Load(iss);
-//               mSpline.push_back(path);
-//		}
-//		else if ( result.empty() == false && result[0] == '#')
-//		{
-//			// this is a comment line
-//		}
-//		else
-//		{
-//			fprintf(stderr, "Error loading scene file... !");
-//			getchar();
-//			exit(-1);
-//		}
-//    }
-//}
-//input.close();
-
-//// Set PATH vertex buffers
-//for (vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
-//{
-//	// Draw model
-//	(*it)->CreateVertexBuffer();
-//}
-
-//   // Set B-SPLINE vertex buffers
-//   for (vector<BSpline*>::iterator it = mSpline.begin(); it < mSpline.end(); ++it)
-//{
-//	// Draw model
-//	(*it)->CreateVertexBuffer();
-//}
-
-*/

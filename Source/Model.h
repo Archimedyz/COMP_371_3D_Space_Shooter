@@ -22,6 +22,7 @@ class Model
 {
 public:
 	Model();
+	Model(glm::vec3 position, glm::vec3 scaling);
 	Model(glm::vec3 position, glm::vec3 scaling, glm::vec3 lookAt);
 	virtual ~Model();
 
@@ -39,6 +40,9 @@ public:
 	void SetXRotation(glm::vec3 axis, float angleDegrees);
 	void SetYRotation(glm::vec3 axis, float angleDegrees);
 	void SetZRotation(glm::vec3 axis, float angleDegrees);
+	void SetCamXRotation(glm::vec3 axis, float angleDegrees);
+	void SetCamYRotation(glm::vec3 axis, float angleDegrees);
+	void SetCamZRotation(glm::vec3 axis, float angleDegrees);
 	void SetCollisionRadius(float r);
 	void SetDestroy(bool);
 
@@ -65,12 +69,18 @@ protected:
 	ci_string mName; // The model name is mainly for debugging
 	glm::vec3 mPosition;
 	glm::vec3 mScaling;
-	glm::vec3 mYAxis;
-	glm::vec3 mXAxis;
-	glm::vec3 mZAxis;
 	float     mXRotationAngleInDegrees;
 	float     mYRotationAngleInDegrees;
 	float     mZRotationAngleInDegrees;
+	glm::vec3 mYAxis;
+	glm::vec3 mXAxis;
+	glm::vec3 mZAxis;
+	float     mCameraXRotationAngleInDegrees;
+	float     mCameraYRotationAngleInDegrees;
+	float     mCameraZRotationAngleInDegrees;
+	glm::vec3 mCamYAxis;
+	glm::vec3 mCamXAxis;
+	glm::vec3 mCamZAxis;
 	float	  mCollisionRadius;
 	bool	  mDestroyed;
 
