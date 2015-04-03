@@ -11,9 +11,9 @@
 
 ShipModel::ShipModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
-	ka = 1.0f;
-	kd = 0.1f;
-	ks = 0.8f;
+	ka = 0.5f;
+	kd = 0.3f;
+	ks = 0.7f;
 	n = 100.0f;
 
 #if defined(PLATFORM_OSX)

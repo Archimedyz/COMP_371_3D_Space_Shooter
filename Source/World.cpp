@@ -34,7 +34,7 @@ const vec3 lightColor(1.0f, 1.0f, 1.0f);
 const float lightKc = 0.0f;
 const float lightKl = 1.0f;
 const float lightKq = 2.0f;
-const vec4 lightPosition(5.0f, 5.0f, -5.0f, 0.0f);
+const vec4 lightPosition(75.0f, 75.0f, 75.0f, 1.0f);
 
 World::World()
 {
@@ -102,6 +102,15 @@ void World::Update(float dt)
 			mCurrentCamera = 3;
 		}
 	}
+	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_5) == GLFW_PRESS)
+	{
+		// Spline camera
+		if (mCamera.size() > 4)
+		{
+			mCurrentCamera = 4;
+		}
+	}
+
 
 	// 0 and 9 to change the shader
 	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_0 ) == GLFW_PRESS)
@@ -231,7 +240,7 @@ void World::LoadCameras()
 {
     // Setup Camera
     mCamera.push_back(new StaticCamera(vec3(3.0f, 5.0f, 5.0f),  vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
-    mCamera.push_back(new StaticCamera(vec3(3.0f, 30.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
+    mCamera.push_back(new StaticCamera(vec3(10.0f, 30.0f, 10.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     
 	CubeModel * character = new CubeModel();
