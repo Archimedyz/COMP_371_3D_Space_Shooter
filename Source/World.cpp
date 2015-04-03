@@ -15,14 +15,11 @@
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
-<<<<<<< HEAD
-#include "BackgroundFactory.h"
-=======
->>>>>>> master
 #include "Path.h"
 #include "Projectile.h"
 #include "ShipModel.h"
 #include "Loader.h"
+#include "Text2D.h"
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
@@ -37,6 +34,8 @@ World::World()
 {
     instance = this;
 	addCounter = 0;
+
+	initText2D("../Resources/Textures/Holstein.DDS");
 }
 
 World::~World()
@@ -62,6 +61,8 @@ World::~World()
 		delete *it;
 	}
 	mCamera.clear();
+
+	cleanupText2D();
 }
 
 World* World::GetInstance()
@@ -174,6 +175,10 @@ void World::Draw()
 		(*it)->Draw();
 	}
 
+	char text[256];
+	sprintf_s(text, "%.2f", glfwGetTime());
+	printText2D(text, 10, 570, 24);
+
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);
 
@@ -187,20 +192,9 @@ void World::LoadScene(const char * scene_path)
 	// I moved it there since it's just extra clutter to keep it here commented out, it can probably
 	// be deleted. -Nick
     
-<<<<<<< HEAD:COMP_371_Project/Source/World.cpp
-	mModel.push_back(AsteroidFactory::createAsteroid());
-	mModel.push_back(BackgroundFactory::createBackgroundSphere());
-=======
 	mModel.push_back(AsteroidFactory::createAsteroid(0));
-<<<<<<< HEAD
-	//SphereModel* background = static_cast<SphereModel*>(BackgroundSphereModel(vec3(100.0f, 100.0f, 100.0f)));
-	//mModel.push_back(background);
-	//mModel.push_back(BackgroundSphereModel::Draw());
->>>>>>> master:Source/World.cpp
-=======
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
->>>>>>> master
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
 
