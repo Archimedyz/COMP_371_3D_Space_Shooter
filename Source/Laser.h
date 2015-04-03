@@ -18,6 +18,11 @@ public:
 	virtual void Draw();
 
 private:
+	struct Vertex
+	{
+		glm::vec3 pos;
+		glm::vec3 color;
+	};
 	unsigned int mVertexArrayID;
 	unsigned int mVertexBufferID;
 
@@ -25,3 +30,4 @@ private:
 	float speed;
 };
 
+// spent like 2h30

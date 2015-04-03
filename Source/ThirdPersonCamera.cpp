@@ -263,8 +263,7 @@ void ThirdPersonCamera::Update(float dt)
 
 	if (glfwGetMouseButton(EventManager::GetWindow(), GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && (time(NULL)-Projectile::GetLastFired() > 0)) // Shoot, if left click and enough time has elapsed.
 	{
-		Laser *p = new Laser(currentPosition + normalize(mLookAt), currentPosition); // Start position should be set to a specific postion in relation the ship model's position AND direction should be adjusted to where ship is facing, not the lookAt
-		World::GetInstance()->AddModel(p);
+		fireLasers();
 		Projectile::SetLastFired(time(NULL)); // Set the last time fired to the current time.
 	}
 
@@ -285,4 +284,23 @@ void ThirdPersonCamera::Update(float dt)
 glm::mat4 ThirdPersonCamera::GetViewMatrix() const
 {
     return glm::lookAt(mPosition, mPosition + mLookAt, mUp);
+}
+
+void ThirdPersonCamera::fireLasers()
+{
+	glm::vec3 pos = mTargetModel->GetPosition();
+	glm::vec3 topRight = pos + normalize(mRight) + normalize(mUp);
+	glm::vec3 topLeft = pos - normalize(mRight) + normalize(mUp);
+	glm::vec3 bottomRight = pos + normalize(mRight) - normalize(mUp);
+	glm::vec3 bottomLeft = pos - normalize(mRight) - normalize(mUp);
+
+	Laser *p1 = new Laser(topRight, topRight+normalize(mLookAt));
+	Laser *p2 = new Laser(bottomLeft, bottomLeft+ normalize(mLookAt));
+	Laser *p3 = new Laser(bottomRight, bottomRight + normalize(mLookAt));
+	Laser *p4 = new Laser(topLeft, topLeft + normalize(mLookAt));
+
+	World::GetInstance()->AddModel(p1);
+	World::GetInstance()->AddModel(p2);
+	World::GetInstance()->AddModel(p3);
+	World::GetInstance()->AddModel(p4);
 }
