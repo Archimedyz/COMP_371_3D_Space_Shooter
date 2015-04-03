@@ -9,6 +9,7 @@ public:
 	virtual ~AsteroidModel();
 	virtual void Update(float dt);
 	virtual void Draw();
+	virtual void CheckCollisions(std::vector<Model*> &models);
 	bool isDestroyed();
 	void SetRotationSpeed(float rotationSpeed);
 	float GetRotationSpeed();

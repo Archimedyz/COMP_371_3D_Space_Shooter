@@ -15,10 +15,6 @@
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
-<<<<<<< HEAD
-#include "BackgroundFactory.h"
-=======
->>>>>>> master
 #include "Path.h"
 #include "Projectile.h"
 #include "ShipModel.h"
@@ -187,21 +183,8 @@ void World::LoadScene(const char * scene_path)
 	// I moved it there since it's just extra clutter to keep it here commented out, it can probably
 	// be deleted. -Nick
     
-<<<<<<< HEAD:COMP_371_Project/Source/World.cpp
-	mModel.push_back(AsteroidFactory::createAsteroid());
-<<<<<<< HEAD
-	mModel.push_back(BackgroundFactory::createBackgroundSphere());
-=======
-=======
+
 	mModel.push_back(AsteroidFactory::createAsteroid(0));
-<<<<<<< HEAD
->>>>>>> master:Source/World.cpp
-	//SphereModel* background = static_cast<SphereModel*>(BackgroundSphereModel(vec3(100.0f, 100.0f, 100.0f)));
-	//mModel.push_back(background);
-	//mModel.push_back(BackgroundSphereModel::Draw());
->>>>>>> master
-=======
->>>>>>> master
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
 

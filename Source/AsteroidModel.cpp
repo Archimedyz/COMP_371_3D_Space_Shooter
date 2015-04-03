@@ -1,7 +1,7 @@
 #include "AsteroidModel.h"
 #include "Variables.h"
 #include "Renderer.h"
-
+#include <string>
 // Include GLEW - OpenGL Extension Wrangler
 #include <GL/glew.h>
 
@@ -177,4 +177,34 @@ void AsteroidModel::SetRotationSpeed(float rotationSpeed){
 }
 float AsteroidModel::GetRotationSpeed(){
 	return mRotationSpeed;
+}
+
+void AsteroidModel::CheckCollisions(std::vector<Model*> &models)
+{ 	// Remove things at center, for debugging, removes asteroids that get stuck in the middle.
+	if (glm::distance(mPosition, glm::vec3(0.0f, 0.0f, 0.0f)) < 1 && CollisionsOn)
+		mDestroyed = true;
+	std::string t = "";
+	// Check the current model against all the rest
+	for (std::vector<Model*>::iterator it = models.begin(); it < models.end(); ++it)
+	{
+		if ((*it) != this && CollisionsOn && (*it)->CollisionsOn) // Make sure the object isn't being compared to itself and that both objects are collidable.
+		{
+			t = typeid(*it).name();
+			if (t == "ShipModel")
+			{
+
+			}
+			if (t == "Projectile")
+			{
+
+			}
+
+			if (glm::distance(mPosition, (*it)->GetPosition()) <= (mCollisionRadius + (*it)->GetCollisionRadius())) // If the distance is less than the radii combined, collide.
+			{
+				mDestroyed = true;
+				(*it)->SetDestroy(true); // Set both destroyed flags to true so the collided objects are removed.
+
+			}
+		}
+	}
 }

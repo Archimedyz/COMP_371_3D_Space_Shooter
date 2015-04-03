@@ -1,13 +1,14 @@
 #include "Game.h"
-
+#include <iostream>
 
 Game* Game::instance;
 
 Game::Game()
 {
 	instance = this;
-	Score = 0;
-	Lives = 3;
+	score = 0;
+	lives = 3;
+	playerHealth = 5;
 }
 
 Game::~Game()
@@ -16,7 +17,7 @@ Game::~Game()
 
 void Game::PlayerDeath()
 {
-	if (Lives <= 0)
+	if (lives <= 0)
 		Lose();
 	else
 	{
@@ -30,11 +31,13 @@ void Game::Lose()
 	// Show final score
 	// Create explosion(?)
 	// Stop update loop for asteroids and things (?)
+	std::cout << "You lose!" << std::endl;
+	std::cout << "Your score was: " << score << std::endl;
 }
 
 void Game::AddScore(int s)
 {
-	if ((Score + s) % LifeIncrement > Score % LifeIncrement)
-		Lives++;
-	Score += s;
+	if ((score + s) % lifeIncrement > score % lifeIncrement)
+		lives++;
+	score += s;
 }

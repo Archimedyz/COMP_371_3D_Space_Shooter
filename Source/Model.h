@@ -27,6 +27,7 @@ public:
 
 	virtual void Update(float dt) = 0;
 	virtual void Draw() = 0;
+	virtual void Collide() = 0;
 
 	void CheckCollisions(std::vector<Model*> &m);
 

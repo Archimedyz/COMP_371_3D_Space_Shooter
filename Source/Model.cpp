@@ -239,24 +239,7 @@ void Model::SetCollisionRadius(float r)
 }
 
 void Model::CheckCollisions(std::vector<Model*> &models)
-{
-	// Remove things at center, for debugging, removes asteroids that get stuck in the middle.
-	if (glm::distance(mPosition, glm::vec3(0.0f, 0.0f, 0.0f)) < 1 && CollisionsOn)
-		mDestroyed = true;
-
-	// Check the current model against all the rest
-	for (std::vector<Model*>::iterator it = models.begin(); it < models.end(); ++it)
-	{
-		if ((*it) != this && CollisionsOn && (*it)->CollisionsOn) // Make sure the object isn't being compared to itself and that both objects are collidable.
-		{
-			if (glm::distance(mPosition, (*it)->GetPosition()) <= (mCollisionRadius + (*it)->GetCollisionRadius())) // If the distance is less than the radii combined, collide.
-			{
-				mDestroyed = true;
-				(*it)->SetDestroy(true); // Set both destroyed flags to true so the collided objects are removed.
-			}
-		}
-	}
-}
+{ 	}
 
 void Model::ActivateCollisions(bool c)
 {
