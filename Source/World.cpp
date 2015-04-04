@@ -61,7 +61,6 @@ World::~World()
 		delete *it;
 	}
 	mCamera.clear();
-    //delete skybox;
 }
 
 World* World::GetInstance()
@@ -109,6 +108,15 @@ void World::Update(float dt)
 	{
 		Renderer::SetShader(SHADER_BLUE);
 	}
+    else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_8 ) == GLFW_PRESS)
+    {
+        Renderer::SetShader(SHADER_CUBEMAPS);
+    }
+    else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_7 ) == GLFW_PRESS)
+    {
+        Renderer::SetShader(SHADER_SKYBOX);
+    }
+    
 
 	// Update current Camera
 	mCamera[mCurrentCamera]->Update(dt);
@@ -144,14 +152,14 @@ void World::Draw()
 	glUseProgram(Renderer::GetShaderProgramID());
     
 
-#if defined(PLATFORM_OSX)
-    Shader shader("Shaders/cubemaps.vs", "Shaders/cubemaps.frag");
-    Shader skyboxShader("Shaders/Skybox.vs", "Shaders/Skybox.frag");
-#else
-    Shader shader("../Shaders/cubemaps.vs", "../Shaders/cubemaps.frag");
-    Shader skyboxShader("../Shaders/Skybox.vs", "../Shaders/Skybox.frag");
-#endif
-//   
+//#if defined(PLATFORM_OSX)
+//    Shader shader("Shaders/cubemaps.vs", "Shaders/cubemaps.frag");
+//    Shader skyboxShader("Shaders/Skybox.vs", "Shaders/Skybox.frag");
+//#else
+//    Shader shader("../Shaders/cubemaps.vs", "../Shaders/cubemaps.frag");
+//    Shader skyboxShader("../Shaders/Skybox.vs", "../Shaders/Skybox.frag");
+//#endif
+//
 //#pragma region "object_initialization"
 //    GLfloat cubeVertices[] = {
 //        // Positions          // Texture Coords
@@ -198,50 +206,50 @@ void World::Draw()
 //        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 //    };
 //    
-    GLfloat skyboxVertices[] = {
-        // Positions
-        -1.0f,  1.0f, -1.0f,
-        -1.0f, -1.0f, -1.0f,
-        1.0f, -1.0f, -1.0f,
-        1.0f, -1.0f, -1.0f,
-        1.0f,  1.0f, -1.0f,
-        -1.0f,  1.0f, -1.0f,
-        
-        -1.0f, -1.0f,  1.0f,
-        -1.0f, -1.0f, -1.0f,
-        -1.0f,  1.0f, -1.0f,
-        -1.0f,  1.0f, -1.0f,
-        -1.0f,  1.0f,  1.0f,
-        -1.0f, -1.0f,  1.0f,
-        
-        1.0f, -1.0f, -1.0f,
-        1.0f, -1.0f,  1.0f,
-        1.0f,  1.0f,  1.0f,
-        1.0f,  1.0f,  1.0f,
-        1.0f,  1.0f, -1.0f,
-        1.0f, -1.0f, -1.0f,
-        
-        -1.0f, -1.0f,  1.0f,
-        -1.0f,  1.0f,  1.0f,
-        1.0f,  1.0f,  1.0f,
-        1.0f,  1.0f,  1.0f,
-        1.0f, -1.0f,  1.0f,
-        -1.0f, -1.0f,  1.0f,
-        
-        -1.0f,  1.0f, -1.0f,
-        1.0f,  1.0f, -1.0f,
-        1.0f,  1.0f,  1.0f,
-        1.0f,  1.0f,  1.0f,
-        -1.0f,  1.0f,  1.0f,
-        -1.0f,  1.0f, -1.0f,
-        
-        -1.0f, -1.0f, -1.0f,
-        -1.0f, -1.0f,  1.0f,
-        1.0f, -1.0f, -1.0f,
-        1.0f, -1.0f, -1.0f,
-        -1.0f, -1.0f,  1.0f,
-        1.0f, -1.0f,  1.0f
-    };
+//    GLfloat skyboxVertices[] = {
+//        // Positions
+//        -1.0f,  1.0f, -1.0f,
+//        -1.0f, -1.0f, -1.0f,
+//        1.0f, -1.0f, -1.0f,
+//        1.0f, -1.0f, -1.0f,
+//        1.0f,  1.0f, -1.0f,
+//        -1.0f,  1.0f, -1.0f,
+//        
+//        -1.0f, -1.0f,  1.0f,
+//        -1.0f, -1.0f, -1.0f,
+//        -1.0f,  1.0f, -1.0f,
+//        -1.0f,  1.0f, -1.0f,
+//        -1.0f,  1.0f,  1.0f,
+//        -1.0f, -1.0f,  1.0f,
+//        
+//        1.0f, -1.0f, -1.0f,
+//        1.0f, -1.0f,  1.0f,
+//        1.0f,  1.0f,  1.0f,
+//        1.0f,  1.0f,  1.0f,
+//        1.0f,  1.0f, -1.0f,
+//        1.0f, -1.0f, -1.0f,
+//        
+//        -1.0f, -1.0f,  1.0f,
+//        -1.0f,  1.0f,  1.0f,
+//        1.0f,  1.0f,  1.0f,
+//        1.0f,  1.0f,  1.0f,
+//        1.0f, -1.0f,  1.0f,
+//        -1.0f, -1.0f,  1.0f,
+//        
+//        -1.0f,  1.0f, -1.0f,
+//        1.0f,  1.0f, -1.0f,
+//        1.0f,  1.0f,  1.0f,
+//        1.0f,  1.0f,  1.0f,
+//        -1.0f,  1.0f,  1.0f,
+//        -1.0f,  1.0f, -1.0f,
+//        
+//        -1.0f, -1.0f, -1.0f,
+//        -1.0f, -1.0f,  1.0f,
+//        1.0f, -1.0f, -1.0f,
+//        1.0f, -1.0f, -1.0f,
+//        -1.0f, -1.0f,  1.0f,
+//        1.0f, -1.0f,  1.0f
+//    };
 //
 //#pragma endregion
 //    
@@ -258,48 +266,48 @@ void World::Draw()
 //    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
 //    glBindVertexArray(0);
 //    
-    // Setup skybox VAO
-    GLuint skyboxVAO, skyboxVBO;
-    glGenVertexArrays(1, &skyboxVAO);
-    glGenBuffers(1, &skyboxVBO);
-    glBindVertexArray(skyboxVAO);
-    glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
-    glBindVertexArray(0);
-    
-    GLuint TexRT = LoadTexture("GalaxySkybox/Galaxy_RT.bmp");
-    GLuint TexLT = LoadTexture("GalaxySkybox/Galaxy_LT.bmp");
-    GLuint TexUP = LoadTexture("GalaxySkybox/Galaxy_UP.bmp");
-    GLuint TexDN = LoadTexture("GalaxySkybox/Galaxy_DN.bmp");
-    GLuint TexBK = LoadTexture("GalaxySkybox/Galaxy_BK.bmp");
-    GLuint TexFT = LoadTexture("GalaxySkybox/Galaxy_FT.bmp");
-    
-    GLuint BMP_RT = loadBMP_custom("GalaxySkybox/Galaxy_RT.bmp");
-    
-    vector<const GLchar*> faces;
-    faces.push_back("GalaxySkybox/Galaxy_RT.bmp");
-    faces.push_back("GalaxySkybox/Galaxy_LT.bmp");
-    faces.push_back("GalaxySkybox/Galaxy_UP.bmp");
-    faces.push_back("GalaxySkybox/Galaxy_DN.bmp");
-    faces.push_back("GalaxySkybox/Galaxy_BK.bmp");
-    faces.push_back("GalaxySkybox/Galaxy_FT.bmp");
-    GLuint cubemapTexture = LoadCubemap(faces);
-    //cout << "all textures loaded";
-    
-    
-    glDepthMask(GL_FALSE);
-    //skyboxShader.Use();
-    // ... Set view and projection matrix
-    glBindVertexArray(skyboxVAO);
-    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    glBindVertexArray(0);
-    glDepthMask(GL_TRUE);
-    
-    
-    
+//    // Setup skybox VAO
+//    GLuint skyboxVAO, skyboxVBO;
+//    glGenVertexArrays(1, &skyboxVAO);
+//    glGenBuffers(1, &skyboxVBO);
+//    glBindVertexArray(skyboxVAO);
+//    glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+//    glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+//    glEnableVertexAttribArray(0);
+//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+//    glBindVertexArray(0);
+//    
+//    GLuint TexRT = LoadTexture("GalaxySkybox/Galaxy_RT.bmp");
+//    GLuint TexLT = LoadTexture("GalaxySkybox/Galaxy_LT.bmp");
+//    GLuint TexUP = LoadTexture("GalaxySkybox/Galaxy_UP.bmp");
+//    GLuint TexDN = LoadTexture("GalaxySkybox/Galaxy_DN.bmp");
+//    GLuint TexBK = LoadTexture("GalaxySkybox/Galaxy_BK.bmp");
+//    GLuint TexFT = LoadTexture("GalaxySkybox/Galaxy_FT.bmp");
+//    
+//    GLuint BMP_RT = loadBMP_custom("GalaxySkybox/Galaxy_RT.bmp");
+//    
+//    vector<const GLchar*> faces;
+//    faces.push_back("GalaxySkybox/Galaxy_RT.bmp");
+//    faces.push_back("GalaxySkybox/Galaxy_LT.bmp");
+//    faces.push_back("GalaxySkybox/Galaxy_UP.bmp");
+//    faces.push_back("GalaxySkybox/Galaxy_DN.bmp");
+//    faces.push_back("GalaxySkybox/Galaxy_BK.bmp");
+//    faces.push_back("GalaxySkybox/Galaxy_FT.bmp");
+//    GLuint cubemapTexture = LoadCubemap(faces);
+//    //cout << "all textures loaded";
+//    
+//    
+//    glDepthMask(GL_FALSE);
+//    //skyboxShader.Use();
+//    // ... Set view and projection matrix
+//    glBindVertexArray(skyboxVAO);
+//    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+//    glDrawArrays(GL_TRIANGLES, 0, 36);
+//    glBindVertexArray(0);
+//    glDepthMask(GL_TRUE);
+//    
+//    
+//    
         // Clear buffers
 //        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 //        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -358,14 +366,6 @@ void World::Draw()
 		// Draw model
 		(*it)->Draw();
 	}
-
-	// Draw Path Lines
-	
-	// Set Shader for path lines
-	unsigned int prevShader = Renderer::GetCurrentShader();
-	Renderer::SetShader(SHADER_PATH_LINES);
-	glUseProgram(Renderer::GetShaderProgramID());
-
 	// Send the view projection constants to the shader
 	VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform");
 	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
@@ -375,9 +375,6 @@ void World::Draw()
 		// Draw model
 		(*it)->Draw();
 	}
-
-	// Restore previous shader
-	Renderer::SetShader((ShaderType) prevShader);
 
 	Renderer::EndFrame();
 

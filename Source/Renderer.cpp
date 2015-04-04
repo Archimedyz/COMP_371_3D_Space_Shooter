@@ -63,16 +63,16 @@ void Renderer::Initialize()
                             shaderPathPrefix + "SolidColor.fragmentshader")
                                );
 	sShaderProgramID.push_back(
-                LoadShaders(shaderPathPrefix + "PathLines.vertexshader",
-                            shaderPathPrefix + "PathLines.fragmentshader")
-                               );
-	sShaderProgramID.push_back(
                 LoadShaders(shaderPathPrefix + "SolidColor.vertexshader",
                             shaderPathPrefix + "BlueColor.fragmentshader")
                                );
     sShaderProgramID.push_back(
                 LoadShaders(shaderPathPrefix + "Skybox.vs",
                             shaderPathPrefix + "Skybox.frag")
+                               );
+    sShaderProgramID.push_back(
+                LoadShaders(shaderPathPrefix + "Cubemaps.vs",
+                            shaderPathPrefix + "Cubemaps.frag")
                                );
 	sCurrentShader = 0;
 
