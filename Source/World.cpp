@@ -17,6 +17,9 @@
 #include "Skybox.h"
 #include "LoadCubeMap.h"
 #include "LoadTexture.h"
+#include "shaderSkybox.h"
+#include "cameraSkybox.h"
+#include <glm/gtc/type_ptr.hpp>
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -139,14 +142,15 @@ void World::Draw()
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
     
-//#if defined(PLATFORM_OSX)
-//    std::string shaderPathPrefix = "Shaders/";
-//#else
-//    std::string shaderPathPrefix = "../Shaders/";
-//#endif
-//    Renderer::LoadShaders(shaderPathPrefix + "cubemaps.vs", shaderPathPrefix + "cubemaps.frag");
-//    Renderer::LoadShaders(shaderPathPrefix + "Skybox.vs", shaderPathPrefix + "Skybox.frag");
-//    
+
+#if defined(PLATFORM_OSX)
+    Shader shader("Shaders/cubemaps.vs", "Shaders/cubemaps.frag");
+    Shader skyboxShader("Shaders/Skybox.vs", "Shaders/Skybox.frag");
+#else
+    Shader shader("../Shaders/cubemaps.vs", "../Shaders/cubemaps.frag");
+    Shader skyboxShader("../Shaders/Skybox.vs", "../Shaders/Skybox.frag");
+#endif
+//   
 //#pragma region "object_initialization"
 //    GLfloat cubeVertices[] = {
 //        // Positions          // Texture Coords
@@ -263,20 +267,21 @@ void World::Draw()
 //    glEnableVertexAttribArray(0);
 //    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
 //    glBindVertexArray(0);
-//    
-//    
-//    vector<const GLchar*> faces;
-//    faces.push_back("GalaxySkybox/Galaxy_RT.bmp");
-//    faces.push_back("GalaxySkybox/Galaxy_LT.bmp");
-//    faces.push_back("GalaxySkybox/Galaxy_UP.bmp");
-//    faces.push_back("GalaxySkybox/Galaxy_DN.bmp");
-//    faces.push_back("GalaxySkybox/Galaxy_BK.bmp");
-//    faces.push_back("GalaxySkybox/Galaxy_FT.bmp");
-//    GLuint cubemapTexture = LoadCubemap(faces);
-//    cout << "all textures loaded";
-//    
+    
+    
+    vector<const GLchar*> faces;
+    faces.push_back("GalaxySkybox/Galaxy_RT.bmp");
+    faces.push_back("GalaxySkybox/Galaxy_LT.bmp");
+    faces.push_back("GalaxySkybox/Galaxy_UP.bmp");
+    faces.push_back("GalaxySkybox/Galaxy_DN.bmp");
+    faces.push_back("GalaxySkybox/Galaxy_BK.bmp");
+    faces.push_back("GalaxySkybox/Galaxy_FT.bmp");
+    GLuint cubemapTexture = LoadCubemap(faces);
+    cout << "all textures loaded";
+    
 //    
 //    glDepthMask(GL_FALSE);
+//    //skyboxShader.Use();
 //    // ... Set view and projection matrix
 //    glBindVertexArray(skyboxVAO);
 //    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
@@ -284,27 +289,14 @@ void World::Draw()
 //    glBindVertexArray(0);
 //    glDepthMask(GL_TRUE);
 //    
-    
 //    
 //    
-//    // Game loop
-//    while(!glfwWindowShouldClose(window))
-//    {
-//        // Set frame time
-//        GLfloat currentFrame = glfwGetTime();
-//        deltaTime = currentFrame - lastFrame;
-//        lastFrame = currentFrame;
-//        
-//        // Check and call events
-//        glfwPollEvents();
-//        Do_Movement();
-//        
-//        // Clear buffers
+        // Clear buffers
 //        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 //        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//        
-//        
-//        // Draw skybox first
+    
+    
+        // Draw skybox first
 //        glDepthMask(GL_FALSE);// Remember to turn depth writing off
 //        skyboxShader.Use();
 //        glm::mat4 view = glm::mat4(glm::mat3(camera.GetViewMatrix()));	// Remove any translation component of the view matrix
@@ -319,7 +311,7 @@ void World::Draw()
 //        glDrawArrays(GL_TRIANGLES, 0, 36);
 //        glBindVertexArray(0);
 //        glDepthMask(GL_TRUE);
-//        
+    
 //        // Then draw scene as normal
 //        shader.Use();
 //        glm::mat4 model;
@@ -339,8 +331,6 @@ void World::Draw()
 //        
 //        // Swap the buffers
 //        glfwSwapBuffers(window);
-//    }
-    
 
     
     
