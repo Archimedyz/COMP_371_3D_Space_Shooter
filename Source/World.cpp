@@ -16,6 +16,7 @@
 
 #include "Skybox.h"
 #include "LoadCubeMap.h"
+#include "Texture.hpp"
 #include "LoadTexture.h"
 #include "shaderSkybox.h"
 #include "cameraSkybox.h"
@@ -197,51 +198,51 @@ void World::Draw()
 //        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 //    };
 //    
-//    GLfloat skyboxVertices[] = {
-//        // Positions
-//        -1.0f,  1.0f, -1.0f,
-//        -1.0f, -1.0f, -1.0f,
-//        1.0f, -1.0f, -1.0f,
-//        1.0f, -1.0f, -1.0f,
-//        1.0f,  1.0f, -1.0f,
-//        -1.0f,  1.0f, -1.0f,
-//        
-//        -1.0f, -1.0f,  1.0f,
-//        -1.0f, -1.0f, -1.0f,
-//        -1.0f,  1.0f, -1.0f,
-//        -1.0f,  1.0f, -1.0f,
-//        -1.0f,  1.0f,  1.0f,
-//        -1.0f, -1.0f,  1.0f,
-//        
-//        1.0f, -1.0f, -1.0f,
-//        1.0f, -1.0f,  1.0f,
-//        1.0f,  1.0f,  1.0f,
-//        1.0f,  1.0f,  1.0f,
-//        1.0f,  1.0f, -1.0f,
-//        1.0f, -1.0f, -1.0f,
-//        
-//        -1.0f, -1.0f,  1.0f,
-//        -1.0f,  1.0f,  1.0f,
-//        1.0f,  1.0f,  1.0f,
-//        1.0f,  1.0f,  1.0f,
-//        1.0f, -1.0f,  1.0f,
-//        -1.0f, -1.0f,  1.0f,
-//        
-//        -1.0f,  1.0f, -1.0f,
-//        1.0f,  1.0f, -1.0f,
-//        1.0f,  1.0f,  1.0f,
-//        1.0f,  1.0f,  1.0f,
-//        -1.0f,  1.0f,  1.0f,
-//        -1.0f,  1.0f, -1.0f,
-//        
-//        -1.0f, -1.0f, -1.0f,
-//        -1.0f, -1.0f,  1.0f,
-//        1.0f, -1.0f, -1.0f,
-//        1.0f, -1.0f, -1.0f,
-//        -1.0f, -1.0f,  1.0f,
-//        1.0f, -1.0f,  1.0f
-//    };
-//    
+    GLfloat skyboxVertices[] = {
+        // Positions
+        -1.0f,  1.0f, -1.0f,
+        -1.0f, -1.0f, -1.0f,
+        1.0f, -1.0f, -1.0f,
+        1.0f, -1.0f, -1.0f,
+        1.0f,  1.0f, -1.0f,
+        -1.0f,  1.0f, -1.0f,
+        
+        -1.0f, -1.0f,  1.0f,
+        -1.0f, -1.0f, -1.0f,
+        -1.0f,  1.0f, -1.0f,
+        -1.0f,  1.0f, -1.0f,
+        -1.0f,  1.0f,  1.0f,
+        -1.0f, -1.0f,  1.0f,
+        
+        1.0f, -1.0f, -1.0f,
+        1.0f, -1.0f,  1.0f,
+        1.0f,  1.0f,  1.0f,
+        1.0f,  1.0f,  1.0f,
+        1.0f,  1.0f, -1.0f,
+        1.0f, -1.0f, -1.0f,
+        
+        -1.0f, -1.0f,  1.0f,
+        -1.0f,  1.0f,  1.0f,
+        1.0f,  1.0f,  1.0f,
+        1.0f,  1.0f,  1.0f,
+        1.0f, -1.0f,  1.0f,
+        -1.0f, -1.0f,  1.0f,
+        
+        -1.0f,  1.0f, -1.0f,
+        1.0f,  1.0f, -1.0f,
+        1.0f,  1.0f,  1.0f,
+        1.0f,  1.0f,  1.0f,
+        -1.0f,  1.0f,  1.0f,
+        -1.0f,  1.0f, -1.0f,
+        
+        -1.0f, -1.0f, -1.0f,
+        -1.0f, -1.0f,  1.0f,
+        1.0f, -1.0f, -1.0f,
+        1.0f, -1.0f, -1.0f,
+        -1.0f, -1.0f,  1.0f,
+        1.0f, -1.0f,  1.0f
+    };
+//
 //#pragma endregion
 //    
 //    // Setup cube VAO
@@ -257,17 +258,25 @@ void World::Draw()
 //    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
 //    glBindVertexArray(0);
 //    
-//    // Setup skybox VAO
-//    GLuint skyboxVAO, skyboxVBO;
-//    glGenVertexArrays(1, &skyboxVAO);
-//    glGenBuffers(1, &skyboxVBO);
-//    glBindVertexArray(skyboxVAO);
-//    glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
-//    glEnableVertexAttribArray(0);
-//    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
-//    glBindVertexArray(0);
+    // Setup skybox VAO
+    GLuint skyboxVAO, skyboxVBO;
+    glGenVertexArrays(1, &skyboxVAO);
+    glGenBuffers(1, &skyboxVBO);
+    glBindVertexArray(skyboxVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, skyboxVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+    glBindVertexArray(0);
     
+    GLuint TexRT = LoadTexture("GalaxySkybox/Galaxy_RT.bmp");
+    GLuint TexLT = LoadTexture("GalaxySkybox/Galaxy_LT.bmp");
+    GLuint TexUP = LoadTexture("GalaxySkybox/Galaxy_UP.bmp");
+    GLuint TexDN = LoadTexture("GalaxySkybox/Galaxy_DN.bmp");
+    GLuint TexBK = LoadTexture("GalaxySkybox/Galaxy_BK.bmp");
+    GLuint TexFT = LoadTexture("GalaxySkybox/Galaxy_FT.bmp");
+    
+    GLuint BMP_RT = loadBMP_custom("GalaxySkybox/Galaxy_RT.bmp");
     
     vector<const GLchar*> faces;
     faces.push_back("GalaxySkybox/Galaxy_RT.bmp");
@@ -277,20 +286,20 @@ void World::Draw()
     faces.push_back("GalaxySkybox/Galaxy_BK.bmp");
     faces.push_back("GalaxySkybox/Galaxy_FT.bmp");
     GLuint cubemapTexture = LoadCubemap(faces);
-    cout << "all textures loaded";
+    //cout << "all textures loaded";
     
-//    
-//    glDepthMask(GL_FALSE);
-//    //skyboxShader.Use();
-//    // ... Set view and projection matrix
-//    glBindVertexArray(skyboxVAO);
-//    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
-//    glDrawArrays(GL_TRIANGLES, 0, 36);
-//    glBindVertexArray(0);
-//    glDepthMask(GL_TRUE);
-//    
-//    
-//    
+    
+    glDepthMask(GL_FALSE);
+    //skyboxShader.Use();
+    // ... Set view and projection matrix
+    glBindVertexArray(skyboxVAO);
+    glBindTexture(GL_TEXTURE_CUBE_MAP, cubemapTexture);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glBindVertexArray(0);
+    glDepthMask(GL_TRUE);
+    
+    
+    
         // Clear buffers
 //        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 //        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

@@ -3,8 +3,11 @@
 #include "LoadTexture.h"
 #include <SOIL.h>
 
+// This function loads a texture from file. Note: texture loading functions like these are usually
+// managed by a 'Resource Manager' that manages all resources (like textures, models, audio).
+// For learning purposes we'll just define it as a utility function.
 
-GLuint loadTexture(GLchar* path)
+GLuint LoadTexture(GLchar* path)
 {
     //Generate texture ID and load texture data
     GLuint textureID;

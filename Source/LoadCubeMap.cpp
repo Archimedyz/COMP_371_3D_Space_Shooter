@@ -3,6 +3,15 @@
 #include "LoadCubeMap.h"
 #include <SOIL.h>
 
+// Loads a cubemap texture from 6 individual texture faces
+// Order should be:
+// +X (right)
+// -X (left)
+// +Y (top)
+// -Y (bottom)
+// +Z (front)
+// -Z (back)
+
 GLuint LoadCubemap(vector<const GLchar*> faces)
 {
     GLuint textureID;
