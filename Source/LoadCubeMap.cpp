@@ -1,7 +1,7 @@
 // From http://learnopengl.com/code_viewer.php?code=advanced/cubemaps-exercise1
 
 #include "LoadCubeMap.h"
-#include "SOIL.h"
+#include <SOIL.h>
 
 GLuint LoadCubemap(vector<const GLchar*> faces)
 {

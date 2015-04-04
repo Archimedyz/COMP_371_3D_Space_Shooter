@@ -12,6 +12,7 @@
 		038B79161A6FF2E900111E36 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79151A6FF2E900111E36 /* Cocoa.framework */; };
 		038B791A1A6FF39000111E36 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79191A6FF39000111E36 /* CoreVideo.framework */; };
 		038B791E1A6FF3EB00111E36 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B791D1A6FF3EB00111E36 /* IOKit.framework */; };
+		D40BCBCE1ACF79D2002E216F /* libSOIL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D40BCBCD1ACF79D2002E216F /* libSOIL.a */; };
 		D46301141ABBC27500BF8F32 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D46301121ABBC27500BF8F32 /* Renderer.cpp */; };
 		D4A9DC9B1A7AFBFF00CA6A53 /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79171A6FF35E00111E36 /* libGLEW.a */; };
 		D4A9DC9C1A7AFC1400CA6A53 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 031A65F61A702EBB003BF698 /* libglfw3.a */; };
@@ -71,6 +72,7 @@
 		038B79191A6FF39000111E36 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		038B791B1A6FF3D100111E36 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		038B791D1A6FF3EB00111E36 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		D40BCBCD1ACF79D2002E216F /* libSOIL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSOIL.a; path = ../ThirdParty/SOIL/lib/libSOIL.a; sourceTree = "<group>"; };
 		D46301121ABBC27500BF8F32 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		D46301131ABBC27500BF8F32 /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		D463011A1ABBC4EA00BF8F32 /* Scenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Scenes; path = ../Scenes; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			files = (
 				D4A9DC9C1A7AFC1400CA6A53 /* libglfw3.a in Frameworks */,
 				D4A9DC9B1A7AFBFF00CA6A53 /* libGLEW.a in Frameworks */,
+				D40BCBCE1ACF79D2002E216F /* libSOIL.a in Frameworks */,
 				038B791E1A6FF3EB00111E36 /* IOKit.framework in Frameworks */,
 				038B791A1A6FF39000111E36 /* CoreVideo.framework in Frameworks */,
 				038B79161A6FF2E900111E36 /* Cocoa.framework in Frameworks */,
@@ -153,6 +156,7 @@
 		034F0BB11A700D0F0028E1BA /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D40BCBCD1ACF79D2002E216F /* libSOIL.a */,
 				038B79171A6FF35E00111E36 /* libGLEW.a */,
 				031A65F61A702EBB003BF698 /* libglfw3.a */,
 				038B791D1A6FF3EB00111E36 /* IOKit.framework */,
@@ -485,11 +489,14 @@
 					../ThirdParty/glm,
 					"../ThirdParty/glfw-3.0.4/include",
 					"../ThirdParty/glew-1.10.0/include",
+					../ThirdParty/SOIL/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
+					/Users/skyler/Documents/COMP_371_3D_Space_Shooter/ThirdParty/SOIL/lib,
+					../ThirdParty/SOIL/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -507,11 +514,14 @@
 					../ThirdParty/glm,
 					"../ThirdParty/glfw-3.0.4/include",
 					"../ThirdParty/glew-1.10.0/include",
+					../ThirdParty/SOIL/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
+					/Users/skyler/Documents/COMP_371_3D_Space_Shooter/ThirdParty/SOIL/lib,
+					../ThirdParty/SOIL/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
