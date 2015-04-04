@@ -12,11 +12,7 @@
 		038B79161A6FF2E900111E36 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79151A6FF2E900111E36 /* Cocoa.framework */; };
 		038B791A1A6FF39000111E36 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79191A6FF39000111E36 /* CoreVideo.framework */; };
 		038B791E1A6FF3EB00111E36 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B791D1A6FF3EB00111E36 /* IOKit.framework */; };
-		D40BCBCE1ACF79D2002E216F /* libSOIL.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D40BCBCD1ACF79D2002E216F /* libSOIL.a */; };
-		D40BCBDD1ACF7D5C002E216F /* image_DXT.c in Sources */ = {isa = PBXBuildFile; fileRef = D40BCBD31ACF7D5C002E216F /* image_DXT.c */; };
-		D40BCBDE1ACF7D5C002E216F /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = D40BCBD51ACF7D5C002E216F /* image_helper.c */; };
-		D40BCBDF1ACF7D5C002E216F /* SOIL.c in Sources */ = {isa = PBXBuildFile; fileRef = D40BCBD71ACF7D5C002E216F /* SOIL.c */; };
-		D40BCBE01ACF7D5C002E216F /* stb_image_aug.c in Sources */ = {isa = PBXBuildFile; fileRef = D40BCBD91ACF7D5C002E216F /* stb_image_aug.c */; };
+		D40BCBFA1AD07543002E216F /* Skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D40BCBF81AD07543002E216F /* Skybox.cpp */; };
 		D46301141ABBC27500BF8F32 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D46301121ABBC27500BF8F32 /* Renderer.cpp */; };
 		D4A9DC9B1A7AFBFF00CA6A53 /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79171A6FF35E00111E36 /* libGLEW.a */; };
 		D4A9DC9C1A7AFC1400CA6A53 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 031A65F61A702EBB003BF698 /* libglfw3.a */; };
@@ -42,9 +38,6 @@
 		D4F9C7F11AC4D1F800F5AB97 /* VBOindexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7EA1AC4D1F800F5AB97 /* VBOindexer.cpp */; };
 		D4F9C7F41AC4DAF300F5AB97 /* Models in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4F9C7F31AC4DA6500F5AB97 /* Models */; };
 		D4F9C7F51AC4DAF300F5AB97 /* Scenes in CopyFiles */ = {isa = PBXBuildFile; fileRef = D463011A1ABBC4EA00BF8F32 /* Scenes */; };
-		D4F9C7F81AC4E1E700F5AB97 /* Skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7F61AC4E1E700F5AB97 /* Skybox.cpp */; };
-		D4F9C7FC1AC5155500F5AB97 /* LoadTexture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7FA1AC5155500F5AB97 /* LoadTexture.cpp */; };
-		D4F9C8161AC5D27200F5AB97 /* LoadCubeMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C8141AC5D27200F5AB97 /* LoadCubeMap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -72,19 +65,14 @@
 		038B79191A6FF39000111E36 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		038B791B1A6FF3D100111E36 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		038B791D1A6FF3EB00111E36 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		D40BCBCD1ACF79D2002E216F /* libSOIL.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSOIL.a; path = ../ThirdParty/SOIL/lib/libSOIL.a; sourceTree = "<group>"; };
-		D40BCBD11ACF7B69002E216F /* cameraSkybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cameraSkybox.h; sourceTree = "<group>"; };
-		D40BCBD21ACF7B69002E216F /* shaderSkybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shaderSkybox.h; sourceTree = "<group>"; };
-		D40BCBD31ACF7D5C002E216F /* image_DXT.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = image_DXT.c; path = ../ThirdParty/SOIL/src/image_DXT.c; sourceTree = "<group>"; };
-		D40BCBD41ACF7D5C002E216F /* image_DXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = image_DXT.h; path = ../ThirdParty/SOIL/src/image_DXT.h; sourceTree = "<group>"; };
-		D40BCBD51ACF7D5C002E216F /* image_helper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = image_helper.c; path = ../ThirdParty/SOIL/src/image_helper.c; sourceTree = "<group>"; };
-		D40BCBD61ACF7D5C002E216F /* image_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = image_helper.h; path = ../ThirdParty/SOIL/src/image_helper.h; sourceTree = "<group>"; };
-		D40BCBD71ACF7D5C002E216F /* SOIL.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = SOIL.c; path = ../ThirdParty/SOIL/src/SOIL.c; sourceTree = "<group>"; };
-		D40BCBD81ACF7D5C002E216F /* SOIL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SOIL.h; path = ../ThirdParty/SOIL/src/SOIL.h; sourceTree = "<group>"; };
-		D40BCBD91ACF7D5C002E216F /* stb_image_aug.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = stb_image_aug.c; path = ../ThirdParty/SOIL/src/stb_image_aug.c; sourceTree = "<group>"; };
-		D40BCBDA1ACF7D5C002E216F /* stb_image_aug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stb_image_aug.h; path = ../ThirdParty/SOIL/src/stb_image_aug.h; sourceTree = "<group>"; };
-		D40BCBDB1ACF7D5C002E216F /* stbi_DDS_aug_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stbi_DDS_aug_c.h; path = ../ThirdParty/SOIL/src/stbi_DDS_aug_c.h; sourceTree = "<group>"; };
-		D40BCBDC1ACF7D5C002E216F /* stbi_DDS_aug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stbi_DDS_aug.h; path = ../ThirdParty/SOIL/src/stbi_DDS_aug.h; sourceTree = "<group>"; };
+		D40BCBF01AD069E7002E216F /* Galaxy_BK.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Galaxy_BK.bmp; sourceTree = "<group>"; };
+		D40BCBF11AD069E7002E216F /* Galaxy_DN.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Galaxy_DN.bmp; sourceTree = "<group>"; };
+		D40BCBF21AD069E7002E216F /* Galaxy_FT.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Galaxy_FT.bmp; sourceTree = "<group>"; };
+		D40BCBF31AD069E7002E216F /* Galaxy_LT.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Galaxy_LT.bmp; sourceTree = "<group>"; };
+		D40BCBF41AD069E7002E216F /* Galaxy_RT.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Galaxy_RT.bmp; sourceTree = "<group>"; };
+		D40BCBF51AD069E7002E216F /* Galaxy_UP.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Galaxy_UP.bmp; sourceTree = "<group>"; };
+		D40BCBF81AD07543002E216F /* Skybox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Skybox.cpp; sourceTree = "<group>"; };
+		D40BCBF91AD07543002E216F /* Skybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skybox.h; sourceTree = "<group>"; };
 		D46301121ABBC27500BF8F32 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		D46301131ABBC27500BF8F32 /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
 		D463011A1ABBC4EA00BF8F32 /* Scenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Scenes; path = ../Scenes; sourceTree = "<group>"; };
@@ -129,12 +117,6 @@
 		D4F9C7EA1AC4D1F800F5AB97 /* VBOindexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VBOindexer.cpp; sourceTree = "<group>"; };
 		D4F9C7EB1AC4D1F800F5AB97 /* VBOindexer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = VBOindexer.hpp; sourceTree = "<group>"; };
 		D4F9C7F31AC4DA6500F5AB97 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = ../Resources/Models; sourceTree = "<group>"; };
-		D4F9C7F61AC4E1E700F5AB97 /* Skybox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Skybox.cpp; sourceTree = "<group>"; };
-		D4F9C7F71AC4E1E700F5AB97 /* Skybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skybox.h; sourceTree = "<group>"; };
-		D4F9C7FA1AC5155500F5AB97 /* LoadTexture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadTexture.cpp; sourceTree = "<group>"; };
-		D4F9C7FB1AC5155500F5AB97 /* LoadTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadTexture.h; sourceTree = "<group>"; };
-		D4F9C8141AC5D27200F5AB97 /* LoadCubeMap.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadCubeMap.cpp; sourceTree = "<group>"; };
-		D4F9C8151AC5D27200F5AB97 /* LoadCubeMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadCubeMap.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,7 +126,6 @@
 			files = (
 				D4A9DC9C1A7AFC1400CA6A53 /* libglfw3.a in Frameworks */,
 				D4A9DC9B1A7AFBFF00CA6A53 /* libGLEW.a in Frameworks */,
-				D40BCBCE1ACF79D2002E216F /* libSOIL.a in Frameworks */,
 				038B791E1A6FF3EB00111E36 /* IOKit.framework in Frameworks */,
 				038B791A1A6FF39000111E36 /* CoreVideo.framework in Frameworks */,
 				038B79161A6FF2E900111E36 /* Cocoa.framework in Frameworks */,
@@ -158,7 +139,6 @@
 		034F0BB11A700D0F0028E1BA /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D40BCBCD1ACF79D2002E216F /* libSOIL.a */,
 				038B79171A6FF35E00111E36 /* libGLEW.a */,
 				031A65F61A702EBB003BF698 /* libglfw3.a */,
 				038B791D1A6FF3EB00111E36 /* IOKit.framework */,
@@ -201,6 +181,12 @@
 		038B785E1A6EB3F500111E36 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D40BCBF01AD069E7002E216F /* Galaxy_BK.bmp */,
+				D40BCBF11AD069E7002E216F /* Galaxy_DN.bmp */,
+				D40BCBF21AD069E7002E216F /* Galaxy_FT.bmp */,
+				D40BCBF31AD069E7002E216F /* Galaxy_LT.bmp */,
+				D40BCBF41AD069E7002E216F /* Galaxy_RT.bmp */,
+				D40BCBF51AD069E7002E216F /* Galaxy_UP.bmp */,
 				D46301101ABBAB2B00BF8F32 /* Asteroids */,
 				D463010E1ABBA63000BF8F32 /* Cameras */,
 				D463010F1ABBA64300BF8F32 /* Models */,
@@ -223,23 +209,6 @@
 			);
 			name = Source;
 			path = ../Source;
-			sourceTree = "<group>";
-		};
-		D40BCBE11ACF7D61002E216F /* SOIL */ = {
-			isa = PBXGroup;
-			children = (
-				D40BCBD31ACF7D5C002E216F /* image_DXT.c */,
-				D40BCBD41ACF7D5C002E216F /* image_DXT.h */,
-				D40BCBD51ACF7D5C002E216F /* image_helper.c */,
-				D40BCBD61ACF7D5C002E216F /* image_helper.h */,
-				D40BCBD71ACF7D5C002E216F /* SOIL.c */,
-				D40BCBD81ACF7D5C002E216F /* SOIL.h */,
-				D40BCBD91ACF7D5C002E216F /* stb_image_aug.c */,
-				D40BCBDA1ACF7D5C002E216F /* stb_image_aug.h */,
-				D40BCBDB1ACF7D5C002E216F /* stbi_DDS_aug_c.h */,
-				D40BCBDC1ACF7D5C002E216F /* stbi_DDS_aug.h */,
-			);
-			name = SOIL;
 			sourceTree = "<group>";
 		};
 		D40BCBE21AD06307002E216F /* take 2 */ = {
@@ -308,16 +277,9 @@
 		D4F9C7F91AC4E1F000F5AB97 /* Skybox */ = {
 			isa = PBXGroup;
 			children = (
+				D40BCBF81AD07543002E216F /* Skybox.cpp */,
+				D40BCBF91AD07543002E216F /* Skybox.h */,
 				D40BCBE21AD06307002E216F /* take 2 */,
-				D40BCBE11ACF7D61002E216F /* SOIL */,
-				D40BCBD11ACF7B69002E216F /* cameraSkybox.h */,
-				D40BCBD21ACF7B69002E216F /* shaderSkybox.h */,
-				D4F9C8141AC5D27200F5AB97 /* LoadCubeMap.cpp */,
-				D4F9C8151AC5D27200F5AB97 /* LoadCubeMap.h */,
-				D4F9C7FA1AC5155500F5AB97 /* LoadTexture.cpp */,
-				D4F9C7FB1AC5155500F5AB97 /* LoadTexture.h */,
-				D4F9C7F61AC4E1E700F5AB97 /* Skybox.cpp */,
-				D4F9C7F71AC4E1E700F5AB97 /* Skybox.h */,
 			);
 			name = Skybox;
 			sourceTree = "<group>";
@@ -380,14 +342,10 @@
 			files = (
 				D4F9C7ED1AC4D1F800F5AB97 /* Objloader.cpp in Sources */,
 				D4BAD0811AAE78E300698FF2 /* EventManager.cpp in Sources */,
-				D40BCBDF1ACF7D5C002E216F /* SOIL.c in Sources */,
 				D4BAD0891AAE78E300698FF2 /* ThirdPersonCamera.cpp in Sources */,
 				D4F9C7EC1AC4D1F800F5AB97 /* Loader.cpp in Sources */,
-				D40BCBDD1ACF7D5C002E216F /* image_DXT.c in Sources */,
-				D4F9C8161AC5D27200F5AB97 /* LoadCubeMap.cpp in Sources */,
 				D4BAD0881AAE78E300698FF2 /* StaticCamera.cpp in Sources */,
-				D4F9C7FC1AC5155500F5AB97 /* LoadTexture.cpp in Sources */,
-				D4F9C7F81AC4E1E700F5AB97 /* Skybox.cpp in Sources */,
+				D40BCBFA1AD07543002E216F /* Skybox.cpp in Sources */,
 				D4BAD08B1AAE78E300698FF2 /* World.cpp in Sources */,
 				D4BAD07A1AAE78E300698FF2 /* AsteroidModel.cpp in Sources */,
 				D4BAD07F1AAE78E300698FF2 /* Camera.cpp in Sources */,
@@ -398,10 +356,8 @@
 				D4BAD0871AAE78E300698FF2 /* SphereModel.cpp in Sources */,
 				D4F9C7EE1AC4D1F800F5AB97 /* Shader.cpp in Sources */,
 				D4F9C7EF1AC4D1F800F5AB97 /* ShipModel.cpp in Sources */,
-				D40BCBDE1ACF7D5C002E216F /* image_helper.c in Sources */,
 				D4F9C7F11AC4D1F800F5AB97 /* VBOindexer.cpp in Sources */,
 				D4BAD0841AAE78E300698FF2 /* Path.cpp in Sources */,
-				D40BCBE01ACF7D5C002E216F /* stb_image_aug.c in Sources */,
 				D4BAD0831AAE78E300698FF2 /* Model.cpp in Sources */,
 				D4BAD0801AAE78E300698FF2 /* CubeModel.cpp in Sources */,
 				D4BAD0821AAE78E300698FF2 /* main.cpp in Sources */,
@@ -501,14 +457,12 @@
 					../ThirdParty/glm,
 					"../ThirdParty/glfw-3.0.4/include",
 					"../ThirdParty/glew-1.10.0/include",
-					../ThirdParty/SOIL/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
 					/Users/skyler/Documents/COMP_371_3D_Space_Shooter/ThirdParty/SOIL/lib,
-					../ThirdParty/SOIL/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -526,14 +480,12 @@
 					../ThirdParty/glm,
 					"../ThirdParty/glfw-3.0.4/include",
 					"../ThirdParty/glew-1.10.0/include",
-					../ThirdParty/SOIL/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
 					/Users/skyler/Documents/COMP_371_3D_Space_Shooter/ThirdParty/SOIL/lib,
-					../ThirdParty/SOIL/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";

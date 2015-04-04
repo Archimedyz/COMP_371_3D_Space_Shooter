@@ -15,12 +15,12 @@
 #include "Loader.h"
 
 #include "Skybox.h"
-#include "LoadCubeMap.h"
 #include "Texture.hpp"
 #include "LoadTexture.h"
 #include "shaderSkybox.h"
 #include "cameraSkybox.h"
 #include <glm/gtc/type_ptr.hpp>
+#include "Variables.h"
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -31,11 +31,13 @@ using namespace glm;
 
 World* World::instance;
 int World::addCounter;
+Skybox* skyboxObj = new Skybox();
 
 World::World()
 {
     instance = this;
 	addCounter = 0;
+    skyboxObj->initSkybox();
 }
 
 World::~World()
@@ -108,14 +110,6 @@ void World::Update(float dt)
 	{
 		Renderer::SetShader(SHADER_BLUE);
 	}
-    else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_8 ) == GLFW_PRESS)
-    {
-        Renderer::SetShader(SHADER_CUBEMAPS);
-    }
-    else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_7 ) == GLFW_PRESS)
-    {
-        Renderer::SetShader(SHADER_SKYBOX);
-    }
     
 
 	// Update current Camera
@@ -143,6 +137,12 @@ void World::Update(float dt)
 	}
 	
 }
+/*
+ *  drawSkybox(double D)
+ *  ------
+ *  Draws the skybox around the entire screen
+ */
+
 
 void World::Draw()
 {
@@ -150,7 +150,7 @@ void World::Draw()
 	
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
-    
+    //skyboxObj.drawSkybox(20.0);
 
 //#if defined(PLATFORM_OSX)
 //    Shader shader("Shaders/cubemaps.vs", "Shaders/cubemaps.frag");

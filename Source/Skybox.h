@@ -9,11 +9,13 @@
 class Skybox{
 
 private:
+    
 
 public:
 	Skybox();
     ~Skybox();
-    void RenderSkybox();
+    void initSkybox(void);
+    void drawSkybox(double D);
 };
 
 #endif

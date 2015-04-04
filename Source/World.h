@@ -30,6 +30,8 @@ public:
     Model* FindModelByIndex(unsigned int index);
 
 	void AddModel(Model*);
+    
+    void drawSkybox(double D);
 
 private:
     static World* instance;
