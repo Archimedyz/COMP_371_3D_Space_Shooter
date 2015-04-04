@@ -242,6 +242,13 @@
 			name = SOIL;
 			sourceTree = "<group>";
 		};
+		D40BCBE21AD06307002E216F /* take 2 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "take 2";
+			sourceTree = "<group>";
+		};
 		D463010E1ABBA63000BF8F32 /* Cameras */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +308,7 @@
 		D4F9C7F91AC4E1F000F5AB97 /* Skybox */ = {
 			isa = PBXGroup;
 			children = (
+				D40BCBE21AD06307002E216F /* take 2 */,
 				D40BCBE11ACF7D61002E216F /* SOIL */,
 				D40BCBD11ACF7B69002E216F /* cameraSkybox.h */,
 				D40BCBD21ACF7B69002E216F /* shaderSkybox.h */,
