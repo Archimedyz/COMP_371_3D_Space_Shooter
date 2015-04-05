@@ -268,3 +268,7 @@ void Model::SetDestroy(bool b)
 	mDestroyed = b;
 }
 
+glm::vec4 make_ritters_sphere()
+{
+	return glm::vec4(0, 0, 0, 0);
+}

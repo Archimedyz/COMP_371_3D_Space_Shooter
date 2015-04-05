@@ -45,6 +45,7 @@ public:
 	void SetCollisionRadius(float r);
 	void SetDestroy(bool);
 
+	glm::vec4 make_ritters_sphere();
 	void ActivateCollisions(bool); // For debugging probably
 
 	glm::vec3 GetPosition() const		{ return mPosition; }
