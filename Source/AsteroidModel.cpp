@@ -1,6 +1,8 @@
 #include "AsteroidModel.h"
 #include "Variables.h"
 #include "Renderer.h"
+#include "Loader.h"
+#include <string>
 
 // Include GLEW - OpenGL Extension Wrangler
 #include <GL/glew.h>
@@ -9,10 +11,19 @@ using namespace glm;
 
 AsteroidModel::AsteroidModel() : Model()
 {
+#if defined(PLATFORM_OSX)
+	std::string modelPath = "Models/asteroid";
+#else
+	std::string modelPath = "../Resources/Models/asteroid";
+#endif
+	int random = rand() % 30 + 1;
+	modelPath = modelPath + std::to_string(random) + ".obj";
+	Loader::loadModelAsteroid(modelPath.c_str());
+
 	//std::cout << "created" << std::endl;
 	destroyed = false;
 	// Create Vertex Buffer for all the verices of the Cube
-	vec3 halfSize = vec3(1.0f, 1.0f, 1.0f) * 0.5f;
+	/*vec3 halfSize = vec3(1.0f, 1.0f, 1.0f) * 0.5f;
 
 	Vertex vertexBuffer[] = {  // position,                normal,                  color
 		{ vec3(-halfSize.x, -halfSize.y, -halfSize.z), vec3(-1.0f, 0.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f) }, //left - red
@@ -68,9 +79,9 @@ AsteroidModel::AsteroidModel() : Model()
 	glGenVertexArrays(1, &mVertexArrayID);
 
 	// Upload Vertex Buffer to the GPU, keep a reference to it (mVertexBufferID)
-	glGenBuffers(1, &mVertexBufferID);
+	glGenBuffers(2, &mVertexBufferID);
 	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBuffer), vertexBuffer, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBuffer), vertexBuffer, GL_STATIC_DRAW);*/
 }
 
 AsteroidModel::~AsteroidModel()
@@ -102,54 +113,60 @@ void AsteroidModel::Update(float dt)
 
 void AsteroidModel::Draw()
 {
-	// Draw the Vertex Buffer
-	// Note this draws a unit Cube
-	// The Model View Projection transforms are computed in the Vertex Shader
-	glBindVertexArray(mVertexArrayID);
-
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 
-	// 1st attribute buffer : vertex Positions
+	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID);
-	glVertexAttribPointer(0,				// attribute. No particular reason for 0, but must match the layout in the shader.
-		3,				// size
-		GL_FLOAT,		// type
-		GL_FALSE,		// normalized?
-		sizeof(Vertex), // stride
-		(void*)0        // array buffer offset
+	glBindBuffer(GL_ARRAY_BUFFER, Loader::vertexbufferAst);
+	glVertexAttribPointer(
+		0,                  // attribute
+		3,                  // size
+		GL_FLOAT,           // type
+		GL_FALSE,           // normalized?
+		0,                  // stride
+		(void*)0            // array buffer offset
 		);
 
-	// 2nd attribute buffer : vertex normal
+	// 2nd attribute buffer : UVs
 	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID);
-	glVertexAttribPointer(1,
-		3,
-		GL_FLOAT,
-		GL_FALSE,
-		sizeof(Vertex),
-		(void*)sizeof(vec3)    // Normal is Offseted by vec3 (see class Vertex)
+	glBindBuffer(GL_ARRAY_BUFFER, Loader::uvbufferAst);
+	glVertexAttribPointer(
+		1,                                // attribute
+		2,                                // size
+		GL_FLOAT,                         // type
+		GL_FALSE,                         // normalized?
+		0,                                // stride
+		(void*)0                          // array buffer offset
 		);
 
-
-	// 3rd attribute buffer : vertex color
+	// 3rd attribute buffer : normals
 	glEnableVertexAttribArray(2);
-	glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID);
-	glVertexAttribPointer(2,
-		3,
-		GL_FLOAT,
-		GL_FALSE,
-		sizeof(Vertex),
-		(void*)(2 * sizeof(vec3)) // Color is Offseted by 2 vec3 (see class Vertex)
+	glBindBuffer(GL_ARRAY_BUFFER, Loader::normalbufferAst);
+	glVertexAttribPointer(
+		2,                                // attribute
+		3,                                // size
+		GL_FLOAT,                         // type
+		GL_FALSE,                         // normalized?
+		0,                                // stride
+		(void*)0                          // array buffer offset
 		);
+
+	// Index buffer
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Loader::elementbufferAst);
 
 	// Draw the triangles !
-	glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices: 3 * 2 * 6 (3 per triangle, 2 triangles per face, 6 faces)
+	glDrawElements(
+		GL_TRIANGLES,      // mode
+		Loader::indicesAst.size(),    // count
+		GL_UNSIGNED_SHORT,   // type
+		(void*)0           // element array buffer offset
+		);
 
-	glDisableVertexAttribArray(2);
-	glDisableVertexAttribArray(1);
+
 	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
 }
 
 bool AsteroidModel::ParseLine(const std::vector<ci_string> &token)

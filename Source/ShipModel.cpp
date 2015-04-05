@@ -16,7 +16,7 @@ ShipModel::ShipModel()
 #else
     const char * modelPath = "../Resources/Models/X_WING_2.obj";
 #endif
-    Loader::loadModel(modelPath);
+	Loader::loadModelShip(modelPath);
 }
 
 

@@ -16,11 +16,19 @@ class Loader
 public:
 	Loader();
 	~Loader();
-	static void loadModel(const char * filePath);
+	static void loadModelShip(const char * filePath);
+	static void loadModelAsteroid(const char * filePath);
 	static GLuint vertexbuffer;
 	static GLuint uvbuffer;
 	static GLuint normalbuffer;
 	static GLuint elementbuffer;
 	static std::vector<unsigned short> indices;
+
+	static GLuint vertexbufferAst;
+	static GLuint uvbufferAst;
+	static GLuint normalbufferAst;
+	static GLuint elementbufferAst;
+	static std::vector<unsigned short> indicesAst;
+
 };
 

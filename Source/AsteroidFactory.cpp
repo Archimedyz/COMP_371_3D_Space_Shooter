@@ -35,7 +35,7 @@ AsteroidModel* AsteroidFactory::createAsteroid(int type){
 	// place asteroids on the edge of the inner sphere.
 	glm::vec3 initialPosition = Variables::InnerRadius*glm::normalize(glm::vec3(x, y, z)) - Variables::WorldCenter;
 	// initialize the scale.
-	glm::vec3 scale = glm::vec3(scale_x, scale_y, scale_z);
+	//glm::vec3 scale = glm::vec3(scale_x, scale_y, scale_z);
 	// randomize the rotation axis.
 	glm::vec3 rotationAxis = glm::vec3(axis_x, axis_y, axis_z);
 	//randomize initial rotation angle.
@@ -47,6 +47,10 @@ AsteroidModel* AsteroidFactory::createAsteroid(int type){
 
 	asteroid->SetPosition(initialPosition);
 	asteroid->SetYRotation(rotationAxis, initialRotationAngle);
+
+	glm::vec3 scale = glm::vec3(scale_x * 0.09, scale_y * 0.09, scale_z * 0.09);
+
+
 	asteroid->SetScaling(scale);
 	asteroid->SetSpeed(speed);
 	asteroid->SetRotationSpeed(rotationSpeed);
