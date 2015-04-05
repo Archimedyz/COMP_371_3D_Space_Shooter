@@ -21,7 +21,7 @@ CubeModel::CubeModel(vec3 size) : Model()
 	ka = 0.5f;
 	kd = 0.1f;
 	ks = 0.7f;
-	n = 10.0f;
+	n = 100.0f;
 
 	// Create Vertex Buffer for all the verices of the Cube
 	vec3 halfSize = size * 0.5f;
@@ -75,10 +75,6 @@ CubeModel::CubeModel(vec3 size) : Model()
 								{ vec3(-halfSize.x, halfSize.y,-halfSize.z), vec3( 0.0f, 1.0f, 0.0f), vec3(1.0f, 1.0f, 0.0f) },
 								{ vec3(-halfSize.x, halfSize.y, halfSize.z), vec3( 0.0f, 1.0f, 0.0f), vec3(1.0f, 1.0f, 0.0f) }
 						};
-
-	for (Vertex v : vertexBuffer){
-		vertex_array.push_back(v.position);
-	}
 
 	// Create a vertex array
 	glGenVertexArrays(1, &mVertexArrayID);
@@ -167,52 +163,5 @@ bool CubeModel::ParseLine(const std::vector<ci_string> &token)
 	else
 	{
 		return Model::ParseLine(token);
-	}
-}
-
-void CubeModel::RenderShadowVolume(glm::vec4 lightPos){
-
-	glm::vec3 my_world_position = vec3(GetWorldMatrix() * vec4(0.0f, 0.0f, 0.0f, 1.0f));
-
-	// for each triangle compsing the model:
-	for (int i = 0; i < vertex_array.size(); i += 3) {
-		// For this model, we store vertices for indvivdual triangle at a time, not a strip
-		glm::vec3 vertices[3] = {
-			vertex_array[i],
-			vertex_array[i+1],
-			vertex_array[i+2]
-		};
-
-		glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
-		glDepthMask(GL_FALSE);
-		glEnable(GL_CULL_FACE);
-		glEnable(GL_STENCIL_TEST);
-		glEnable(GL_POLYGON_OFFSET_FILL);
-		glPolygonOffset(0.0f, 100.0f);
-
-		// First passthrough, shadow everything from shadow volume (far) to camera
-
-		glCullFace(GL_FRONT);
-		glStencilFunc(GL_ALWAYS, 0x0, 0xff);
-		glStencilOp(GL_KEEP, GL_INCR, GL_KEEP);
-		Renderer::RenderTriangleSurfaceShadowVolume(vertices, my_world_position, lightPos);
-
-		// Second passthrough, remove shadows from shadow volume (near) to camera 
-		glCullFace(GL_BACK);
-		glStencilFunc(GL_ALWAYS, 0x0, 0xff);
-		glStencilOp(GL_KEEP, GL_DECR, GL_KEEP);
-		Renderer::RenderTriangleSurfaceShadowVolume(vertices, my_world_position, lightPos);
-
-		// finish off by resetting gl stencil values.
-
-		glDisable(GL_POLYGON_OFFSET_FILL);
-		glDisable(GL_CULL_FACE);
-		glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
-		glDepthMask(GL_TRUE);
-
-		glStencilFunc(GL_NOTEQUAL, 0x0, 0xff);
-		glStencilOp(GL_REPLACE, GL_REPLACE, GL_REPLACE);
-		//draw_shadow();
-		glDisable(GL_STENCIL_TEST);
 	}
 }

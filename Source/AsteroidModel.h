@@ -9,7 +9,6 @@ public:
 	virtual ~AsteroidModel();
 	virtual void Update(float dt);
 	virtual void Draw();
-	virtual void RenderShadowVolume(glm::vec4 lightPos);
 	bool isDestroyed();
 	void SetRotationSpeed(float rotationSpeed);
 	float GetRotationSpeed();

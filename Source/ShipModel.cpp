@@ -110,7 +110,3 @@ bool ShipModel::ParseLine(const std::vector<ci_string> &token)
 	}
 }
 
-
-void ShipModel::RenderShadowVolume(glm::vec4 lightPos){
-
-}

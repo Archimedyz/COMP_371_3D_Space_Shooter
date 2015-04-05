@@ -18,8 +18,7 @@ public:
     virtual ~SphereModel(void);
 
     virtual void Update(float dt);
-	virtual void Draw();
-	virtual void RenderShadowVolume(glm::vec4 lightPos);
+    virtual void Draw();
     
 protected:
     virtual bool ParseLine(const std::vector<ci_string> &token);

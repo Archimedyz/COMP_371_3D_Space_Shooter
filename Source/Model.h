@@ -27,7 +27,6 @@ public:
 
 	virtual void Update(float dt) = 0;
 	virtual void Draw() = 0;
-	virtual void RenderShadowVolume(glm::vec4 lightPos) = 0;
 
 	void CheckCollisions(std::vector<Model*> &m);
 
@@ -62,9 +61,6 @@ public:
     ci_string GetName()                 { return mName; }
 
     void SetSpeed(float spd);
-
-	// SHADOW STUFF
-	struct surface{};
 
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token) = 0;
