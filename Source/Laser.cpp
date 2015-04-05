@@ -1,3 +1,14 @@
+/*
+Contributors:
+
+Nicholas Dudek
+
+
+
+
+
+*/
+
 
 #include "Laser.h"
 #include "Renderer.h"

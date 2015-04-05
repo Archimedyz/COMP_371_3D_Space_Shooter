@@ -1,3 +1,14 @@
+/*
+Contributors:
+
+Nicholas Dudek
+
+
+
+
+
+*/
+
 #include "Projectile.h"
 
 time_t Projectile::LastFired = 0;

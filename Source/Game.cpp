@@ -1,3 +1,14 @@
+/*
+Contributors:
+
+Nicholas Dudek
+
+
+
+
+
+*/
+
 #include "Game.h"
 #include "World.h"
 #include "Model.h"

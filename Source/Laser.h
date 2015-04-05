@@ -1,3 +1,14 @@
+/*
+Contributors:
+
+Nicholas Dudek
+
+
+
+
+
+*/
+
 #include "ParsingHelper.h"
 #include "Model.h"
 #include <vector>

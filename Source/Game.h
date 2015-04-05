@@ -1,3 +1,14 @@
+/*
+Contributors:
+
+Nicholas Dudek
+
+
+
+
+
+*/
+
 #pragma once
 
 #include <glm/glm.hpp>
