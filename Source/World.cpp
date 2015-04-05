@@ -34,7 +34,7 @@ const vec3 lightColor(1.0f, 1.0f, 1.0f);
 const float lightKc = 0.0f;
 const float lightKl = 1.0f;
 const float lightKq = 2.0f;
-const vec4 lightPosition(75.0f, 75.0f, 75.0f, 1.0f);
+const vec4 lightPosition(0.0f, 10.0f, 0.0f, 1.0f);
 
 World::World()
 {
@@ -215,6 +215,12 @@ void World::Draw()
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);
 
+	// now we go about adding our shadow volumes
+	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
+	{
+		(*it)->RenderShadowVolume(lightPosition);
+	}
+
 	Renderer::EndFrame();
 
 }
@@ -251,10 +257,16 @@ void World::LoadCameras()
 	// Cube "ship" Character controlled with Third Person Camera
 	//CubeModel * ship_model = new CubeModel();
 	ShipModel * ship_model = new ShipModel();
-	ship_model->SetPosition(vec3(2.0f, 1.0f, 1.0f));
+	ship_model->SetPosition(vec3(0.0f, -5.0f, 0.0f));
 	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
+
+	CubeModel * floor = new CubeModel();
+	floor->SetPosition(vec3(-2.0f, -2.0f, 1.0f));
+	floor->SetScaling(vec3(10.0f, 0.5f, 10.0f));
+	floor->ActivateCollisions(false);
+	mModel.push_back(floor);
 
     mCurrentCamera = 0;
 }

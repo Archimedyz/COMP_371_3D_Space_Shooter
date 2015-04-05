@@ -29,8 +29,8 @@ void main()
 	float a_factor = 1.0f;
 	
 	vec3 normal_vector = normalize(normal);
-	vec3 light_vector = vec3(normalize(lightVector));
-	vec3 reflected_vector = 2.0f * clamp(dot(normal_vector, light_vector), 0.0f, 1.0f) * normal_vector - light_vector;
+	vec3 light_vector = normalize(vec3(lightVector));
+	vec3 reflected_vector = 2.0f * dot(normal_vector, light_vector) * normal_vector - light_vector;
 	vec3 eye_vector = normalize(eyeVector);
 
 	a_factor = 1.0f;
