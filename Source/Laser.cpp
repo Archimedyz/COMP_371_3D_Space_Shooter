@@ -13,8 +13,10 @@ Laser::Laser(glm::vec3 t, glm::vec3 h)
 {
 	points.push_back(h);
 	points.push_back(t);
-	speed = 15;
+	speed = 10;
 	CreateVertexBuffer();
+	name = "LASER";
+	//CollisionsOn = false;
 }
 
 
@@ -40,6 +42,8 @@ void Laser::Update(float dt)
 	points[0] += dir;
 	points[1] += dir;
 	CreateVertexBuffer();
+	if (glm::distance(glm::vec3(0, 0, 0), mPosition) > 500)
+		mDestroyed = true;
 }
 
 void Laser::Draw()

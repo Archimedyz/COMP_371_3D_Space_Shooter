@@ -11,6 +11,7 @@
 
 ShipModel::ShipModel()
 {
+	name = "SHIP";
 #if defined(PLATFORM_OSX)
     const char * modelPath = "Models/X_WING_2.obj";
 #else

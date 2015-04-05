@@ -208,9 +208,8 @@ void World::LoadCameras()
 	character->ActivateCollisions(false);
     mModel.push_back(character);
 
-	// Cube "ship" Character controlled with Third Person Camera
-	//CubeModel * ship_model = new CubeModel();
 	ShipModel * ship_model = new ShipModel();
+	player = ship_model;
 	ship_model->SetPosition(vec3(2.0f, 1.0f, 1.0f));
 	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
@@ -223,7 +222,7 @@ Path* World::FindPath(ci_string pathName)
 {
     for(std::vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
     {
-        if((*it)->GetName() == pathName)
+        if((*it)->GetCIName() == pathName)
         {
             return *it;
         }

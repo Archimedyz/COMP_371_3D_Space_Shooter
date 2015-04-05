@@ -289,10 +289,10 @@ glm::mat4 ThirdPersonCamera::GetViewMatrix() const
 void ThirdPersonCamera::fireLasers()
 {
 	glm::vec3 pos = mTargetModel->GetPosition();
-	glm::vec3 topRight = pos + normalize(mRight) + normalize(mUp);
-	glm::vec3 topLeft = pos - normalize(mRight) + normalize(mUp);
-	glm::vec3 bottomRight = pos + normalize(mRight) - normalize(mUp);
-	glm::vec3 bottomLeft = pos - normalize(mRight) - normalize(mUp);
+	glm::vec3 topRight = pos + 2.0f * normalize(mRight) + 2.0f * normalize(mUp);
+	glm::vec3 topLeft = pos - 2.0f * normalize(mRight) + 2.0f * normalize(mUp);
+	glm::vec3 bottomRight = pos + 2.0f * normalize(mRight) - 2.0f * normalize(mUp);
+	glm::vec3 bottomLeft = pos - 2.0f * normalize(mRight) - 2.0f * normalize(mUp);
 
 	Laser *p1 = new Laser(topRight, topRight+normalize(mLookAt));
 	Laser *p2 = new Laser(bottomLeft, bottomLeft+ normalize(mLookAt));

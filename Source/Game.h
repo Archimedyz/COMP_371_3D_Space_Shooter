@@ -10,11 +10,16 @@ public:
 
 	static Game* GetInstance() { return instance; }
 
+
+	// TALK SHIT
+	void GetHit();
+
+
+
 	void PlayerDeath();
 	void Lose();
 
 	void AddScore(int s);
-
 
 	int GetScore() { return score; }
 	int GetLives() { return lives; }

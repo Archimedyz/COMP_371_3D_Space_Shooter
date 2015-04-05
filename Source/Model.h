@@ -12,8 +12,9 @@
 #include "ParsingHelper.h"
 
 #include <vector>
-
+#include <string>
 #include <GLM/glm.hpp>
+#include "Game.h"
 
 class Path;
 class BSpline;
@@ -45,7 +46,6 @@ public:
 	void SetCollisionRadius(float r);
 	void SetDestroy(bool);
 
-	glm::vec4 make_ritters_sphere();
 	void ActivateCollisions(bool); // For debugging probably
 
 	glm::vec3 GetPosition() const		{ return mPosition; }
@@ -58,13 +58,18 @@ public:
 	float     GetZRotationAngle() const	{ return mZRotationAngleInDegrees; }
 	float GetCollisionRadius() const	{ return mCollisionRadius; }
 	bool IsDestroyed() const			{ return mDestroyed; }
-    ci_string GetName()                 { return mName; }
+    std::string GetName()                 { return name; }
+	ci_string GetCIName()                 { return mName; }
+
 
     void SetSpeed(float spd);
+	bool CollisionsOn; // For debugging probably
+
 
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token);
 
+	std::string name;
 	ci_string mName; // The model name is mainly for debugging
 	glm::vec3 mPosition;
 	glm::vec3 mScaling;
@@ -82,7 +87,6 @@ protected:
 	glm::vec3 mCamZAxis;
 	float	  mCollisionRadius;
 	bool	  mDestroyed;
-	bool CollisionsOn; // For debugging probably
 
     // Makes the model follow a path defined by a set of waypoints
     Path* mPath;
