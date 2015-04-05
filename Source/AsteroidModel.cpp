@@ -1454,3 +1454,8 @@ void AsteroidModel::SetRotationSpeed(float rotationSpeed){
 float AsteroidModel::GetRotationSpeed(){
 	return mRotationSpeed;
 }
+
+
+void AsteroidModel::RenderShadowVolume(glm::vec4 lightPos){
+	
+}

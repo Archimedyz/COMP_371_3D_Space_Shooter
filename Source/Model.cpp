@@ -272,3 +272,9 @@ void Model::SetDestroy(bool b)
 {
 	mDestroyed = b;
 }
+
+// Shadow Stuff
+
+void Model::RenderShadowVolume(glm::vec4 lightPos){
+
+}

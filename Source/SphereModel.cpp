@@ -1363,3 +1363,8 @@ bool SphereModel::ParseLine(const std::vector<ci_string> &token)
         return Model::ParseLine(token);
     }
 }
+
+
+void SphereModel::RenderShadowVolume(glm::vec4 lightPos){
+
+}
