@@ -7,7 +7,6 @@ uniform vec4 materialCoefficients; // x: ambient   y: diffuse   z: specular   w:
 uniform vec3 lightColor;
 uniform vec3 lightAttenuation; // x: kC  y: kL  z: kQ
 
-
 // Inputs
 in vec3 v_color;		 // vertex color: also diffuse color
 
