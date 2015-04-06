@@ -388,6 +388,7 @@ void Renderer::RenderTriangleSurfaceShadowVolume(glm::vec3 vertices[3], glm::vec
 	glEnd();
 }
 
+// borowed from Josh Beam
 void Renderer::draw_shadow()
 {
 	glPushMatrix();
@@ -400,10 +401,10 @@ void Renderer::draw_shadow()
 
 	glColor4f(0.0f, 0.0f, 0.0f, 0.5f);
 	glBegin(GL_QUADS);
-	glVertex2i(0, 0);
-	glVertex2i(0, 1);
-	glVertex2i(1, 1);
-	glVertex2i(1, 0);
+		glVertex2i(0, 0);
+		glVertex2i(0, 1);
+		glVertex2i(1, 1);
+		glVertex2i(1, 0);
 	glEnd();
 
 	glEnable(GL_DEPTH_TEST);

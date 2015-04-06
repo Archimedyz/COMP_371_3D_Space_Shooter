@@ -25,22 +25,25 @@ void FreeRoamCamera::Update(float dt)
 {
 	EventManager::DisableMouseCursor();
 
+	vec3 right = normalize(cross(mLookAt, mUpVector));
+	vec3 forward = normalize(vec3(mLookAt.x, 0.0f, mLookAt.z));
+
 	//handle button events:
 	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_W) == GLFW_PRESS)
 	{
-		mPosition += normalize(mLookAt) * mSpeed * dt;
+		mPosition += forward * mSpeed * dt;
 	}
 	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_S) == GLFW_PRESS)
 	{
-		mPosition -= normalize(mLookAt) * mSpeed * dt;
+		mPosition -= forward * mSpeed * dt;
 	} 
 	if(glfwGetKey(EventManager::GetWindow(), GLFW_KEY_D) == GLFW_PRESS)
 	{
-		mPosition += normalize(cross(mLookAt, mUpVector)) * mSpeed * dt;
+		mPosition += right * mSpeed * dt;
 	}
 	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_A) == GLFW_PRESS)
 	{
-		mPosition -= normalize(cross(mLookAt, mUpVector)) * mSpeed * dt;
+		mPosition -= right * mSpeed * dt;
 	} 
 	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_E) == GLFW_PRESS)
 	{

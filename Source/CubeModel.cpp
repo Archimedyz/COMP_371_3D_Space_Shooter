@@ -171,9 +171,7 @@ bool CubeModel::ParseLine(const std::vector<ci_string> &token)
 }
 
 void CubeModel::RenderShadowVolume(glm::vec4 lightPos){
-
-	glm::vec3 my_world_position = vec3(GetWorldMatrix() * vec4(0.0f, 0.0f, 0.0f, 1.0f));
-
+	
 	// for each triangle compsing the model:
 	for (int i = 0; i < vertex_array.size(); i += 3) {
 		// For this model, we store vertices for indvivdual triangle at a time, not a strip
@@ -195,13 +193,13 @@ void CubeModel::RenderShadowVolume(glm::vec4 lightPos){
 		glCullFace(GL_FRONT);
 		glStencilFunc(GL_ALWAYS, 0x0, 0xff);
 		glStencilOp(GL_KEEP, GL_INCR, GL_KEEP);
-		Renderer::RenderTriangleSurfaceShadowVolume(vertices, my_world_position, lightPos);
+		Renderer::RenderTriangleSurfaceShadowVolume(vertices, mPosition, lightPos);
 
 		// Second passthrough, remove shadows from shadow volume (near) to camera 
 		glCullFace(GL_BACK);
 		glStencilFunc(GL_ALWAYS, 0x0, 0xff);
 		glStencilOp(GL_KEEP, GL_DECR, GL_KEEP);
-		Renderer::RenderTriangleSurfaceShadowVolume(vertices, my_world_position, lightPos);
+		Renderer::RenderTriangleSurfaceShadowVolume(vertices, mPosition, lightPos);
 
 		// finish off by resetting gl stencil values.
 
