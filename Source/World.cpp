@@ -12,6 +12,7 @@
 #include "ParsingHelper.h"
 #include "StaticCamera.h"
 #include "ThirdPersonCamera.h"
+#include "FreeRoamCamera.h"
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
@@ -96,7 +97,7 @@ void World::Update(float dt)
 	}
 	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_4 ) == GLFW_PRESS)
 	{
-        // Spline camera
+        // Ship Camera
 		if (mCamera.size() > 3)
 		{
 			mCurrentCamera = 3;
@@ -104,7 +105,7 @@ void World::Update(float dt)
 	}
 	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_5) == GLFW_PRESS)
 	{
-		// Spline camera
+		// Free roam camera
 		if (mCamera.size() > 4)
 		{
 			mCurrentCamera = 4;
@@ -269,6 +270,9 @@ void World::LoadCameras()
 	mModel.push_back(floor);
 
     mCurrentCamera = 0;
+
+
+	mCamera.push_back(new FreeRoamCamera(vec3(2.0f, 2.0f, 2.0f), vec3(-1.0f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f)));
 }
 
 Path* World::FindPath(ci_string pathName)

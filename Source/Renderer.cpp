@@ -362,16 +362,16 @@ void Renderer::RenderTriangleSurfaceShadowVolume(glm::vec3 vertices[3], glm::vec
 
 	/* back cap */
 	glBegin(GL_TRIANGLES);
-		//glVertex3fv(far_surface[0]);
-		//glVertex3fv(far_surface[1]);
-		//glVertex3fv(far_surface[2]);
+		glVertex3fv(far_surface[0]);
+		glVertex3fv(far_surface[1]);
+		glVertex3fv(far_surface[2]);
 	glEnd();
 
 	/* front cap */
 	glBegin(GL_TRIANGLES);
-		//glVertex3fv(near_surface[0]);
-		//glVertex3fv(near_surface[1]);
-		//glVertex3fv(near_surface[2]);
+		glVertex3fv(near_surface[0]);
+		glVertex3fv(near_surface[1]);
+		glVertex3fv(near_surface[2]);
 	glEnd();
 
 	glBegin(GL_QUAD_STRIP);
