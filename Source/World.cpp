@@ -21,6 +21,7 @@
 #include "ShipModel.h"
 #include "Loader.h"
 #include "Laser.h"
+#include "Text2D.h"
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
@@ -42,6 +43,8 @@ World::World()
 {
     instance = this;
 	addCounter = 0;
+
+	initText2D("../Resources/Textures/Holstein.dds");
 }
 
 World::~World()
@@ -67,6 +70,8 @@ World::~World()
 		delete *it;
 	}
 	mCamera.clear();
+
+	cleanupText2D();
 }
 
 World* World::GetInstance()
@@ -234,6 +239,26 @@ void World::Draw()
 		// Draw model
 		(*it)->Draw();
 	}
+
+	int hp_offset = 3;
+	char text[256];
+	char health[256];
+	health[0] = 'h';
+	health[1] = 'p';
+	health[2] = ':';
+	//	string health = "hp: ";
+	for (int i = hp_offset; i < Game::GetInstance()->GetHealth() + hp_offset; ++i)
+	{
+		 health[i] = '*';
+	}
+	//sprintf_s(health, hp); //temporarily hard-coded health
+//	sprintf_s(health, "hp: %d", Game::GetInstance()->GetHealth());
+	sprintf_s(text, "%.2f", glfwGetTime());
+	printText2D(text, 10, 570, 24);
+	printText2D(health, 610, 570, 24);
+
+	printText2D("You lose!", 305, 285, 40);
+
 
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);
