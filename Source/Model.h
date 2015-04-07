@@ -12,8 +12,10 @@
 #include "ParsingHelper.h"
 
 #include <vector>
-
+#include <string>
 #include <GLM/glm.hpp>
+#include "Game.h"
+#include "Collisions.h"
 
 class Path;
 class BSpline;
@@ -47,7 +49,6 @@ public:
 	void SetDestroy(bool);
 
 	void ActivateCollisions(bool); // For debugging probably
-	bool CollisionsOn; // For debugging probably
 
 	glm::vec3 GetPosition() const		{ return mPosition; }
 	glm::vec3 GetScaling() const		{ return mScaling; }
@@ -59,16 +60,21 @@ public:
 	float     GetZRotationAngle() const	{ return mZRotationAngleInDegrees; }
 	float GetCollisionRadius() const	{ return mCollisionRadius; }
 	bool IsDestroyed() const			{ return mDestroyed; }
-    ci_string GetName()                 { return mName; }
+    std::string GetName()                 { return name; }
+	ci_string GetCIName()                 { return mName; }
+	std::vector<glm::vec3> get_varray() { return vArray; }
 
     void SetSpeed(float spd);
+	bool CollisionsOn; // For debugging probably
+
 
 	// SHADOW STUFF
 	struct surface{};
 
 protected:
-	virtual bool ParseLine(const std::vector<ci_string> &token) = 0;
+	virtual bool ParseLine(const std::vector<ci_string> &token);
 
+	std::string name;
 	ci_string mName; // The model name is mainly for debugging
 	glm::vec3 mPosition;
 	glm::vec3 mScaling;
@@ -86,6 +92,7 @@ protected:
 	glm::vec3 mCamZAxis;
 	float	  mCollisionRadius;
 	bool	  mDestroyed;
+	std::vector<glm::vec3> vArray;
 
     // Makes the model follow a path defined by a set of waypoints
     Path* mPath;

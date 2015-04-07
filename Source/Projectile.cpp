@@ -1,9 +1,21 @@
+/*
+Contributors:
+
+Nicholas Dudek
+
+
+
+
+
+*/
+
 #include "Projectile.h"
 
 time_t Projectile::LastFired = 0;
 
 Projectile::Projectile()
 {
+	name = "PROJECTILE";
 }
 
 Projectile::~Projectile()
@@ -18,6 +30,7 @@ Projectile::Projectile(glm::vec3 o, glm::vec3 d)
 	mDirection = glm::normalize(d);
 	mCollisionRadius = 2;
 	mSpeed = 10;
+	name = "PROJECTILE";
 }
 
 void Projectile::Update(float dt)

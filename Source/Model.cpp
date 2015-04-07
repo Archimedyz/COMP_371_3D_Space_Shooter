@@ -21,6 +21,8 @@
 using namespace std;
 using namespace glm;
 
+class AsteroidModel;
+
 Model::Model() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
 }
@@ -246,18 +248,41 @@ void Model::SetCollisionRadius(float r)
 void Model::CheckCollisions(std::vector<Model*> &models)
 {
 	// Remove things at center, for debugging, removes asteroids that get stuck in the middle.
-	if (glm::distance(mPosition, glm::vec3(0.0f, 0.0f, 0.0f)) < 1 && CollisionsOn)
-		mDestroyed = true;
-
+//	if (glm::distance(mPosition, glm::vec3(0.0f, 0.0f, 0.0f)) < 1 && CollisionsOn)
+//		mDestroyed = true;
 	// Check the current model against all the rest
 	for (std::vector<Model*>::iterator it = models.begin(); it < models.end(); ++it)
 	{
 		if ((*it) != this && CollisionsOn && (*it)->CollisionsOn) // Make sure the object isn't being compared to itself and that both objects are collidable.
 		{
+
 			if (glm::distance(mPosition, (*it)->GetPosition()) <= (mCollisionRadius + (*it)->GetCollisionRadius())) // If the distance is less than the radii combined, collide.
 			{
+				if (Collisions::collide_objects(this, (*it)))
+				{
+					if ((*it)->GetName() == "ASTEROID" && this->GetName() == "ASTEROID")
+					{
 				mDestroyed = true;
+						(*it)->SetDestroy(true);
+						// maybe show some kind of explosion?
+					}
+					if ((*it)->GetName() == "LASER" && this->GetName() == "ASTEROID")
+					{
+						mDestroyed = true;
 				(*it)->SetDestroy(true); // Set both destroyed flags to true so the collided objects are removed.
+						Game::GetInstance()->AddScore(100);
+					}
+					if ((*it)->GetName() == "SHIP" && this->GetName() == "ASTEROID")
+					{
+						mDestroyed = true;
+						Game::GetInstance()->GetHit();
+						// maybe show some kind of explosion?
+					}
+					if ((*it)->GetName() == "STATION" && this->GetName() == "ASTEROID")
+					{
+						// since the station doesnt exist yet i dont think it really matters what happens here.
+					}
+				}
 			}
 		}
 	}

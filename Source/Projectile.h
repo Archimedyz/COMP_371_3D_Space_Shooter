@@ -1,3 +1,14 @@
+/*
+Contributors:
+
+Nicholas Dudek
+
+
+
+
+
+*/
+
 #include "SphereModel.h"
 
 class Projectile : public SphereModel

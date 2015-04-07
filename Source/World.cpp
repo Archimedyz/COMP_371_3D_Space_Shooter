@@ -20,6 +20,7 @@
 #include "Projectile.h"
 #include "ShipModel.h"
 #include "Loader.h"
+#include "Laser.h"
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
@@ -279,6 +280,7 @@ void World::LoadCameras()
 	// Cube "ship" Character controlled with Third Person Camera
 	//CubeModel * ship_model = new CubeModel();
 	ShipModel * ship_model = new ShipModel();
+	player = ship_model;
 	ship_model->SetPosition(vec3(0.0f, -5.0f, 0.0f));
 	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
@@ -300,7 +302,7 @@ Path* World::FindPath(ci_string pathName)
 {
     for(std::vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
     {
-        if((*it)->GetName() == pathName)
+        if((*it)->GetCIName() == pathName)
         {
             return *it;
         }
@@ -317,83 +319,3 @@ void World::AddModel(Model* mdl)
 {
 	mModel.push_back(mdl);
 }
-
-
-
-
-/*
-
-//// Using case-insensitive strings and streams for easier parsing
-//ci_ifstream input;
-//input.open(scene_path, ios::in);
-
-//// Invalid file
-//if(input.fail() )
-//{
-//	fprintf(stderr, "Error loading file: %s\n", scene_path);
-//	getchar();
-//	exit(-1);
-//}
-
-//ci_string item;
-//while( std::getline( input, item, '[' ) )
-//{
-//       ci_istringstream iss( item );
-
-//	ci_string result;
-//	if( std::getline( iss, result, ']') )
-//	{
-//		if( result == "cube" )
-//		{
-//			// Box attributes
-//			CubeModel* cube = new CubeModel();
-//			cube->Load(iss);
-//			mModel.push_back(cube);
-//		}
-//           else if( result == "sphere" )
-//           {
-//               SphereModel* sphere = new SphereModel();
-//               sphere->Load(iss);
-//               mModel.push_back(sphere);
-//           }
-//           else if( result == "path" )
-//		{
-//			Path* path = new Path();
-//			path->Load(iss);
-//               mPath.push_back(path);
-//		}
-//           else if( result == "spline" )
-//		{
-//			BSpline* path = new BSpline();
-//			path->Load(iss);
-//               mSpline.push_back(path);
-//		}
-//		else if ( result.empty() == false && result[0] == '#')
-//		{
-//			// this is a comment line
-//		}
-//		else
-//		{
-//			fprintf(stderr, "Error loading scene file... !");
-//			getchar();
-//			exit(-1);
-//		}
-//    }
-//}
-//input.close();
-
-//// Set PATH vertex buffers
-//for (vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
-//{
-//	// Draw model
-//	(*it)->CreateVertexBuffer();
-//}
-
-//   // Set B-SPLINE vertex buffers
-//   for (vector<BSpline*>::iterator it = mSpline.begin(); it < mSpline.end(); ++it)
-//{
-//	// Draw model
-//	(*it)->CreateVertexBuffer();
-//}
-
-*/

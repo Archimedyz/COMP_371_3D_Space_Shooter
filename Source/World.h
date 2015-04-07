@@ -37,12 +37,14 @@ public:
     BSpline* FindSpline(ci_string pathName);
     BSpline* FindSplineByIndex(unsigned int index);
     Model* FindModelByIndex(unsigned int index);
+	Model* GetPlayer() { return player; }
 
 	void AddModel(Model*);
 
 private:
     static World* instance;
 
+	Model* player;
 	std::vector<Model*> mModel;
     std::vector<Path*> mPath;
     std::vector<BSpline*> mSpline;
