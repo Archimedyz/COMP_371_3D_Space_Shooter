@@ -164,14 +164,6 @@ void World::Draw()
 	GLuint LightAttenuationID = glGetUniformLocation(Renderer::GetShaderProgramID(), "lightAttenuation");
 
 
-	GLuint CorrectionMatrixID = glGetUniformLocation(Renderer::GetShaderProgramID(), "CorrectionMatrix");
-	glm::mat4 correctionMatrix(
-		0.5f, 0.0f, 0.0f, 0.0f,
-		0.0f, 0.5f, 0.0f, 0.0f,
-		0.0f, 0.0f, 0.5f, 0.0f,
-		0.5f, 0.5f, 0.5f, 1.0f
-	);
-	glUniformMatrix4fv(ProjMatrixID, 1, GL_FALSE, &correctionMatrix[0][0]);
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
 
