@@ -12,6 +12,9 @@ public:
 	bool isDestroyed();
 	void SetRotationSpeed(float rotationSpeed);
 	float GetRotationSpeed();
+	void SetHealth(int h) { health = h; }
+	int GetHealth() { return health; }
+
 
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token);

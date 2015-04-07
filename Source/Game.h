@@ -45,7 +45,7 @@ private:
 	int lives;
 	int playerHealth;
 
-	int lifeIncrement = 10000; // Constant to determine how many points are required to get another life.
+	int lifeIncrement = 200; // Constant to determine how many points are required to get another life.
 	int level; // Should be used to make the game more difficult.
 };
 
