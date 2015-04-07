@@ -35,7 +35,7 @@ const vec3 lightColor(1.0f, 1.0f, 1.0f);
 const float lightKc = 0.0f;
 const float lightKl = 1.0f;
 const float lightKq = 2.0f;
-const vec4 lightPosition(0.0f, 10.0f, 0.0f, 1.0f);
+const vec4 lightPosition(0.0f, 10.0f, 0.0f, 0.0f);
 
 World::World()
 {
@@ -164,6 +164,9 @@ void World::Draw()
 	GLuint LightAttenuationID = glGetUniformLocation(Renderer::GetShaderProgramID(), "lightAttenuation");
 
 
+	// Get a handle for shadow mapping attributes.
+	GLuint LightMVPID = glGetUniformLocation(Renderer::GetShaderProgramID(), "lightMVP");
+
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
 
@@ -179,6 +182,21 @@ void World::Draw()
 	glm::mat4 viewMatrix = mCamera[mCurrentCamera]->GetViewMatrix();
 	glm::mat4 projectionMatrix = mCamera[mCurrentCamera]->GetProjectionMatrix();
 
+	// transformation matrices for the lightMVP
+	glm::mat4 lightProjectionMatrix = glm::ortho<float>(-10, 10, -10, 10, -10, 20);
+	glm::mat4 lightViewMatrix = glm::lookAt(vec3(-lightPosition), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+	glm::mat4 lightModelMatrix = glm::mat4(1.0);
+	glm::mat4 lightMVP = lightProjectionMatrix * lightViewMatrix * lightModelMatrix;
+
+	glm::mat4 correctionMatrix(
+		0.5, 0.0, 0.0, 0.0,
+		0.0, 0.5, 0.0, 0.0,
+		0.0, 0.0, 0.5, 0.0,
+		0.5, 0.5, 0.5, 1.0
+		);
+	glm::mat4 correctedLightMVP = correctionMatrix*lightMVP;
+
+
 	// assign the transform matrices for the shader.
 	glUniformMatrix4fv(WorldMatrixID, 1, GL_FALSE, &worldMatrix[0][0]);
 	glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &viewMatrix[0][0]);
@@ -188,6 +206,9 @@ void World::Draw()
 	glUniform4f(LightPositionID, lightPosition.x, lightPosition.y, lightPosition.z, lightPosition.w);
 	glUniform3f(LightColorID, lightColor.r, lightColor.g, lightColor.b);
 	glUniform3f(LightAttenuationID, lightKc, lightKl, lightKq);
+
+	// Shader constants for shading pass through.
+	glUniformMatrix4fv(LightMVPID, 1, GL_FALSE, &lightMVP[0][0]);
 
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
