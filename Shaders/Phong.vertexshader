@@ -12,7 +12,6 @@ out vec3 normal;          // Transformed normal in View Space
 out vec3 eyeVector;       // Vector from the vertex to the Camera in View Space
 out vec4 lightVector;     // Vector from the vertex to the Light in View Space
 						  // Length of lightVector is the distance between light and vertex
-out vec4 shadowCoord;
 
 
 // Uniform
@@ -21,8 +20,6 @@ uniform mat4 WorldTransform;
 uniform mat4 ViewTransform;
 uniform mat4 ProjectonTransform;
 
-//for shadows, we use a depthMVP for "view" from the light.
-uniform mat4 lightMVP;
 
 // light position
 uniform vec4 WorldLightPosition; // if w = 1: Point light, if w = 0: directional light
@@ -31,16 +28,7 @@ uniform vec4 WorldLightPosition; // if w = 1: Point light, if w = 0: directional
 void main()
 {
 	// for use in the shader.
-	glm::mat4 correctionMatrix(
-		0.5, 0.0, 0.0, 0.0,
-		0.0, 0.5, 0.0, 0.0,
-		0.0, 0.0, 0.5, 0.0,
-		0.5, 0.5, 0.5, 1.0
-	);
-	glm::mat4 correctedLightMVP = correctionMatrix*lightMVP;
-
-	shadowCoord = correctedLightMVP * vec4(vertexPosition_modelspace,1);
-
+	
 	mat4 MV = ViewTransform * WorldTransform;
 	mat4 MVP = ProjectonTransform * MV;
 

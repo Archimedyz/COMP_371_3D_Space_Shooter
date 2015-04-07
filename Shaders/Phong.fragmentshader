@@ -15,7 +15,6 @@ in vec3 eyeVector;       // Vector from the vertex to the Camera in View Space
 in vec4 lightVector;     // Vector from the vertex to the Light in View Space
 						 // Length of lightVector is the distance between light and vertex
 						 // if w = 1: Point light, if w = 0: directional light
-in vec4 ShadowCoord;
 
 // Ouput data
 out vec3 color;
@@ -26,12 +25,6 @@ void main()
 	// Implment Phong Shading based on the parameters above
 	// Remember that directional light don't have attenuation
 	
-	float visibile = 1.0f; // 1.0 if visible by light, 0.0f otherwise
-	float bias_error = 0.005f; // allowable error is the shadow mapping to reduce static 
-	if ( texture( shadowMap, ShadowCoord.xy ).z  <  ShadowCoord.z-bias_error){
-		visibile = 0.0f;
-	}
-
 	float a_factor = 1.0f;
 	
 	vec3 normal_vector = normalize(normal);
@@ -42,7 +35,7 @@ void main()
 	a_factor = 1.0f;
 	if(lightVector.w == 1){
 		// point, meaning light goes in all directions
-		a_factor = 1.0f / pow(length(lightVector), 2);
+		a_factor = 1.0f / ((lightAttenuation.x + lightAttenuation.y * length(vec3(lightVector)) + pow(lightAttenuation.z, 2)));
 	}
 
 	vec3 i_amb = v_color;
@@ -54,8 +47,8 @@ void main()
 	float n_shiny = materialCoefficients.w;
 
 	vec3 amb_intensity = i_light * k_amb;
-	vec3 diff_intensity = visible * i_light * a_factor * k_diff * clamp(dot(normal_vector, light_vector), 0.0f, 1.0f); 
-	vec3 spec_intensity = visible * i_light * k_spec * pow(clamp(dot(reflected_vector, eye_vector), 0.0f, 1.0f), n_shiny);
+	vec3 diff_intensity = i_light * a_factor * k_diff * clamp(dot(normal_vector, light_vector), 0.0f, 1.0f); 
+	vec3 spec_intensity = i_light * k_spec * pow(clamp(dot(reflected_vector, eye_vector), 0.0f, 1.0f), n_shiny);
 
 	vec3 total_intensity = amb_intensity + diff_intensity + spec_intensity;
 
