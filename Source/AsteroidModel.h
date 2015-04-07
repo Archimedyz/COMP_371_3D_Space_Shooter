@@ -9,15 +9,18 @@ public:
 	virtual ~AsteroidModel();
 	virtual void Update(float dt);
 	virtual void Draw();
+	void applyDamage();
 	bool isDestroyed();
 	void SetRotationSpeed(float rotationSpeed);
 	float GetRotationSpeed();
+	void Destroy();
+	void SetDirection(glm::vec3 direction);
+	void RandomizedDirection();
 
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token);
 
 private:
-	void Destroy();
 	// The vertex format could be different for different types of models
 	struct Vertex
 	{
@@ -31,4 +34,5 @@ private:
 
 	float mRotationSpeed;
 	bool destroyed;
+	glm::vec3 mDirection;
 };

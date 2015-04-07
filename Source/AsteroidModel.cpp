@@ -1,7 +1,10 @@
 #include "AsteroidModel.h"
+#include "World.h"
+#include "AsteroidFactory.h"
 #include "Variables.h"
 #include "Renderer.h"
 #include "Loader.h"
+#include <iostream>
 #include <string>
 
 // Include GLEW - OpenGL Extension Wrangler
@@ -16,7 +19,7 @@ AsteroidModel::AsteroidModel() : Model()
 #else
 	std::string modelPath = "../Resources/Models/asteroid";
 #endif
-	int random = rand() % 30 + 1;
+	int random = 1;
 	modelPath = modelPath + std::to_string(random) + ".obj";
 	Loader::loadModelAsteroid(modelPath.c_str());
 
@@ -98,18 +101,24 @@ void AsteroidModel::Update(float dt)
 	//mRotationAngleInDegrees += 90 * dt; // spins by 90 degrees per second
 
 	//Update posiion and rotation per frame.
-	vec3 direction = Variables::WorldCenter - mPosition;
-	mPosition += normalize(direction)*mSpeed*dt;
+	mPosition += normalize(mDirection)*mSpeed*dt;
 
 	mYRotationAngleInDegrees += mRotationSpeed*dt;
 	
-	if (glm::length(direction) <= 0.01){
+	if (glm::length(mDirection) <= 0.01){
 		Destroy();
 	}
 
 
 	//Model::Update(dt);
 }
+
+void AsteroidModel::applyDamage()
+{
+	AsteroidFactory::createAsteroid(1);
+	AsteroidFactory::createAsteroid(1);
+}
+
 
 void AsteroidModel::Draw()
 {
@@ -181,8 +190,47 @@ bool AsteroidModel::ParseLine(const std::vector<ci_string> &token)
 	}
 }
 
+void AsteroidModel::SetDirection(vec3 direction){
+	mDirection = direction;
+}
+
+void AsteroidModel::RandomizedDirection()
+{
+	float scale_x = 0.5f + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (2.5f - 0.5f));
+	float scale_y = 0.5f + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (2.5f - 0.5f));
+	float scale_z = 0.5f + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (2.5f - 0.5f));
+
+	glm::vec3 direction = glm::vec3(scale_x, scale_y, scale_z);
+	mDirection = direction;
+}
+
 void AsteroidModel::Destroy(){
 	destroyed = true;
+
+	AsteroidModel* smallAsteroid = AsteroidFactory::createAsteroid(1);
+	AsteroidModel* smallAsteroid2 = AsteroidFactory::createAsteroid(1);
+
+	glm::vec3 scale = glm::vec3(mScaling.x * 0.5, mScaling.y * 0.5, mScaling.z * 0.5);
+	smallAsteroid->SetScaling(scale);
+	smallAsteroid2->SetScaling(scale);
+
+
+	smallAsteroid->SetPosition(mPosition);
+	smallAsteroid2->SetPosition(mPosition);
+
+	smallAsteroid->RandomizedDirection();
+	smallAsteroid2->RandomizedDirection();
+
+
+	smallAsteroid->ActivateCollisions(false);
+	World::GetInstance()->AddModel(smallAsteroid);
+
+	smallAsteroid2->ActivateCollisions(false);
+	World::GetInstance()->AddModel(smallAsteroid2);
+
+	std::cout<<"Hello";
+	
+
 	// perform any remining destruction actions here.
 }
 

@@ -26,6 +26,8 @@
 using namespace std;
 using namespace glm;
 
+bool paused = false;
+
 World* World::instance;
 int World::addCounter;
 
@@ -67,67 +69,89 @@ World* World::GetInstance()
 
 void World::Update(float dt)
 {
-	// User Inputs
-	// 0 1 2 3 to change the Camera
-	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1 ) == GLFW_PRESS)
-	{
-		mCurrentCamera = 0;
-	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_2 ) == GLFW_PRESS)
-	{
-		if (mCamera.size() > 1)
+		// User Inputs
+		// 0 1 2 3 to change the Camera
+		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1) == GLFW_PRESS)
 		{
-			mCurrentCamera = 1;
+			mCurrentCamera = 0;
 		}
-	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_3 ) == GLFW_PRESS)
-	{
-		if (mCamera.size() > 2)
+		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_2) == GLFW_PRESS)
 		{
-			mCurrentCamera = 2;
+			if (mCamera.size() > 1)
+			{
+				mCurrentCamera = 1;
+			}
 		}
-	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_4 ) == GLFW_PRESS)
-	{
-        // Spline camera
-		if (mCamera.size() > 3)
+		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_3) == GLFW_PRESS)
 		{
-			mCurrentCamera = 3;
+			if (mCamera.size() > 2)
+			{
+				mCurrentCamera = 2;
+			}
 		}
-	}
-
-	// 0 and 9 to change the shader
-	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_0 ) == GLFW_PRESS)
-	{
-		Renderer::SetShader(SHADER_SOLID_COLOR);
-	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_9 ) == GLFW_PRESS)
-	{
-		Renderer::SetShader(SHADER_BLUE);
-	}
-
-	// Update current Camera
-	mCamera[mCurrentCamera]->Update(dt);
-	
-	// Update models
-	for (int i = 0; i < mModel.size(); ++i)
-	{
-		mModel[i]->Update(dt);
-
-		mModel[i]->CheckCollisions(mModel); // Check if the model is colliding with any other, and set their destroyed flags to true if they are.
-
-		if (mModel[i]->IsDestroyed())
+		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_4) == GLFW_PRESS)
 		{
-			// HANDLE COLLISIONS SOMEHOW
-			// Probably override a method from model which each type of object handles separately.
-			// Large asteroids fragment, projectiles explode, ship explodes and takes damage, etc.
-			mModel.erase(mModel.begin() + i); // Finally deletes model.
+			// Spline camera
+			if (mCamera.size() > 3)
+			{
+				mCurrentCamera = 3;
+			}
 		}
-	}
 
-	if (++addCounter > 100){
-		mModel.push_back(AsteroidFactory::createAsteroid(0));
-		addCounter = 0;
+		// 0 and 9 to change the shader
+		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_0) == GLFW_PRESS)
+		{
+			Renderer::SetShader(SHADER_SOLID_COLOR);
+		}
+		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_9) == GLFW_PRESS)
+		{
+			Renderer::SetShader(SHADER_BLUE);
+		}
+
+		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_SPACE) == GLFW_PRESS)
+		{
+			paused = !paused;
+			std::cout << "SPACE\n";
+		}
+
+		if (!paused){
+		// Update current Camera
+		mCamera[mCurrentCamera]->Update(dt);
+
+		// Update models
+		for (int i = 0; i < mModel.size(); ++i)
+		{
+			mModel[i]->Update(dt);
+
+			mModel[i]->CheckCollisions(mModel); // Check if the model is colliding with any other, and set their destroyed flags to true if they are.
+
+			if (mModel[i]->IsDestroyed())
+			{
+				//std::cout << "Hello";
+
+
+				if (typeid(mModel[i]) == typeid(AsteroidModel))
+				{
+					std::cout << "Hello";
+					dynamic_cast<AsteroidModel*>(mModel[i])->Destroy();
+				}
+
+				// HANDLE COLLISIONS SOMEHOW
+				// Probably override a method from model which each type of object handles separately.
+				// Large asteroids fragment, projectiles explode, ship explodes and takes damage, etc.
+				/*if (strcmp(mModel[i]->GetName().c_str(), "B_AST") == 0)
+				{*/
+				/*glm::vec3 scale = glm::vec3(mModel[i]->GetScaling().x * 0.5, mModel[i]->GetScaling().y * 0.5, mModel[i]->GetScaling().z * 0.5);
+				mModel[i]->SetScaling(scale);*/
+				//}
+				mModel.erase(mModel.begin() + i); // Finally deletes model.
+			}
+		}
+
+		if (++addCounter > 100){
+			mModel.push_back(AsteroidFactory::createAsteroid(0));
+			addCounter = 0;
+		}
 	}
 	
 }

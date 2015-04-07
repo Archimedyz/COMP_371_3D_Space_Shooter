@@ -27,10 +27,12 @@ public:
 
 	virtual void Update(float dt) = 0;
 	virtual void Draw() = 0;
+	void applyDamage();
 
 	void CheckCollisions(std::vector<Model*> &m);
 
 	void Load(ci_istringstream& iss);
+	
 
 	virtual glm::mat4 GetWorldMatrix() const;
 
@@ -44,6 +46,7 @@ public:
 	void SetCamZRotation(glm::vec3 axis, float angleDegrees);
 	void SetCollisionRadius(float r);
 	void SetDestroy(bool);
+	void SetName(ci_string name);
 
 	void ActivateCollisions(bool); // For debugging probably
 	bool CollisionsOn; // For debugging probably
