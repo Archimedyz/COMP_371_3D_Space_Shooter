@@ -70,6 +70,12 @@ CubeModel::CubeModel(vec3 size) : Model()
 								{ vec3(-halfSize.x, halfSize.y, halfSize.z), vec3( 0.0f, 1.0f, 0.0f), vec3(1.0f, 1.0f, 0.0f) }
 						};
 
+	for (int i = 0; i < sizeof(vertexBuffer) / sizeof(vertexBuffer[0]); ++i)
+	{
+		vArray.push_back(vertexBuffer[i].position);
+	}
+
+
 	// Create a vertex array
 	glGenVertexArrays(1, &mVertexArrayID);
 

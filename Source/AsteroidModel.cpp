@@ -65,6 +65,13 @@ AsteroidModel::AsteroidModel() : Model()
 		{ vec3(-halfSize.x, halfSize.y, halfSize.z), vec3(0.0f, 1.0f, 0.0f), vec3(1.0f, 1.0f, 0.0f) }
 	};
 
+	for (int i = 0; i < sizeof(vertexBuffer) / sizeof(vertexBuffer[0]); ++i)
+	{
+		vArray.push_back(vertexBuffer[i].position);
+	}
+
+	mCollisionRadius = 2;
+
 	// Create a vertex array
 	glGenVertexArrays(1, &mVertexArrayID);
 
@@ -92,13 +99,6 @@ void AsteroidModel::Update(float dt)
 	mPosition += normalize(direction)*mSpeed*dt;
 
 	mYRotationAngleInDegrees += mRotationSpeed*dt;
-	
-	if (glm::length(direction) <= 0.01){
-		Destroy();
-	}
-
-
-	//Model::Update(dt);
 }
 
 void AsteroidModel::Draw()
@@ -178,41 +178,4 @@ void AsteroidModel::SetRotationSpeed(float rotationSpeed){
 }
 float AsteroidModel::GetRotationSpeed(){
 	return mRotationSpeed;
-}
-
-void AsteroidModel::CheckCollisions(std::vector<Model*> &models)
-{
-	// Remove things at center, for debugging, removes asteroids that get stuck in the middle.
-	if (glm::distance(mPosition, glm::vec3(0.0f, 0.0f, 0.0f)) < 1 && CollisionsOn)
-		mDestroyed = true;
-	// Check the current model against all the rest
-	for (std::vector<Model*>::iterator it = models.begin(); it < models.end(); ++it)
-	{
-		if ((*it) != this && CollisionsOn && (*it)->CollisionsOn) // Make sure the object isn't being compared to itself and that both objects are collidable.
-		{
-			if ((*it)->GetName() != "ASTEROID")
-			{
-				if (glm::distance(mPosition, (*it)->GetPosition()) <= (mCollisionRadius + (*it)->GetCollisionRadius())) // If the distance is less than the radii combined, collide.
-				{
-					if ((*it)->GetName() == "LASER")
-					{
-						health--;
-						if (health < 1)
-							mDestroyed = true;
-						(*it)->SetDestroy(true); // Set both destroyed flags to true so the collided objects are removed.
-					}
-					if ((*it)->GetName() == "SHIP")
-					{
-						mDestroyed = true;
-						Game::GetInstance()->GetHit();
-						// maybe show some kind of explosion?
-					}
-					if ((*it)->GetName() == "STATION")
-					{
-						// since the station doesnt exist yet i dont think it really matters what happens here.
-					}
-				}
-		}
-		}
-	}
 }

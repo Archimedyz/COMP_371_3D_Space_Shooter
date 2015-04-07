@@ -15,6 +15,7 @@
 #include <string>
 #include <GLM/glm.hpp>
 #include "Game.h"
+#include "Collisions.h"
 
 class Path;
 class BSpline;
@@ -60,7 +61,7 @@ public:
 	bool IsDestroyed() const			{ return mDestroyed; }
     std::string GetName()                 { return name; }
 	ci_string GetCIName()                 { return mName; }
-
+	std::vector<glm::vec3> get_varray() { return vArray; }
 
     void SetSpeed(float spd);
 	bool CollisionsOn; // For debugging probably
@@ -87,6 +88,7 @@ protected:
 	glm::vec3 mCamZAxis;
 	float	  mCollisionRadius;
 	bool	  mDestroyed;
+	std::vector<glm::vec3> vArray;
 
     // Makes the model follow a path defined by a set of waypoints
     Path* mPath;

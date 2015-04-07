@@ -202,11 +202,6 @@ void World::LoadCameras()
     mCamera.push_back(new StaticCamera(vec3(3.0f, 5.0f, 5.0f),  vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(3.0f, 30.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
-    
-	CubeModel * character = new CubeModel();
-    character->SetPosition(vec3(0.0f, 0.0f, 0.0f));
-	character->ActivateCollisions(false);
-    mModel.push_back(character);
 
 	ShipModel * ship_model = new ShipModel();
 	player = ship_model;

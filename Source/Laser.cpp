@@ -24,20 +24,30 @@ Laser::Laser(glm::vec3 t, glm::vec3 h)
 {
 	points.push_back(h);
 	points.push_back(t);
+	points.push_back(h + glm::vec3(.1, 0, 0));
+	mPosition = t;
 	speed = 10;
 	CreateVertexBuffer();
 	name = "LASER";
+	mCollisionRadius = 1;
 	//CollisionsOn = false;
 }
 
 
 Laser::~Laser()
 {
+	std::cout << "deleting laser\n";
 }
 
 void Laser::CreateVertexBuffer()
 {
-	Vertex vb[] = { { points[0], glm::vec3(1.0f, 0.0f, 0.0f) }, { points[1], glm::vec3(1.0f, 0.0f, 0.0f) } };
+	Vertex vb[] = { { points[0], glm::vec3(1.0f, 0.0f, 0.0f) }, { points[1], glm::vec3(1.0f, 0.0f, 0.0f) }, { points[2], glm::vec3(1.0f, 0.0f, 0.0f) } };
+
+	for (int i = 0; i < sizeof(vb) / sizeof(vb[0]); ++i)
+	{
+		vArray.push_back(vb[i].pos);
+	}
+
 	// Create a vertex array
 	glGenVertexArrays(1, &mVertexArrayID);
 
@@ -50,9 +60,8 @@ void Laser::CreateVertexBuffer()
 void Laser::Update(float dt)
 {
 	glm::vec3 dir = glm::normalize(points[0] - points[1]) * dt * speed;
-	points[0] += dir;
-	points[1] += dir;
-	CreateVertexBuffer();
+	mPosition = mPosition + dir;
+
 	if (glm::distance(glm::vec3(0, 0, 0), mPosition) > 500)
 		mDestroyed = true;
 }

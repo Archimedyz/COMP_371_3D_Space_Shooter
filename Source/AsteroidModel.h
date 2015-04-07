@@ -12,7 +12,6 @@ public:
 	bool isDestroyed();
 	void SetRotationSpeed(float rotationSpeed);
 	float GetRotationSpeed();
-	void CheckCollisions(std::vector<Model*> &models);
 
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token);

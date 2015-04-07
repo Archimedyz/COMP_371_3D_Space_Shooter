@@ -1280,6 +1280,12 @@ SphereModel::SphereModel(vec3 size) : Model()
         { vec3(0.000000, 0.000000, -1.000000), vec3(0.000000, 0.000000, -1.000000), vec3(1.0f, 0.05f, 0.05f) },
     };
 
+	for (int i = 0; i < sizeof(vertexBuffer) / sizeof(vertexBuffer[0]); ++i)
+	{
+		vArray.push_back(vertexBuffer[i].position);
+	}
+
+
     numOfVertices = sizeof(vertexBuffer) / sizeof(Vertex);
 
     glGenVertexArrays(1, &mVertexArrayID);
