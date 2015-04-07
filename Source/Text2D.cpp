@@ -1,3 +1,6 @@
+// contributor: Robert Sharpe - 6593615
+// source: http://www.opengl-tutorial.org/intermediate-tutorials/tutorial-11-2d-text/
+
 #include <vector>
 #include <cstring>
 

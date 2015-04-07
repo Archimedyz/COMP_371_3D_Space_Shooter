@@ -176,8 +176,12 @@ void World::Draw()
 	}
 
 	char text[256];
+	char health[256];
+	sprintf_s(health, "HP: 100"); //temporarily hard-coded health
+	//sprintf_s(health, "hp: %d", getHealth());
 	sprintf_s(text, "%.2f", glfwGetTime());
 	printText2D(text, 10, 570, 24);
+	printText2D(health, 610, 570, 24);
 
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);
