@@ -20,7 +20,7 @@ Game::Game()
 {
 	instance = this;
 	score = 0;
-	lives = 1;
+	lives = 0;
 	playerHealth = 5;
 }
 
@@ -32,20 +32,11 @@ void Game::PlayerDeath()
 {
 	if (lives <= 0)
 		Lose();
-	else
-	{
-		// Create new ship
-	}
 }
 
 void Game::Lose()
 {
-	// Display text like "YOU LOSE!"
-	// Show final score
-	// Create explosion(?)
-	// Stop update loop for asteroids and things (?)
-	std::cout << "You lose!" << std::endl;
-	std::cout << "Your score was: " << score << std::endl;
+	lost = true;
 }
 
 void Game::AddScore(int s)

@@ -10,6 +10,7 @@
 #include "Renderer.h"
 #include "World.h"
 #include "EventManager.h"
+#include "Game.h"
 
 
 
@@ -19,6 +20,7 @@ int main(int argc, char*argv[])
 	Renderer::Initialize();
 
 	World world;
+	Game game;
 
 	if (argc > 1)
 	{
