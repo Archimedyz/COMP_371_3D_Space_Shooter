@@ -79,6 +79,7 @@
     <ClCompile Include="..\Source\Loader.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Model.cpp" />
+    <ClCompile Include="..\Source\NewAsteroid.cpp" />
     <ClCompile Include="..\Source\objloader.cpp" />
     <ClCompile Include="..\Source\Path.cpp" />
     <ClCompile Include="..\Source\Projectile.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="..\Source\Laser.h" />
     <ClInclude Include="..\Source\Loader.h" />
     <ClInclude Include="..\Source\Model.h" />
+    <ClInclude Include="..\Source\NewAsteroid.h" />
     <ClInclude Include="..\Source\objloader.hpp" />
     <ClInclude Include="..\Source\ParsingHelper.h" />
     <ClInclude Include="..\Source\Path.h" />

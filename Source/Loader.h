@@ -17,6 +17,7 @@ public:
 	Loader();
 	~Loader();
 	static void loadModel(const char * filePath);
+	static void loadModel(const char * filePath, unsigned int&, unsigned int&, unsigned int&, unsigned int&, std::vector<unsigned short>&);
 	static GLuint vertexbuffer;
 	static GLuint uvbuffer;
 	static GLuint normalbuffer;

@@ -71,6 +71,14 @@ public:
 	// SHADOW STUFF
 	struct surface{};
 
+	// drawing buffers
+	unsigned int vertexbuffer;
+	unsigned int uvbuffer;
+	unsigned int normalbuffer;
+	unsigned int elementbuffer;
+	std::vector<unsigned short> indices;
+
+
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token);
 
@@ -93,7 +101,7 @@ protected:
 	float	  mCollisionRadius;
 	bool	  mDestroyed;
 	std::vector<glm::vec3> vArray;
-
+	
     // Makes the model follow a path defined by a set of waypoints
     Path* mPath;
 	BSpline* mSpline;

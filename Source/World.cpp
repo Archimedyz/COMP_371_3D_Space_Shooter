@@ -25,6 +25,7 @@
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
+#include "NewAsteroid.h"
 
 using namespace std;
 using namespace glm;
@@ -81,78 +82,80 @@ World* World::GetInstance()
 
 void World::Update(float dt)
 {
-	// User Inputs
-	// 1 2 3 4 to change the Camera
-	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1 ) == GLFW_PRESS)
+	if (Game::GetInstance()->GameOver() == false)
 	{
-		mCurrentCamera = 0;
-	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_2 ) == GLFW_PRESS)
-	{
-		if (mCamera.size() > 1)
+		// User Inputs
+		// 1 2 3 4 to change the Camera
+		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1) == GLFW_PRESS)
 		{
-			mCurrentCamera = 1;
+			mCurrentCamera = 0;
+		}
+		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_2) == GLFW_PRESS)
+		{
+			if (mCamera.size() > 1)
+			{
+				mCurrentCamera = 1;
+			}
+		}
+		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_3) == GLFW_PRESS)
+		{
+			if (mCamera.size() > 2)
+			{
+				mCurrentCamera = 2;
+			}
+		}
+		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_4) == GLFW_PRESS)
+		{
+			// Ship Camera
+			if (mCamera.size() > 3)
+			{
+				mCurrentCamera = 3;
+			}
+		}
+		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_5) == GLFW_PRESS)
+		{
+			// Free roam camera
+			if (mCamera.size() > 4)
+			{
+				mCurrentCamera = 4;
+			}
+		}
+
+
+		// 0 and 9 to change the shader
+		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_0) == GLFW_PRESS)
+		{
+			Renderer::SetShader(SHADER_SOLID_COLOR);
+		}
+		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_9) == GLFW_PRESS)
+		{
+			Renderer::SetShader(SHADER_PHONG);
+		}
+
+		// Update current Camera
+		mCamera[mCurrentCamera]->Update(dt);
+
+		// Update models
+		for (int i = 0; i < mModel.size(); ++i)
+		{
+			mModel[i]->Update(dt);
+
+			mModel[i]->CheckCollisions(mModel); // Check if the model is colliding with any other, and set their destroyed flags to true if they are.
+
+			if (mModel[i]->IsDestroyed())
+			{
+				// HANDLE COLLISIONS SOMEHOW
+				// Probably override a method from model which each type of object handles separately.
+				// Large asteroids fragment, projectiles explode, ship explodes and takes damage, etc.
+				mModel.erase(mModel.begin() + i); // Finally deletes model.
+			}
+		}
+
+		if (++addCounter > 100){
+			mModel.push_back(AsteroidFactory::createAsteroid(0));
+			addCounter = 0;
 		}
 	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_3 ) == GLFW_PRESS)
-	{
-		if (mCamera.size() > 2)
-		{
-			mCurrentCamera = 2;
-		}
-	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_4 ) == GLFW_PRESS)
-	{
-        // Ship Camera
-		if (mCamera.size() > 3)
-		{
-			mCurrentCamera = 3;
-		}
-	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_5) == GLFW_PRESS)
-	{
-		// Free roam camera
-		if (mCamera.size() > 4)
-		{
-			mCurrentCamera = 4;
-		}
-	}
-
-
-	// 0 and 9 to change the shader
-	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_0 ) == GLFW_PRESS)
-	{
-		Renderer::SetShader(SHADER_SOLID_COLOR);
-	}
-	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_9 ) == GLFW_PRESS)
-	{
-		Renderer::SetShader(SHADER_PHONG);
-	}
-
-	// Update current Camera
-	mCamera[mCurrentCamera]->Update(dt);
-	
-	// Update models
-	for (int i = 0; i < mModel.size(); ++i)
-	{
-		mModel[i]->Update(dt);
-
-		mModel[i]->CheckCollisions(mModel); // Check if the model is colliding with any other, and set their destroyed flags to true if they are.
-
-		if (mModel[i]->IsDestroyed())
-		{
-			// HANDLE COLLISIONS SOMEHOW
-			// Probably override a method from model which each type of object handles separately.
-			// Large asteroids fragment, projectiles explode, ship explodes and takes damage, etc.
-			mModel.erase(mModel.begin() + i); // Finally deletes model.
-		}
-	}
-
-	if (++addCounter > 100){
-		mModel.push_back(AsteroidFactory::createAsteroid(0));
-		addCounter = 0;
-	}
-	
 }
 
 void World::Draw()
@@ -243,22 +246,28 @@ void World::Draw()
 	int hp_offset = 3;
 	char text[256];
 	char health[256];
+	char score[256];
 	health[0] = 'h';
 	health[1] = 'p';
 	health[2] = ':';
-	//	string health = "hp: ";
-	for (int i = hp_offset; i < Game::GetInstance()->GetHealth() + hp_offset; ++i)
+	for (int i = hp_offset; i < 8 + hp_offset; ++i)
 	{
-		 health[i] = '*';
+		if (i < Game::GetInstance()->GetHealth() + hp_offset)
+			health[i] = '*';
+		else
+			health[i] = ' ';
 	}
-	//sprintf_s(health, hp); //temporarily hard-coded health
-//	sprintf_s(health, "hp: %d", Game::GetInstance()->GetHealth());
+
 	sprintf_s(text, "%.2f", glfwGetTime());
 	printText2D(text, 10, 570, 24);
 	printText2D(health, 610, 570, 24);
 
-	printText2D("You lose!", 305, 285, 40);
+	sprintf_s(score, "%i", Game::GetInstance()->GetScore());
+	printText2D(score, 305, 570, 24);
 
+
+	if (Game::GetInstance()->GameOver())
+		printText2D("You lose!", 305, 285, 40);
 
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);
@@ -280,6 +289,10 @@ void World::LoadScene(const char * scene_path)
 	// be deleted. -Nick
     
 	mModel.push_back(AsteroidFactory::createAsteroid(0));
+
+	NewAsteroid *newA = new NewAsteroid();
+	newA->SetPosition(vec3(5, 5, 5));
+	mModel.push_back(newA);
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
 

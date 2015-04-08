@@ -22,6 +22,7 @@ Game::Game()
 	score = 0;
 	lives = 0;
 	playerHealth = 5;
+	lost = false;
 }
 
 Game::~Game()
@@ -51,5 +52,4 @@ void Game::GetHit()
 	playerHealth -= 1;
 	if (playerHealth < 1)
 		PlayerDeath();
-	World::GetInstance()->GetPlayer()->SetDestroy(true);
 }

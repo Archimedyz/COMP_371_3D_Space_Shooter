@@ -37,7 +37,7 @@ public:
 	int GetHealth() { return playerHealth; }
 	void SetScore(int s) { score = s; }
 	void SetLives(int l) { lives = l; }
-	bool HasLost() { return lost; }
+	bool GameOver() { return lost; }
 
 private:
 	static Game* instance;
