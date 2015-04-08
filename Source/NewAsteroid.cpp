@@ -1,47 +1,58 @@
-#include "ShipModel.h"
+#include "NewAsteroid.h"
+#include "Variables.h"
+#include "Renderer.h"
+#include <string>
+// Include GLEW - OpenGL Extension Wrangler
+#include <GL/glew.h>
 #include "Loader.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <vector>
+#include "glm/ext.hpp"
 
-#include "shader.hpp"
-#include "texture.hpp"
-#include "objloader.hpp"
-#include "vboindexer.hpp"
+using namespace glm;
 
-ShipModel::ShipModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(0.0f, 0.0f, -1.0f))
+NewAsteroid::NewAsteroid() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
 	ka = 0.5f;
 	kd = 0.3f;
 	ks = 0.7f;
-	n = 100.0f;
+	n = 100.0f; 
 
-	mCollisionRadius = 2;
+	name = "ASTEROID";
+	destroyed = false;
+	mCollisionRadius = 4;
 	CollisionsOn = true;
 
 #if defined(PLATFORM_OSX)
-    const char * modelPath = "Models/newship.obj";
+	const char * modelPath = "Models/asteroid0.obj";
 #else
-    const char * modelPath = "../Resources/Models/newship.obj";
+	const char * modelPath = "../Resources/Models/asteroid0.obj";
 #endif
 	Loader::loadModel(modelPath, vArray, vertexbuffer, uvbuffer, normalbuffer, elementbuffer, indices);
 }
 
-
-ShipModel::~ShipModel()
+NewAsteroid::~NewAsteroid()
 {
+	// Free the GPU from the Vertex Buffer
+//	glDeleteBuffers(1, &mVertexBufferID);
+//	glDeleteVertexArrays(1, &mVertexArrayID);
 }
 
-void ShipModel::Update(float dt)
+void NewAsteroid::Update(float dt)
 {
+	// If you are curious, un-comment this line to have spinning cubes!
+	// That will only work if your world transform is correct...
+	//mRotationAngleInDegrees += 90 * dt; // spins by 90 degrees per second
 
+	std::cout << "update\n";
 
+	//Update posiion and rotation per frame.
+	vec3 direction = Variables::WorldCenter - mPosition;
+	mPosition += normalize(direction)*mSpeed*dt;
+
+	mYRotationAngleInDegrees += mRotationSpeed*dt;
 }
 
-void ShipModel::Draw()
+void NewAsteroid::Draw()
 {
-	Model::Draw();
-
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 
@@ -98,7 +109,7 @@ void ShipModel::Draw()
 	glDisableVertexAttribArray(2);
 }
 
-bool ShipModel::ParseLine(const std::vector<ci_string> &token)
+bool NewAsteroid::ParseLine(const std::vector<ci_string> &token)
 {
 	if (token.empty())
 	{
@@ -110,7 +121,18 @@ bool ShipModel::ParseLine(const std::vector<ci_string> &token)
 	}
 }
 
-
-void ShipModel::RenderShadowVolume(glm::vec4 lightPos){
-
+void NewAsteroid::Destroy(){
+	destroyed = true;
+	// perform any remining destruction actions here.
 }
+
+bool NewAsteroid::isDestroyed(){
+	return destroyed;
+}
+void NewAsteroid::SetRotationSpeed(float rotationSpeed){
+	mRotationSpeed = rotationSpeed;
+}
+float NewAsteroid::GetRotationSpeed(){
+	return mRotationSpeed;
+}
+void NewAsteroid::RenderShadowVolume(glm::vec4 lightPos){}

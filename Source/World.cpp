@@ -152,7 +152,7 @@ void World::Update(float dt)
 		}
 
 		if (++addCounter > 100){
-			mModel.push_back(AsteroidFactory::createAsteroid(0));
+			mModel.push_back(AsteroidFactory::createNewAsteroid(0));
 			addCounter = 0;
 		}
 	}
@@ -288,11 +288,7 @@ void World::LoadScene(const char * scene_path)
 	// I moved it there since it's just extra clutter to keep it here commented out, it can probably
 	// be deleted. -Nick
     
-	mModel.push_back(AsteroidFactory::createAsteroid(0));
-
-	NewAsteroid *newA = new NewAsteroid();
-	newA->SetPosition(vec3(5, 5, 5));
-	mModel.push_back(newA);
+	mModel.push_back(AsteroidFactory::createNewAsteroid(0));
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
 
@@ -309,11 +305,6 @@ void World::LoadCameras()
     mCamera.push_back(new StaticCamera(vec3(3.0f, 5.0f, 5.0f),  vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(10.0f, 30.0f, 10.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
-    
-	CubeModel * character = new CubeModel();
-    character->SetPosition(vec3(0.0f, 0.0f, 0.0f));
-	character->ActivateCollisions(false);
-    mModel.push_back(character);
 
 	// Cube "ship" Character controlled with Third Person Camera
 	//CubeModel * ship_model = new CubeModel();
@@ -325,7 +316,7 @@ void World::LoadCameras()
 	mModel.push_back(ship_model);
 
 	CubeModel * floor = new CubeModel();
-	floor->SetPosition(vec3(-2.0f, -2.0f, 1.0f));
+	floor->SetPosition(vec3(-2.0f, -5.0f, 1.0f));
 	floor->SetScaling(vec3(10.0f, 0.5f, 10.0f));
 	floor->ActivateCollisions(false);
 	mModel.push_back(floor);

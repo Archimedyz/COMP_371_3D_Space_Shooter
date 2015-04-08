@@ -71,7 +71,7 @@ public:
 	// SHADOW STUFF
 	struct surface{};
 
-	// drawing buffers
+	// drawing buffers. every object that loads a model uses these.
 	unsigned int vertexbuffer;
 	unsigned int uvbuffer;
 	unsigned int normalbuffer;

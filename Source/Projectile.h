@@ -9,9 +9,9 @@ Nicholas Dudek
 
 */
 
-#include "SphereModel.h"
+#include "Model.h"
 
-class Projectile : public SphereModel
+class Projectile : public Model
 {
 public:
 	Projectile();
@@ -19,12 +19,15 @@ public:
 	~Projectile();
 
 	void Update(float);
+	void Draw();
 
 	void SetDirection(glm::vec3);
 	glm::vec3 GetDirection();
 
 	static void SetLastFired(time_t);
 	static time_t GetLastFired();
+
+	void RenderShadowVolume(glm::vec4 a);
 
 private:
 	glm::vec3 mDirection;

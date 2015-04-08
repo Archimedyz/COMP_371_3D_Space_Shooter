@@ -1,11 +1,14 @@
 #pragma once
 
 #include "AsteroidModel.h"
+#include "NewAsteroid.h"
 
 class AsteroidFactory{
 public:
 	~AsteroidFactory();
 	static AsteroidModel* createAsteroid(int type);
+	static NewAsteroid* createNewAsteroid(int type);
+
 private:
 	AsteroidFactory();
 

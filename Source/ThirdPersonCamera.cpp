@@ -28,10 +28,11 @@ const float ThirdPersonCamera::SPEED_DECREASE_PERCENTAGE = 0.5f;
 const float ThirdPersonCamera::MAX_ANIMATION_PITCH_ANGLE = 40.0f;
 const float ThirdPersonCamera::MAX_ANIMATION_YAW_ANGLE = 40.0f;
 const float ThirdPersonCamera::MAX_ANIMATION_ROLL_ANGLE = 40.0f;
+const float REACTION = 75.0f;
 
 ThirdPersonCamera::ThirdPersonCamera(Model* targetModel)
 	: Camera(), mTargetModel(targetModel), mHorizontalAngle(0.0f), mVerticalAngle(0.0f), mRadius(10.0f),
-	mModelHorizontalSensitivity(50.0f), mModelVerticalSensitivity(30.0f), mModelStandardSpeed(3.5f),
+	mModelHorizontalSensitivity(REACTION), mModelVerticalSensitivity(REACTION), mModelStandardSpeed(3.5f),
 	mModelAcceration(1.0f), mModelDeceleration(-1.0f), mModelAnimationSpeed(100.0f), mModelCurrentPitch(0.0f),
 	mModelCurrentYaw(0.0f), mModelCurrentRoll(0.0f)
 {
@@ -263,8 +264,11 @@ void ThirdPersonCamera::Update(float dt)
 
 	if (glfwGetMouseButton(EventManager::GetWindow(), GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && (time(NULL)-Projectile::GetLastFired() > 0)) // Shoot, if left click and enough time has elapsed.
 	{
-		fireLasers();
-		Game::GetInstance()->GetHit();
+		Projectile *proj = new Projectile(mTargetModel->GetPosition(), mLookAt);
+		proj->SetXRotation(mTargetModel->GetXAxis(), mVerticalAngle);
+		proj->SetYRotation(mTargetModel->GetYAxis(), mHorizontalAngle);
+
+		World::GetInstance()->AddModel(proj);
 		Projectile::SetLastFired(time(NULL)); // Set the last time fired to the current time.
 	}
 

@@ -10,6 +10,7 @@
 #include "controls.hpp"
 #include "objloader.hpp"
 #include "vboindexer.hpp"
+#include "glm/ext.hpp"
 
 
 Loader::Loader()
@@ -57,7 +58,7 @@ void Loader::loadModel(const char * filePath)
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned short), &indices[0], GL_STATIC_DRAW);
 }
 
-void Loader::loadModel(const char * filePath, unsigned int &vertexbuffer2, unsigned int &uvbuffer2, unsigned int &normalbuffer2, unsigned int &elementbuffer2, std::vector<unsigned short> &indices2)
+void Loader::loadModel(const char * filePath, std::vector<vec3> &vArray, unsigned int &vertexbuffer2, unsigned int &uvbuffer2, unsigned int &normalbuffer2, unsigned int &elementbuffer2, std::vector<unsigned short> &indices2)
 {
 	std::vector<glm::vec3> vertices;
 	std::vector<glm::vec2> uvs;
@@ -69,6 +70,11 @@ void Loader::loadModel(const char * filePath, unsigned int &vertexbuffer2, unsig
 	std::vector<glm::vec2> indexed_uvs;
 	std::vector<glm::vec3> indexed_normals;
 	indexVBO(vertices, uvs, normals, indices2, indexed_vertices, indexed_uvs, indexed_normals);
+
+	for (int i = 0; i < vertices.size(); ++ i)
+	{
+		vArray.push_back(vertices[i]);
+	}
 
 	//load it into VBO
 	glGenBuffers(1, &vertexbuffer2);
