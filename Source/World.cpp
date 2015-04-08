@@ -37,7 +37,7 @@ World::World()
 {
     instance = this;
 	addCounter = 0;
-    skyboxObj->initSkybox();
+    //skyboxObj->initSkybox();
 }
 
 World::~World()
