@@ -51,5 +51,5 @@ void Game::GetHit()
 {
 	playerHealth -= 1;
 	if (playerHealth < 1)
-		PlayerDeath();
+		Lose();
 }

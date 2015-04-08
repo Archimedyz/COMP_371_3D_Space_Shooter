@@ -262,8 +262,6 @@ void Model::CheckCollisions(std::vector<Model*> &models)
 			{
 				if (Collisions::collide_objects(this, (*it)))
 				{
-					mDestroyed = true;
-					(*it)->SetDestroy(true);
 					if ((*it)->GetName() == "ASTEROID" && this->GetName() == "ASTEROID")
 					{
 						mDestroyed = true;
@@ -280,11 +278,6 @@ void Model::CheckCollisions(std::vector<Model*> &models)
 					{
 						mDestroyed = true;
 						Game::GetInstance()->GetHit();
-						// maybe show some kind of explosion?
-					}
-					if ((*it)->GetName() == "STATION" && this->GetName() == "ASTEROID")
-					{
-						// since the station doesnt exist yet i dont think it really matters what happens here.
 					}
 				}
 			}
