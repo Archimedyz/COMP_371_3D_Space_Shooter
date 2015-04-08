@@ -19,7 +19,6 @@
 #define pi 3.14159265
 
 #include "Projectile.h"
-#include "Laser.h"
 
 using namespace glm;
 
@@ -289,23 +288,4 @@ void ThirdPersonCamera::Update(float dt)
 glm::mat4 ThirdPersonCamera::GetViewMatrix() const
 {
     return glm::lookAt(mPosition, mPosition + mLookAt, mUp);
-}
-
-void ThirdPersonCamera::fireLasers()
-{
-	glm::vec3 pos = mTargetModel->GetPosition();
-	glm::vec3 topRight = pos + 2.0f * normalize(mRight) + 2.0f * normalize(mUp);
-	glm::vec3 topLeft = pos - 2.0f * normalize(mRight) + 2.0f * normalize(mUp);
-	glm::vec3 bottomRight = pos + 2.0f * normalize(mRight) - 2.0f * normalize(mUp);
-	glm::vec3 bottomLeft = pos - 2.0f * normalize(mRight) - 2.0f * normalize(mUp);
-
-	Laser *p1 = new Laser(topRight, topRight+normalize(mLookAt));
-	Laser *p2 = new Laser(bottomLeft, bottomLeft+ normalize(mLookAt));
-	Laser *p3 = new Laser(bottomRight, bottomRight + normalize(mLookAt));
-	Laser *p4 = new Laser(topLeft, topLeft + normalize(mLookAt));
-
-	World::GetInstance()->AddModel(p1);
-	World::GetInstance()->AddModel(p2);
-	World::GetInstance()->AddModel(p3);
-	World::GetInstance()->AddModel(p4);
 }

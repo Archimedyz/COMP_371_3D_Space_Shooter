@@ -9,6 +9,13 @@
 
 using namespace glm;
 
+std::vector<glm::vec3> NewAsteroid::vArray;
+unsigned int NewAsteroid::vertexbuffer;
+unsigned int NewAsteroid::uvbuffer;
+unsigned int NewAsteroid::normalbuffer;
+unsigned int NewAsteroid::elementbuffer;
+std::vector<unsigned short> NewAsteroid::indices;
+
 NewAsteroid::NewAsteroid() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
 	ka = 0.5f;
@@ -22,22 +29,21 @@ NewAsteroid::NewAsteroid() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 
 	mCollisionRadius = 4;
 	CollisionsOn = true;
 	mSpeed = 100;
+}
 
+void NewAsteroid::LoadBuffers()
+{
 #if defined(PLATFORM_OSX)
 	const char * modelPath = "Models/asteroid0.obj";
 #else
 	const char * modelPath = "../Resources/Models/asteroid0.obj";
 #endif
-	Loader::loadModel(modelPath, vArray, vertexbuffer, uvbuffer, normalbuffer, elementbuffer, indices);
+	Loader::loadModel(modelPath, NewAsteroid::vArray, NewAsteroid::vertexbuffer, NewAsteroid::uvbuffer, NewAsteroid::normalbuffer, NewAsteroid::elementbuffer, NewAsteroid::indices);
 }
+
 
 NewAsteroid::~NewAsteroid()
 {
-	// Free the GPU from the Vertex Buffer
-	glDeleteBuffers(1, &vertexbuffer);
-	glDeleteBuffers(1, &uvbuffer);
-	glDeleteBuffers(1, &normalbuffer);
-	glDeleteBuffers(1, &elementbuffer);
 
 }
 

@@ -21,8 +21,6 @@ public:
     virtual void Update(float dt);
     virtual glm::mat4 GetViewMatrix() const;
 
-	void fireLasers();
-
 private:
     virtual void CalculateCameraBasis();
     Model* mTargetModel;

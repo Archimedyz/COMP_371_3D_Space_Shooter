@@ -62,22 +62,16 @@ public:
 	bool IsDestroyed() const			{ return mDestroyed; }
     std::string GetName()                 { return name; }
 	ci_string GetCIName()                 { return mName; }
-	std::vector<glm::vec3> get_varray() { return vArray; }
+	virtual std::vector<glm::vec3> get_varray() { return vArray; }
 
     void SetSpeed(float spd);
 	bool CollisionsOn; // For debugging probably
 
+	// must be called in setup once before any members of the class are instantiated. loads the drawing buffers. overload it with the appropriate filename.
+	static void LoadBuffers();
 
 	// SHADOW STUFF
 	struct surface{};
-
-	// drawing buffers. every object that loads a model uses these.
-	unsigned int vertexbuffer;
-	unsigned int uvbuffer;
-	unsigned int normalbuffer;
-	unsigned int elementbuffer;
-	std::vector<unsigned short> indices;
-
 
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token);
@@ -100,6 +94,8 @@ protected:
 	glm::vec3 mCamZAxis;
 	float	  mCollisionRadius;
 	bool	  mDestroyed;
+
+	// drawing buffers. each subclass has a set of these buffers which contain the modelspace coordinates of the vertices. 
 	std::vector<glm::vec3> vArray;
 	
     // Makes the model follow a path defined by a set of waypoints

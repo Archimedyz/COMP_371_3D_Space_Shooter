@@ -300,3 +300,8 @@ void Model::SetDestroy(bool b)
 void Model::RenderShadowVolume(glm::vec4 lightPos){
 
 }
+
+void Model::LoadBuffers()
+{
+
+}

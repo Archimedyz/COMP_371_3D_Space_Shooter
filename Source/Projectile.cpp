@@ -19,6 +19,23 @@ Nicholas Dudek
 
 
 time_t Projectile::LastFired = 0;
+std::vector<glm::vec3> Projectile::vArray;
+unsigned int Projectile::vertexbuffer;
+unsigned int Projectile::uvbuffer;
+unsigned int Projectile::normalbuffer;
+unsigned int Projectile::elementbuffer;
+std::vector<unsigned short> Projectile::indices;
+
+void Projectile::LoadBuffers()
+{
+#if defined(PLATFORM_OSX)
+	const char * modelPath = "Models/bullet.obj";
+#else
+	const char * modelPath = "../Resources/Models/bullet.obj";
+#endif
+	Loader::loadModel(modelPath, Projectile::vArray, Projectile::vertexbuffer, Projectile::uvbuffer, Projectile::normalbuffer, Projectile::elementbuffer, Projectile::indices);
+}
+
 
 Projectile::Projectile()
 {
@@ -45,13 +62,6 @@ Projectile::Projectile(glm::vec3 o, glm::vec3 d)
 	mCollisionRadius = 1;
 	mSpeed = 45;
 	name = "PROJECTILE";
-
-#if defined(PLATFORM_OSX)
-	const char * modelPath = "Models/bullet.obj";
-#else
-	const char * modelPath = "../Resources/Models/bullet.obj";
-#endif
-	Loader::loadModel(modelPath, vArray, vertexbuffer, uvbuffer, normalbuffer, elementbuffer, indices);
 }
 
 void Projectile::Update(float dt)

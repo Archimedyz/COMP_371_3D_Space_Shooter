@@ -17,6 +17,9 @@ public:
 	float GetRotationSpeed();
 	void Destroy();
 
+	static void LoadBuffers();
+	std::vector<glm::vec3> get_varray() { return NewAsteroid::vArray; }
+
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token);
 
@@ -30,11 +33,13 @@ private:
 	};
 	glm::vec3 direction;
 
-	unsigned int vertexbuffer;
-	unsigned int uvbuffer;
-	unsigned int normalbuffer;
-	unsigned int elementbuffer;
-	std::vector<unsigned short> indices;
+	// drawing buffers. each subclass has a set of these buffers which contain the modelspace coordinates of the vertices. 
+	static std::vector<glm::vec3> vArray;
+	static unsigned int vertexbuffer;
+	static unsigned int uvbuffer;
+	static unsigned int normalbuffer;
+	static unsigned int elementbuffer;
+	static std::vector<unsigned short> indices;
 
 	float mRotationSpeed;
 	bool destroyed;

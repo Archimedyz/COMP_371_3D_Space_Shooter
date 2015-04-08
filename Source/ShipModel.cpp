@@ -9,6 +9,24 @@
 #include "objloader.hpp"
 #include "vboindexer.hpp"
 
+std::vector<glm::vec3> ShipModel::vArray;
+unsigned int ShipModel::vertexbuffer;
+unsigned int ShipModel::uvbuffer;
+unsigned int ShipModel::normalbuffer;
+unsigned int ShipModel::elementbuffer;
+std::vector<unsigned short> ShipModel::indices;
+
+void ShipModel::LoadBuffers()
+{
+#if defined(PLATFORM_OSX)
+	const char * modelPath = "Models/newship.obj";
+#else
+	const char * modelPath = "../Resources/Models/newship.obj";
+#endif
+	Loader::loadModel(modelPath, ShipModel::vArray, ShipModel::vertexbuffer, ShipModel::uvbuffer, ShipModel::normalbuffer, ShipModel::elementbuffer, ShipModel::indices);
+}
+
+
 ShipModel::ShipModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
 	name = "SHIP";
@@ -19,13 +37,6 @@ ShipModel::ShipModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f,
 
 	mCollisionRadius = 2;
 	CollisionsOn = true;
-
-#if defined(PLATFORM_OSX)
-    const char * modelPath = "Models/newship.obj";
-#else
-    const char * modelPath = "../Resources/Models/newship.obj";
-#endif
-	Loader::loadModel(modelPath, vArray, vertexbuffer, uvbuffer, normalbuffer, elementbuffer, indices);
 }
 
 

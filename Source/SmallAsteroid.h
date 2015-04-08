@@ -1,21 +1,16 @@
 #pragma once
-#include "Model.h"
-#include "Renderer.h"
-class ShipModel : public Model
+#include "C:\Users\Nick\Source\Repos\COMP_371_3D_Space_Shooter\Source\NewAsteroid.h"
+class SmallAsteroid :
+	public NewAsteroid
 {
 public:
-	ShipModel();
-	~ShipModel();
-	void Update(float dt);
-	void Draw();
-	void RenderShadowVolume(glm::vec4 lightPos);
+	SmallAsteroid();
+	~SmallAsteroid();
 
 	static void LoadBuffers();
-	std::vector<glm::vec3> get_varray() { return ShipModel::vArray; }
+	std::vector<glm::vec3> get_varray() { return SmallAsteroid::vArray; }
 
-protected:
-	virtual bool ParseLine(const std::vector<ci_string> &token);
-
+private:
 	// drawing buffers. each subclass has a set of these buffers which contain the modelspace coordinates of the vertices. 
 	static std::vector<glm::vec3> vArray;
 	static unsigned int vertexbuffer;

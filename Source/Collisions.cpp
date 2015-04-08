@@ -11,33 +11,29 @@
 
 using namespace glm;
 
-#define INCOMPLETEBUTFASTER  // if defined skip one test per triangle pair!!
-
 #define macrodot(uu,vv)   ((uu).x * (vv).x + (uu).y * (vv).y + (uu).z * (vv).z)
-//#define macrodot(u,v)   glm::dot(u,v)
 
 int Collisions::triangle_ray_collision(vec3 a0, vec3 a1, vec3 a2, vec3 b0, vec3 b1)
 {
-    //    Output: *I = intersection point (when it exists)
-    //    Return: -1 = triangle is degenerate (a segment or point)
-    //             0 =  disjoint (no intersect)
-    //             1 =  intersect in unique point I1
-    //             2 =  are in the same plane
-    vec3 I, u, v, n, dir, w0, w;
+	// This method heavily based on the following:
+	// http://geomalgorithms.com/a06-_intersect-2.html
+
+	// Copyright 2001 softSurfer, 2012 Dan Sunday
+	// This code may be freely used and modified for any purpose
+	// providing that this copyright notice is included with it.
+	// SoftSurfer makes no warranty for this code, and cannot be held
+	// liable for any real or imagined damage resulting from its use.
+	// Users of this code must verify correctness for their application.
+
+	vec3 I, u, v, n, dir, w0, w;
     float     r, a, b;              // params to calc ray-plane intersect
     
     // get triangle edge vectors and plane normal
     u = a1 - a0;
     v = a2 - a0;
-    //n = u * v;              // cross product
     n.x = u.y*v.z - u.z*v.y;
     n.y = u.z*v.x - u.x*v.z;
     n.z = u.x*v.y - u.y*v.x;
-    
-    
-    //       if (n == (Vector)0)             // triangle is degenerate
-     //return -1;                  // do not deal with this case
-     
     
     dir = b1 - b0;              // ray direction vector
     w0 = b0 - a0;
@@ -88,10 +84,9 @@ int Collisions::triangle_ray_collision(vec3 a0, vec3 a1, vec3 a2, vec3 b0, vec3 
 
 bool Collisions::triangle_triangle_collision(vec3 a0, vec3 a1, vec3 a2, vec3 b0, vec3 b1, vec3 b2)
 {
-#ifndef INCOMPLETEBUTFASTER
-    if(triangle_ray_collision(a0, a1, a2, b0, b1) > 0)
-        return true;
-#endif
+	// skip one line per 2 triangles. each collision has min 2 lines colliding
+    //if(triangle_ray_collision(a0, a1, a2, b0, b1) > 0)
+      //  return true;
     if(triangle_ray_collision(a0, a1, a2, b1, b2) > 0)
         return true;
     if(triangle_ray_collision(a0, a1, a2, b0, b2) > 0)
@@ -110,21 +105,15 @@ bool Collisions::collide_objects(Model* a, Model* b)
 {
     long n = a->get_varray().size();
     long m = b->get_varray().size();
-#ifdef STATICSIZE
-    assert(n<STATICSIZE);
-    assert(m<STATICSIZE);
-#endif
-    
+
     std::vector<vec3> aav = a->get_varray();
     std::vector<vec3> bbv = b->get_varray();
+
     vec4 temp;
-#ifdef STATICSIZE
+
     static std::vector<vec3> aa(STATICSIZE);
     static std::vector<vec3> bb(STATICSIZE);
-#else
-    std::vector<vec3> aa;
-    std::vector<vec3> bb;
-#endif
+
     mat4 wm = a->GetWorldMatrix();
     for(int i = 0; i < n ; ++i)
     {
@@ -132,11 +121,8 @@ bool Collisions::collide_objects(Model* a, Model* b)
         temp.x = temp.x/temp.w;
         temp.y=temp.y/temp.w;
         temp.z=temp.z/temp.w;
-#ifdef STATICSIZE
-        aa[i]=vec3(temp);
-#else
-        aa.push_back(vec3(temp));
-#endif
+
+		aa[i]=vec3(temp);
     }
     wm = b->GetWorldMatrix();
     for(int i = 0; i < m ; ++i)
@@ -145,11 +131,8 @@ bool Collisions::collide_objects(Model* a, Model* b)
         temp.x = temp.x/temp.w;
         temp.y=temp.y/temp.w;
         temp.z=temp.z/temp.w;
-#ifdef STATICSIZE
+
         bb[i]  = vec3(temp);
-#else
-        bb.push_back(vec3(temp));
-#endif
     }
     
     for(int i=0; i < n-3; i+=3)

@@ -20,12 +20,12 @@
 #include "Projectile.h"
 #include "ShipModel.h"
 #include "Loader.h"
-#include "Laser.h"
 #include "Text2D.h"
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
 #include "NewAsteroid.h"
+#include "SmallAsteroid.h"
 
 using namespace std;
 using namespace glm;
@@ -46,6 +46,12 @@ World::World()
 	addCounter = 0;
 
 	initText2D("../Resources/Textures/Holstein.dds");
+
+	NewAsteroid::LoadBuffers();
+	SmallAsteroid::LoadBuffers();
+	Projectile::LoadBuffers();
+	ShipModel::LoadBuffers();
+	cout << "workin\n";
 }
 
 World::~World()
