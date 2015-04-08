@@ -16,10 +16,12 @@ NewAsteroid::NewAsteroid() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 
 	ks = 0.7f;
 	n = 100.0f; 
 
+	direction = vec3(1, 1, 1);
 	name = "ASTEROID";
 	destroyed = false;
 	mCollisionRadius = 4;
 	CollisionsOn = true;
+	mSpeed = 100;
 
 #if defined(PLATFORM_OSX)
 	const char * modelPath = "Models/asteroid0.obj";
@@ -32,22 +34,16 @@ NewAsteroid::NewAsteroid() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 
 NewAsteroid::~NewAsteroid()
 {
 	// Free the GPU from the Vertex Buffer
-//	glDeleteBuffers(1, &mVertexBufferID);
-//	glDeleteVertexArrays(1, &mVertexArrayID);
+	glDeleteBuffers(1, &vertexbuffer);
+	glDeleteBuffers(1, &uvbuffer);
+	glDeleteBuffers(1, &normalbuffer);
+	glDeleteBuffers(1, &elementbuffer);
+
 }
 
 void NewAsteroid::Update(float dt)
 {
-	// If you are curious, un-comment this line to have spinning cubes!
-	// That will only work if your world transform is correct...
-	//mRotationAngleInDegrees += 90 * dt; // spins by 90 degrees per second
-
-	std::cout << "update\n";
-
-	//Update posiion and rotation per frame.
-	vec3 direction = Variables::WorldCenter - mPosition;
-	mPosition += normalize(direction)*mSpeed*dt;
-
+	mPosition += direction*mSpeed*dt;
 	mYRotationAngleInDegrees += mRotationSpeed*dt;
 }
 

@@ -12,8 +12,8 @@ const float AsteroidFactory::SCALE_MAX = 2.5f;
 const float AsteroidFactory::SCALE_MIN = 0.5f;
 const float AsteroidFactory::ROTATION_SPEED_MAX = 120.0f;
 const float AsteroidFactory::ROTATION_SPEED_MIN = 40.0f;
-const float AsteroidFactory::SPEED_MAX = 7.5f;
-const float AsteroidFactory::SPEED_MIN = 2.5f;
+const float AsteroidFactory::SPEED_MAX = 15.0f;
+const float AsteroidFactory::SPEED_MIN = 8.f;
 
 AsteroidFactory::AsteroidFactory(){}
 AsteroidFactory::~AsteroidFactory(){}
@@ -58,7 +58,7 @@ AsteroidModel* AsteroidFactory::createAsteroid(int type){
 
 NewAsteroid* AsteroidFactory::createNewAsteroid(int type){
 	NewAsteroid *asteroid = new NewAsteroid();
-
+	srand(time(NULL));
 	//Randomize these Elements fo use later.
 	float alpha = ALPHA_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (ALPHA_MAX - ALPHA_MIN));
 	float beta = BETA_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (BETA_MAX - BETA_MIN));
@@ -83,12 +83,30 @@ NewAsteroid* AsteroidFactory::createNewAsteroid(int type){
 	float rotationSpeed = ROTATION_SPEED_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (ROTATION_SPEED_MAX - ROTATION_SPEED_MIN));
 	// randomized speed
 	float speed = SPEED_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (SPEED_MAX - SPEED_MIN));
-
+	speed = 10;
 	asteroid->SetPosition(initialPosition);
 	asteroid->SetYRotation(rotationAxis, initialRotationAngle);
 	asteroid->SetScaling(scale);
 	asteroid->SetSpeed(speed);
 	asteroid->SetRotationSpeed(rotationSpeed);
+
+	glm::vec3 d = glm::normalize(Variables::WorldCenter - initialPosition);
+	float r = rand() % 30;
+	r -= 15;
+	r = r / 100;
+	d.x += r;
+	r = rand() % 30;
+	r -= 15;
+
+	r = r / 100;
+	d.y += r;
+	r = rand() % 30;
+	r -= 15;
+
+	r = r / 100;
+	d.z += r;
+	glm::normalize(d);
+	asteroid->SetDirection(d);
 
 	return asteroid;
 }

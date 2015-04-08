@@ -27,7 +27,10 @@ Projectile::Projectile()
 
 Projectile::~Projectile()
 {
-	std::cout << "destroying projectile\n";
+	glDeleteBuffers(1, &vertexbuffer);
+	glDeleteBuffers(1, &uvbuffer);
+	glDeleteBuffers(1, &normalbuffer);
+	glDeleteBuffers(1, &elementbuffer);
 }
 
 Projectile::Projectile(glm::vec3 o, glm::vec3 d)
@@ -40,7 +43,7 @@ Projectile::Projectile(glm::vec3 o, glm::vec3 d)
 	mPosition = o;
 	mDirection = glm::normalize(d);
 	mCollisionRadius = 1;
-	mSpeed = 30;
+	mSpeed = 45;
 	name = "PROJECTILE";
 
 #if defined(PLATFORM_OSX)
@@ -54,8 +57,6 @@ Projectile::Projectile(glm::vec3 o, glm::vec3 d)
 void Projectile::Update(float dt)
 {
 	mPosition = mPosition + (mDirection*mSpeed*dt);
-	if (distance(vec3(0.0f, 0.0f, 0.0f), mPosition) > 500)
-		mDestroyed = true;
 }
 
 void Projectile::Draw()

@@ -12,13 +12,15 @@ public:
 	virtual void RenderShadowVolume(glm::vec4 lightPos);
 	bool isDestroyed();
 	void SetRotationSpeed(float rotationSpeed);
+	void SetDirection(glm::vec3 d) { direction = d; }
+	glm::vec3 GetDirection() { return direction; }
 	float GetRotationSpeed();
+	void Destroy();
 
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token);
 
 private:
-	void Destroy();
 	// The vertex format could be different for different types of models
 	struct Vertex
 	{
@@ -26,6 +28,7 @@ private:
 		glm::vec3 normal;
 		glm::vec3 color;
 	};
+	glm::vec3 direction;
 
 	unsigned int vertexbuffer;
 	unsigned int uvbuffer;

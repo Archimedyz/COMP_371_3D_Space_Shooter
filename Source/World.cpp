@@ -142,6 +142,13 @@ void World::Update(float dt)
 
 			mModel[i]->CheckCollisions(mModel); // Check if the model is colliding with any other, and set their destroyed flags to true if they are.
 
+			if (glm::distance(mModel[i]->GetPosition(), vec3(0.0f, 0.0f, 0.0f)) >= 500) // if things are too far frm the center, delete them or move player back to center
+			{
+				if (mModel[i]->GetName() != "SHIP")
+					mModel[i]->SetDestroy(true);
+				else
+					mModel[i]->SetPosition(vec3(0.0f, 0.0f, 0.0f));
+			}
 			if (mModel[i]->IsDestroyed())
 			{
 				// HANDLE COLLISIONS SOMEHOW
@@ -311,15 +318,15 @@ void World::LoadCameras()
 	ShipModel * ship_model = new ShipModel();
 	player = ship_model;
 	ship_model->SetPosition(vec3(0.0f, -5.0f, 0.0f));
-	ship_model->ActivateCollisions(false);
+	ship_model->ActivateCollisions(true);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
 
-	CubeModel * floor = new CubeModel();
+	/*CubeModel * floor = new CubeModel();
 	floor->SetPosition(vec3(-2.0f, -5.0f, 1.0f));
 	floor->SetScaling(vec3(10.0f, 0.5f, 10.0f));
 	floor->ActivateCollisions(false);
-	mModel.push_back(floor);
+	mModel.push_back(floor);*/
 
     mCurrentCamera = 0;
 
