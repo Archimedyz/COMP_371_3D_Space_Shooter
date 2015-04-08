@@ -86,7 +86,6 @@
     <ClCompile Include="..\Source\Renderer.cpp" />
     <ClCompile Include="..\Source\shader.cpp" />
     <ClCompile Include="..\Source\ShipModel.cpp" />
-    <ClCompile Include="..\Source\SmallAsteroid.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\Text2D.cpp" />
@@ -116,7 +115,6 @@
     <ClInclude Include="..\Source\Renderer.h" />
     <ClInclude Include="..\Source\shader.hpp" />
     <ClInclude Include="..\Source\ShipModel.h" />
-    <ClInclude Include="..\Source\SmallAsteroid.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
     <ClInclude Include="..\Source\Text2D.h" />

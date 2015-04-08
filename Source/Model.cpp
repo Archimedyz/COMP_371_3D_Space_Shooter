@@ -15,7 +15,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/common.hpp>
 #include "Renderer.h"
-
+#include "NewAsteroid.h"
 #include <GL/glew.h>
 
 using namespace std;
@@ -264,9 +264,8 @@ void Model::CheckCollisions(std::vector<Model*> &models)
 				{
 					if ((*it)->GetName() == "ASTEROID" && this->GetName() == "ASTEROID")
 					{
-						mDestroyed = true;
-						(*it)->SetDestroy(true);
-						// maybe show some kind of explosion?
+							mDestroyed = true;
+							(*it)->SetDestroy(true);
 					}
 					if ((*it)->GetName() == "PROJECTILE" && this->GetName() == "ASTEROID")
 					{
@@ -274,6 +273,7 @@ void Model::CheckCollisions(std::vector<Model*> &models)
 						(*it)->SetDestroy(true); // Set both destroyed flags to true so the collided objects are removed.
 						Game::GetInstance()->AddScore(100);
 					}
+
 					if ((*it)->GetName() == "SHIP" && this->GetName() == "ASTEROID")
 					{
 						mDestroyed = true;

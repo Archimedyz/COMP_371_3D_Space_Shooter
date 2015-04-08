@@ -56,7 +56,8 @@ AsteroidModel* AsteroidFactory::createAsteroid(int type){
 	return asteroid;
 }
 
-NewAsteroid* AsteroidFactory::createNewAsteroid(int type){
+NewAsteroid* AsteroidFactory::createNewAsteroid(int type)
+{
 	NewAsteroid *asteroid = new NewAsteroid();
 	srand(time(NULL));
 	//Randomize these Elements fo use later.

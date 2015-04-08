@@ -31,7 +31,6 @@ private:
 		glm::vec3 normal;
 		glm::vec3 color;
 	};
-	glm::vec3 direction;
 
 	// drawing buffers. each subclass has a set of these buffers which contain the modelspace coordinates of the vertices. 
 	static std::vector<glm::vec3> vArray;
@@ -40,7 +39,8 @@ private:
 	static unsigned int normalbuffer;
 	static unsigned int elementbuffer;
 	static std::vector<unsigned short> indices;
-
+	
+	glm::vec3 direction;
 	float mRotationSpeed;
 	bool destroyed;
 };

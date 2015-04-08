@@ -25,7 +25,6 @@
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
 #include "NewAsteroid.h"
-#include "SmallAsteroid.h"
 
 using namespace std;
 using namespace glm;
@@ -48,10 +47,8 @@ World::World()
 	initText2D("../Resources/Textures/Holstein.dds");
 
 	NewAsteroid::LoadBuffers();
-	SmallAsteroid::LoadBuffers();
 	Projectile::LoadBuffers();
 	ShipModel::LoadBuffers();
-	cout << "workin\n";
 }
 
 World::~World()

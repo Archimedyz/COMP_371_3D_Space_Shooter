@@ -6,6 +6,8 @@
 #include <GL/glew.h>
 #include "Loader.h"
 #include "glm/ext.hpp"
+#include "AsteroidFactory.h"
+#include "World.h"
 
 using namespace glm;
 
@@ -40,7 +42,6 @@ void NewAsteroid::LoadBuffers()
 #endif
 	Loader::loadModel(modelPath, NewAsteroid::vArray, NewAsteroid::vertexbuffer, NewAsteroid::uvbuffer, NewAsteroid::normalbuffer, NewAsteroid::elementbuffer, NewAsteroid::indices);
 }
-
 
 NewAsteroid::~NewAsteroid()
 {
