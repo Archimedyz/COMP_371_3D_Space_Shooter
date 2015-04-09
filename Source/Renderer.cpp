@@ -66,6 +66,10 @@ void Renderer::Initialize()
                 LoadShaders(shaderPathPrefix + "SolidColor.vertexshader",
                             shaderPathPrefix + "BlueColor.fragmentshader")
                                );
+    sShaderProgramID.push_back(
+                LoadShaders(shaderPathPrefix + "cubemap.vertexshader",
+                            shaderPathPrefix + "cubemap.fragmentshader")
+                               );
 	sCurrentShader = 0;
 
 }
