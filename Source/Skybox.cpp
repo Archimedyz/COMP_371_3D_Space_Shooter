@@ -53,10 +53,10 @@ void Skybox::drawSkybox()
 	// Reset and transform the matrix.
 	glLoadIdentity();
 	//std::cout << "load identity\n";
-	gluLookAt(
+	/*gluLookAt(
 		0, 0, 1,
 		0, 0, 0,
-		0, 1, 0);
+		0, 1, 0);*/
 
 	// Enable/Disable features
 	glPushAttrib(GL_ENABLE_BIT);
