@@ -72,6 +72,8 @@
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
+    <ClCompile Include="..\Source\ImageLoader.cpp" />
+    <ClCompile Include="..\Source\LoadCubemap.cpp" />
     <ClCompile Include="..\Source\Loader.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Model.cpp" />
@@ -84,6 +86,9 @@
     <ClCompile Include="..\Source\Skybox.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
+    <ClCompile Include="..\Source\stb_image.c">
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
     <ClCompile Include="..\Source\texture.cpp" />
     <ClCompile Include="..\Source\ThirdPersonCamera.cpp" />
     <ClCompile Include="..\Source\Variables.cpp" />
@@ -96,6 +101,8 @@
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
+    <ClInclude Include="..\Source\ImageLoader.h" />
+    <ClInclude Include="..\Source\LoadCubemap.h" />
     <ClInclude Include="..\Source\Loader.h" />
     <ClInclude Include="..\Source\Model.h" />
     <ClInclude Include="..\Source\objloader.hpp" />
@@ -108,6 +115,7 @@
     <ClInclude Include="..\Source\Skybox.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
+    <ClInclude Include="..\Source\stb_image.h" />
     <ClInclude Include="..\Source\texture.hpp" />
     <ClInclude Include="..\Source\ThirdPersonCamera.h" />
     <ClInclude Include="..\Source\Variables.h" />

@@ -167,17 +167,17 @@ int World::addCounter;
 
 LoadCubemap* cubemap = new LoadCubemap();
 
-GLuint cube_vao = make_big_cube();
-GLuint cube_map_texture;
-
 // cube-map shaders
 GLuint cubemapShader;
+GLuint cube_vao;
+GLuint cube_map_texture;
 
 World::World()
 {
     instance = this;
 	addCounter = 0;
 	//skyboxObj->initSkybox();
+	cube_vao = make_big_cube();
     create_cube_map (bmp_FT, bmp_BK, bmp_UP, bmp_DN, bmp_LT, bmp_RT, &cube_map_texture);
 }
 
