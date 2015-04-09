@@ -36,9 +36,9 @@ NewAsteroid::NewAsteroid() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 
 void NewAsteroid::LoadBuffers()
 {
 #if defined(PLATFORM_OSX)
-	const char * modelPath = "Models/asteroid0.obj";
+	const char * modelPath = "Models/asteroid1.obj";
 #else
-	const char * modelPath = "../Resources/Models/asteroid0.obj";
+	const char * modelPath = "../Resources/Models/asteroid1.obj";
 #endif
 	Loader::loadModel(modelPath, NewAsteroid::vArray, NewAsteroid::vertexbuffer, NewAsteroid::uvbuffer, NewAsteroid::normalbuffer, NewAsteroid::elementbuffer, NewAsteroid::indices);
 }
