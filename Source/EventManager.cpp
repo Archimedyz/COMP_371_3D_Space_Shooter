@@ -58,10 +58,17 @@ void EventManager::Initialize()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 #endif
     
+    //Containers for width and height
+    int width, height;
     
-	// Open a window and create its OpenGL context
-	glfwWindowHint(GLFW_RESIZABLE, 0);
-	spWindow = glfwCreateWindow(1024, 768, "COMP371 - Assignment Framework", nullptr, nullptr);
+    //Get default screen resolution width and height
+    const GLFWvidmode* nativeResolution = glfwGetVideoMode(glfwGetPrimaryMonitor());
+    width = nativeResolution->width;
+    height = nativeResolution->height;
+    
+    // Open a window and create its OpenGL context
+    glfwWindowHint(GLFW_RESIZABLE, 0);
+    spWindow = glfwCreateWindow(width, height, "COMP371 Space Shooter", nullptr, nullptr);
 
 	if (spWindow == nullptr)
 	{
