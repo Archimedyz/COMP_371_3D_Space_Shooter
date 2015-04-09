@@ -66,8 +66,16 @@ int World::addCounter;
 
 World::World()
 {
-	//GLuint test1 = loadBMP_custom("star2.bmp");
-	//std::cout << test1;
+	#if defined(PLATFORM_OSX)
+	std::cout << "Unable to load BMP images on mac";
+	#else
+	GLuint bmp_RT = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_RT.bmp");
+	GLuint bmp_LT = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_LT.bmp");
+	GLuint bmp_UP = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_UP.bmp");
+	GLuint bmp_DN = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_DN.bmp");
+	GLuint bmp_BK = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_BK.bmp");
+	GLuint bmp_FT = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_FT.bmp");
+	#endif
     instance = this;
 	addCounter = 0;
     //skyboxObj->initSkybox();
