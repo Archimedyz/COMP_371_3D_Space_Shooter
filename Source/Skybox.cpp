@@ -3,13 +3,6 @@
 #include "Skybox.h"
 #include <iostream>
 
-GLuint _skybox[6];
-GLuint bmp_FT;
-GLuint bmp_LT;
-GLuint bmp_BK;
-GLuint bmp_RT;
-GLuint bmp_UP;
-GLuint bmp_DN;
 Skybox::Skybox()
 {
 	std::cout << "skybox made... \n\n";
@@ -38,8 +31,6 @@ void Skybox::initSkybox(void)
     bmp_UP = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_UP.bmp");
     bmp_DN = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_DN.bmp");
 	
-	//for (auto it = _skybox.begin(); it != _skybox.end(); it++)
-	
 #endif
     
 }
@@ -51,10 +42,7 @@ void Skybox::drawSkybox()
 
 	// Reset and transform the matrix.
 	glLoadIdentity();
-	/*gluLookAt(
-		0, 0, 1,
-		0, 0, 0,
-		0, 1, 0);*/
+    glm::lookAt(glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 	// Enable/Disable features
 	glPushAttrib(GL_ENABLE_BIT);
@@ -63,7 +51,7 @@ void Skybox::drawSkybox()
 	glDisable(GL_LIGHTING);
 	glDisable(GL_BLEND);
 	// to eliminate *white edge* effect
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);    
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 
@@ -131,7 +119,9 @@ void Skybox::drawSkybox()
 
 	// Restore enable bits and matrix
 	glPopAttrib();
+    glEnable(GL_DEPTH_TEST);
 	glPopMatrix();
+    
 }
 
 

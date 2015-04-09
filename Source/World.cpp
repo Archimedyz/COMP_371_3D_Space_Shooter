@@ -34,6 +34,8 @@ int World::addCounter;
 #else
 Skybox* skyboxObj = new Skybox();
 #endif
+Skybox* skyboxObj = new Skybox();
+
 
 World::World()
 {
@@ -43,6 +45,7 @@ World::World()
 #else
     skyboxObj->initSkybox();
 #endif
+    skyboxObj->initSkybox();
 }
 
 World::~World()
@@ -163,15 +166,13 @@ void World::Draw()
 	// Send the view projection constants to the shader
 	mat4 VP = mCamera[mCurrentCamera]->GetViewProjectionMatrix();
 	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
-
+    
+    //skyboxObj->drawSkybox();
 	// draw skybox
-	//glm::vec3 skyboxLookAt = mCamera[mCurrentCamera]->mLookAt;
-	//glPushMatrix();
-	//glTranslatef(25, 0, 25);
-	//glScalef(75, 75, 75);
-	//skyboxObj->drawSkybox();
-	//glPopMatrix();
-	
+    
+	glTranslatef(25, 0, 25);
+	glScalef(75, 75, 75);
+	skyboxObj->drawSkybox();
 
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
@@ -234,14 +235,6 @@ void World::LoadScene(const char * scene_path)
 				path->Load(iss);
 	               mPath.push_back(path);
 			}
-			/*
-	        else if( result == "spline" )
-			{
-				BSpline* path = new BSpline();
-				path->Load(iss);
-	               mSpline.push_back(path);
-			}
-			*/
 			else if ( result.empty() == false && result[0] == '#')
 			{
 				// this is a comment line
@@ -262,14 +255,6 @@ void World::LoadScene(const char * scene_path)
 		// Draw model
 		(*it)->CreateVertexBuffer();
 	}
-	/*
-	// Set B-SPLINE vertex buffers
-	for (vector<BSpline*>::iterator it = mSpline.begin(); it < mSpline.end(); ++it)
-	{
-		// Draw model
-		(*it)->CreateVertexBuffer();
-	}
-	*/
 }
 
 void World::LoadGame()

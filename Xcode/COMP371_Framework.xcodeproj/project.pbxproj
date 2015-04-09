@@ -29,7 +29,6 @@
 		D4BAD0891AAE78E300698FF2 /* ThirdPersonCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0731AAE78E300698FF2 /* ThirdPersonCamera.cpp */; };
 		D4BAD08A1AAE78E300698FF2 /* Variables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0751AAE78E300698FF2 /* Variables.cpp */; };
 		D4BAD08B1AAE78E300698FF2 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0771AAE78E300698FF2 /* World.cpp */; };
-		D4C8654C1AD5D7BB00A65FA9 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C8654B1AD5D7BB00A65FA9 /* GLUT.framework */; };
 		D4C865511AD5D84E00A65FA9 /* ImageLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4C8654D1AD5D84E00A65FA9 /* ImageLoader.cpp */; };
 		D4C865551AD5D8BA00A65FA9 /* SkyBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4C865531AD5D8BA00A65FA9 /* SkyBox.cpp */; };
 		D4C8655C1AD60A9F00A65FA9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C8655B1AD60A9F00A65FA9 /* CoreGraphics.framework */; };
@@ -101,7 +100,6 @@
 		D4BAD0761AAE78E300698FF2 /* Variables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Variables.h; sourceTree = "<group>"; };
 		D4BAD0771AAE78E300698FF2 /* World.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = World.cpp; sourceTree = "<group>"; };
 		D4BAD0781AAE78E300698FF2 /* World.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = World.h; sourceTree = "<group>"; };
-		D4C8654B1AD5D7BB00A65FA9 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		D4C8654D1AD5D84E00A65FA9 /* ImageLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageLoader.cpp; sourceTree = "<group>"; };
 		D4C8654E1AD5D84E00A65FA9 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
 		D4C865531AD5D8BA00A65FA9 /* SkyBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkyBox.cpp; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 				038B791A1A6FF39000111E36 /* CoreVideo.framework in Frameworks */,
 				D4C8655C1AD60A9F00A65FA9 /* CoreGraphics.framework in Frameworks */,
 				038B79161A6FF2E900111E36 /* Cocoa.framework in Frameworks */,
-				D4C8654C1AD5D7BB00A65FA9 /* GLUT.framework in Frameworks */,
 				038B78851A6EBBCE00111E36 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,7 +147,6 @@
 				031A65F61A702EBB003BF698 /* libglfw3.a */,
 				D4C8655D1AD60B4600A65FA9 /* Foundation.framework */,
 				D4C8655B1AD60A9F00A65FA9 /* CoreGraphics.framework */,
-				D4C8654B1AD5D7BB00A65FA9 /* GLUT.framework */,
 				038B791D1A6FF3EB00111E36 /* IOKit.framework */,
 				038B791B1A6FF3D100111E36 /* CoreFoundation.framework */,
 				038B79191A6FF39000111E36 /* CoreVideo.framework */,
