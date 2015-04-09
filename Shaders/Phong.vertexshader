@@ -36,7 +36,7 @@ void main()
 	// Output position of the vertex, in clip space : MVP * position
 	gl_Position =  MVP * vec4(vertexPosition_modelspace,1);
 
-	shadow_position;
+	shadow_position = correctedLightMVP * vec4(vertexPosition_modelspace,1);
 
 	v_color = vertexColor;
 

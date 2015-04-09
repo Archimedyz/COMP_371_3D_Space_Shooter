@@ -39,6 +39,8 @@ const float lightKl = 1.0f;
 const float lightKq = 2.0f;
 const vec4 lightPosition(0.0f, 10.0f, 0.0f, 0.0f);
 
+ShaderType main_shader = SHADER_PHONG;
+
 World::World()
 {
     instance = this;
@@ -128,11 +130,11 @@ void World::Update(float dt)
 		// 0 and 9 to change the shader
 		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_0) == GLFW_PRESS)
 		{
-			Renderer::SetShader(SHADER_SOLID_COLOR);
+			main_shader = SHADER_SOLID_COLOR;
 		}
 		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_9) == GLFW_PRESS)
 		{
-			Renderer::SetShader(SHADER_PHONG);
+			main_shader = SHADER_PHONG;
 		}
 
 		// Update current Camera
@@ -172,6 +174,29 @@ void World::Draw()
 {
 	Renderer::BeginFrame();
 	
+	// The framebuffer, which regroups 0, 1, or more textures, and 0 or 1 depth buffer.
+	GLuint FramebufferName = 0;
+	glGenFramebuffers(1, &FramebufferName);
+	glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
+
+	// Depth texture. Slower than a depth buffer, but you can sample it later in your shader
+	GLuint depthTexture;
+	glGenTextures(1, &depthTexture);
+	glBindTexture(GL_TEXTURE_2D, depthTexture);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, 1024, 1024, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0);
+
+	glDrawBuffer(GL_NONE); // No color buffer is drawn to.
+
+	// Always check that our framebuffer is ok
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+		return;
+
 	//Setting variable for light:
 	GLuint WorldMatrixID = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	GLuint ViewMatrixID = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewTransform");
@@ -185,16 +210,16 @@ void World::Draw()
 
 	// Get a handle for shadow mapping attributes.
 	GLuint LightMVPID = glGetUniformLocation(Renderer::GetShaderProgramID(), "lightMVP");
+	GLuint CorrectedLightMVPID = glGetUniformLocation(Renderer::GetShaderProgramID(), "correctedLightMVP");
+	GLuint ShadowMapID = glGetUniformLocation(Renderer::GetShaderProgramID(), "shadowMap");
 
-	// Set shader to use
-	glUseProgram(Renderer::GetShaderProgramID());
+
 
 	// This looks for the MVP Uniform variable in the Vertex Program
 	GLuint VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform"); 
 
 	// Send the view projection constants to the shader
 	mat4 VP = mCamera[mCurrentCamera]->GetViewProjectionMatrix();
-	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
 
 	// get the transformation matrices
 	glm::mat4 worldMatrix(1.0f);
@@ -215,6 +240,39 @@ void World::Draw()
 		);
 	glm::mat4 correctedLightMVP = correctionMatrix*lightMVP;
 
+	// first pass: get the shadow map
+	Renderer::SetShader(SHADER_BASIC);
+	glUseProgram(Renderer::GetShaderProgramID());
+	
+
+	glUniformMatrix4fv(LightMVPID, 1, GL_FALSE, &lightMVP[0][0]);
+
+	// Draw models
+	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
+	{
+		// Draw model
+		(*it)->Draw();
+	}
+	// Render to the screen
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glViewport(0, 0, 1024, 768); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK); // Cull back-facing triangles -> draw only front-facing triangles
+
+	// Clear the screen
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// END OF SHADOW MAPPING
+
+	
+
+	// Second pass, draw the models.
+	Renderer::SetShader(main_shader);
+	glUseProgram(Renderer::GetShaderProgramID());
+
+	// set attributes
+	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
 
 	// assign the transform matrices for the shader.
 	glUniformMatrix4fv(WorldMatrixID, 1, GL_FALSE, &worldMatrix[0][0]);
@@ -228,6 +286,10 @@ void World::Draw()
 
 	// Shader constants for shading pass through.
 	glUniformMatrix4fv(LightMVPID, 1, GL_FALSE, &lightMVP[0][0]);
+	glUniformMatrix4fv(CorrectedLightMVPID, 1, GL_FALSE, &correctedLightMVP[0][0]);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, depthTexture);
+	glUniform1i(ShadowMapID, 1);
 
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
@@ -269,8 +331,8 @@ void World::Draw()
 	}
 
 	sprintf_s(text, "%.2f", glfwGetTime());
-	printText2D(text, 10, 570, 24);
-	printText2D(health, 610, 570, 24);
+	printText2D(text, 10, 400, 24);
+	printText2D(health, 610, 400, 24);
 
 	sprintf_s(score, "%i", Game::GetInstance()->GetScore());
 	printText2D(score, 305, 570, 24);
@@ -282,11 +344,11 @@ void World::Draw()
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);
 
-	// now we go about adding our shadow volumes
-	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
-	{
-		(*it)->RenderShadowVolume(lightPosition);
-	}
+	//// now we go about adding our shadow volumes
+	//for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
+	//{
+	//	(*it)->RenderShadowVolume(lightPosition);
+	//}
 
 	Renderer::EndFrame();
 
@@ -325,11 +387,13 @@ void World::LoadCameras()
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
 
-	/*CubeModel * floor = new CubeModel();
+	CubeModel * floor = new CubeModel();
 	floor->SetPosition(vec3(-2.0f, -5.0f, 1.0f));
 	floor->SetScaling(vec3(10.0f, 0.5f, 10.0f));
 	floor->ActivateCollisions(false);
-	mModel.push_back(floor);*/
+	mModel.push_back(floor);
+
+	mModel.push_back(new CubeModel());
 
     mCurrentCamera = 0;
 
