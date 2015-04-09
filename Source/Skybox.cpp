@@ -33,10 +33,10 @@ void Skybox::initSkybox(void)
 #else
 	bmp_FT = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_FT.bmp");
 	bmp_LT = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_LT.bmp");
-	 bmp_BK = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_BK.bmp");
-	 bmp_RT = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_RT.bmp");
-	 bmp_UP = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_UP.bmp");
-	 bmp_DN = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_DN.bmp");
+    bmp_BK = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_BK.bmp");
+    bmp_RT = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_RT.bmp");
+    bmp_UP = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_UP.bmp");
+    bmp_DN = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_DN.bmp");
 	
 	//for (auto it = _skybox.begin(); it != _skybox.end(); it++)
 	
@@ -48,11 +48,9 @@ void Skybox::drawSkybox()
 
 	// Store the current matrix
 	glPushMatrix();
-	//std::cout << "pushed matrix\n";
 
 	// Reset and transform the matrix.
 	glLoadIdentity();
-	//std::cout << "load identity\n";
 	/*gluLookAt(
 		0, 0, 1,
 		0, 0, 0,

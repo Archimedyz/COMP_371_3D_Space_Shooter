@@ -106,11 +106,6 @@
 		D4C8654E1AD5D84E00A65FA9 /* ImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
 		D4C865531AD5D8BA00A65FA9 /* SkyBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkyBox.cpp; sourceTree = "<group>"; };
 		D4C865541AD5D8BA00A65FA9 /* SkyBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkyBox.h; sourceTree = "<group>"; };
-		D4C865561AD5DECC00A65FA9 /* moon.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = moon.bmp; sourceTree = "<group>"; };
-		D4C865571AD5DECC00A65FA9 /* ngc281.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = ngc281.bmp; sourceTree = "<group>"; };
-		D4C865581AD5DECC00A65FA9 /* star1.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = star1.bmp; sourceTree = "<group>"; };
-		D4C865591AD5DECC00A65FA9 /* star2.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = star2.bmp; sourceTree = "<group>"; };
-		D4C8655A1AD5DECC00A65FA9 /* sun.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = sun.bmp; sourceTree = "<group>"; };
 		D4C8655B1AD60A9F00A65FA9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D4C8655D1AD60B4600A65FA9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D4F9C7E01AC4D1F800F5AB97 /* Loader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Loader.cpp; sourceTree = "<group>"; };
@@ -220,13 +215,6 @@
 			path = ../Source;
 			sourceTree = "<group>";
 		};
-		D40BCBE21AD06307002E216F /* take 2 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "take 2";
-			sourceTree = "<group>";
-		};
 		D463010E1ABBA63000BF8F32 /* Cameras */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,16 +274,10 @@
 		D4F9C7F91AC4E1F000F5AB97 /* Skybox */ = {
 			isa = PBXGroup;
 			children = (
-				D4C865561AD5DECC00A65FA9 /* moon.bmp */,
-				D4C865571AD5DECC00A65FA9 /* ngc281.bmp */,
-				D4C865581AD5DECC00A65FA9 /* star1.bmp */,
-				D4C865591AD5DECC00A65FA9 /* star2.bmp */,
-				D4C8655A1AD5DECC00A65FA9 /* sun.bmp */,
 				D4C8654D1AD5D84E00A65FA9 /* ImageLoader.cpp */,
 				D4C8654E1AD5D84E00A65FA9 /* ImageLoader.h */,
 				D4C865531AD5D8BA00A65FA9 /* SkyBox.cpp */,
 				D4C865541AD5D8BA00A65FA9 /* SkyBox.h */,
-				D40BCBE21AD06307002E216F /* take 2 */,
 			);
 			name = Skybox;
 			sourceTree = "<group>";

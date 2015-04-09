@@ -152,7 +152,7 @@ void World::Draw()
 
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
-
+    
 #if defined(PLATFORM_OSX)
 #else
     skyboxObj->drawSkybox();
