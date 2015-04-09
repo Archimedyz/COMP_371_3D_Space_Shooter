@@ -22,7 +22,7 @@ void Skybox::initSkybox(void)
 { 
 	//load BMP Skybox textures and make GLuints out of them
 #if defined(PLATFORM_OSX)
-	std::cout << "Unable to load BMP images on mac";
+	std::cout << "Unable to load BMP images on OS X... \n";
 #else
 	bmp_FT = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_FT.bmp");
 	bmp_LT = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_LT.bmp");
