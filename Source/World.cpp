@@ -17,6 +17,7 @@
 
 #include "ShipModel.h"
 #include "Loader.h"
+#include "StarCubeModel.h"
 
 #include "Texture.hpp"
 #include <glm/gtc/type_ptr.hpp>
@@ -30,155 +31,24 @@
 using namespace std;
 using namespace glm;
 
-const char* bmp_FT = "../Resources/GalaxySkybox/Galaxy_FT.bmp";
-const char* bmp_BK = "../Resources/GalaxySkybox/Galaxy_BK.bmp";
-const char* bmp_UP = "../Resources/GalaxySkybox/Galaxy_UP.bmp";
-const char* bmp_DN = "../Resources/GalaxySkybox/Galaxy_DN.bmp";
-const char* bmp_LT = "../Resources/GalaxySkybox/Galaxy_LT.bmp";
-const char* bmp_RT = "../Resources/GalaxySkybox/Galaxy_RT.bmp";
-
-
-GLuint make_big_cube () {
-    float points[] = {
-        -10.0f,  10.0f, -10.0f,
-        -10.0f, -10.0f, -10.0f,
-        10.0f, -10.0f, -10.0f,
-        10.0f, -10.0f, -10.0f,
-        10.0f,  10.0f, -10.0f,
-        -10.0f,  10.0f, -10.0f,
-        
-        -10.0f, -10.0f,  10.0f,
-        -10.0f, -10.0f, -10.0f,
-        -10.0f,  10.0f, -10.0f,
-        -10.0f,  10.0f, -10.0f,
-        -10.0f,  10.0f,  10.0f,
-        -10.0f, -10.0f,  10.0f,
-        
-        10.0f, -10.0f, -10.0f,
-        10.0f, -10.0f,  10.0f,
-        10.0f,  10.0f,  10.0f,
-        10.0f,  10.0f,  10.0f,
-        10.0f,  10.0f, -10.0f,
-        10.0f, -10.0f, -10.0f,
-        
-        -10.0f, -10.0f,  10.0f,
-        -10.0f,  10.0f,  10.0f,
-        10.0f,  10.0f,  10.0f,
-        10.0f,  10.0f,  10.0f,
-        10.0f, -10.0f,  10.0f,
-        -10.0f, -10.0f,  10.0f,
-        
-        -10.0f,  10.0f, -10.0f,
-        10.0f,  10.0f, -10.0f,
-        10.0f,  10.0f,  10.0f,
-        10.0f,  10.0f,  10.0f,
-        -10.0f,  10.0f,  10.0f,
-        -10.0f,  10.0f, -10.0f,
-        
-        -10.0f, -10.0f, -10.0f,
-        -10.0f, -10.0f,  10.0f,
-        10.0f, -10.0f, -10.0f,
-        10.0f, -10.0f, -10.0f,
-        -10.0f, -10.0f,  10.0f,
-        10.0f, -10.0f,  10.0f
-    };
-    GLuint vbo;
-    glGenBuffers (1, &vbo);
-    glBindBuffer (GL_ARRAY_BUFFER, vbo);
-    glBufferData (
-                  GL_ARRAY_BUFFER, 3 * 36 * sizeof (GLfloat), &points, GL_STATIC_DRAW);
-    
-    GLuint vao;
-    glGenVertexArrays (1, &vao);
-    glBindVertexArray (vao);
-    glEnableVertexAttribArray (0);
-    glBindBuffer (GL_ARRAY_BUFFER, vbo);
-    glVertexAttribPointer (0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-    return vao;
-}
-
-bool load_cube_map_side ( GLuint texture, GLenum side_target, const char* file_name)
-{
-    glBindTexture (GL_TEXTURE_CUBE_MAP, texture);
-    
-    int x, y, n;
-    int force_channels = 4;
-    unsigned char*  image_data = stbi_load (
-                                            file_name, &x, &y, &n, force_channels);
-    if (!image_data) {
-        fprintf (stderr, "ERROR: could not load %s\n", file_name);
-        return false;
-    }
-    // non-power-of-2 dimensions check
-    if ((x & (x - 1)) != 0 || (y & (y - 1)) != 0) {
-        fprintf (
-                 stderr, "WARNING: image %s is not power-of-2 dimensions\n", file_name
-                 );
-    }
-    
-    // copy image data into 'target' side of cube map
-    glTexImage2D (
-                  side_target,
-                  0,
-                  GL_RGBA,
-                  x,
-                  y,
-                  0,
-                  GL_RGBA,
-                  GL_UNSIGNED_BYTE,
-                  image_data
-                  );
-    free (image_data);
-    return true;
-}
-
-void create_cube_map (
-                      const char* front,
-                      const char* back,
-                      const char* top,
-                      const char* bottom,
-                      const char* left,
-                      const char* right,
-                      GLuint* tex_cube
-                      ) {
-    // generate a cube-map texture to hold all the sides
-    glActiveTexture (GL_TEXTURE0);
-    glGenTextures (1, tex_cube);
-    
-    // load each image and copy into a side of the cube-map texture
-    assert (load_cube_map_side (*tex_cube, GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, front));
-    assert (load_cube_map_side (*tex_cube, GL_TEXTURE_CUBE_MAP_POSITIVE_Z, back));
-    assert (load_cube_map_side (*tex_cube, GL_TEXTURE_CUBE_MAP_POSITIVE_Y, top));
-    assert (load_cube_map_side (*tex_cube, GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, bottom));
-    assert (load_cube_map_side (*tex_cube, GL_TEXTURE_CUBE_MAP_NEGATIVE_X, left));
-    assert (load_cube_map_side (*tex_cube, GL_TEXTURE_CUBE_MAP_POSITIVE_X, right));
-    // format cube map texture
-    
-    glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-    glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameteri (GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-}
-
 World* World::instance;
 int World::addCounter;
 //Skybox* skyboxObj = new Skybox();
 
-LoadCubemap* cubemap = new LoadCubemap();
-
-// cube-map shaders
-GLuint cubemapShader;
-GLuint cube_vao;
-GLuint cube_map_texture;
+//LoadCubemap* cubemap = new LoadCubemap();
+//
+//// cube-map shaders
+//GLuint cubemapShader;
+//GLuint cube_vao;
+//GLuint cube_map_texture;
 
 World::World()
 {
     instance = this;
 	addCounter = 0;
 	//skyboxObj->initSkybox();
-	cube_vao = make_big_cube();
-    create_cube_map (bmp_FT, bmp_BK, bmp_UP, bmp_DN, bmp_LT, bmp_RT, &cube_map_texture);
+	//cube_vao = make_big_cube();
+    //create_cube_map (bmp_FT, bmp_BK, bmp_UP, bmp_DN, bmp_LT, bmp_RT, &cube_map_texture);
 }
 
 World::~World()
@@ -284,28 +154,28 @@ void World::Draw()
 	
 	Renderer::BeginFrame();
     
-    Renderer::SetShader(SHADER_SKYBOX);
+    //Renderer::SetShader(SHADER_SKYBOX);
     // note that this view matrix should NOT contain camera translation.
     //int cube_V_location = glGetUniformLocation (Renderer::GetCurrentShader(), "V");
     //int cube_P_location = glGetUniformLocation (Renderer::GetCurrentShader(), "P");
     
-    glEnable (GL_DEPTH_TEST); // enable depth-testing
-    glDepthFunc (GL_LESS); // depth-testing interprets a smaller value as "closer"
-    glEnable (GL_CULL_FACE); // cull face
-    glCullFace (GL_BACK); // cull back face
-    glFrontFace (GL_CCW); // set counter-clock-wise vertex order to mean the front
-    glClearColor (0.2, 0.2, 0.2, 1.0); // grey background to help spot mistakes
-    
-    glDepthMask (GL_FALSE);
-    glUseProgram (Renderer::GetCurrentShader());
-    glActiveTexture (GL_TEXTURE0);
-    glBindTexture (GL_TEXTURE_CUBE_MAP, cube_map_texture);
-    glBindVertexArray (cube_vao);
-    glDrawArrays (GL_TRIANGLES, 0, 36);
-    glDepthMask (GL_TRUE);
+//    glEnable (GL_DEPTH_TEST); // enable depth-testing
+//    glDepthFunc (GL_LESS); // depth-testing interprets a smaller value as "closer"
+//    glEnable (GL_CULL_FACE); // cull face
+//    glCullFace (GL_BACK); // cull back face
+//    glFrontFace (GL_CCW); // set counter-clock-wise vertex order to mean the front
+//    glClearColor (0.2, 0.2, 0.2, 1.0); // grey background to help spot mistakes
+//    
+//    glDepthMask (GL_FALSE);
+//    glUseProgram (Renderer::GetCurrentShader());
+//    glActiveTexture (GL_TEXTURE0);
+//    glBindTexture (GL_TEXTURE_CUBE_MAP, cube_map_texture);
+//    glBindVertexArray (cube_vao);
+//    glDrawArrays (GL_TRIANGLES, 0, 36);
+//    glDepthMask (GL_TRUE);
     
 	// Set shader to use
-	//glUseProgram(Renderer::GetShaderProgramID());
+	glUseProgram(Renderer::GetShaderProgramID());
     
 	// This looks for the MVP Uniform variable in the Vertex Program
 	GLuint VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform"); 
@@ -426,10 +296,15 @@ void World::LoadCameras()
     mCamera.push_back(new StaticCamera(vec3(3.0f, 30.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     
-	CubeModel * character = new CubeModel();
-    character->SetPosition(vec3(0.0f, 0.0f, 0.0f));
-	character->ActivateCollisions(false);
-    mModel.push_back(character);
+//    CubeModel* box = new CubeModel();
+//    box->SetPosition(vec3(0.0f, 0.0f, 0.0f));
+//    box->SetScaling(vec3(50.0f, 50.0f, 50.0f));
+//    box->ActivateCollisions(false);
+//    mModel.push_back(box);
+//    
+
+    
+    StarCubeModel::StarGenerator();
 
 	//Ship Character controlled with Third Person Camera
 	ShipModel * ship_model = new ShipModel(vec3(5.0f, 0.0f, 0.0f), vec3(0.5f, 0.5f, 0.5f));

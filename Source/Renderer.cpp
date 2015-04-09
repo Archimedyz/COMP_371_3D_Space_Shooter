@@ -70,6 +70,10 @@ void Renderer::Initialize()
                 LoadShaders(shaderPathPrefix + "cubemap.vertexshader",
                             shaderPathPrefix + "cubemap.fragmentshader")
                                );
+    sShaderProgramID.push_back(
+                LoadShaders(shaderPathPrefix + "skybox.vertexshader",
+                            shaderPathPrefix + "skybox.fragmentshader")
+                               );
 	sCurrentShader = 0;
 
 }
