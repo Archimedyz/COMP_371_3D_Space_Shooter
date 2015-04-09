@@ -10,9 +10,11 @@
 
 #pragma once
 #include "ImageLoader.h"
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
-#include <GLUT/GLUT.h>
+#include "GL\glew.h"
+#include "GLFW\glfw3.h"
+//#include <OpenGL/gl.h>
+//#include <OpenGL/glu.h>
+//#include <GLUT/GLUT.h>
 
 class SkyBox
 {

@@ -72,7 +72,6 @@
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
-    <ClCompile Include="..\Source\ImageLoader.cpp" />
     <ClCompile Include="..\Source\Loader.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Model.cpp" />
@@ -81,7 +80,6 @@
     <ClCompile Include="..\Source\Projectile.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
     <ClCompile Include="..\Source\shader.cpp" />
-    <ClCompile Include="..\Source\Skybox.cpp" />
     <ClCompile Include="..\Source\ShipModel.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
@@ -97,7 +95,6 @@
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
-    <ClInclude Include="..\Source\ImageLoader.h" />
     <ClInclude Include="..\Source\Loader.h" />
     <ClInclude Include="..\Source\Model.h" />
     <ClInclude Include="..\Source\objloader.hpp" />
@@ -105,7 +102,6 @@
     <ClInclude Include="..\Source\Path.h" />
     <ClInclude Include="..\Source\Projectile.h" />
     <ClInclude Include="..\Source\Renderer.h" />
-    <ClInclude Include="..\Source\Skybox.h" />
     <ClInclude Include="..\Source\shader.hpp" />
     <ClInclude Include="..\Source\ShipModel.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
@@ -131,11 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resources\Models\uvmap.DDS" />
-    <Image Include="..\Source\moon.bmp" />
-    <Image Include="..\Source\ngc281.bmp" />
-    <Image Include="..\Source\star1.bmp" />
-    <Image Include="..\Source\star2.bmp" />
-    <Image Include="..\Source\sun.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="COMP_371_Space_Shooter.rc" />

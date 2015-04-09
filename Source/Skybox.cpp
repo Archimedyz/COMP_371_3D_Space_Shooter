@@ -3,16 +3,16 @@
 
 SkyBox::SkyBox(void)
 {
-	im = loadBMP("COMP371_Framework.app/Content/Resources/star2.bmp");
+	im = loadBMP("../star2.bmp");
     //im = loadBMP([[NSBundle mainBundle] pathForResource:@"star2" ofType:@"bmp"]
 	tex1 = loadTexture(im);
-	im = loadBMP("ngc281.bmp");
+	im = loadBMP("../ngc281.bmp");
 	tex2 = loadTexture(im);
-	im = loadBMP("sun.bmp");
+	im = loadBMP("../sun.bmp");
 	tex3 = loadTexture(im);
-	im = loadBMP("moon.bmp");
+	im = loadBMP("../moon.bmp");
 	tex4 = loadTexture(im);
-	im = loadBMP("star1.bmp");
+	im = loadBMP("../star1.bmp");
 	tex5 = loadTexture(im);
     
 }
