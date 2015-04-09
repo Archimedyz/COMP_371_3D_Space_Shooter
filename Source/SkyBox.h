@@ -1,38 +1,21 @@
-//Comp371_w12 Section R
-//Prof. S. Mokhov
-//Programming Assignment Final Build
-//Team 4
-//Jordan V. 1300520
-//Taras K. 6901204
-//Gianni T. 1938878
-//Sebastien S. 9500782
-//This is the Skybox header. This class draws the skybox.
+//
+// Some code taken from https://procedural.googlecode.com/svn/trunk/v1/POC/
 
-#pragma once
-#include "ImageLoader.h"
-#include "GL\glew.h"
-#include "GLFW\glfw3.h"
-//#include <OpenGL/gl.h>
-//#include <OpenGL/glu.h>
-//#include <GLUT/GLUT.h>
+#include <GL/glew.h>
 
-class SkyBox
-{
+#ifndef SKYBOX_H
+#define SKYBOX_H
+
+class Skybox{
+
 private:
-	GLuint tex1;
-	GLuint tex2;
-	GLuint tex3;
-	GLuint tex4;
-	GLuint tex5;
-
-	Image* im;
-
-	GLuint loadTexture(Image* image);
+    
 
 public:
-	SkyBox(void);
-	~SkyBox(void);
-
-	void draw();
+	Skybox();
+    ~Skybox();
+    void initSkybox();
+    void drawSkybox();
 };
 
+#endif

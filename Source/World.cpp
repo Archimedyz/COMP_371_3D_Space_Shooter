@@ -30,25 +30,13 @@ using namespace glm;
 
 World* World::instance;
 int World::addCounter;
-//Skybox* skyboxObj = new Skybox();
+Skybox* skyboxObj = new Skybox();
 
 World::World()
 {
-	//load BMP Skybox textures and make GLuints out of them
-	#if defined(PLATFORM_OSX)
-	std::cout << "Unable to load BMP images on mac";
-	#else
-	GLuint bmp_RT = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_RT.bmp");
-	GLuint bmp_LT = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_LT.bmp");
-	GLuint bmp_UP = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_UP.bmp");
-	GLuint bmp_DN = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_DN.bmp");
-	GLuint bmp_BK = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_BK.bmp");
-	GLuint bmp_FT = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_FT.bmp");
-	GLuint _skybox[6];
-	#endif
     instance = this;
 	addCounter = 0;
-    //skyboxObj->initSkybox();
+    skyboxObj->initSkybox();
 }
 
 World::~World()
@@ -105,7 +93,7 @@ void World::Update(float dt)
 	}
 	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_4 ) == GLFW_PRESS)
 	{
-        // Spline camera
+        // Third Person Cam
 		if (mCamera.size() > 3)
 		{
 			mCurrentCamera = 3;
@@ -153,96 +141,22 @@ void World::Update(float dt)
 
 void World::Draw()
 {
-	Renderer::BeginFrame();
 	
+	Renderer::BeginFrame();
+
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
 
-	// Store the current matrix
-	glPushMatrix();
-
-	// Reset and transform the matrix.
-	glLoadIdentity();
-	gluLookAt(
-		0, 0, 0,
-		camera->x(), camera->y(), camera->z(),
-		0, 1, 0);
-
-	// Enable/Disable features
-	glPushAttrib(GL_ENABLE_BIT);
-	glEnable(GL_TEXTURE_2D);
-	glDisable(GL_DEPTH_TEST);
-	glDisable(GL_LIGHTING);
-	glDisable(GL_BLEND);
-
-	// Just in case we set all vertices to white.
-	glColor4f(1, 1, 1, 1);
-
-	// Render the front quad
-	glBindTexture(GL_TEXTURE_2D, _skybox[0]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0, 0); glVertex3f(0.5f, -0.5f, -0.5f);
-	glTexCoord2f(1, 0); glVertex3f(-0.5f, -0.5f, -0.5f);
-	glTexCoord2f(1, 1); glVertex3f(-0.5f, 0.5f, -0.5f);
-	glTexCoord2f(0, 1); glVertex3f(0.5f, 0.5f, -0.5f);
-	glEnd();
-
-	// Render the left quad
-	glBindTexture(GL_TEXTURE_2D, _skybox[1]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0, 0); glVertex3f(0.5f, -0.5f, 0.5f);
-	glTexCoord2f(1, 0); glVertex3f(0.5f, -0.5f, -0.5f);
-	glTexCoord2f(1, 1); glVertex3f(0.5f, 0.5f, -0.5f);
-	glTexCoord2f(0, 1); glVertex3f(0.5f, 0.5f, 0.5f);
-	glEnd();
-
-	// Render the back quad
-	glBindTexture(GL_TEXTURE_2D, _skybox[2]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0, 0); glVertex3f(-0.5f, -0.5f, 0.5f);
-	glTexCoord2f(1, 0); glVertex3f(0.5f, -0.5f, 0.5f);
-	glTexCoord2f(1, 1); glVertex3f(0.5f, 0.5f, 0.5f);
-	glTexCoord2f(0, 1); glVertex3f(-0.5f, 0.5f, 0.5f);
-
-	glEnd();
-
-	// Render the right quad
-	glBindTexture(GL_TEXTURE_2D, _skybox[3]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0, 0); glVertex3f(-0.5f, -0.5f, -0.5f);
-	glTexCoord2f(1, 0); glVertex3f(-0.5f, -0.5f, 0.5f);
-	glTexCoord2f(1, 1); glVertex3f(-0.5f, 0.5f, 0.5f);
-	glTexCoord2f(0, 1); glVertex3f(-0.5f, 0.5f, -0.5f);
-	glEnd();
-
-	// Render the top quad
-	glBindTexture(GL_TEXTURE_2D, _skybox[4]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0, 1); glVertex3f(-0.5f, 0.5f, -0.5f);
-	glTexCoord2f(0, 0); glVertex3f(-0.5f, 0.5f, 0.5f);
-	glTexCoord2f(1, 0); glVertex3f(0.5f, 0.5f, 0.5f);
-	glTexCoord2f(1, 1); glVertex3f(0.5f, 0.5f, -0.5f);
-	glEnd();
-
-	// Render the bottom quad
-	glBindTexture(GL_TEXTURE_2D, _skybox[5]);
-	glBegin(GL_QUADS);
-	glTexCoord2f(0, 0); glVertex3f(-0.5f, -0.5f, -0.5f);
-	glTexCoord2f(0, 1); glVertex3f(-0.5f, -0.5f, 0.5f);
-	glTexCoord2f(1, 1); glVertex3f(0.5f, -0.5f, 0.5f);
-	glTexCoord2f(1, 0); glVertex3f(0.5f, -0.5f, -0.5f);
-	glEnd();
-
-	// Restore enable bits and matrix
-	glPopAttrib();
-	glPopMatrix();
- 
 	// This looks for the MVP Uniform variable in the Vertex Program
 	GLuint VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform"); 
 
 	// Send the view projection constants to the shader
 	mat4 VP = mCamera[mCurrentCamera]->GetViewProjectionMatrix();
 	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
+
+	// draw skybox
+	//glm::vec3 skyboxLookAt = mCamera[mCurrentCamera]->mLookAt;
+	skyboxObj->drawSkybox();
 
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)

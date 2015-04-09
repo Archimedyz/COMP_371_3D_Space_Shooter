@@ -1,115 +1,154 @@
-// From http://www.davidwparker.com/2012/12/26/opengl-screencast-video-21-skybox/
 
+#include "SkyBox.h"
 
-#include "Skybox.h"
-#include "Texture.hpp"
-#include "Variables.h"
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <math.h>
-#include <iostream>
-
-
-GLuint skybox[6];
-Skybox::Skybox()
+SkyBox::SkyBox(void)
 {
-	std::cout << "skybox made... ";
-}
-
-Skybox::~Skybox()
-{
-
-}
-
-/*
- *  initSkybox
- *  ------
- *  initializes all of our textures for the skybox background
- */
-void Skybox::initSkybox(void)
-{
+	im = loadBMP("../star2.bmp");
+    //im = loadBMP([[NSBundle mainBundle] pathForResource:@"star2" ofType:@"bmp"]
+	tex1 = loadTexture(im);
+	im = loadBMP("../ngc281.bmp");
+	tex2 = loadTexture(im);
+	im = loadBMP("../sun.bmp");
+	tex3 = loadTexture(im);
+	im = loadBMP("../moon.bmp");
+	tex4 = loadTexture(im);
+	im = loadBMP("../star1.bmp");
+	tex5 = loadTexture(im);
     
-    /*
-     SKY_FRONT 0
-     SKY_RIGHT 1
-     SKY_LEFT 2
-     SKY_BACK 3
-     SKY_UP 4
-     SKY_DOWN 5
-     */
-#if defined(PLATFORM_OSX)
-    skybox[SKY_FRONT] = loadBMP_custom("Resources/GalaxySkybox/Galaxy_FT.bmp");
-    skybox[SKY_RIGHT] = loadBMP_custom("Resources/GalaxySkybox/Galaxy_RT.bmp");
-    skybox[SKY_LEFT] = loadBMP_custom("Resources/GalaxySkybox/Galaxy_LT.bmp");
-    skybox[SKY_BACK] = loadBMP_custom("Resources/GalaxySkybox/Galaxy_BK.bmp");
-    skybox[SKY_UP] = loadBMP_custom("Resources/GalaxySkybox/Galaxy_UP.bmp");
-    skybox[SKY_DOWN] = loadBMP_custom("Resources/GalaxySkybox/Galaxy_DN.bmp");
-#else
-    skybox[SKY_FRONT] = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_FT.bmp");
-    skybox[SKY_RIGHT] = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_RT.bmp");
-    skybox[SKY_LEFT] = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_LT.bmp");
-    skybox[SKY_BACK] = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_BK.bmp");
-    skybox[SKY_UP] = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_UP.bmp");
-    skybox[SKY_DOWN] = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_DN.bmp");
-#endif
-    
-    
-}
-void Skybox::drawSkybox(double D)
-{
-    float white[] = {1,1,1,1};
-    glColor3fv(white);
-    glEnable(GL_TEXTURE_2D);
-    
-    /* Sides */
-    glBindTexture(GL_TEXTURE_2D,skybox[SKY_RIGHT]);
-    glBegin(GL_QUADS);
-    glTexCoord2f(0,0); glVertex3f(-D,-D,-D);
-    glTexCoord2f(1,0); glVertex3f(+D,-D,-D);
-    glTexCoord2f(1,1); glVertex3f(+D,+D,-D);
-    glTexCoord2f(0,1); glVertex3f(-D,+D,-D);
-    glEnd();
-    glBindTexture(GL_TEXTURE_2D,skybox[SKY_FRONT]);
-    glBegin(GL_QUADS);
-    glTexCoord2f(0,0); glVertex3f(+D,-D,-D);
-    glTexCoord2f(1,0); glVertex3f(+D,-D,+D);
-    glTexCoord2f(1,1); glVertex3f(+D,+D,+D);
-    glTexCoord2f(0,1); glVertex3f(+D,+D,-D);
-    glEnd();
-    glBindTexture(GL_TEXTURE_2D,skybox[SKY_LEFT]);
-    glBegin(GL_QUADS);
-    glTexCoord2f(0,0); glVertex3f(+D,-D,+D);
-    glTexCoord2f(1,0); glVertex3f(-D,-D,+D);
-    glTexCoord2f(1,1); glVertex3f(-D,+D,+D);
-    glTexCoord2f(0,1); glVertex3f(+D,+D,+D);
-    glEnd();
-    glBindTexture(GL_TEXTURE_2D,skybox[SKY_BACK]);
-    glBegin(GL_QUADS);
-    glTexCoord2f(0,0); glVertex3f(-D,-D,+D);
-    glTexCoord2f(1,0); glVertex3f(-D,-D,-D);
-    glTexCoord2f(1,1); glVertex3f(-D,+D,-D);
-    glTexCoord2f(0,1); glVertex3f(-D,+D,+D);
-    glEnd();
-    
-    /* Top and Bottom */
-    glBindTexture(GL_TEXTURE_2D,skybox[SKY_UP]);
-    glBegin(GL_QUADS);
-    glTexCoord2f(0,0); glVertex3f(-D,+D,-D);
-    glTexCoord2f(1,0); glVertex3f(+D,+D,-D);
-    glTexCoord2f(1,1); glVertex3f(+D,+D,+D);
-    glTexCoord2f(0,1); glVertex3f(-D,+D,+D);
-    glEnd();
-    glBindTexture(GL_TEXTURE_2D,skybox[SKY_DOWN]);
-    glBegin(GL_QUADS);
-    glTexCoord2f(1,1); glVertex3f(+D,-D,-D);
-    glTexCoord2f(0,1); glVertex3f(-D,-D,-D);
-    glTexCoord2f(0,0); glVertex3f(-D,-D,+D);
-    glTexCoord2f(1,0); glVertex3f(+D,-D,+D);
-    glEnd();
-    
-    glDisable(GL_TEXTURE_2D);
 }
 
 
+SkyBox::~SkyBox(void)
+{
+}
 
-	
+void SkyBox::draw()
+{
+	glPushMatrix();
+		glPushMatrix();
+			glEnable(GL_TEXTURE_2D);
+				glBindTexture(GL_TEXTURE_2D, tex1);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+					glBegin(GL_QUADS);
+						glNormal3f(0.0, 0.0, -1.0);
+
+						glTexCoord2f(1.0f, 1.0f);
+						glVertex3f( 0.5, 0.5, 0.5); //Top Right
+
+						glTexCoord2f(0.0f, 1.0f);
+						glVertex3f(-0.5, 0.5, 0.5); //Top Left
+
+						glTexCoord2f(0.0f, 0.0f);
+						glVertex3f(-0.5,-0.5, 0.5); //Bottom Left
+
+						glTexCoord2f(1.0f, 0.0f);
+						glVertex3f( 0.5,-0.5, 0.5); //Bottom Right
+					glEnd();
+			glDisable(GL_TEXTURE_2D);
+		glPopMatrix();
+				
+		glPushMatrix();
+			glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, tex2);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glBegin(GL_QUADS);
+			glNormal3f(0.0, 0.0, 1.0);
+			glTexCoord2f(0.0f, 0.0f);
+			glVertex3f( 0.5,-0.5,-0.5);
+			glTexCoord2f(1.0f, 0.0f);
+			glVertex3f(-0.5,-0.5,-0.5);
+			glTexCoord2f(1.0f, 1.0f);
+			glVertex3f(-0.5, 0.5,-0.5);
+			glTexCoord2f(0.0f, 1.0f);
+			glVertex3f( 0.5, 0.5,-0.5);
+			glEnd();
+			glDisable(GL_TEXTURE_2D);
+		glPopMatrix();
+				
+		glPushMatrix();
+			glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, tex3);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glBegin(GL_QUADS);
+			glNormal3f(1.0, 0.0, 0.0);
+			glTexCoord2f(1.0f, 1.0f);
+			glVertex3f(-0.5, 0.5, 0.5);
+			glTexCoord2f(0.0f, 1.0f);
+			glVertex3f(-0.5, 0.5,-0.5);
+			glTexCoord2f(0.0f, 0.0f);
+			glVertex3f(-0.5,-0.5,-0.5);
+			glTexCoord2f(1.0f, 0.0f);
+			glVertex3f(-0.5,-0.5, 0.5);
+			glEnd();
+			glDisable(GL_TEXTURE_2D);
+		glPopMatrix();
+				
+		glPushMatrix();
+			glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, tex4);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glBegin(GL_QUADS);
+			glNormal3f(-1.0, 0.0, 0.0);
+			glTexCoord2f(1.0f, 1.0f);
+			glVertex3f( 0.5, 0.5,-0.5);
+			glTexCoord2f(0.0f, 1.0f);
+			glVertex3f( 0.5, 0.5, 0.5);
+			glTexCoord2f(0.0f, 0.0f);
+			glVertex3f( 0.5,-0.5, 0.5);
+			glTexCoord2f(1.0f, 0.0f);
+			glVertex3f( 0.5,-0.5,-0.5);
+			glEnd();
+			glDisable(GL_TEXTURE_2D);
+		glPopMatrix();
+				
+		glPushMatrix();
+			glColor3f(0, 0, 0);
+			glNormal3f(0.0, -1.0, 0.0);
+			glVertex3f( 0.5,-0.5, 0.5);
+			glVertex3f(-0.5,-0.5, 0.5);
+			glVertex3f(-0.5,-0.5,-0.5);
+			glVertex3f( 0.5,-0.5,-0.5);
+		glPopMatrix();
+			
+		glPushMatrix();
+			glEnable(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, tex5);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glBegin(GL_QUADS);
+			glColor3f(1, 1, 1);
+			glNormal3f(0.0, -1.0, 0.0);
+			glTexCoord2f(1.0f, 1.0f);
+			glVertex3f( 0.5, 0.5,-0.5);
+			glTexCoord2f(0.0f, 1.0f);
+			glVertex3f(-0.5, 0.5,-0.5);
+			glTexCoord2f(0.0f, 0.0f);
+			glVertex3f(-0.5, 0.5, 0.5);
+			glTexCoord2f(1.0f, 0.0f);
+			glVertex3f( 0.5, 0.5, 0.5);
+			glEnd();
+			glDisable(GL_TEXTURE_2D);
+		glPopMatrix();
+	glPopMatrix();
+}
+
+//Makes the image into a texture, and returns the id of the texture
+GLuint SkyBox::loadTexture(Image* image)
+{
+	GLuint tempTexture;
+	glGenTextures(1, &tempTexture);
+	glBindTexture(GL_TEXTURE_2D, tempTexture);
+	glTexImage2D(GL_TEXTURE_2D,
+				 0,
+				 GL_RGB,
+				 image->width, image->height,
+				 0,
+				 GL_RGB,
+				 GL_UNSIGNED_BYTE,
+				 image->pixels);
+	return tempTexture;
+}
