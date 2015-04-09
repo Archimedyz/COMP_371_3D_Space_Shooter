@@ -28,44 +28,13 @@
 using namespace std;
 using namespace glm;
 
-//GLuint loadTexture(Image* image);
-
-//Variables for storing textures.
-//GLuint blockTexId1;
-//GLuint blockTexId2;
-//GLuint blockTexId3;
-//GLuint blockTexId4;
-//GLuint blockTexId5;
-//GLuint hole; //Hole texture stored here.
-//Image* im;
-//GLuint tileTex;
-//GLuint tex1;
-//GLuint tex2;
-//GLuint tex3;
-//SkyBox sky;
-
-//GLuint loadTexture(Image* image)
-//{
-//    GLuint tempTexture;
-//    glGenTextures(1, &tempTexture);
-//    glBindTexture(GL_TEXTURE_2D, tempTexture);
-//    glTexImage2D(GL_TEXTURE_2D,
-//                 0,
-//                 GL_RGB,
-//                 image->width, image->height,
-//                 0,
-//                 GL_RGB,
-//                 GL_UNSIGNED_BYTE,
-//                 image->pixels);
-//    return tempTexture;
-//}
-
 World* World::instance;
 int World::addCounter;
 //Skybox* skyboxObj = new Skybox();
 
 World::World()
 {
+	//load BMP Skybox textures and make GLuints out of them
 	#if defined(PLATFORM_OSX)
 	std::cout << "Unable to load BMP images on mac";
 	#else
@@ -75,6 +44,7 @@ World::World()
 	GLuint bmp_DN = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_DN.bmp");
 	GLuint bmp_BK = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_BK.bmp");
 	GLuint bmp_FT = loadBMP_custom("../Resources/GalaxySkybox/Galaxy_FT.bmp");
+	GLuint _skybox[6];
 	#endif
     instance = this;
 	addCounter = 0;
@@ -178,11 +148,7 @@ void World::Update(float dt)
 	}
 	
 }
-/*
- *  drawSkybox(double D)
- *  ------
- *  Draws the skybox around the entire screen
- */
+
 
 
 void World::Draw()
@@ -191,12 +157,85 @@ void World::Draw()
 	
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
-    ////skyboxObj.drawSkybox(20.0);
-    //glPushMatrix();
-    //glTranslatef(25,0,25);
-    //glScalef(75,75,75);
-    //sky.draw();
-    //glPopMatrix();
+
+	// Store the current matrix
+	glPushMatrix();
+
+	// Reset and transform the matrix.
+	glLoadIdentity();
+	gluLookAt(
+		0, 0, 0,
+		camera->x(), camera->y(), camera->z(),
+		0, 1, 0);
+
+	// Enable/Disable features
+	glPushAttrib(GL_ENABLE_BIT);
+	glEnable(GL_TEXTURE_2D);
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_LIGHTING);
+	glDisable(GL_BLEND);
+
+	// Just in case we set all vertices to white.
+	glColor4f(1, 1, 1, 1);
+
+	// Render the front quad
+	glBindTexture(GL_TEXTURE_2D, _skybox[0]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex3f(0.5f, -0.5f, -0.5f);
+	glTexCoord2f(1, 0); glVertex3f(-0.5f, -0.5f, -0.5f);
+	glTexCoord2f(1, 1); glVertex3f(-0.5f, 0.5f, -0.5f);
+	glTexCoord2f(0, 1); glVertex3f(0.5f, 0.5f, -0.5f);
+	glEnd();
+
+	// Render the left quad
+	glBindTexture(GL_TEXTURE_2D, _skybox[1]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex3f(0.5f, -0.5f, 0.5f);
+	glTexCoord2f(1, 0); glVertex3f(0.5f, -0.5f, -0.5f);
+	glTexCoord2f(1, 1); glVertex3f(0.5f, 0.5f, -0.5f);
+	glTexCoord2f(0, 1); glVertex3f(0.5f, 0.5f, 0.5f);
+	glEnd();
+
+	// Render the back quad
+	glBindTexture(GL_TEXTURE_2D, _skybox[2]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex3f(-0.5f, -0.5f, 0.5f);
+	glTexCoord2f(1, 0); glVertex3f(0.5f, -0.5f, 0.5f);
+	glTexCoord2f(1, 1); glVertex3f(0.5f, 0.5f, 0.5f);
+	glTexCoord2f(0, 1); glVertex3f(-0.5f, 0.5f, 0.5f);
+
+	glEnd();
+
+	// Render the right quad
+	glBindTexture(GL_TEXTURE_2D, _skybox[3]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex3f(-0.5f, -0.5f, -0.5f);
+	glTexCoord2f(1, 0); glVertex3f(-0.5f, -0.5f, 0.5f);
+	glTexCoord2f(1, 1); glVertex3f(-0.5f, 0.5f, 0.5f);
+	glTexCoord2f(0, 1); glVertex3f(-0.5f, 0.5f, -0.5f);
+	glEnd();
+
+	// Render the top quad
+	glBindTexture(GL_TEXTURE_2D, _skybox[4]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 1); glVertex3f(-0.5f, 0.5f, -0.5f);
+	glTexCoord2f(0, 0); glVertex3f(-0.5f, 0.5f, 0.5f);
+	glTexCoord2f(1, 0); glVertex3f(0.5f, 0.5f, 0.5f);
+	glTexCoord2f(1, 1); glVertex3f(0.5f, 0.5f, -0.5f);
+	glEnd();
+
+	// Render the bottom quad
+	glBindTexture(GL_TEXTURE_2D, _skybox[5]);
+	glBegin(GL_QUADS);
+	glTexCoord2f(0, 0); glVertex3f(-0.5f, -0.5f, -0.5f);
+	glTexCoord2f(0, 1); glVertex3f(-0.5f, -0.5f, 0.5f);
+	glTexCoord2f(1, 1); glVertex3f(0.5f, -0.5f, 0.5f);
+	glTexCoord2f(1, 0); glVertex3f(0.5f, -0.5f, -0.5f);
+	glEnd();
+
+	// Restore enable bits and matrix
+	glPopAttrib();
+	glPopMatrix();
 
 //#if defined(PLATFORM_OSX)
 //    Shader shader("Shaders/cubemaps.vs", "Shaders/cubemaps.frag");
@@ -322,16 +361,6 @@ void World::Draw()
 //    glEnableVertexAttribArray(0);
 //    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
 //    glBindVertexArray(0);
-//    
-//    GLuint TexRT = LoadTexture("GalaxySkybox/Galaxy_RT.bmp");
-//    GLuint TexLT = LoadTexture("GalaxySkybox/Galaxy_LT.bmp");
-//    GLuint TexUP = LoadTexture("GalaxySkybox/Galaxy_UP.bmp");
-//    GLuint TexDN = LoadTexture("GalaxySkybox/Galaxy_DN.bmp");
-//    GLuint TexBK = LoadTexture("GalaxySkybox/Galaxy_BK.bmp");
-//    GLuint TexFT = LoadTexture("GalaxySkybox/Galaxy_FT.bmp");
-//    
-//    GLuint BMP_RT = loadBMP_custom("GalaxySkybox/Galaxy_RT.bmp");
-//    
 //    vector<const GLchar*> faces;
 //    faces.push_back("GalaxySkybox/Galaxy_RT.bmp");
 //    faces.push_back("GalaxySkybox/Galaxy_LT.bmp");
