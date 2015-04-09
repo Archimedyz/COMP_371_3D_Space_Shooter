@@ -1,11 +1,19 @@
+//Comp371_w12 Section R
+//Prof. S. Mokhov
+//Programming Assignment Final Build
+//Team 4
+//Jordan V. 1300520
+//Taras K. 6901204
+//Gianni T. 1938878
+//Sebastien S. 9500782
+//This is the Skybox implimentation file.
 
 #include "SkyBox.h"
 
 SkyBox::SkyBox(void)
 {
-	//im = loadBMP("COMP371_Framework.app/Content/Resources/star2.bmp");
-    im = loadBMP([[NSBundle mainBundle] pathForResource:@"star2" ofType:@"bmp"]
-	tex1 = loadTexture(im));
+	im = loadBMP("star2.bmp");
+	tex1 = loadTexture(im);
 	im = loadBMP("ngc281.bmp");
 	tex2 = loadTexture(im);
 	im = loadBMP("sun.bmp");
@@ -14,7 +22,6 @@ SkyBox::SkyBox(void)
 	tex4 = loadTexture(im);
 	im = loadBMP("star1.bmp");
 	tex5 = loadTexture(im);
-    
 }
 
 

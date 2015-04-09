@@ -1,3 +1,7 @@
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+#include "EventManager.h"
+
 #include "World.h"
 #include "Renderer.h"
 #include "ParsingHelper.h"
@@ -14,24 +18,52 @@
 #include "ShipModel.h"
 #include "Loader.h"
 
-#include "Skybox.h"
 #include "Texture.hpp"
 #include "LoadTexture.h"
-#include "shaderSkybox.h"
-#include "cameraSkybox.h"
 #include <glm/gtc/type_ptr.hpp>
 #include "Variables.h"
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include "EventManager.h"
+#include "ImageLoader.h"
+#include "SkyBox.h"
 
 using namespace std;
 using namespace glm;
 
+GLuint loadTexture(Image* image);
+
+//Variables for storing textures.
+GLuint blockTexId1;
+GLuint blockTexId2;
+GLuint blockTexId3;
+GLuint blockTexId4;
+GLuint blockTexId5;
+GLuint hole; //Hole texture stored here.
+Image* im;
+GLuint tileTex;
+GLuint tex1;
+GLuint tex2;
+GLuint tex3;
+SkyBox sky;
+
+GLuint loadTexture(Image* image)
+{
+    GLuint tempTexture;
+    glGenTextures(1, &tempTexture);
+    glBindTexture(GL_TEXTURE_2D, tempTexture);
+    glTexImage2D(GL_TEXTURE_2D,
+                 0,
+                 GL_RGB,
+                 image->width, image->height,
+                 0,
+                 GL_RGB,
+                 GL_UNSIGNED_BYTE,
+                 image->pixels);
+    return tempTexture;
+}
+
 World* World::instance;
 int World::addCounter;
-Skybox* skyboxObj = new Skybox();
+//Skybox* skyboxObj = new Skybox();
 
 World::World()
 {
@@ -151,6 +183,11 @@ void World::Draw()
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
     //skyboxObj.drawSkybox(20.0);
+    glPushMatrix();
+    glTranslatef(25,0,25);
+    glScalef(75,75,75);
+    sky.draw();
+    glPopMatrix();
 
 //#if defined(PLATFORM_OSX)
 //    Shader shader("Shaders/cubemaps.vs", "Shaders/cubemaps.frag");
