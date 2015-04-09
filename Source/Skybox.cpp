@@ -53,13 +53,10 @@ void Skybox::drawSkybox()
 	// Reset and transform the matrix.
 	glLoadIdentity();
 	//std::cout << "load identity\n";
-	glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
-	glm::vec3 lookAt = 
-	//glm::lookAt();
-	/*gluLookAt(
+	gluLookAt(
+		0, 0, 1,
 		0, 0, 0,
-		0, 0, 0,
-		0, 1, 0);*/
+		0, 1, 0);
 
 	// Enable/Disable features
 	glPushAttrib(GL_ENABLE_BIT);
@@ -105,7 +102,6 @@ void Skybox::drawSkybox()
 	glTexCoord2f(1, 0); glVertex3f(0.5f, -0.5f, 0.5f);
 	glTexCoord2f(1, 1); glVertex3f(0.5f, 0.5f, 0.5f);
 	glTexCoord2f(0, 1); glVertex3f(-0.5f, 0.5f, 0.5f);
-
 	glEnd();
 
 	// Render the right quad

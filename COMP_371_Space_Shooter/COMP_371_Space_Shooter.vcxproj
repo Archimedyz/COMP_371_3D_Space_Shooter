@@ -49,7 +49,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>../ThirdParty/glew-1.10.0/lib/Release/Win32;../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc110;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glu.lib;opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -118,12 +118,8 @@
     <None Include="..\Scenes\CoordinateSystem.scene" />
     <None Include="..\Scenes\PathScene.scene" />
     <None Include="..\Shaders\BlueColor.fragmentshader" />
-    <None Include="..\Shaders\cubemaps.frag" />
-    <None Include="..\Shaders\cubemaps.vs" />
     <None Include="..\Shaders\PathLines.fragmentshader" />
     <None Include="..\Shaders\PathLines.vertexshader" />
-    <None Include="..\Shaders\skybox.frag" />
-    <None Include="..\Shaders\Skybox.vs" />
     <None Include="..\Shaders\SolidColor.fragmentshader" />
     <None Include="..\Shaders\SolidColor.vertexshader" />
   </ItemGroup>
