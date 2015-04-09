@@ -470,7 +470,6 @@
 					"$(inherited)",
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
-					/Users/skyler/Documents/COMP_371_3D_Space_Shooter/ThirdParty/SOIL/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -494,7 +493,6 @@
 					"$(inherited)",
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
-					/Users/skyler/Documents/COMP_371_3D_Space_Shooter/ThirdParty/SOIL/lib,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";

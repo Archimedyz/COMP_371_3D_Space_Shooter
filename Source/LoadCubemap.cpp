@@ -8,12 +8,7 @@
 
 //
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <assert.h>
-#include <math.h>
 #include "LoadCubemap.h"
-#include "stb_image.h"
 
 LoadCubemap::LoadCubemap() {};
 LoadCubemap::~LoadCubemap() {};

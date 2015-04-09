@@ -25,6 +25,7 @@
 #include "ImageLoader.h"
 #include "LoadCubemap.h"
 #include "SkyBox.h"
+#include "stb_image.h"
 
 using namespace std;
 using namespace glm;

@@ -9,7 +9,13 @@
 #ifndef __COMP371_Framework__LoadCubemap__
 #define __COMP371_Framework__LoadCubemap__
 
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+#include <assert.h>
+#include <math.h>
 #include <stdio.h>
+#include "stb_image.h"
+
 
 class LoadCubemap
 {
