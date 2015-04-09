@@ -147,6 +147,8 @@ void World::Draw()
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
 
+	skyboxObj->drawSkybox();
+
 	// This looks for the MVP Uniform variable in the Vertex Program
 	GLuint VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform"); 
 
@@ -156,7 +158,12 @@ void World::Draw()
 
 	// draw skybox
 	//glm::vec3 skyboxLookAt = mCamera[mCurrentCamera]->mLookAt;
-	skyboxObj->drawSkybox();
+	//glPushMatrix();
+	//glTranslatef(25, 0, 25);
+	//glScalef(75, 75, 75);
+	//skyboxObj->drawSkybox();
+	//glPopMatrix();
+	
 
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
