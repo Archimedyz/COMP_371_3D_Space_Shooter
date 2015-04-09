@@ -72,6 +72,7 @@
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
+    <ClCompile Include="..\Source\ImageLoader.cpp" />
     <ClCompile Include="..\Source\Loader.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Model.cpp" />
@@ -96,9 +97,8 @@
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
-    <ClInclude Include="..\Source\LoadCubeMap.h" />
+    <ClInclude Include="..\Source\ImageLoader.h" />
     <ClInclude Include="..\Source\Loader.h" />
-    <ClInclude Include="..\Source\LoadTexture.h" />
     <ClInclude Include="..\Source\Model.h" />
     <ClInclude Include="..\Source\objloader.hpp" />
     <ClInclude Include="..\Source\ParsingHelper.h" />
@@ -130,13 +130,12 @@
     <None Include="..\Shaders\SolidColor.vertexshader" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Source\Galaxy_BK.bmp" />
     <Image Include="..\Resources\Models\uvmap.DDS" />
-    <Image Include="..\Source\Galaxy_DN.bmp" />
-    <Image Include="..\Source\Galaxy_FT.bmp" />
-    <Image Include="..\Source\Galaxy_LT.bmp" />
-    <Image Include="..\Source\Galaxy_RT.bmp" />
-    <Image Include="..\Source\Galaxy_UP.bmp" />
+    <Image Include="..\Source\moon.bmp" />
+    <Image Include="..\Source\ngc281.bmp" />
+    <Image Include="..\Source\star1.bmp" />
+    <Image Include="..\Source\star2.bmp" />
+    <Image Include="..\Source\sun.bmp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="COMP_371_Space_Shooter.rc" />
