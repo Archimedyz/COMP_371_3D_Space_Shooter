@@ -36,7 +36,6 @@ void Skybox::initSkybox(void)
 }
 void Skybox::drawSkybox()
 {
-
 	// Store the current matrix
 	glPushMatrix();
 
@@ -54,14 +53,13 @@ void Skybox::drawSkybox()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-
-
 	//not sure
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
 	// Just in case we set all vertices to white.
 	glColor4f(1, 1, 1, 1);
+
 
 	// Render the front quad
 	glBindTexture(GL_TEXTURE_2D, bmp_FT);
@@ -80,6 +78,7 @@ void Skybox::drawSkybox()
 	glTexCoord2f(1, 1); glVertex3f(0.5f, 0.5f, -0.5f);
 	glTexCoord2f(0, 1); glVertex3f(0.5f, 0.5f, 0.5f);
 	glEnd();
+
 
 	// Render the back quad
 	glBindTexture(GL_TEXTURE_2D, bmp_BK);
@@ -121,7 +120,6 @@ void Skybox::drawSkybox()
 	glPopAttrib();
     glEnable(GL_DEPTH_TEST);
 	glPopMatrix();
-    
 }
 
 
