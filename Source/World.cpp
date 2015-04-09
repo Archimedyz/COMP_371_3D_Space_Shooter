@@ -30,13 +30,19 @@ using namespace glm;
 
 World* World::instance;
 int World::addCounter;
+#if defined(PLATFORM_OSX)
+#else
 Skybox* skyboxObj = new Skybox();
+#endif
 
 World::World()
 {
     instance = this;
 	addCounter = 0;
+#if defined(PLATFORM_OSX)
+#else
     skyboxObj->initSkybox();
+#endif
 }
 
 World::~World()
@@ -147,8 +153,10 @@ void World::Draw()
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
 
-	skyboxObj->drawSkybox();
-
+#if defined(PLATFORM_OSX)
+#else
+    skyboxObj->drawSkybox();
+#endif
 	// This looks for the MVP Uniform variable in the Vertex Program
 	GLuint VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform"); 
 
