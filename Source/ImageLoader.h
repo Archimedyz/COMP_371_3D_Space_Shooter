@@ -23,9 +23,11 @@
 //This is the ImageLoader.h class. It takes an image and stores it in an array for use as textures.
 //This class is available on www.videotutorialsrock.com for download.
 
+#if defined(PLATFORM_OSX)
 #include <CoreGraphics/CGImage.h>
 #include <QuartzCore/QuartzCore.h>
-//#include <Cocoa/Cocoa.h>
+#endif
+
 #include <stdlib.h>
 
 #ifndef IMAGE_LOADER_H_INCLUDED

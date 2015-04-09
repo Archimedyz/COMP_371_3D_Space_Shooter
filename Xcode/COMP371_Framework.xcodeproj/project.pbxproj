@@ -32,6 +32,8 @@
 		D4C8654C1AD5D7BB00A65FA9 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C8654B1AD5D7BB00A65FA9 /* GLUT.framework */; };
 		D4C865511AD5D84E00A65FA9 /* ImageLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4C8654D1AD5D84E00A65FA9 /* ImageLoader.cpp */; };
 		D4C865551AD5D8BA00A65FA9 /* SkyBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4C865531AD5D8BA00A65FA9 /* SkyBox.cpp */; };
+		D4C8655C1AD60A9F00A65FA9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C8655B1AD60A9F00A65FA9 /* CoreGraphics.framework */; };
+		D4C8655E1AD60B4600A65FA9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C8655D1AD60B4600A65FA9 /* Foundation.framework */; };
 		D4F9C7EC1AC4D1F800F5AB97 /* Loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E01AC4D1F800F5AB97 /* Loader.cpp */; };
 		D4F9C7ED1AC4D1F800F5AB97 /* Objloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E21AC4D1F800F5AB97 /* Objloader.cpp */; };
 		D4F9C7EE1AC4D1F800F5AB97 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E41AC4D1F800F5AB97 /* Shader.cpp */; };
@@ -109,6 +111,8 @@
 		D4C865581AD5DECC00A65FA9 /* star1.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = star1.bmp; sourceTree = "<group>"; };
 		D4C865591AD5DECC00A65FA9 /* star2.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = star2.bmp; sourceTree = "<group>"; };
 		D4C8655A1AD5DECC00A65FA9 /* sun.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = sun.bmp; sourceTree = "<group>"; };
+		D4C8655B1AD60A9F00A65FA9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D4C8655D1AD60B4600A65FA9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D4F9C7E01AC4D1F800F5AB97 /* Loader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Loader.cpp; sourceTree = "<group>"; };
 		D4F9C7E11AC4D1F800F5AB97 /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
 		D4F9C7E21AC4D1F800F5AB97 /* Objloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Objloader.cpp; sourceTree = "<group>"; };
@@ -130,9 +134,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4A9DC9C1A7AFC1400CA6A53 /* libglfw3.a in Frameworks */,
+				D4C8655E1AD60B4600A65FA9 /* Foundation.framework in Frameworks */,
 				D4A9DC9B1A7AFBFF00CA6A53 /* libGLEW.a in Frameworks */,
 				038B791E1A6FF3EB00111E36 /* IOKit.framework in Frameworks */,
 				038B791A1A6FF39000111E36 /* CoreVideo.framework in Frameworks */,
+				D4C8655C1AD60A9F00A65FA9 /* CoreGraphics.framework in Frameworks */,
 				038B79161A6FF2E900111E36 /* Cocoa.framework in Frameworks */,
 				D4C8654C1AD5D7BB00A65FA9 /* GLUT.framework in Frameworks */,
 				038B78851A6EBBCE00111E36 /* OpenGL.framework in Frameworks */,
@@ -147,6 +153,8 @@
 			children = (
 				038B79171A6FF35E00111E36 /* libGLEW.a */,
 				031A65F61A702EBB003BF698 /* libglfw3.a */,
+				D4C8655D1AD60B4600A65FA9 /* Foundation.framework */,
+				D4C8655B1AD60A9F00A65FA9 /* CoreGraphics.framework */,
 				D4C8654B1AD5D7BB00A65FA9 /* GLUT.framework */,
 				038B791D1A6FF3EB00111E36 /* IOKit.framework */,
 				038B791B1A6FF3D100111E36 /* CoreFoundation.framework */,
@@ -455,6 +463,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					"DEBUG=1",
@@ -482,6 +491,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "PLATFORM_OSX=1";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

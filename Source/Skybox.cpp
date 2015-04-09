@@ -3,9 +3,9 @@
 
 SkyBox::SkyBox(void)
 {
-	//im = loadBMP("COMP371_Framework.app/Content/Resources/star2.bmp");
-    im = loadBMP([[NSBundle mainBundle] pathForResource:@"star2" ofType:@"bmp"]
-	tex1 = loadTexture(im));
+	im = loadBMP("COMP371_Framework.app/Content/Resources/star2.bmp");
+    //im = loadBMP([[NSBundle mainBundle] pathForResource:@"star2" ofType:@"bmp"]
+	tex1 = loadTexture(im);
 	im = loadBMP("ngc281.bmp");
 	tex2 = loadTexture(im);
 	im = loadBMP("sun.bmp");
