@@ -12,7 +12,6 @@
 		038B79161A6FF2E900111E36 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79151A6FF2E900111E36 /* Cocoa.framework */; };
 		038B791A1A6FF39000111E36 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79191A6FF39000111E36 /* CoreVideo.framework */; };
 		038B791E1A6FF3EB00111E36 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B791D1A6FF3EB00111E36 /* IOKit.framework */; };
-		D45E304F1AD7194F00D9E190 /* StarCubeModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D45E304D1AD7194F00D9E190 /* StarCubeModel.cpp */; };
 		D45E30521AD8399300D9E190 /* SkyboxModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D45E30501AD8399300D9E190 /* SkyboxModel.cpp */; };
 		D46301141ABBC27500BF8F32 /* Renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D46301121ABBC27500BF8F32 /* Renderer.cpp */; };
 		D4A9DC9B1A7AFBFF00CA6A53 /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79171A6FF35E00111E36 /* libGLEW.a */; };
@@ -37,7 +36,6 @@
 		D4C8655E1AD60B4600A65FA9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4C8655D1AD60B4600A65FA9 /* Foundation.framework */; };
 		D4F9C7EC1AC4D1F800F5AB97 /* Loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E01AC4D1F800F5AB97 /* Loader.cpp */; };
 		D4F9C7ED1AC4D1F800F5AB97 /* Objloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E21AC4D1F800F5AB97 /* Objloader.cpp */; };
-		D4F9C7EE1AC4D1F800F5AB97 /* Shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E41AC4D1F800F5AB97 /* Shader.cpp */; };
 		D4F9C7EF1AC4D1F800F5AB97 /* ShipModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E61AC4D1F800F5AB97 /* ShipModel.cpp */; };
 		D4F9C7F01AC4D1F800F5AB97 /* Texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E81AC4D1F800F5AB97 /* Texture.cpp */; };
 		D4F9C7F11AC4D1F800F5AB97 /* VBOindexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7EA1AC4D1F800F5AB97 /* VBOindexer.cpp */; };
@@ -116,8 +114,6 @@
 		D4F9C7E11AC4D1F800F5AB97 /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
 		D4F9C7E21AC4D1F800F5AB97 /* Objloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Objloader.cpp; sourceTree = "<group>"; };
 		D4F9C7E31AC4D1F800F5AB97 /* Objloader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Objloader.hpp; sourceTree = "<group>"; };
-		D4F9C7E41AC4D1F800F5AB97 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Shader.cpp; sourceTree = "<group>"; };
-		D4F9C7E51AC4D1F800F5AB97 /* Shader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Shader.hpp; sourceTree = "<group>"; };
 		D4F9C7E61AC4D1F800F5AB97 /* ShipModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShipModel.cpp; sourceTree = "<group>"; };
 		D4F9C7E71AC4D1F800F5AB97 /* ShipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipModel.h; sourceTree = "<group>"; };
 		D4F9C7E81AC4D1F800F5AB97 /* Texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Texture.cpp; sourceTree = "<group>"; };
@@ -263,8 +259,6 @@
 				D4F9C7E11AC4D1F800F5AB97 /* Loader.h */,
 				D4F9C7E21AC4D1F800F5AB97 /* Objloader.cpp */,
 				D4F9C7E31AC4D1F800F5AB97 /* Objloader.hpp */,
-				D4F9C7E41AC4D1F800F5AB97 /* Shader.cpp */,
-				D4F9C7E51AC4D1F800F5AB97 /* Shader.hpp */,
 				D4F9C7E61AC4D1F800F5AB97 /* ShipModel.cpp */,
 				D4F9C7E71AC4D1F800F5AB97 /* ShipModel.h */,
 				D4F9C7E81AC4D1F800F5AB97 /* Texture.cpp */,
@@ -360,12 +354,10 @@
 				D4BAD0791AAE78E300698FF2 /* AsteroidFactory.cpp in Sources */,
 				D4BAD08A1AAE78E300698FF2 /* Variables.cpp in Sources */,
 				D4BAD0871AAE78E300698FF2 /* SphereModel.cpp in Sources */,
-				D4F9C7EE1AC4D1F800F5AB97 /* Shader.cpp in Sources */,
 				D4F9C7EF1AC4D1F800F5AB97 /* ShipModel.cpp in Sources */,
 				D4F9C7F11AC4D1F800F5AB97 /* VBOindexer.cpp in Sources */,
 				D4BAD0841AAE78E300698FF2 /* Path.cpp in Sources */,
 				D4BAD0831AAE78E300698FF2 /* Model.cpp in Sources */,
-				D45E304F1AD7194F00D9E190 /* StarCubeModel.cpp in Sources */,
 				D4BAD0801AAE78E300698FF2 /* CubeModel.cpp in Sources */,
 				D4BAD0821AAE78E300698FF2 /* main.cpp in Sources */,
 				D4BAD0851AAE78E300698FF2 /* Projectile.cpp in Sources */,

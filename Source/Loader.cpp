@@ -5,12 +5,6 @@
 #include <vector>
 #include <string>
 
-#include "Renderer.h"
-#include "Texture.hpp"
-#include "Objloader.hpp"
-#include "VBOindexer.hpp"
-
-
 Loader::Loader()
 {
 }

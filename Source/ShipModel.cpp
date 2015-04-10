@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <vector>
 
-#include "Shader.hpp"
 #include "Texture.hpp"
 #include "Objloader.hpp"
 #include "VBOindexer.hpp"

@@ -1,5 +1,9 @@
 #pragma once
 #include "Model.h"
+#include "Renderer.h"
+#include "Texture.hpp"
+#include "Objloader.hpp"
+#include "VBOindexer.hpp"
 // Include GLEW
 #include <GL/glew.h>
 
