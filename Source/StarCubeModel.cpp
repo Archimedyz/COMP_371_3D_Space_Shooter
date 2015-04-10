@@ -134,34 +134,46 @@ StarCubeModel::StarCubeModel(vec3 p, vec3 x)
     
 }
 
-void StarCubeModel::StarGenerator()
+
+StarCubeModel* StarCubeModel::StarGenerator()
 {
     float tempx;
     float tempy;
     float tempz;
-    
-    for(int i = 0; i < 100; ++i)
-    {
+//    
+//    for(int i = 0; i < 100; ++i)
+//    {
+        StarCubeModel* scm;
         //srand(time(NULL));
         
-        tempx = rand() % 2;
+        tempx = rand() % 200;
+        tempx = tempx / 100;
         tempx -= 1;
         tempx = tempx * 50;
-        tempx = tempx + 25*(tempx/abs(tempx));
+        //tempx = tempx + 25*(tempx/abs(tempx));
         
-        tempy = rand() % 2;
+        tempy = rand() % 200;
+        tempy = tempy / 100;
         tempy -= 1;
         tempy = tempy * 50;
-        tempy = tempy + 25*(tempy/abs(tempy));
+        //tempy = tempy + 25*(tempy/abs(tempy));
 
-        tempz = rand() % 2;
+        tempz = rand() % 200;
+        tempz = tempz / 100;
         tempz -= 1;
         tempz = tempz * 50;
-        tempz = tempz + 25*(tempz/abs(tempz));
+        //tempz = tempz + 25*(tempz/abs(tempz));
         
-        World::GetInstance()->AddModel(new StarCubeModel(vec3(tempx, tempy, tempz), vec3(5, 5, 5)));
-    }
+        scm = new StarCubeModel::StarCubeModel(glm::vec3(tempx, tempy, tempz));
     
+    
+    return scm;
+        //World::GetInstance()->AddModel(scm);
+        //std::cout << tempx <<" "  << tempy <<" " << tempz << std::endl;
+        //World::GetInstance()->AddModel(new StarCubeModel(vec3(tempx, tempy, tempz), vec3(5, 5, 5)));
+
+//}
+
 }
 
 StarCubeModel::~StarCubeModel()

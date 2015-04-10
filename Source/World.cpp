@@ -17,7 +17,6 @@
 
 #include "ShipModel.h"
 #include "Loader.h"
-#include "StarCubeModel.h"
 
 #include "Texture.hpp"
 #include <glm/gtc/type_ptr.hpp>
@@ -27,6 +26,8 @@
 #include "LoadCubemap.h"
 #include "SkyBox.h"
 #include "stb_image.h"
+
+#include "SkyboxModel.h"
 
 using namespace std;
 using namespace glm;
@@ -295,22 +296,16 @@ void World::LoadCameras()
     mCamera.push_back(new StaticCamera(vec3(3.0f, 5.0f, 5.0f),  vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(3.0f, 30.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
-    
-//    CubeModel* box = new CubeModel();
-//    box->SetPosition(vec3(0.0f, 0.0f, 0.0f));
-//    box->SetScaling(vec3(50.0f, 50.0f, 50.0f));
-//    box->ActivateCollisions(false);
-//    mModel.push_back(box);
-//    
-
-    
-    StarCubeModel::StarGenerator();
 
 	//Ship Character controlled with Third Person Camera
 	ShipModel * ship_model = new ShipModel(vec3(5.0f, 0.0f, 0.0f), vec3(0.5f, 0.5f, 0.5f));
 	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
+    
+    SkyboxModel* skybox = new SkyboxModel(vec3(0.0f, 0.0f, 0.0f), vec3(5.0f, 5.0f, 5.0f));
+    skybox->ActivateCollisions(false);
+    mModel.push_back(skybox);
 
     mCurrentCamera = 0;
 }
