@@ -52,6 +52,11 @@ World::World()
 	NewAsteroid::LoadBuffers();
 	Projectile::LoadBuffers();
 	ShipModel::LoadBuffers();
+	
+	// frame buffer to be used when capturing depth information from the light's perspective.
+	GLuint FrameBufferID = 0;
+	// generate the buffer, it's Id in the above variable.
+	glGenFramebuffers(1, &FrameBufferID);
 }
 
 World::~World()
@@ -177,12 +182,9 @@ void World::Update(float dt)
 void World::Draw()
 {
 	Renderer::BeginFrame();
-	
-	// The framebuffer, which regroups 0, 1, or more textures, and 0 or 1 depth buffer.
-	
-	// Always check that our framebuffer is ok
-	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-		return;
+
+	//Bind the frame buffer so we render into it instead of the screen.
+	glBindFramebuffer(GL_FRAMEBUFFER, FrameBufferID);
 
 	//Setting variable for light:
 	GLuint WorldMatrixID = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
@@ -193,14 +195,6 @@ void World::Draw()
 	GLuint LightPositionID = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldLightPosition");
 	GLuint LightColorID = glGetUniformLocation(Renderer::GetShaderProgramID(), "lightColor");
 	GLuint LightAttenuationID = glGetUniformLocation(Renderer::GetShaderProgramID(), "lightAttenuation");
-
-
-	// Get a handle for shadow mapping attributes.
-	GLuint LightMVPID = glGetUniformLocation(Renderer::GetShaderProgramID(), "lightMVP");
-	GLuint CorrectedLightMVPID = glGetUniformLocation(Renderer::GetShaderProgramID(), "correctedLightMVP");
-	GLuint ShadowMapID = glGetUniformLocation(Renderer::GetShaderProgramID(), "shadowMap");
-
-
 
 	// This looks for the MVP Uniform variable in the Vertex Program
 	GLuint VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform"); 
@@ -213,52 +207,11 @@ void World::Draw()
 	glm::mat4 viewMatrix = mCamera[mCurrentCamera]->GetViewMatrix();
 	glm::mat4 projectionMatrix = mCamera[mCurrentCamera]->GetProjectionMatrix();
 
-	// transformation matrices for the lightMVP
-	glm::mat4 lightProjectionMatrix = glm::ortho<float>(-10, 10, -10, 10, -10, 20);
-	glm::mat4 lightViewMatrix = glm::lookAt(vec3(lightPosition), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
-	glm::mat4 lightModelMatrix = glm::mat4(1.0);
-	glm::mat4 lightMVP = lightProjectionMatrix * lightViewMatrix * lightModelMatrix;
-
-	glm::mat4 correctionMatrix(
-		0.5, 0.0, 0.0, 0.0,
-		0.0, 0.5, 0.0, 0.0,
-		0.0, 0.0, 0.5, 0.0,
-		0.5, 0.5, 0.5, 1.0
-		);
-	glm::mat4 correctedLightMVP = correctionMatrix*lightMVP;
-
-	// first pass: get the shadow map
-	Renderer::SetShader(SHADER_BASIC);
-	glUseProgram(Renderer::GetShaderProgramID());
-	
-
-	glUniformMatrix4fv(LightMVPID, 1, GL_FALSE, &lightMVP[0][0]);
-
-	// Draw models
-	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
-	{
-		// Draw model
-		(*it)->Draw();
-	}
-	// Render to the screen
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glViewport(0, 0, 1024, 768); // Render on the whole framebuffer, complete from the lower left corner to the upper right
-
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK); // Cull back-facing triangles -> draw only front-facing triangles
-
-	// Clear the screen
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	// END OF SHADOW MAPPING
-
-	
-
-	// Second pass, draw the models.
+	// Use the main shader
 	Renderer::SetShader(main_shader);
 	glUseProgram(Renderer::GetShaderProgramID());
 
-	// set attributes
+	// set ViewProjection transform for shaders
 	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
 
 	// assign the transform matrices for the shader.
@@ -273,23 +226,6 @@ void World::Draw()
 	
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
-	{
-		// Draw model
-		(*it)->Draw();
-	}
-
-	// Draw Path Lines
-	
-	// Set Shader for path lines
-	unsigned int prevShader = Renderer::GetCurrentShader();
-	Renderer::SetShader(SHADER_PATH_LINES);
-	glUseProgram(Renderer::GetShaderProgramID());
-
-	// Send the view projection constants to the shader
-	VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform");
-	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
-
-	for (vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
 	{
 		// Draw model
 		(*it)->Draw();
@@ -321,9 +257,6 @@ void World::Draw()
 	if (Game::GetInstance()->GameOver())
 		printText2D("You lose!", 305, 285, 40);
 
-	// Restore previous shader
-	Renderer::SetShader((ShaderType) prevShader);
-
 	//// now we go about adding our shadow volumes
 	//for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	//{
@@ -331,7 +264,6 @@ void World::Draw()
 	//}
 
 	Renderer::EndFrame();
-
 }
 
 void World::LoadScene(const char * scene_path)
