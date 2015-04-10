@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string>
 #include <cstring>
+#include <iostream>
 
 #include <glm/glm.hpp>
 
@@ -100,5 +101,6 @@ bool loadOBJ(
 	
 	}
 
+	std::cout << "loaded" << std::endl;
 	return true;
 }

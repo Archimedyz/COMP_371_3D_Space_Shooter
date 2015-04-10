@@ -19,6 +19,7 @@
 #include "Path.h"
 #include "Projectile.h"
 #include "ShipModel.h"
+#include "SkyboxModel.h"
 #include "Loader.h"
 #include "Text2D.h"
 
@@ -49,6 +50,7 @@ World::World()
 	NewAsteroid::LoadBuffers();
 	Projectile::LoadBuffers();
 	ShipModel::LoadBuffers();
+	SkyboxModel::LoadBuffers();
 }
 
 World::~World()
