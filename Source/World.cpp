@@ -34,7 +34,11 @@ using namespace glm;
 
 World* World::instance;
 int World::addCounter;
+SkyboxModel* skybox;
 //Skybox* skyboxObj = new Skybox();
+
+
+
 
 //LoadCubemap* cubemap = new LoadCubemap();
 //
@@ -47,6 +51,8 @@ World::World()
 {
     instance = this;
 	addCounter = 0;
+	skybox = new SkyboxModel(vec3(0.0f, 0.0f, 0.0f), vec3(100.0f, 100.0f, 100.0f));
+	skybox->ActivateCollisions(false);
 	//skyboxObj->initSkybox();
 	//cube_vao = make_big_cube();
     //create_cube_map (bmp_FT, bmp_BK, bmp_UP, bmp_DN, bmp_LT, bmp_RT, &cube_map_texture);
@@ -154,6 +160,7 @@ void World::Draw()
 {
 	
 	Renderer::BeginFrame();
+	skybox->Draw();
     
     //Renderer::SetShader(SHADER_SKYBOX);
     // note that this view matrix should NOT contain camera translation.
@@ -303,9 +310,6 @@ void World::LoadCameras()
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
     
-    SkyboxModel* skybox = new SkyboxModel(vec3(0.0f, 0.0f, 0.0f), vec3(0.5f, 0.5f, 0.5f));
-    //skybox->ActivateCollisions(false);
-    //mModel.push_back(skybox);
 
     mCurrentCamera = 0;
 }
