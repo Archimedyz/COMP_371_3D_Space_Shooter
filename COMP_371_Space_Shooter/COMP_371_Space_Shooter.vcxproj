@@ -81,7 +81,6 @@
     <ClCompile Include="..\Source\Path.cpp" />
     <ClCompile Include="..\Source\Projectile.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
-    <ClCompile Include="..\Source\shader.cpp" />
     <ClCompile Include="..\Source\ShipModel.cpp" />
     <ClCompile Include="..\Source\Skybox.cpp" />
     <ClCompile Include="..\Source\SkyboxModel.cpp" />
@@ -111,7 +110,6 @@
     <ClInclude Include="..\Source\Path.h" />
     <ClInclude Include="..\Source\Projectile.h" />
     <ClInclude Include="..\Source\Renderer.h" />
-    <ClInclude Include="..\Source\shader.hpp" />
     <ClInclude Include="..\Source\ShipModel.h" />
     <ClInclude Include="..\Source\Skybox.h" />
     <ClInclude Include="..\Source\SkyboxModel.h" />

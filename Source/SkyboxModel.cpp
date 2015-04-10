@@ -9,7 +9,7 @@
 #include "Objloader.hpp"
 #include "VBOindexer.hpp"
 
-SkyboxModel::SkyboxModel() : SkyboxModel(glm::vec3(40.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f))
+SkyboxModel::SkyboxModel() : SkyboxModel(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f))
 {}
 
 SkyboxModel::SkyboxModel(glm::vec3 position, glm::vec3 scaling) : Model(position, scaling)

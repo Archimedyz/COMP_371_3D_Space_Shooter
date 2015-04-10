@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 
-#include "Shader.hpp"
+#include "Renderer.h"
 #include "Texture.hpp"
 #include "Objloader.hpp"
 #include "VBOindexer.hpp"

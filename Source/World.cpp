@@ -35,17 +35,6 @@ using namespace glm;
 World* World::instance;
 int World::addCounter;
 SkyboxModel* skybox;
-//Skybox* skyboxObj = new Skybox();
-
-
-
-
-//LoadCubemap* cubemap = new LoadCubemap();
-//
-//// cube-map shaders
-//GLuint cubemapShader;
-//GLuint cube_vao;
-//GLuint cube_map_texture;
 
 World::World()
 {
@@ -53,9 +42,6 @@ World::World()
 	addCounter = 0;
 	skybox = new SkyboxModel(vec3(0.0f, 0.0f, 0.0f), vec3(100.0f, 100.0f, 100.0f));
 	skybox->ActivateCollisions(false);
-	//skyboxObj->initSkybox();
-	//cube_vao = make_big_cube();
-    //create_cube_map (bmp_FT, bmp_BK, bmp_UP, bmp_DN, bmp_LT, bmp_RT, &cube_map_texture);
 }
 
 World::~World()
@@ -161,27 +147,7 @@ void World::Draw()
 	
 	Renderer::BeginFrame();
 	skybox->Draw();
-    
-    //Renderer::SetShader(SHADER_SKYBOX);
-    // note that this view matrix should NOT contain camera translation.
-    //int cube_V_location = glGetUniformLocation (Renderer::GetCurrentShader(), "V");
-    //int cube_P_location = glGetUniformLocation (Renderer::GetCurrentShader(), "P");
-    
-//    glEnable (GL_DEPTH_TEST); // enable depth-testing
-//    glDepthFunc (GL_LESS); // depth-testing interprets a smaller value as "closer"
-//    glEnable (GL_CULL_FACE); // cull face
-//    glCullFace (GL_BACK); // cull back face
-//    glFrontFace (GL_CCW); // set counter-clock-wise vertex order to mean the front
-//    glClearColor (0.2, 0.2, 0.2, 1.0); // grey background to help spot mistakes
-//    
-//    glDepthMask (GL_FALSE);
-//    glUseProgram (Renderer::GetCurrentShader());
-//    glActiveTexture (GL_TEXTURE0);
-//    glBindTexture (GL_TEXTURE_CUBE_MAP, cube_map_texture);
-//    glBindVertexArray (cube_vao);
-//    glDrawArrays (GL_TRIANGLES, 0, 36);
-//    glDepthMask (GL_TRUE);
-    
+
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
     
@@ -191,13 +157,6 @@ void World::Draw()
 	// Send the view projection constants to the shader
 	mat4 VP = mCamera[mCurrentCamera]->GetViewProjectionMatrix();
 	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
-    
-	// draw skybox
-    
-//	glTranslatef(25, 0, 25);
-//	glScalef(75, 75, 75);
-//	skyboxObj->drawSkybox();
-
 
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
