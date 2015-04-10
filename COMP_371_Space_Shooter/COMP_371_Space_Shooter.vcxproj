@@ -84,6 +84,7 @@
     <ClCompile Include="..\Source\shader.cpp" />
     <ClCompile Include="..\Source\ShipModel.cpp" />
     <ClCompile Include="..\Source\Skybox.cpp" />
+    <ClCompile Include="..\Source\SkyboxModel.cpp" />
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\stb_image.c">
@@ -113,6 +114,7 @@
     <ClInclude Include="..\Source\shader.hpp" />
     <ClInclude Include="..\Source\ShipModel.h" />
     <ClInclude Include="..\Source\Skybox.h" />
+    <ClInclude Include="..\Source\SkyboxModel.h" />
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
     <ClInclude Include="..\Source\stb_image.h" />
@@ -132,10 +134,10 @@
     <None Include="..\Shaders\SolidColor.vertexshader" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Resources\Models\uvmap.DDS" />
+    <ResourceCompile Include="COMP_371_Space_Shooter.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="COMP_371_Space_Shooter.rc" />
+    <Image Include="..\Resources\Textures\uvmap.DDS" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

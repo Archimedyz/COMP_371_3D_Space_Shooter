@@ -40,6 +40,9 @@ void Loader::loadModel(const char * filePath)
 	//load it into VBO
 	glGenBuffers(1, &vertexbuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
+	//----------------------------------------------------------------------
+	// BREAKS HERE
+	//----------------------------------------------------------------------
 	glBufferData(GL_ARRAY_BUFFER, indexed_vertices.size() * sizeof(glm::vec3), &indexed_vertices[0], GL_STATIC_DRAW);
 
 	glGenBuffers(1, &uvbuffer);

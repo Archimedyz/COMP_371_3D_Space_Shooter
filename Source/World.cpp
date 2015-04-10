@@ -303,9 +303,9 @@ void World::LoadCameras()
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
     
-    SkyboxModel* skybox = new SkyboxModel(vec3(0.0f, 0.0f, 0.0f), vec3(5.0f, 5.0f, 5.0f));
-    skybox->ActivateCollisions(false);
-    mModel.push_back(skybox);
+    SkyboxModel* skybox = new SkyboxModel(vec3(0.0f, 0.0f, 0.0f), vec3(0.5f, 0.5f, 0.5f));
+    //skybox->ActivateCollisions(false);
+    //mModel.push_back(skybox);
 
     mCurrentCamera = 0;
 }

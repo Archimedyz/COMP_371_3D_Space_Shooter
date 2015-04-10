@@ -15,9 +15,9 @@ SkyboxModel::SkyboxModel() : SkyboxModel(glm::vec3(40.0f, 0.0f, 0.0f), glm::vec3
 SkyboxModel::SkyboxModel(glm::vec3 position, glm::vec3 scaling) : Model(position, scaling)
 {
 #if defined(PLATFORM_OSX)
-    const char * modelPath = "Models/skybox.obj";
+    const char * modelPath = "Models/skyboxInvNormals.obj";
 #else
-    const char * modelPath = "../Resources/Models/skybox.obj";
+    const char * modelPath = "../Resources/Models/skyboxInvNormals.obj";
 #endif
     Loader::loadModel(modelPath);
 }
