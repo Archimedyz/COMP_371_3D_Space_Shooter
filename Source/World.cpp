@@ -39,8 +39,12 @@ const float lightKl = 1.0f;
 const float lightKq = 2.0f;
 const vec4 lightPosition(0.0f, 10.0f, 0.0f, 0.0f);
 
+// boolean to display shadow volumes. Can be toggled on or off during runtime.
 bool show_shadow_volumes = false;
+// main shader type. This allows for changing type during runtime.
 ShaderType main_shader = SHADER_PHONG;
+// frame buffer to be used when capturing depth information from the light's perspective.
+GLuint FrameBufferID = 0;
 
 World::World()
 {
@@ -53,8 +57,6 @@ World::World()
 	Projectile::LoadBuffers();
 	ShipModel::LoadBuffers();
 	
-	// frame buffer to be used when capturing depth information from the light's perspective.
-	GLuint FrameBufferID = 0;
 	// generate the buffer, it's Id in the above variable.
 	glGenFramebuffers(1, &FrameBufferID);
 }
@@ -186,7 +188,30 @@ void World::Draw()
 	//Bind the frame buffer so we render into it instead of the screen.
 	glBindFramebuffer(GL_FRAMEBUFFER, FrameBufferID);
 
-	//Setting variable for light:
+	// Create a texture to which we will render the depth information.
+	GLuint DepthTextureID;
+	glGenTextures(1, &DepthTextureID);
+
+	// now we bind this texture so that all drawing modifies this texture.
+	glBindTexture(GL_TEXTURE_2D, DepthTextureID);
+
+	// create a blank image
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, 1024, 1024, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
+
+	// Some form of filtering. Not too sure honestly what it does, but according to the tutorial, it's needed.
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, DepthTextureID, 0);
+
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE){
+		std::cout << "FRAME BUFFER NOT OKAY!" << std::endl;
+		return;
+	}
+
+	// getting variable handles for transforms:
 	GLuint WorldMatrixID = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	GLuint ViewMatrixID = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewTransform");
 	GLuint ProjMatrixID = glGetUniformLocation(Renderer::GetShaderProgramID(), "ProjectonTransform");
@@ -207,6 +232,28 @@ void World::Draw()
 	glm::mat4 viewMatrix = mCamera[mCurrentCamera]->GetViewMatrix();
 	glm::mat4 projectionMatrix = mCamera[mCurrentCamera]->GetProjectionMatrix();
 
+	/*
+		This variable is needed for the calculation the the depthMVP (shown after.)
+		In the tutorial, the light's direction is randomly chosen, and as a result, 
+		the up vector chosen for the light's up vector is (0, 1, 0). However, when
+		using Light that is not angled and parallel to (0, 1, 0), the lookAt 
+		function will fail. 
+
+		The below variable will adjust itself if the light vetor is parallel to (0, 1, 0)
+	*/
+	glm::vec3 relativeUp = vec3(0.0f, 1.0f, 0.0f);
+	if (isParallel(vec3(lightPosition), relativeUp)){
+		// if the light's direction is parallel to (0, 1, 0), then set the Up to (1, 0, 0) instead.
+		relativeUp = vec3(1.0f, 0.0f, 0.0f);
+	}
+
+	// variables and transformations necessary for the shadow mapping
+	// for the specific method I'm using, the light needs to be directional.
+	glm::mat4 depthProjectionMatrix = glm::ortho<float>(-10, 10, -10, 10, -10, 20);
+	glm::mat4 depthViewMatrix = glm::lookAt(vec3(-lightPosition), glm::vec3(0, 0, 0), relativeUp);
+	glm::mat4 depthModelMatrix = glm::mat4(1.0);
+	glm::mat4 depthMVP = depthProjectionMatrix * depthViewMatrix * depthModelMatrix;
+	
 	// Use the main shader
 	Renderer::SetShader(main_shader);
 	glUseProgram(Renderer::GetShaderProgramID());
@@ -333,4 +380,14 @@ Model* World::FindModelByIndex(unsigned int index)
 void World::AddModel(Model* mdl)
 {
 	mModel.push_back(mdl);
+}
+
+bool World::isParallel(glm::vec3 v1, glm::vec3 v2){
+	v1 = glm::normalize(v1);
+	v2 = glm::normalize(v2);
+
+	// because the dot product of 2 vectors is equal to cos(alpha)*length(v1)*length(v2)
+	// we can check to see if the dot of the two normalized vectors is 1 (or -1).
+
+	return (glm::abs(glm::dot(v1, v2)) == 1.0f);
 }
