@@ -7,9 +7,6 @@ uniform vec4 materialCoefficients; // x: ambient   y: diffuse   z: specular   w:
 uniform vec3 lightColor;
 uniform vec3 lightAttenuation; // x: kC  y: kL  z: kQ
 
-// shadow map
-uniform sampler2D shadowMap;
-
 // Inputs
 in vec3 v_color;		 // vertex color: also diffuse color
 
@@ -18,7 +15,6 @@ in vec3 eyeVector;       // Vector from the vertex to the Camera in View Space
 in vec4 lightVector;     // Vector from the vertex to the Light in View Space
 						 // Length of lightVector is the distance between light and vertex
 						 // if w = 1: Point light, if w = 0: directional light
-in vec4 shadow_position;
 
 // Ouput data
 out vec3 color;
@@ -29,10 +25,6 @@ void main()
 	// Implment Phong Shading based on the parameters above
 	// Remember that directional light don't have attenuation
 	
-	float visibility = 1.0f;
-	if ( texture2D(shadowMap, vec2(shadow_position.x, shadow_position.y) ).z  <  shadow_position.z){
-		visibility = 0.5f;
-	}
 	float a_factor = 1.0f;
 	
 	vec3 normal_vector = normalize(normal);
@@ -43,20 +35,20 @@ void main()
 	a_factor = 1.0f;
 	if(lightVector.w == 1){
 		// point, meaning light goes in all directions
-		a_factor = 1.0f / ((lightAttenuation.x + lightAttenuation.y * length(vec3(lightVector)) + pow(lightAttenuation.z, 2)));
+		a_factor = 1.0f / ((lightAttenuation.x + lightAttenuation.y * length(vec3(lightVector)) + lightAttenuation.z * pow(lightAttenuation.z, 2)));
 	}
 
 	vec3 i_amb = v_color;
-	vec3 i_light = vec3(lightColor);
+	vec3 i_light = a_factor * vec3(lightColor);
 
 	float k_amb = materialCoefficients.x;
 	float k_diff = materialCoefficients.y;
 	float k_spec = materialCoefficients.z;
 	float n_shiny = materialCoefficients.w;
 
-	vec3 amb_intensity = i_light * k_amb;
-	vec3 diff_intensity = visibility * i_light * a_factor * k_diff * clamp(dot(normal_vector, light_vector), 0.0f, 1.0f); 
-	vec3 spec_intensity = visibility * i_light * a_factor * k_spec * pow(clamp(dot(reflected_vector, eye_vector), 0.0f, 1.0f), n_shiny);
+	vec3 amb_intensity = lightColor * k_amb;
+	vec3 diff_intensity = i_light * k_diff * clamp(dot(normal_vector, light_vector), 0.0f, 1.0f); 
+	vec3 spec_intensity = i_light * k_spec * pow(clamp(dot(reflected_vector, eye_vector), 0.0f, 1.0f), n_shiny);
 
 	vec3 total_intensity = amb_intensity + diff_intensity + spec_intensity;
 

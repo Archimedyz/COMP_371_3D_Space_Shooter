@@ -18,8 +18,8 @@ using namespace glm;
 CubeModel::CubeModel(vec3 size) : Model()
 {
 
-	ka = 0.5f;
-	kd = 0.1f;
+	ka = 0.2f;
+	kd = 0.5f;
 	ks = 0.7f;
 	n = 10.0f;
 

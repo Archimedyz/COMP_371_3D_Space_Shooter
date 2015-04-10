@@ -39,6 +39,7 @@ const float lightKl = 1.0f;
 const float lightKq = 2.0f;
 const vec4 lightPosition(0.0f, 10.0f, 0.0f, 0.0f);
 
+bool show_shadow_volumes = false;
 ShaderType main_shader = SHADER_PHONG;
 
 World::World()
@@ -136,6 +137,9 @@ void World::Update(float dt)
 		{
 			main_shader = SHADER_PHONG;
 		}
+		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_8) == GLFW_PRESS){
+			show_shadow_volumes = !show_shadow_volumes;
+		}
 
 		// Update current Camera
 		mCamera[mCurrentCamera]->Update(dt);
@@ -175,24 +179,7 @@ void World::Draw()
 	Renderer::BeginFrame();
 	
 	// The framebuffer, which regroups 0, 1, or more textures, and 0 or 1 depth buffer.
-	GLuint FramebufferName = 0;
-	glGenFramebuffers(1, &FramebufferName);
-	glBindFramebuffer(GL_FRAMEBUFFER, FramebufferName);
-
-	// Depth texture. Slower than a depth buffer, but you can sample it later in your shader
-	GLuint depthTexture;
-	glGenTextures(1, &depthTexture);
-	glBindTexture(GL_TEXTURE_2D, depthTexture);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, 1024, 1024, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthTexture, 0);
-
-	glDrawBuffer(GL_NONE); // No color buffer is drawn to.
-
+	
 	// Always check that our framebuffer is ok
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		return;
@@ -228,7 +215,7 @@ void World::Draw()
 
 	// transformation matrices for the lightMVP
 	glm::mat4 lightProjectionMatrix = glm::ortho<float>(-10, 10, -10, 10, -10, 20);
-	glm::mat4 lightViewMatrix = glm::lookAt(vec3(-lightPosition), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+	glm::mat4 lightViewMatrix = glm::lookAt(vec3(lightPosition), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 	glm::mat4 lightModelMatrix = glm::mat4(1.0);
 	glm::mat4 lightMVP = lightProjectionMatrix * lightViewMatrix * lightModelMatrix;
 
@@ -283,14 +270,7 @@ void World::Draw()
 	glUniform4f(LightPositionID, lightPosition.x, lightPosition.y, lightPosition.z, lightPosition.w);
 	glUniform3f(LightColorID, lightColor.r, lightColor.g, lightColor.b);
 	glUniform3f(LightAttenuationID, lightKc, lightKl, lightKq);
-
-	// Shader constants for shading pass through.
-	glUniformMatrix4fv(LightMVPID, 1, GL_FALSE, &lightMVP[0][0]);
-	glUniformMatrix4fv(CorrectedLightMVPID, 1, GL_FALSE, &correctedLightMVP[0][0]);
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, depthTexture);
-	glUniform1i(ShadowMapID, 1);
-
+	
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{
@@ -331,8 +311,8 @@ void World::Draw()
 	}
 
 	sprintf_s(text, "%.2f", glfwGetTime());
-	printText2D(text, 10, 400, 24);
-	printText2D(health, 610, 400, 24);
+	printText2D(text, 10, 570, 24);
+	printText2D(health, 610, 570, 24);
 
 	sprintf_s(score, "%i", Game::GetInstance()->GetScore());
 	printText2D(score, 305, 570, 24);
