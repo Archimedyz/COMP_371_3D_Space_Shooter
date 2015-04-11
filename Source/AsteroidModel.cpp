@@ -6,19 +6,37 @@
 #include "Loader.h"
 #include <iostream>
 #include <string>
+#include "texture.hpp"
+#include "shader.hpp"
 
 // Include GLEW - OpenGL Extension Wrangler
-#include <GL/glew.h>
-
 using namespace glm;
 
 AsteroidModel::AsteroidModel() : Model()
 {
+
 #if defined(PLATFORM_OSX)
 	std::string modelPath = "Models/asteroid";
 #else
 	std::string modelPath = "../Resources/Models/asteroid";
 #endif
+
+
+	// Create and compile our GLSL program from the shaders
+	//GLuint programID = LoadShaders("../Shaders/TransformVertexShader.vertexshader", "../Shaders/TextureFragmentShader.fragmentshader");
+
+	// Get a handle for our "MVP" uniform
+	/*GLuint MatrixID = glGetUniformLocation(programID, "MVP");
+	GLuint ViewMatrixID = glGetUniformLocation(programID, "V");
+	GLuint ModelMatrixID = glGetUniformLocation(programID, "M");*/
+
+	// Load the texture
+	GLuint Texture = loadBMP_custom("../Resources/Textures/AM1.BMP");
+
+	// Get a handle for our "myTextureSampler" uniform
+	GLuint TextureID = glGetUniformLocation(Renderer::GetShaderProgramID(), "myTextureSampler");
+
+
 	int random = 1;
 	modelPath = modelPath + std::to_string(random) + ".obj";
 	Loader::loadModelAsteroid(modelPath.c_str());
@@ -102,9 +120,7 @@ void AsteroidModel::Update(float dt)
 
 	//Update posiion and rotation per frame.
 	mPosition += normalize(mDirection)*mSpeed*dt;
-
 	mYRotationAngleInDegrees += mRotationSpeed*dt;
-	
 	if (glm::length(mDirection) <= 0.01){
 		Destroy();
 	}
@@ -113,66 +129,62 @@ void AsteroidModel::Update(float dt)
 	//Model::Update(dt);
 }
 
-void AsteroidModel::applyDamage()
-{
-	AsteroidFactory::createAsteroid(1);
-	AsteroidFactory::createAsteroid(1);
-}
-
-
 void AsteroidModel::Draw()
 {
+	glUseProgram(Renderer::GetShaderProgramID());
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
+
+	// Bind our texture in Texture Unit 0
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, Texture);
+	// Set our "myTextureSampler" sampler to user Texture Unit 0
+	glUniform1i(TextureID, 0);
+
 
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, Loader::vertexbufferAst);
 	glVertexAttribPointer(
-		0,                  // attribute
-		3,                  // size
-		GL_FLOAT,           // type
-		GL_FALSE,           // normalized?
-		0,                  // stride
-		(void*)0            // array buffer offset
+		0, // attribute
+		3, // size
+		GL_FLOAT, // type
+		GL_FALSE, // normalized?
+		0, // stride
+		(void*)0 // array buffer offset
 		);
-
 	// 2nd attribute buffer : UVs
 	glEnableVertexAttribArray(1);
 	glBindBuffer(GL_ARRAY_BUFFER, Loader::uvbufferAst);
 	glVertexAttribPointer(
-		1,                                // attribute
-		2,                                // size
-		GL_FLOAT,                         // type
-		GL_FALSE,                         // normalized?
-		0,                                // stride
-		(void*)0                          // array buffer offset
+		1, // attribute
+		2, // size
+		GL_FLOAT, // type
+		GL_FALSE, // normalized?
+		0, // stride
+		(void*)0 // array buffer offset
 		);
-
 	// 3rd attribute buffer : normals
+
 	glEnableVertexAttribArray(2);
 	glBindBuffer(GL_ARRAY_BUFFER, Loader::normalbufferAst);
 	glVertexAttribPointer(
-		2,                                // attribute
-		3,                                // size
-		GL_FLOAT,                         // type
-		GL_FALSE,                         // normalized?
-		0,                                // stride
-		(void*)0                          // array buffer offset
+		2, // attribute
+		3, // size
+		GL_FLOAT, // type
+		GL_FALSE, // normalized?
+		0, // stride
+		(void*)0 // array buffer offset
 		);
-
 	// Index buffer
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Loader::elementbufferAst);
-
 	// Draw the triangles !
 	glDrawElements(
-		GL_TRIANGLES,      // mode
-		Loader::indicesAst.size(),    // count
-		GL_UNSIGNED_SHORT,   // type
-		(void*)0           // element array buffer offset
+		GL_TRIANGLES, // mode
+		Loader::indicesAst.size(), // count
+		GL_UNSIGNED_SHORT, // type
+		(void*)0 // element array buffer offset
 		);
-
-
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
@@ -210,7 +222,7 @@ void AsteroidModel::Destroy(){
 	AsteroidModel* smallAsteroid = AsteroidFactory::createAsteroid(1);
 	AsteroidModel* smallAsteroid2 = AsteroidFactory::createAsteroid(1);
 
-	glm::vec3 scale = glm::vec3(mScaling.x * 0.5, mScaling.y * 0.5, mScaling.z * 0.5);
+	glm::vec3 scale = glm::vec3(mScaling.x * 3, mScaling.y * 3, mScaling.z * 3);
 	smallAsteroid->SetScaling(scale);
 	smallAsteroid2->SetScaling(scale);
 

@@ -120,6 +120,8 @@
     <None Include="..\Shaders\PathLines.vertexshader" />
     <None Include="..\Shaders\SolidColor.fragmentshader" />
     <None Include="..\Shaders\SolidColor.vertexshader" />
+    <None Include="..\Shaders\TextureFragmentShader.fragmentshader" />
+    <None Include="..\Shaders\TransformVertexShader.vertexshader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Resource\Models\uvmap.DDS" />

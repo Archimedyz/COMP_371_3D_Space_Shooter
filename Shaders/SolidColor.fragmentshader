@@ -3,11 +3,16 @@
 // Ouput to fragment shader
 out vec3 color;
 
-in vec4 v_color;
+in vec2 UV;
+
+//in vec4 v_color;
 in vec3 normal; // You will need this when you do per-fragment lighting
+
+uniform sampler2D myTextureSampler;
 
 void main()
 {
 	// set the fragment color to the interpolated vertex color
-	color = v_color.rgb;
+	//color = v_color.rgb;
+	texture2D( myTextureSampler, UV ).rgb;
 }

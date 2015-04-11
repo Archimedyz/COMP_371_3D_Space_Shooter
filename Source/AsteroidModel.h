@@ -1,6 +1,6 @@
 #pragma once
-
 #include "Model.h"
+#include "Loader.h"
 
 class AsteroidModel : public Model
 {
@@ -9,7 +9,6 @@ public:
 	virtual ~AsteroidModel();
 	virtual void Update(float dt);
 	virtual void Draw();
-	void applyDamage();
 	bool isDestroyed();
 	void SetRotationSpeed(float rotationSpeed);
 	float GetRotationSpeed();
@@ -35,4 +34,12 @@ private:
 	float mRotationSpeed;
 	bool destroyed;
 	glm::vec3 mDirection;
+
+	// Load the texture
+	unsigned int Texture;
+
+	// Get a handle for our "myTextureSampler" uniform
+	unsigned int TextureID;
+	unsigned int programID;
+
 };

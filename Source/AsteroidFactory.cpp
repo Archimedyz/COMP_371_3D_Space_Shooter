@@ -51,6 +51,7 @@ AsteroidModel* AsteroidFactory::createAsteroid(int type){
 		asteroid->SetDirection(Variables::WorldCenter - initialPosition);
 		asteroid->SetYRotation(rotationAxis, initialRotationAngle);
 
+		//glm::vec3 scale = glm::vec3(scale_x, scale_y, scale_z);
 		glm::vec3 scale = glm::vec3(scale_x * 0.09, scale_y * 0.09, scale_z * 0.09);
 
 		asteroid->SetScaling(scale);

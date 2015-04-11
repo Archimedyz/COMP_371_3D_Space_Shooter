@@ -250,8 +250,8 @@ void Model::SetCollisionRadius(float r)
 void Model::CheckCollisions(std::vector<Model*> &models)
 {
 	// Remove things at center, for debugging, removes asteroids that get stuck in the middle.
-	/*if (glm::distance(mPosition, glm::vec3(0.0f, 0.0f, 0.0f)) < 1 && CollisionsOn)
-		mDestroyed = true;*/
+	if (glm::distance(mPosition, glm::vec3(0.0f, 0.0f, 0.0f)) < 1 && CollisionsOn)
+		mDestroyed = true;
 
 	// Check the current model against all the rest
 	for (std::vector<Model*>::iterator it = models.begin(); it < models.end(); ++it)
