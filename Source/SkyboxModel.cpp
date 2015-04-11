@@ -1,13 +1,9 @@
-#include "SkyboxModel.h"
-#include "Loader.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <vector>
+// Contributors:
+//Skyler Wittman
+//Nicholas Dudek
+//Andrey Uspenskiy
 
-#include "Renderer.h"
-#include "Texture.hpp"
-#include "Objloader.hpp"
-#include "VBOindexer.hpp"
+#include "SkyboxModel.h"
 
 std::vector<glm::vec3> SkyboxModel::vArray;
 unsigned int SkyboxModel::vertexbuffer;

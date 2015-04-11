@@ -1,3 +1,8 @@
+// Contributors:
+//Skyler Wittman
+//Nicholas Dudek
+//Andrey Uspenskiy
+
 #pragma once
 #ifndef __COMP371_Framework__SkyboxModel__
 #define __COMP371_Framework__SkyboxModel__
@@ -5,6 +10,14 @@
 #include <stdio.h>
 #include "Model.h"
 #include "Renderer.h"
+#include "Loader.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+#include "Texture.hpp"
+#include "Objloader.hpp"
+#include "VBOindexer.hpp"
+
 class SkyboxModel : public Model
 {
 public:
