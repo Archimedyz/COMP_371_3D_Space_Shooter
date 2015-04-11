@@ -24,6 +24,7 @@ class Model
 {
 public:
 	Model();
+	Model(glm::vec3 position, glm::vec3 scaling);
 	Model(glm::vec3 position, glm::vec3 scaling, glm::vec3 lookAt);
 	virtual ~Model();
 
