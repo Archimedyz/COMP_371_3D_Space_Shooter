@@ -1,98 +1,299 @@
-#pragma warning(disable: 4996)
-//From http://www.opengl-tutorial.org/beginners-tutorials/tutorial-5-a-textured-cube/
+#include "common_header.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "texture.h"
 
-#include <GL/glew.h>
+#include <FreeImage.h>
 
-#include <GLFW/glfw3.h>
+//#pragma comment(lib, "FreeImage.lib")
 
+CTexture::CTexture()
+{
+    bMipMapsGenerated = false;
+}
 
-// Load textures for Skybox
-//GLuint imageBK = loadBMP_custom("GalaxySkybox/Galaxy_BK.bmp");
-//GLuint imageFT = loadBMP_custom("GalaxySkybox/Galaxy_FT.bmp");
-//GLuint imageRT = loadBMP_custom("GalaxySkybox/Galaxy_RT.bmp");
-//GLuint imageLT = loadBMP_custom("GalaxySkybox/Galaxy_LT.bmp");
-//GLuint imageUP = loadBMP_custom("GalaxySkybox/Galaxy_UP.bmp");
-//GLuint imageDN = loadBMP_custom("GalaxySkybox/Galaxy_DN.bmp");
+/*-----------------------------------------------
+ 
+ Name:	CreateEmptyTexture
+ 
+ Params:	a_iWidth, a_iHeight - dimensions
+ format - format of data
+ 
+ Result:	Creates texture from provided data.
+ 
+ /*---------------------------------------------*/
 
-GLuint loadBMP_custom(const char * imagepath){
+void CTexture::CreateEmptyTexture(int a_iWidth, int a_iHeight, GLenum format)
+{
+    glGenTextures(1, &uiTexture);
+    glBindTexture(GL_TEXTURE_2D, uiTexture);
+    if(format == GL_RGBA || format == GL_BGRA)
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, a_iWidth, a_iHeight, 0, format, GL_UNSIGNED_BYTE, NULL);
+    // We must handle this because of internal format parameter
+    else if(format == GL_RGB || format == GL_BGR)
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, a_iWidth, a_iHeight, 0, format, GL_UNSIGNED_BYTE, NULL);
+    else
+        glTexImage2D(GL_TEXTURE_2D, 0, format, a_iWidth, a_iHeight, 0, format, GL_UNSIGNED_BYTE, NULL);
+    
+    glGenSamplers(1, &uiSampler);
+}
 
-	printf("Reading image %s\n", imagepath);
+/*-----------------------------------------------
+ 
+ Name:	CreateFromData
+ 
+ Params:	a_sPath - path to the texture
+ format - format of data
+ bGenerateMipMaps - whether to create mipmaps
+ 
+ Result:	Creates texture from provided data.
+ 
+ /*---------------------------------------------*/
 
-	// Data read from the header of the BMP file
-	unsigned char header[54];
-	unsigned int dataPos;
-	unsigned int imageSize;
-	unsigned int width, height;
-	// Actual RGB data
-	unsigned char * data;
+void CTexture::CreateFromData(BYTE* bData, int a_iWidth, int a_iHeight, int a_iBPP, GLenum format, bool bGenerateMipMaps)
+{
+    // Generate an OpenGL texture ID for this texture
+    glGenTextures(1, &uiTexture);
+    glBindTexture(GL_TEXTURE_2D, uiTexture);
+    if(format == GL_RGBA || format == GL_BGRA)
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, a_iWidth, a_iHeight, 0, format, GL_UNSIGNED_BYTE, bData);
+    // We must handle this because of internal format parameter
+    else if(format == GL_RGB || format == GL_BGR)
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, a_iWidth, a_iHeight, 0, format, GL_UNSIGNED_BYTE, bData);
+    else
+        glTexImage2D(GL_TEXTURE_2D, 0, format, a_iWidth, a_iHeight, 0, format, GL_UNSIGNED_BYTE, bData);
+    if(bGenerateMipMaps)glGenerateMipmap(GL_TEXTURE_2D);
+    glGenSamplers(1, &uiSampler);
+    
+    sPath = "";
+    bMipMapsGenerated = bGenerateMipMaps;
+    iWidth = a_iWidth;
+    iHeight = a_iHeight;
+    iBPP = a_iBPP;
+}
 
-	// Open the file
-	FILE * file = fopen(imagepath,"rb");
-	if (!file)							    {printf("%s could not be opened. Are you in the right directory ?\n", imagepath); getchar(); return 0;}
+/*-----------------------------------------------
+ 
+ Name:	LoadTexture2D
+ 
+ Params:	a_sPath - path to the texture
+ bGenerateMipMaps - whether to create mipmaps
+ 
+ Result:	Loads texture from a file, supports most
+ graphics formats.
+ 
+ /*---------------------------------------------*/
 
-	// Read the header, i.e. the 54 first bytes
+bool CTexture::LoadTexture2D(string a_sPath, bool bGenerateMipMaps)
+{
+    FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
+    FIBITMAP* dib(0);
+    
+    fif = FreeImage_GetFileType(a_sPath.c_str(), 0); // Check the file signature and deduce its format
+    
+    if(fif == FIF_UNKNOWN) // If still unknown, try to guess the file format from the file extension
+        fif = FreeImage_GetFIFFromFilename(a_sPath.c_str());
+    
+    if(fif == FIF_UNKNOWN) // If still unknown, return failure
+        return false;
+    
+    if(FreeImage_FIFSupportsReading(fif)) // Check if the plugin has reading capabilities and load the file
+        dib = FreeImage_Load(fif, a_sPath.c_str());
+    if(!dib)
+        return false;
+    
+    BYTE* bDataPointer = FreeImage_GetBits(dib); // Retrieve the image data
+    
+    // If somehow one of these failed (they shouldn't), return failure
+    if(bDataPointer == NULL || FreeImage_GetWidth(dib) == 0 || FreeImage_GetHeight(dib) == 0)
+        return false;
+    
+    GLenum format;
+    int bada = FreeImage_GetBPP(dib);
+    if(FreeImage_GetBPP(dib) == 32)format = GL_RGBA;
+    if(FreeImage_GetBPP(dib) == 24)format = GL_BGR;
+    if(FreeImage_GetBPP(dib) == 8)format = GL_LUMINANCE;
+    CreateFromData(bDataPointer, FreeImage_GetWidth(dib), FreeImage_GetHeight(dib), FreeImage_GetBPP(dib), format, bGenerateMipMaps);
+    
+    FreeImage_Unload(dib);
+    
+    sPath = a_sPath;
+    
+    return true; // Success
+}
 
-	// If less than 54 bytes are read, problem
-	if ( fread(header, 1, 54, file)!=54 ){ 
-		printf("Not a correct BMP file\n");
-		return 0;
-	}
-	// A BMP files always begins with "BM"
-	if ( header[0]!='B' || header[1]!='M' ){
-		printf("Not a correct BMP file\n");
-		return 0;
-	}
-	// Make sure this is a 24bpp file
-	if ( *(int*)&(header[0x1E])!=0  )         {printf("Not a correct BMP file\n");    return 0;}
-	if ( *(int*)&(header[0x1C])!=24 )         {printf("Not a correct BMP file\n");    return 0;}
+void CTexture::SetSamplerParameter(GLenum parameter, GLenum value)
+{
+    glSamplerParameteri(uiSampler, parameter, value);
+}
 
-	// Read the information about the image
-	dataPos    = *(int*)&(header[0x0A]);
-	imageSize  = *(int*)&(header[0x22]);
-	width      = *(int*)&(header[0x12]);
-	height     = *(int*)&(header[0x16]);
+/*-----------------------------------------------
+ 
+ Name:	SetFiltering
+ 
+ Params:	tfMagnification - mag. filter, must be from
+ ETextureFiltering enum
+ tfMinification - min. filter, must be from
+ ETextureFiltering enum
+ 
+ Result:	Sets magnification and minification
+ texture filter.
+ 
+ /*---------------------------------------------*/
 
-	// Some BMP files are misformatted, guess missing information
-	if (imageSize==0)    imageSize=width*height*3; // 3 : one byte for each Red, Green and Blue component
-	if (dataPos==0)      dataPos=54; // The BMP header is done that way
+void CTexture::SetFiltering(int a_tfMagnification, int a_tfMinification)
+{
+    glBindSampler(0, uiSampler);
+    
+    // Set magnification filter
+    if(a_tfMagnification == TEXTURE_FILTER_MAG_NEAREST)
+        glSamplerParameteri(uiSampler, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    else if(a_tfMagnification == TEXTURE_FILTER_MAG_BILINEAR)
+        glSamplerParameteri(uiSampler, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    // Set minification filter
+    if(a_tfMinification == TEXTURE_FILTER_MIN_NEAREST)
+        glSamplerParameteri(uiSampler, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    else if(a_tfMinification == TEXTURE_FILTER_MIN_BILINEAR)
+        glSamplerParameteri(uiSampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    else if(a_tfMinification == TEXTURE_FILTER_MIN_NEAREST_MIPMAP)
+        glSamplerParameteri(uiSampler, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+    else if(a_tfMinification == TEXTURE_FILTER_MIN_BILINEAR_MIPMAP)
+        glSamplerParameteri(uiSampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+    else if(a_tfMinification == TEXTURE_FILTER_MIN_TRILINEAR)
+        glSamplerParameteri(uiSampler, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    
+    tfMinification = a_tfMinification;
+    tfMagnification = a_tfMagnification;
+}
 
-	// Create a buffer
-	data = new unsigned char [imageSize];
+/*-----------------------------------------------
+ 
+ Name:	BindTexture
+ 
+ Params:	iTextureUnit - texture unit to bind texture to
+ 
+ Result:	Guess what it does :)
+ 
+ /*---------------------------------------------*/
 
-	// Read the actual data from the file into the buffer
-	fread(data,1,imageSize,file);
+void CTexture::BindTexture(int iTextureUnit)
+{
+    glActiveTexture(GL_TEXTURE0+iTextureUnit);
+    glBindTexture(GL_TEXTURE_2D, uiTexture);
+    glBindSampler(iTextureUnit, uiSampler);
+}
 
-	// Everything is in memory now, the file wan be closed
-	fclose (file);
+/*-----------------------------------------------
+ 
+ Name:	DeleteTexture
+ 
+ Params:	none
+ 
+ Result:	Frees all memory used by texture.
+ 
+ /*---------------------------------------------*/
 
-	// Create one OpenGL texture
-	GLuint textureID;
-	glGenTextures(1, &textureID);
-	
-	// "Bind" the newly created texture : all future texture functions will modify this texture
-	glBindTexture(GL_TEXTURE_2D, textureID);
+void CTexture::DeleteTexture()
+{
+    glDeleteSamplers(1, &uiSampler);
+    glDeleteTextures(1, &uiTexture);
+}
 
-	// Give the image to OpenGL
-	glTexImage2D(GL_TEXTURE_2D, 0,GL_RGB, width, height, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
+/*-----------------------------------------------
+ 
+ Name:	Getters
+ 
+ Params:	none
+ 
+ Result:	... They get something :D
+ 
+ /*---------------------------------------------*/
 
-	// OpenGL has now copied the data. Free our own version
-	delete [] data;
+int CTexture::GetMinificationFilter()
+{
+    return tfMinification;
+}
 
-	// Poor filtering, or ...
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); 
+int CTexture::GetMagnificationFilter()
+{
+    return tfMagnification;
+}
 
-	// ... nice trilinear filtering.
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); 
-	glGenerateMipmap(GL_TEXTURE_2D);
+int CTexture::GetWidth()
+{
+    return iWidth;
+}
 
-	// Return the ID of the texture we just created
-	return textureID;
+int CTexture::GetHeight()
+{
+    return iHeight;
+}
+
+int CTexture::GetBPP()
+{
+    return iBPP;
+}
+
+UINT CTexture::GetTextureID()
+{
+    return uiTexture;
+}
+
+string CTexture::GetPath()
+{
+    return sPath;
+}
+
+bool CTexture::ReloadTexture()
+{
+    FREE_IMAGE_FORMAT fif = FIF_UNKNOWN;
+    FIBITMAP* dib(0);
+    
+    fif = FreeImage_GetFileType(sPath.c_str(), 0); // Check the file signature and deduce its format
+    
+    if(fif == FIF_UNKNOWN) // If still unknown, try to guess the file format from the file extension
+        fif = FreeImage_GetFIFFromFilename(sPath.c_str());
+    
+    if(fif == FIF_UNKNOWN) // If still unknown, return failure
+        return false;
+    
+    if(FreeImage_FIFSupportsReading(fif)) // Check if the plugin has reading capabilities and load the file
+        dib = FreeImage_Load(fif, sPath.c_str());
+    if(!dib)
+        return false;
+    
+    BYTE* bDataPointer = FreeImage_GetBits(dib); // Retrieve the image data
+    
+    // If somehow one of these failed (they shouldn't), return failure
+    if(bDataPointer == NULL || FreeImage_GetWidth(dib) == 0 || FreeImage_GetHeight(dib) == 0)
+        return false;
+    
+    GLenum format;
+    int bada = FreeImage_GetBPP(dib);
+    if(FreeImage_GetBPP(dib) == 32)format = GL_RGBA;
+    if(FreeImage_GetBPP(dib) == 24)format = GL_BGR;
+    if(FreeImage_GetBPP(dib) == 8)format = GL_LUMINANCE;
+    
+    glBindTexture(GL_TEXTURE_2D, uiTexture);
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, iWidth, iHeight, format, GL_UNSIGNED_BYTE, bDataPointer);
+    if(bMipMapsGenerated)glGenerateMipmap(GL_TEXTURE_2D);
+    
+    FreeImage_Unload(dib);
+    
+    return true; // Success
+}
+
+CTexture tTextures[NUMTEXTURES];
+
+void LoadAllTextures()
+{
+    // Load textures
+    
+    //string sTextureNames[] = {"sand_grass_02.jpg"};
+    
+    FOR(i, NUMTEXTURES)
+    {
+        //tTextures[i].LoadTexture2D("data\\textures\\"+sTextureNames[i], true);
+        tTextures[i].SetFiltering(TEXTURE_FILTER_MAG_BILINEAR, TEXTURE_FILTER_MIN_BILINEAR_MIPMAP);
+    }
 }

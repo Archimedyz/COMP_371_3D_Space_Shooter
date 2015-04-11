@@ -25,6 +25,10 @@ using namespace std;
 
 #include <GLFW/glfw3.h>
 
+#include "assimp_model.h"
+
+#include "Variables.h"
+
 
 #if defined(PLATFORM_OSX)
 #define fscanf_s fscanf
@@ -54,12 +58,19 @@ void Renderer::Initialize()
 	// Black background
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	
+    glEnable(GL_TEXTURE_2D);
+    
 	// Enable depth test
     glEnable(GL_DEPTH_TEST);
     
 	// Accept fragment if it closer to the camera than the former one
-    glDepthFunc(GL_LESS); 
-
+    glDepthFunc(GL_LESS);
+    
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);    // Uses default lighting parameters
+    glLightModeli(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
+    glEnable(GL_NORMALIZE);
+    
 	// Line width
 	glLineWidth(2);
 
@@ -71,8 +82,8 @@ void Renderer::Initialize()
 #endif
 
 	sShaderProgramID.push_back(
-                LoadShaders(shaderPathPrefix + "SolidColor.vertexshader",
-                            shaderPathPrefix + "SolidColor.fragmentshader")
+                LoadShaders(shaderPathPrefix + "lighting.vert",
+                            shaderPathPrefix + "lighting.frag")
                                );
 	sShaderProgramID.push_back(
                 LoadShaders(shaderPathPrefix + "PathLines.vertexshader",
@@ -80,10 +91,10 @@ void Renderer::Initialize()
                                );
 	sShaderProgramID.push_back(
                 LoadShaders(shaderPathPrefix + "SolidColor.vertexshader",
-                            shaderPathPrefix + "BlueColor.fragmentshader")
+                            shaderPathPrefix + "SolidColor.fragmentshader")
                                );
 	sCurrentShader = 0;
-
+    
 }
 
 void Renderer::Shutdown()

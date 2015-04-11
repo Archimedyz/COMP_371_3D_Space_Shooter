@@ -1,7 +1,7 @@
 # Blender MTL File: 'untitled.blend'
 # Material Count: 9
 
-newmtl 01_-_Default.001
+newmtl 01_-_Default
 Ns 90.196078
 Ka 0.000000 0.000000 0.000000
 Kd 0.205915 0.203362 0.250701
@@ -10,7 +10,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
-newmtl Black.001
+newmtl Black
 Ns 90.196078
 Ka 0.000000 0.000000 0.000000
 Kd 0.001321 0.001321 0.001321
@@ -19,7 +19,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
-newmtl BleuPale.001
+newmtl BleuPale
 Ns 90.196078
 Ka 0.000000 0.000000 0.000000
 Kd 0.002210 0.030330 0.048449
@@ -28,7 +28,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
-newmtl InsideEngine.001
+newmtl InsideEngine
 Ns 90.196078
 Ka 0.000000 0.000000 0.000000
 Kd 0.409600 0.378711 0.004492
@@ -37,7 +37,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
-newmtl R2D2Blue.001
+newmtl R2D2Blue
 Ns 90.196078
 Ka 0.000000 0.000000 0.000000
 Kd 0.006946 0.007597 0.409600
@@ -46,7 +46,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
-newmtl R2D2White.001
+newmtl R2D2White
 Ns 90.196078
 Ka 0.000000 0.000000 0.000000
 Kd 0.409600 0.409600 0.409600
@@ -55,7 +55,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
-newmtl RedBand.001
+newmtl RedBand
 Ns 90.196078
 Ka 0.000000 0.000000 0.000000
 Kd 0.337739 0.019010 0.014059
@@ -64,7 +64,7 @@ Ni 1.000000
 d 1.000000
 illum 2
 
-newmtl cockpit.001
+newmtl cockpit
 Ns 186.274510
 Ka 0.000000 0.000000 0.000000
 Kd 0.009656 0.025766 0.148581
@@ -73,7 +73,7 @@ Ni 1.000000
 d 0.100000
 illum 2
 
-newmtl engine.001
+newmtl engine
 Ns 90.196078
 Ka 0.000000 0.000000 0.000000
 Kd 0.584785 0.000630 0.001237

@@ -1,0 +1,2232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>Assimp@ThirdParty</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.cdt.make.core.makeBuilder</name>
+			<triggers>clean,full,incremental,</triggers>
+			<arguments>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.cleanBuildTarget</key>
+					<value>clean</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.enableCleanBuild</key>
+					<value>true</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.append_environment</key>
+					<value>true</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.stopOnError</key>
+					<value>true</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.enabledIncrementalBuild</key>
+					<value>true</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.build.command</key>
+					<value>/usr/bin/make</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.contents</key>
+					<value>org.eclipse.cdt.make.core.activeConfigSettings</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.build.target.inc</key>
+					<value>all</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.build.arguments</key>
+					<value>-j2</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.buildLocation</key>
+					<value>/Users/lukascardot-goyette/GitHub/COMP_371_3D_Space_Shooter/ThirdParty</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.useDefaultBuildCmd</key>
+					<value>false</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.environment</key>
+					<value>VERBOSE=1|CMAKE_NO_VERBOSE=1|</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.enableFullBuild</key>
+					<value>true</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.build.target.auto</key>
+					<value>all</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.enableAutoBuild</key>
+					<value>false</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.build.target.clean</key>
+					<value>clean</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.fullBuildTarget</key>
+					<value>all</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.buildArguments</key>
+					<value></value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.build.location</key>
+					<value>/Users/lukascardot-goyette/GitHub/COMP_371_3D_Space_Shooter/ThirdParty</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.make.core.autoBuildTarget</key>
+					<value>all</value>
+				</dictionary>
+				<dictionary>
+					<key>org.eclipse.cdt.core.errorOutputParser</key>
+					<value>org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser;</value>
+				</dictionary>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.cdt.make.core.ScannerConfigBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.cdt.make.core.makeNature</nature>
+		<nature>org.eclipse.cdt.make.core.ScannerConfigNature</nature>
+		<nature>org.eclipse.cdt.core.ccnature</nature>
+		<nature>org.eclipse.cdt.core.cnature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>[Source directory]</name>
+			<type>2</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only</location>
+		</link>
+		<link>
+			<name>[Subprojects]</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Subprojects]/Assimp</name>
+			<type>2</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only</location>
+		</link>
+		<link>
+			<name>[Targets]</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Source Files/Assimp.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Assimp.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Source Files/AssimpPCH.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/AssimpPCH.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/AssimpPCH.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/AssimpPCH.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/anim.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/anim.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/ai_assert.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/ai_assert.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/camera.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/camera.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/color4.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/color4.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/color4.inl</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/color4.inl</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/config.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/config.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/defs.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/defs.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/cfileio.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/cfileio.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/light.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/light.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/material.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/material.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/material.inl</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/material.inl</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/matrix3x3.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/matrix3x3.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/matrix3x3.inl</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/matrix3x3.inl</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/matrix4x4.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/matrix4x4.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/matrix4x4.inl</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/matrix4x4.inl</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/mesh.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/mesh.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/postprocess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/postprocess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/quaternion.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/quaternion.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/quaternion.inl</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/quaternion.inl</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/scene.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/scene.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/texture.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/texture.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/types.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/types.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/vector2.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/vector2.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/vector2.inl</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/vector2.inl</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/vector3.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/vector3.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/vector3.inl</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/vector3.inl</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/version.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/version.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/cimport.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/cimport.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/importerdesc.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/importerdesc.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/Importer.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/Importer.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/ProgressHandler.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/ProgressHandler.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/IOSystem.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/IOSystem.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/cexport.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/cexport.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Header Files/Exporter.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/Exporter.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Compiler</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Compiler/pushpack1.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/Compiler/pushpack1.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Compiler/poppack1.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/Compiler/poppack1.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Compiler/pstdint.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/pstdint.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Boost</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Boost/common_factor_rt.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BoostWorkaround/boost/math/common_factor_rt.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Boost/foreach.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BoostWorkaround/boost/foreach.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Boost/format.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BoostWorkaround/boost/format.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Boost/scoped_array.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BoostWorkaround/boost/scoped_array.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Boost/scoped_ptr.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BoostWorkaround/boost/scoped_ptr.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Boost/shared_array.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BoostWorkaround/boost/shared_array.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Boost/shared_ptr.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BoostWorkaround/boost/shared_ptr.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Boost/make_shared.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BoostWorkaround/boost/make_shared.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Boost/static_assert.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BoostWorkaround/boost/static_assert.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Boost/tuple.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BoostWorkaround/boost/tuple/tuple.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Logging</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Logging/DefaultLogger.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/DefaultLogger.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Logging/IOStream.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/IOStream.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Logging/LogStream.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/LogStream.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Logging/Logger.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/Logger.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Logging/NullLogger.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/include/assimp/NullLogger.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Logging/Win32DebugLogStream.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Win32DebugLogStream.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Logging/DefaultLogger.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/DefaultLogger.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Logging/FileLogStream.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/FileLogStream.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/fast_atof.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/fast_atof.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/qnan.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/qnan.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/BaseImporter.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BaseImporter.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/BaseImporter.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BaseImporter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/BaseProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BaseProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/BaseProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BaseProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/Importer.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Importer.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/ScenePrivate.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ScenePrivate.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/PostStepRegistry.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/PostStepRegistry.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/ImporterRegistry.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ImporterRegistry.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/ByteSwap.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ByteSwap.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/DefaultProgressHandler.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/DefaultProgressHandler.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/DefaultIOStream.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/DefaultIOStream.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/DefaultIOStream.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/DefaultIOStream.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/DefaultIOSystem.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/DefaultIOSystem.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/DefaultIOSystem.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/DefaultIOSystem.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/CInterfaceIOWrapper.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/CInterfaceIOWrapper.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/Hash.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Hash.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/Importer.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Importer.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/IFF.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IFF.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/ParsingUtils.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ParsingUtils.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/StdOStreamLogStream.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/StdOStreamLogStream.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/StreamReader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/StreamReader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/StringComparison.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/StringComparison.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/SGSpatialSort.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SGSpatialSort.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/SGSpatialSort.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SGSpatialSort.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/VertexTriangleAdjacency.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/VertexTriangleAdjacency.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/VertexTriangleAdjacency.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/VertexTriangleAdjacency.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/GenericProperty.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/GenericProperty.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/SpatialSort.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SpatialSort.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/SpatialSort.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SpatialSort.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/SceneCombiner.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SceneCombiner.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/SceneCombiner.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SceneCombiner.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/ScenePreprocessor.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ScenePreprocessor.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/ScenePreprocessor.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ScenePreprocessor.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/SkeletonMeshBuilder.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SkeletonMeshBuilder.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/SkeletonMeshBuilder.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SkeletonMeshBuilder.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/SplitByBoneCountProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SplitByBoneCountProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/SplitByBoneCountProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SplitByBoneCountProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/SmoothingGroups.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SmoothingGroups.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/StandardShapes.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/StandardShapes.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/StandardShapes.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/StandardShapes.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/TargetAnimation.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/TargetAnimation.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/TargetAnimation.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/TargetAnimation.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/RemoveComments.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/RemoveComments.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/RemoveComments.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/RemoveComments.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/Subdivision.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Subdivision.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/Subdivision.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Subdivision.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/Vertex.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Vertex.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/LineSplitter.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/LineSplitter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/TinyFormatter.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/TinyFormatter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/Profiler.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Profiler.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Common/LogAux.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/LogAux.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/3DS</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/3DS/3DSConverter.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/3DSConverter.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/3DS/3DSHelper.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/3DSHelper.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/3DS/3DSLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/3DSLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/3DS/3DSLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/3DSLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/AC</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/AC/ACLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ACLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/AC/ACLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ACLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/ASE</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/ASE/ASELoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ASELoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/ASE/ASELoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ASELoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/ASE/ASEParser.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ASEParser.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/ASE/ASEParser.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ASEParser.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/B3D</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/B3D/B3DImporter.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/B3DImporter.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/B3D/B3DImporter.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/B3DImporter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BVH</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BVH/BVHLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BVHLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BVH/BVHLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BVHLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Collada</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Collada/ColladaHelper.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ColladaHelper.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Collada/ColladaLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ColladaLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Collada/ColladaLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ColladaLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Collada/ColladaParser.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ColladaParser.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Collada/ColladaParser.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ColladaParser.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Collada/ColladaExporter.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ColladaExporter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Collada/ColladaExporter.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ColladaExporter.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/DXF</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/DXF/DXFLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/DXFLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/DXF/DXFLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/DXFLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/DXF/DXFHelper.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/DXFHelper.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/CSM</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/CSM/CSMLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/CSMLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/CSM/CSMLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/CSMLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/HMP</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/HMP/HMPFileData.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/HMPFileData.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/HMP/HMPLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/HMPLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/HMP/HMPLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/HMPLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/HMP/HalfLifeFileData.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/HalfLifeFileData.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Irr</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Irr/IRRLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IRRLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Irr/IRRLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IRRLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Irr/IRRMeshLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IRRMeshLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Irr/IRRMeshLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IRRMeshLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Irr/IRRShared.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IRRShared.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Irr/IRRShared.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IRRShared.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/LWO</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/LWO/LWOAnimation.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/LWOAnimation.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/LWO/LWOAnimation.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/LWOAnimation.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/LWO/LWOBLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/LWOBLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/LWO/LWOFileData.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/LWOFileData.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/LWO/LWOLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/LWOLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/LWO/LWOLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/LWOLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/LWO/LWOMaterial.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/LWOMaterial.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/LWS</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/LWS/LWSLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/LWSLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/LWS/LWSLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/LWSLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/M3</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/M3/M3Importer.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/M3Importer.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/M3/M3Importer.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/M3Importer.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD2</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD2/MD2FileData.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MD2FileData.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD2/MD2Loader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MD2Loader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD2/MD2Loader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MD2Loader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD2/MD2NormalTable.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MD2NormalTable.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD3</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD3/MD3FileData.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MD3FileData.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD3/MD3Loader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MD3Loader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD3/MD3Loader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MD3Loader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD5</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD5/MD5Loader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MD5Loader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD5/MD5Loader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MD5Loader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD5/MD5Parser.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MD5Parser.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MD5/MD5Parser.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MD5Parser.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MDC</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MDC/MDCFileData.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MDCFileData.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MDC/MDCLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MDCLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MDC/MDCLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MDCLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MDC/MDCNormalTable.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MDCNormalTable.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MDL</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MDL/MDLDefaultColorMap.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MDLDefaultColorMap.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MDL/MDLFileData.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MDLFileData.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MDL/MDLLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MDLLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MDL/MDLLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MDLLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MDL/MDLMaterialLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MDLMaterialLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MaterialSystem</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MaterialSystem/MaterialSystem.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MaterialSystem.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MaterialSystem/MaterialSystem.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MaterialSystem.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/NFF</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/NFF/NFFLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/NFFLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/NFF/NFFLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/NFFLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/NDO</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/NDO/NDOLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/NDOLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/NDO/NDOLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/NDOLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/OFFFormat</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/OFFFormat/OFFLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/OFFLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/OFFFormat/OFFLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/OFFLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Obj</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Obj/ObjFileData.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ObjFileData.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Obj/ObjFileImporter.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ObjFileImporter.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Obj/ObjFileImporter.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ObjFileImporter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Obj/ObjFileMtlImporter.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ObjFileMtlImporter.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Obj/ObjFileMtlImporter.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ObjFileMtlImporter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Obj/ObjFileParser.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ObjFileParser.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Obj/ObjFileParser.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ObjFileParser.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Obj/ObjTools.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ObjTools.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Obj/ObjExporter.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ObjExporter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Obj/ObjExporter.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ObjExporter.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ogre</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ogre/OgreImporter.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/OgreImporter.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ogre/OgreXmlHelper.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/OgreXmlHelper.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ogre/OgreImporter.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/OgreImporter.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ogre/OgreMaterial.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/OgreMaterial.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ogre/OgreMesh.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/OgreMesh.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ogre/OgreSkeleton.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/OgreSkeleton.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ply</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ply/PlyLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/PlyLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ply/PlyLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/PlyLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ply/PlyParser.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/PlyParser.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ply/PlyParser.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/PlyParser.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ply/PlyExporter.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/PlyExporter.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Ply/PlyExporter.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/PlyExporter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MS3D</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MS3D/MS3DLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MS3DLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/MS3D/MS3DLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MS3DLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/COB</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/COB/COBLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/COBLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/COB/COBLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/COBLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/COB/COBScene.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/COBScene.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BLENDER</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BLENDER/BlenderLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BlenderLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BLENDER/BlenderLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BlenderLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BLENDER/BlenderDNA.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BlenderDNA.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BLENDER/BlenderDNA.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BlenderDNA.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BLENDER/BlenderDNA.inl</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BlenderDNA.inl</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BLENDER/BlenderScene.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BlenderScene.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BLENDER/BlenderScene.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BlenderScene.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BLENDER/BlenderSceneGen.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BlenderSceneGen.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BLENDER/BlenderIntermediate.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BlenderIntermediate.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BLENDER/BlenderModifier.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BlenderModifier.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/BLENDER/BlenderModifier.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BlenderModifier.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC/IFCLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IFCLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC/IFCLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IFCLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC/IFCReaderGen.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IFCReaderGen.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC/IFCReaderGen.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IFCReaderGen.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC/IFCUtil.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IFCUtil.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC/IFCUtil.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IFCUtil.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC/IFCGeometry.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IFCGeometry.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC/IFCMaterial.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IFCMaterial.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC/IFCProfile.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IFCProfile.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC/IFCCurve.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/IFCCurve.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC/STEPFile.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/STEPFile.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC/STEPFileReader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/STEPFileReader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IFC/STEPFileReader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/STEPFileReader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/XGL</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/XGL/XGLLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/XGLLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/XGL/XGLLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/XGLLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/CalcTangentsProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/CalcTangentsProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/CalcTangentsProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/CalcTangentsProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/ComputeUVMappingProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ComputeUVMappingProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/ComputeUVMappingProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ComputeUVMappingProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/ConvertToLHProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ConvertToLHProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/ConvertToLHProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ConvertToLHProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/FindDegenerates.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/FindDegenerates.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/FindDegenerates.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/FindDegenerates.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/FindInstancesProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/FindInstancesProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/FindInstancesProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/FindInstancesProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/FindInvalidDataProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/FindInvalidDataProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/FindInvalidDataProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/FindInvalidDataProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/FixNormalsStep.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/FixNormalsStep.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/FixNormalsStep.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/FixNormalsStep.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/GenFaceNormalsProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/GenFaceNormalsProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/GenFaceNormalsProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/GenFaceNormalsProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/GenVertexNormalsProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/GenVertexNormalsProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/GenVertexNormalsProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/GenVertexNormalsProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/PretransformVertices.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/PretransformVertices.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/PretransformVertices.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/PretransformVertices.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/ImproveCacheLocality.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ImproveCacheLocality.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/ImproveCacheLocality.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ImproveCacheLocality.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/JoinVerticesProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/JoinVerticesProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/JoinVerticesProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/JoinVerticesProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/LimitBoneWeightsProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/LimitBoneWeightsProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/LimitBoneWeightsProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/LimitBoneWeightsProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/RemoveRedundantMaterials.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/RemoveRedundantMaterials.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/RemoveRedundantMaterials.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/RemoveRedundantMaterials.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/RemoveVCProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/RemoveVCProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/RemoveVCProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/RemoveVCProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/SortByPTypeProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SortByPTypeProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/SortByPTypeProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SortByPTypeProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/SplitLargeMeshes.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SplitLargeMeshes.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/SplitLargeMeshes.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SplitLargeMeshes.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/TerragenLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/TerragenLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/TerragenLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/TerragenLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/TextureTransform.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/TextureTransform.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/TextureTransform.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/TextureTransform.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/TriangulateProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/TriangulateProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/TriangulateProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/TriangulateProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/ValidateDataStructure.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ValidateDataStructure.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/ValidateDataStructure.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ValidateDataStructure.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/OptimizeGraph.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/OptimizeGraph.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/OptimizeGraph.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/OptimizeGraph.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/OptimizeMeshes.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/OptimizeMeshes.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/OptimizeMeshes.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/OptimizeMeshes.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/DeboneProcess.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/DeboneProcess.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/DeboneProcess.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/DeboneProcess.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/ProcessHelper.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ProcessHelper.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/ProcessHelper.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/ProcessHelper.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/PolyTools.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/PolyTools.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/MakeVerboseFormat.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MakeVerboseFormat.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/PostProcessing/MakeVerboseFormat.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MakeVerboseFormat.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Q3D</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Q3D/Q3DLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Q3DLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Q3D/Q3DLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Q3DLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Q3BSP</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Q3BSP/Q3BSPFileData.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Q3BSPFileData.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Q3BSP/Q3BSPFileParser.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Q3BSPFileParser.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Q3BSP/Q3BSPFileParser.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Q3BSPFileParser.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Q3BSP/Q3BSPFileImporter.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Q3BSPFileImporter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Q3BSP/Q3BSPFileImporter.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Q3BSPFileImporter.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Q3BSP/Q3BSPZipArchive.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Q3BSPZipArchive.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Q3BSP/Q3BSPZipArchive.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Q3BSPZipArchive.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Raw</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Raw/RawLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/RawLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Raw/RawLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/RawLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/SMD</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/SMD/SMDLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SMDLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/SMD/SMDLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/SMDLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/STL</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/STL/STLLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/STLLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/STL/STLLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/STLLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/STL/STLExporter.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/STLExporter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/STL/STLExporter.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/STLExporter.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Unreal</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Unreal/UnrealLoader.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/UnrealLoader.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Unreal/UnrealLoader.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/UnrealLoader.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/XFile</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/XFile/XFileHelper.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/XFileHelper.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/XFile/XFileImporter.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/XFileImporter.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/XFile/XFileImporter.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/XFileImporter.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/XFile/XFileParser.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/XFileParser.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/XFile/XFileParser.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/XFileParser.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Exporter</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Exporter/Exporter.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/Exporter.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Exporter/AssimpCExport.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/AssimpCExport.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Exporter/BlobIOSystem.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/BlobIOSystem.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Extra</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Extra/MD4FileData.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/MD4FileData.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IrrXML</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IrrXML/irrXMLWrapper.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/code/irrXMLWrapper.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IrrXML/CXMLReaderImpl.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/irrXML/CXMLReaderImpl.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IrrXML/heapsort.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/irrXML/heapsort.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IrrXML/irrArray.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/irrXML/irrArray.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IrrXML/irrString.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/irrXML/irrString.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IrrXML/irrTypes.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/irrXML/irrTypes.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IrrXML/irrXML.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/irrXML/irrXML.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/IrrXML/irrXML.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/irrXML/irrXML.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/ConvertUTF</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/ConvertUTF/ConvertUTF.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/ConvertUTF/ConvertUTF.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/ConvertUTF/ConvertUTF.c</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/ConvertUTF/ConvertUTF.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Clipper</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Clipper/clipper.hpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/clipper/clipper.hpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Clipper/clipper.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/clipper/clipper.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Poly2Tri</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Poly2Tri/shapes.cc</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/poly2tri/poly2tri/common/shapes.cc</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Poly2Tri/shapes.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/poly2tri/poly2tri/common/shapes.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Poly2Tri/utils.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/poly2tri/poly2tri/common/utils.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Poly2Tri/advancing_front.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/poly2tri/poly2tri/sweep/advancing_front.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Poly2Tri/advancing_front.cc</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/poly2tri/poly2tri/sweep/advancing_front.cc</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Poly2Tri/cdt.cc</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/poly2tri/poly2tri/sweep/cdt.cc</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Poly2Tri/cdt.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/poly2tri/poly2tri/sweep/cdt.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Poly2Tri/sweep.cc</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/poly2tri/poly2tri/sweep/sweep.cc</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Poly2Tri/sweep.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/poly2tri/poly2tri/sweep/sweep.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Poly2Tri/sweep_context.cc</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/poly2tri/poly2tri/sweep/sweep_context.cc</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/Poly2Tri/sweep_context.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/poly2tri/poly2tri/sweep/sweep_context.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/unzip</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/unzip/crypt.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/unzip/crypt.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/unzip/ioapi.c</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/unzip/ioapi.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/unzip/ioapi.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/unzip/ioapi.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/unzip/unzip.c</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/unzip/unzip.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[lib] assimp/unzip/unzip.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/contrib/unzip/unzip.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/Source Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/Source Files/assimp_cmd.rc</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/tools/assimp_cmd/assimp_cmd.rc</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/Source Files/CompareDump.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/tools/assimp_cmd/CompareDump.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/Source Files/ImageExtractor.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/tools/assimp_cmd/ImageExtractor.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/Source Files/Main.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/tools/assimp_cmd/Main.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/Source Files/WriteDumb.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/tools/assimp_cmd/WriteDumb.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/Source Files/Info.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/tools/assimp_cmd/Info.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/Source Files/Export.cpp</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/tools/assimp_cmd/Export.cpp</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/Header Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/Header Files/Main.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/tools/assimp_cmd/Main.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/Header Files/resource.h</name>
+			<type>1</type>
+			<location>/Users/lukascardot-goyette/Downloads/assimp--3.0.1270-source-only/tools/assimp_cmd/resource.h</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/CMake Rules</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/Resources</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>[Targets]/[exe] assimp_cmd/Object Files</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+	</linkedResources>
+</projectDescription>

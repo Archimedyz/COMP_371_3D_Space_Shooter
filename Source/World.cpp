@@ -15,10 +15,10 @@
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
-<<<<<<< HEAD
-#include "BackgroundFactory.h"
-=======
->>>>>>> master
+//<<<<<<< HEAD
+//#include "BackgroundFactory.h"
+//=======
+//>>>>>>> master
 #include "Path.h"
 #include "Projectile.h"
 #include "ShipModel.h"
@@ -26,6 +26,9 @@
 
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
+
+#include "assimp_model.h"
+#include "Variables.h"
 
 using namespace std;
 using namespace glm;
@@ -103,12 +106,13 @@ void World::Update(float dt)
 	// 0 and 9 to change the shader
 	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_0 ) == GLFW_PRESS)
 	{
-		Renderer::SetShader(SHADER_SOLID_COLOR);
+		Renderer::SetShader(SOLID);
 	}
 	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_9 ) == GLFW_PRESS)
 	{
-		Renderer::SetShader(SHADER_BLUE);
+		Renderer::SetShader(MAIN);
 	}
+    
 
 	// Update current Camera
 	mCamera[mCurrentCamera]->Update(dt);
@@ -161,7 +165,7 @@ void World::Draw()
 	
 	// Set Shader for path lines
 	unsigned int prevShader = Renderer::GetCurrentShader();
-	Renderer::SetShader(SHADER_PATH_LINES);
+	//Renderer::SetShader(SHADER_PATH_LINES);
 	glUseProgram(Renderer::GetShaderProgramID());
 
 	// Send the view projection constants to the shader
@@ -173,7 +177,7 @@ void World::Draw()
 		// Draw model
 		(*it)->Draw();
 	}
-
+    
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);
 
@@ -187,20 +191,20 @@ void World::LoadScene(const char * scene_path)
 	// I moved it there since it's just extra clutter to keep it here commented out, it can probably
 	// be deleted. -Nick
     
-<<<<<<< HEAD:COMP_371_Project/Source/World.cpp
-	mModel.push_back(AsteroidFactory::createAsteroid());
-	mModel.push_back(BackgroundFactory::createBackgroundSphere());
-=======
-	mModel.push_back(AsteroidFactory::createAsteroid(0));
-<<<<<<< HEAD
-	//SphereModel* background = static_cast<SphereModel*>(BackgroundSphereModel(vec3(100.0f, 100.0f, 100.0f)));
-	//mModel.push_back(background);
-	//mModel.push_back(BackgroundSphereModel::Draw());
->>>>>>> master:Source/World.cpp
-=======
+//<<<<<<< HEAD:COMP_371_Project/Source/World.cpp
+//	mModel.push_back(AsteroidFactory::createAsteroid());
+//	mModel.push_back(BackgroundFactory::createBackgroundSphere());
+//=======
+//	mModel.push_back(AsteroidFactory::createAsteroid(0));
+//<<<<<<< HEAD
+//	SphereModel* background = static_cast<SphereModel*>(BackgroundSphereModel(vec3(100.0f, 100.0f, 100.0f)));
+//	mModel.push_back(background);
+//	mModel.push_back(BackgroundSphereModel::Draw());
+//>>>>>>> master:Source/World.cpp
+//=======
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
->>>>>>> master
+//>>>>>>> master
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
 
@@ -212,7 +216,7 @@ void World::LoadScene(const char * scene_path)
 void World::LoadCameras()
 {
     // Setup Camera
-    mCamera.push_back(new StaticCamera(vec3(3.0f, 5.0f, 5.0f),  vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
+    mCamera.push_back(new StaticCamera(vec3(13.0f, 15.0f, 15.0f),  vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(3.0f, 30.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     
@@ -228,6 +232,8 @@ void World::LoadCameras()
 	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
+    
+    
 
     mCurrentCamera = 0;
 }

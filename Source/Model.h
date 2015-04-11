@@ -63,7 +63,7 @@ public:
     void SetSpeed(float spd);
 
 protected:
-	virtual bool ParseLine(const std::vector<ci_string> &token) = 0;
+	virtual bool ParseLine(const std::vector<ci_string> &token);
 
 	ci_string mName; // The model name is mainly for debugging
 	glm::vec3 mPosition;

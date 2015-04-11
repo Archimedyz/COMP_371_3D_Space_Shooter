@@ -13,6 +13,8 @@
 #include <vector>
 #include <time.h>
 
+//#include "Mesh.h"
+
 class Camera;
 class Model;
 class Path;
@@ -50,4 +52,5 @@ private:
 	unsigned int mCurrentCamera;
 
 	clock_t Clock;
+    //Mesh *mesh;
 };

@@ -1,22 +1,20 @@
 #version 330
 
-struct DirectionalLight
-{
-	float Ambient, Diffuse;
-	vec3 Direction;
-};
+smooth in vec2 vTexCoord;
+smooth in vec3 vNormal;
+out vec4 outputColor;
 
-uniform sampler2D Texture;
-uniform DirectionalLight Light;
+uniform sampler2D gSampler;
+uniform vec4 vColor;
 
-in vec2 TexCoord;
-in vec3 Normal;
-
-out vec4 frag_Color;
 
 void main()
 {
-	frag_Color = texture(Texture, TexCoord);
-	float NdotLD = max(dot(normalize(Normal), Light.Direction), 0.0);
-	frag_Color.rgb *= Light.Ambient + Light.Diffuse * NdotLD;
+    vec3 vNormalized = normalize(vNormal);
+    
+    vec4 vTexColor = texture(gSampler, vTexCoord);
+    
+    vec4 vMixedColor = vTexColor * vColor;
+    
+    outputColor = vMixedColor;//*vDirLightColor;
 }

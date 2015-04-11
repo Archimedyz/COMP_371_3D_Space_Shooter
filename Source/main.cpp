@@ -11,10 +11,9 @@
 #include "World.h"
 #include "EventManager.h"
 
-
-
 int main(int argc, char*argv[])
 {
+    
 	EventManager::Initialize();
 	Renderer::Initialize();
 

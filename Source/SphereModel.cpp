@@ -1334,7 +1334,7 @@ void SphereModel::Draw()
 
 
     // 3rd attribute buffer : vertex color
-    glEnableVertexAttribArray(2);
+   /* glEnableVertexAttribArray(2);
     glBindBuffer(GL_ARRAY_BUFFER, mVertexBufferID);
     glVertexAttribPointer(  2,
                             3,
@@ -1342,7 +1342,7 @@ void SphereModel::Draw()
                             GL_FALSE,
                             sizeof(Vertex),
                             (void*) (2* sizeof(vec3)) // Color is Offseted by 2 vec3 (see class Vertex)
-                        );
+                        );*/
 
     // Draw the triangles !
     glDrawArrays(GL_TRIANGLE_STRIP, 0, numOfVertices);

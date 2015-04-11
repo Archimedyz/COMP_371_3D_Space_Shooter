@@ -1,0 +1,3 @@
+/Users/lukascardot-goyette/GitHub/COMP_371_3D_Space_Shooter/ThirdParty/assimp/CMakeFiles/uninstall.dir
+/Users/lukascardot-goyette/GitHub/COMP_371_3D_Space_Shooter/ThirdParty/assimp/tools/assimp_cmd/CMakeFiles/assimp_cmd.dir
+/Users/lukascardot-goyette/GitHub/COMP_371_3D_Space_Shooter/ThirdParty/assimp/code/CMakeFiles/assimp.dir

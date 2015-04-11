@@ -11,6 +11,8 @@
 #include "objloader.hpp"
 #include "vboindexer.hpp"
 
+//#include <IL/il.h>
+
 
 Loader::Loader()
 {
