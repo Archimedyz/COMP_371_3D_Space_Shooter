@@ -212,5 +212,66 @@ void CubeModel::RenderShadowVolume(glm::vec4 lightPos){
 		glStencilOp(GL_REPLACE, GL_REPLACE, GL_REPLACE);
 		//draw_shadow();
 		glDisable(GL_STENCIL_TEST);
+
+
+		glm::vec3 * quadStrip = Renderer::RenderTriangleSurfaceShadowVolume(vertices, mPosition, lightPos);
+		Vertex mQuads[] = {
+			{ quadStrip[0], vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f) },
+			{ quadStrip[1], vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f) },
+			{ quadStrip[2], vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f) },
+			{ quadStrip[3], vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f) },
+			{ quadStrip[4], vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f) },
+			{ quadStrip[5], vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f) },
+			{ quadStrip[6], vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f) },
+			{ quadStrip[7], vec3(1.0f, 1.0f, 1.0f), vec3(0.0f, 0.0f, 1.0f) },
+		};
+
+		GLuint tempShadowID = 0;
+		glGenVertexArrays(1, &tempShadowID);
+
+		// Upload Vertex Buffer to the GPU, keep a reference to it (mVertexBufferID)
+		glGenBuffers(1, &tempShadowID);
+		glBindBuffer(GL_ARRAY_BUFFER, tempShadowID);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(mQuads), mQuads, GL_STATIC_DRAW);
+		
+		glEnableVertexAttribArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, tempShadowID);
+		glVertexAttribPointer(0,				// attribute. No particular reason for 0, but must match the layout in the shader.
+			3,				// size
+			GL_FLOAT,		// type
+			GL_FALSE,		// normalized?
+			sizeof(Vertex), // stride
+			(void*)0        // array buffer offset
+			);
+
+		// 2nd attribute buffer : vertex normal
+		glEnableVertexAttribArray(1);
+		glBindBuffer(GL_ARRAY_BUFFER, tempShadowID);
+		glVertexAttribPointer(1,
+			3,
+			GL_FLOAT,
+			GL_FALSE,
+			sizeof(Vertex),
+			(void*)sizeof(vec3)    // Normal is Offseted by vec3 (see class Vertex)
+			);
+
+
+		// 3rd attribute buffer : vertex color
+		glEnableVertexAttribArray(2);
+		glBindBuffer(GL_ARRAY_BUFFER, tempShadowID);
+		glVertexAttribPointer(2,
+			3,
+			GL_FLOAT,
+			GL_FALSE,
+			sizeof(Vertex),
+			(void*)(2 * sizeof(vec3)) // Color is Offseted by 2 vec3 (see class Vertex)
+			);
+
+		// Draw the triangles !
+		glDrawArrays(GL_QUAD_STRIP, 0, sizeof(mQuads)); // 36 vertices: 3 * 2 * 6 (3 per triangle, 2 triangles per face, 6 faces)
+
+		glDisableVertexAttribArray(2);
+		glDisableVertexAttribArray(1);
+		glDisableVertexAttribArray(0);
 	}
 }
