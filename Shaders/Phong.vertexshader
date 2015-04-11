@@ -19,12 +19,10 @@ out vec4 shadow_position; // Shadow's start point in camera space according to l
 uniform mat4 WorldTransform;
 uniform mat4 ViewTransform;
 uniform mat4 ProjectonTransform;
-uniform mat4 correctedLightMVP;
 
-
-// light position
+// Light + Shadow
 uniform vec4 WorldLightPosition; // if w = 1: Point light, if w = 0: directional light
-
+uniform mat4 convertedDepthMVP;
 
 void main()
 {
@@ -36,7 +34,7 @@ void main()
 	// Output position of the vertex, in clip space : MVP * position
 	gl_Position =  MVP * vec4(vertexPosition_modelspace,1);
 
-	shadow_position = correctedLightMVP * vec4(vertexPosition_modelspace,1);
+	shadow_position = convertedDepthMVP * vec4(vertexPosition_modelspace,1);
 
 	v_color = vertexColor;
 

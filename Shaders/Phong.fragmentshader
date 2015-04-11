@@ -7,6 +7,8 @@ uniform vec4 materialCoefficients; // x: ambient   y: diffuse   z: specular   w:
 uniform vec3 lightColor;
 uniform vec3 lightAttenuation; // x: kC  y: kL  z: kQ
 
+uniform sampler2DShadow shadowMap;
+
 // Inputs
 in vec3 v_color;		 // vertex color: also diffuse color
 
@@ -15,6 +17,7 @@ in vec3 eyeVector;       // Vector from the vertex to the Camera in View Space
 in vec4 lightVector;     // Vector from the vertex to the Light in View Space
 						 // Length of lightVector is the distance between light and vertex
 						 // if w = 1: Point light, if w = 0: directional light
+in vec4 shadow_position; // the shadows start position relative to the camera.
 
 // Ouput data
 out vec3 color;
@@ -31,6 +34,11 @@ void main()
 	vec3 light_vector = normalize(vec3(lightVector));
 	vec3 reflected_vector = 2.0f * dot(normal_vector, light_vector) * normal_vector - light_vector;
 	vec3 eye_vector = normalize(eyeVector);
+
+	float visibility = texture(shadowMap, vec3(shadow_position.x, shadow_position.y, (shadow_position.z/shadow_position.w)));
+//	if(texture(shadowMap, vec3(shadow_position.x, shadow_position.y, (shadow_position.z/shadow_position.w))).z < shadow_position.z){
+//		visibility = 0.2f;
+//	}
 
 	a_factor = 1.0f;
 	if(lightVector.w == 1){

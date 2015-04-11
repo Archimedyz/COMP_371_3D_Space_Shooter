@@ -44,7 +44,7 @@ public:
 	static unsigned int GetShaderProgramID() { return sShaderProgramID[sCurrentShader]; }
 	static unsigned int GetCurrentShader() { return sCurrentShader; }
 	static void SetShader(ShaderType type);
-	static void RenderTriangleSurfaceShadowVolume(glm::vec3 vertices[3], glm::vec3 surfacePos, glm::vec4 lightPos);
+	static glm::vec3* RenderTriangleSurfaceShadowVolume(glm::vec3 vertices[3], glm::vec3 surfacePos, glm::vec4 lightPos);
 	static void draw_shadow();
 
 private:
