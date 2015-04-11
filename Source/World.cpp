@@ -16,6 +16,7 @@
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
 #include "SphereModel.h"
+#include "Particle.h"
 #include "Path.h"
 #include "Projectile.h"
 #include "ShipModel.h"
@@ -149,8 +150,6 @@ void World::Update(float dt)
 			{
 				if (mModel[i]->GetName() != "SHIP")
 					mModel[i]->SetDestroy(true);
-				else
-					mModel[i]->SetPosition(vec3(0.0f, 0.0f, 0.0f));
 			}
 			if (mModel[i]->IsDestroyed())
 			{
@@ -316,16 +315,23 @@ void World::LoadCameras()
     mCamera.push_back(new StaticCamera(vec3(10.0f, 30.0f, 10.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
 
-	// Cube "ship" Character controlled with Third Person Camera
+	// cube "space station" model at center on world
 	CubeModel * spaceStation_model = new CubeModel();
 	spaceStation_model->SetPosition(vec3(0.0f, 0.0f, 0.0f));
 	mModel.push_back(spaceStation_model);
+
+	// ship Character controlled with Third Person Camera
 	ShipModel * ship_model = new ShipModel();
 	player = ship_model;
 	ship_model->SetPosition(vec3(0.0f, -5.0f, 0.0f));
 	ship_model->ActivateCollisions(true);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
+
+	// test particle
+	Particle * test_particle = new Particle(0.1f, vec3(0.0f, 1.0f, 0.0f), 500.0f);
+	test_particle->SetPosition(vec3(0.0f, 5.0f, 0.0f));
+	mModel.push_back(test_particle);
 
 	/*CubeModel * floor = new CubeModel();
 	floor->SetPosition(vec3(-2.0f, -5.0f, 1.0f));

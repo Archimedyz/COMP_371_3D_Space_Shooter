@@ -91,6 +91,7 @@
     <ClCompile Include="..\Source\Text2D.cpp" />
     <ClCompile Include="..\Source\texture.cpp" />
     <ClCompile Include="..\Source\ThirdPersonCamera.cpp" />
+    <ClCompile Include="..\Source\ThrusterParticles.cpp" />
     <ClCompile Include="..\Source\Variables.cpp" />
     <ClCompile Include="..\Source\vboindexer.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
@@ -120,6 +121,7 @@
     <ClInclude Include="..\Source\Text2D.h" />
     <ClInclude Include="..\Source\texture.hpp" />
     <ClInclude Include="..\Source\ThirdPersonCamera.h" />
+    <ClInclude Include="..\Source\ThrusterParticles.h" />
     <ClInclude Include="..\Source\Variables.h" />
     <ClInclude Include="..\Source\vboindexer.hpp" />
     <ClInclude Include="..\Source\World.h" />
