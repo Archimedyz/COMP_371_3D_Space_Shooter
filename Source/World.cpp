@@ -305,18 +305,10 @@ void World::Draw()
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	// Use the main shader
 	Renderer::SetShader(main_shader);
 	glUseProgram(Renderer::GetShaderProgramID());
 
-	GLuint ShadowMapID = glGetUniformLocation(Renderer::GetShaderProgramID(), "shadowMap");
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, DepthTextureID);
-	glUniform1i(ShadowMapID, 1);
-	GLuint ConvertedDepthMVPID = glGetUniformLocation(Renderer::GetShaderProgramID(), "convertedDepthMVP");
-	glUniformMatrix4fv(ConvertedDepthMVPID, 1, GL_FALSE, &convertedDepthMVP[0][0]);
 	// set ViewProjection transform for shaders
 	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
 
@@ -330,6 +322,10 @@ void World::Draw()
 	glUniform3f(LightColorID, lightColor.r, lightColor.g, lightColor.b);
 	glUniform3f(LightAttenuationID, lightKc, lightKl, lightKq);
 
+	// for shadows, get and then send the corrected depthMVP
+	GLuint ConvertedDepthMVPID = glGetUniformLocation(Renderer::GetShaderProgramID(), "correctedDepthMVP");
+	glUniformMatrix4fv(ConvertedDepthMVPID, 1, GL_FALSE, &convertedDepthMVP[0][0]);
+	
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{
@@ -364,7 +360,7 @@ void World::Draw()
 		printText2D("You lose!", 305, 285, 40);
 
 	// now we go about adding our shadow volumes
-	for (vector<Model*>::iterator it = mModel.begin();show_shadow_volumes && it < mModel.end(); ++it)
+	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
 	{
 		(*it)->RenderShadowVolume(lightPosition);
 	}
@@ -420,7 +416,7 @@ void World::LoadCameras()
     mCurrentCamera = 0;
 
 
-	mCamera.push_back(new FreeRoamCamera(vec3(20.0f, 2.0f, 20.0f), vec3(-1.0f, -0.5f, -1.0f), vec3(0.0f, 1.0f, 0.0f)));
+	mCamera.push_back(new FreeRoamCamera(vec3(2.0f, 2.0f, 2.0f), vec3(-1.0f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f)));
 }
 
 Path* World::FindPath(ci_string pathName)

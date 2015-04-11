@@ -36,9 +36,9 @@ void main()
 	vec3 eye_vector = normalize(eyeVector);
 
 	float visibility = texture(shadowMap, vec3(shadow_position.x, shadow_position.y, (shadow_position.z/shadow_position.w)));
-	if(texture(shadowMap, vec2(shadow_position.x, shadow_position.y)).z < shadow_position.z){
-		visibility = 0.2f;
-	}
+//	if(texture(shadowMap, vec3(shadow_position.x, shadow_position.y, (shadow_position.z/shadow_position.w))).z < shadow_position.z){
+//		visibility = 0.2f;
+//	}
 
 	a_factor = 1.0f;
 	if(lightVector.w == 1){
@@ -55,8 +55,8 @@ void main()
 	float n_shiny = materialCoefficients.w;
 
 	vec3 amb_intensity = lightColor * k_amb;
-	vec3 diff_intensity = visibility * i_light * k_diff * clamp(dot(normal_vector, light_vector), 0.0f, 1.0f); 
-	vec3 spec_intensity = visibility * i_light * k_spec * pow(clamp(dot(reflected_vector, eye_vector), 0.0f, 1.0f), n_shiny);
+	vec3 diff_intensity = i_light * k_diff * clamp(dot(normal_vector, light_vector), 0.0f, 1.0f); 
+	vec3 spec_intensity = i_light * k_spec * pow(clamp(dot(reflected_vector, eye_vector), 0.0f, 1.0f), n_shiny);
 
 	vec3 total_intensity = amb_intensity + diff_intensity + spec_intensity;
 
