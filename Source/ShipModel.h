@@ -14,7 +14,6 @@ public:
 	std::vector<glm::vec3> get_varray() { return ShipModel::vArray; }
 
 protected:
-	virtual bool ParseLine(const std::vector<ci_string> &token);
 
 	// drawing buffers. each subclass has a set of these buffers which contain the modelspace coordinates of the vertices. 
 	static std::vector<glm::vec3> vArray;

@@ -110,19 +110,6 @@ void SkyboxModel::Draw()
 	glDisableVertexAttribArray(2);
 }
 
-bool SkyboxModel::ParseLine(const std::vector<ci_string> &token)
-{
-	if (token.empty())
-	{
-		return true;
-	}
-	else
-	{
-		return Model::ParseLine(token);
-	}
-}
-
-
 void SkyboxModel::RenderShadowVolume(glm::vec4 lightPos){
 
 }

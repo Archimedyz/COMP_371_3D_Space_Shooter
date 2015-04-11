@@ -153,18 +153,6 @@ void AsteroidModel::Draw()
 	glDisableVertexAttribArray(0);
 }
 
-bool AsteroidModel::ParseLine(const std::vector<ci_string> &token)
-{
-	if (token.empty())
-	{
-		return true;
-	}
-	else
-	{
-		return Model::ParseLine(token);
-	}
-}
-
 void AsteroidModel::Destroy(){
 	destroyed = true;
 	// perform any remining destruction actions here.

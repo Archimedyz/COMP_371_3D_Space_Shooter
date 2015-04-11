@@ -29,7 +29,7 @@ Model::Model() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f),
 
 Model::Model(glm::vec3 position, glm::vec3 scaling, glm::vec3 lookAt) : mName("UNNAMED"), mPosition(position),
 mScaling(scaling), mYRotationAngleInDegrees(0.0f), mXRotationAngleInDegrees(0.0f), mZRotationAngleInDegrees(0.0f),
-mPath(nullptr), mSpeed(0.0f), mTargetWaypoint(1), mSpline(nullptr), mSplineParameterT(0.0f), mCollisionRadius(1.0f),
+mPath(nullptr), mSpeed(0.0f), mTargetWaypoint(1), mSplineParameterT(0.0f), mCollisionRadius(1.0f),
 CollisionsOn(true), mDestroyed(false),
 mCamXAxis(glm::vec3(1.0f, 0.0f, 0.0f)), mCamYAxis(glm::vec3(0.0f, 1.0f, 0.0f)), mCamZAxis(glm::vec3(0.0f, 0.0f, 1.0f)),
 mCameraYRotationAngleInDegrees(0.0f), mCameraXRotationAngleInDegrees(0.0f), mCameraZRotationAngleInDegrees(0.0f)
@@ -70,104 +70,6 @@ void Model::Draw()
 	glUniform4f(MaterialID, ka, kd, ks, n);
 }
 
-
-void Model::Load(ci_istringstream& iss)
-{
-	ci_string line;
-
-	// Parse model line by line
-	while (std::getline(iss, line))
-	{
-		// Splitting line into tokens
-		ci_istringstream strstr(line);
-		istream_iterator<ci_string, char, ci_char_traits> it(strstr);
-		istream_iterator<ci_string, char, ci_char_traits> end;
-		vector<ci_string> token(it, end);
-
-		if (ParseLine(token) == false)
-		{
-			//fprintf(stderr, "Error loading scene file... token:  %s!", token[0]);
-			getchar();
-			exit(-1);
-		}
-	}
-}
-
-bool Model::ParseLine(const std::vector<ci_string> &token)
-{
-	if (token.empty() == false)
-	{
-		if (token[0].empty() == false && token[0][0] == '#')
-		{
-			return true;
-		}
-		else if (token[0] == "name")
-		{
-			assert(token.size() > 2);
-			assert(token[1] == "=");
-
-			mName = token[2];
-		}
-		else if (token[0] == "position")
-		{
-			assert(token.size() > 4);
-			assert(token[1] == "=");
-
-			mPosition.x = static_cast<float>(atof(token[2].c_str()));
-			mPosition.y = static_cast<float>(atof(token[3].c_str()));
-			mPosition.z = static_cast<float>(atof(token[4].c_str()));
-		}
-		else if (token[0] == "rotation")
-		{
-			assert(token.size() > 4);
-			assert(token[1] == "=");
-
-			mYAxis.x = static_cast<float>(atof(token[2].c_str()));
-			mYAxis.y = static_cast<float>(atof(token[3].c_str()));
-			mYAxis.z = static_cast<float>(atof(token[4].c_str()));
-			mYRotationAngleInDegrees = static_cast<float>(atof(token[5].c_str()));
-
-			glm::normalize(mYAxis);
-		}
-		else if (token[0] == "scaling")
-		{
-			assert(token.size() > 4);
-			assert(token[1] == "=");
-
-			mScaling.x = static_cast<float>(atof(token[2].c_str()));
-			mScaling.y = static_cast<float>(atof(token[3].c_str()));
-			mScaling.z = static_cast<float>(atof(token[4].c_str()));
-		}
-		else if (token[0] == "pathspeed")
-		{
-			assert(token.size() > 2);
-			assert(token[1] == "=");
-
-			float speed = static_cast<float>(atof(token[2].c_str()));
-			SetSpeed(speed);
-		}
-		else if (token[0] == "boundpath")
-		{
-			assert(token.size() > 2);
-			assert(token[1] == "=");
-
-			ci_string pathName = token[2];
-			World* w = World::GetInstance();
-			mPath = w->FindPath(pathName);
-
-			if (mPath != nullptr)
-			{
-				mPosition = mPath->GetWaypoint(0);
-			}
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	return true;
-}
 
 glm::mat4 Model::GetWorldMatrix() const
 {

@@ -158,18 +158,6 @@ void CubeModel::Draw()
 	glDisableVertexAttribArray(0);
 }
 
-bool CubeModel::ParseLine(const std::vector<ci_string> &token)
-{
-	if (token.empty())
-	{
-		return true;
-	}
-	else
-	{
-		return Model::ParseLine(token);
-	}
-}
-
 void CubeModel::RenderShadowVolume(glm::vec4 lightPos){
 	
 	// for each triangle compsing the model:

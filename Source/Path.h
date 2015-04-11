@@ -32,9 +32,6 @@ public:
     void ClearWaypoints();
 	glm::vec3 GetWaypoint(unsigned int index);
 
-protected:
-    virtual bool ParseLine(const std::vector<ci_string> &token);
-
 private:
 	// The vertex format could be different for different types of models
 	struct Vertex

@@ -63,29 +63,6 @@ void Path::Draw()
 	glDisableVertexAttribArray(0);
 }
 
-bool Path::ParseLine(const std::vector<ci_string> &token)
-{
-    if (token.empty())
-    {
-        return true;
-    }
-	else if (token[0] == "waypoint")
-	{
-		assert(token.size() > 4);
-		assert(token[1] == "=");
-
-		float x = static_cast<float>(atof(token[2].c_str()));
-		float y = static_cast<float>(atof(token[3].c_str()));
-		float z = static_cast<float>(atof(token[4].c_str()));
-		AddWaypoint(glm::vec3(x, y, z));
-		return true;
-	}
-    else
-    {
-        return Model::ParseLine(token);
-    }
-}
-
 void Path::AddWaypoint(glm::vec3 point)
 {
 	mWaypoints.push_back(point);

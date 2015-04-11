@@ -1358,19 +1358,6 @@ void SphereModel::Draw()
     glDisableVertexAttribArray(0);
 }
 
-bool SphereModel::ParseLine(const std::vector<ci_string> &token)
-{
-    if (token.empty())
-    {
-        return true;
-    }
-    else
-    {
-        return Model::ParseLine(token);
-    }
-}
-
-
 void SphereModel::RenderShadowVolume(glm::vec4 lightPos){
 
 }

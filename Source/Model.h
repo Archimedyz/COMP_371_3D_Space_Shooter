@@ -74,7 +74,6 @@ public:
 	struct surface{};
 
 protected:
-	virtual bool ParseLine(const std::vector<ci_string> &token);
 
 	std::string name;
 	ci_string mName; // The model name is mainly for debugging
@@ -100,7 +99,6 @@ protected:
 	
     // Makes the model follow a path defined by a set of waypoints
     Path* mPath;
-	BSpline* mSpline;
 	float mSplineParameterT;
     float mSpeed;
     unsigned int mTargetWaypoint;

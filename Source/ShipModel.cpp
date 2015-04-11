@@ -114,19 +114,6 @@ void ShipModel::Draw()
 	glDisableVertexAttribArray(2);
 }
 
-bool ShipModel::ParseLine(const std::vector<ci_string> &token)
-{
-	if (token.empty())
-	{
-		return true;
-	}
-	else
-	{
-		return Model::ParseLine(token);
-	}
-}
-
-
 void ShipModel::RenderShadowVolume(glm::vec4 lightPos){
 
 }
