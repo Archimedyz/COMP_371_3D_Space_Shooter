@@ -101,6 +101,5 @@ bool loadOBJ(
 	
 	}
 
-	std::cout << "loaded" << std::endl;
 	return true;
 }

@@ -44,9 +44,10 @@ World::World()
 {
     instance = this;
 	addCounter = 0;
-
+#if defined(PLATFORM_OSX)
+#else
 	initText2D("../Resources/Textures/Holstein.dds");
-
+#endif
 	NewAsteroid::LoadBuffers();
 	Projectile::LoadBuffers();
 	ShipModel::LoadBuffers();
@@ -76,8 +77,10 @@ World::~World()
 		delete *it;
 	}
 	mCamera.clear();
-
+#if defined(PLATFORM_OSX)
+#else
 	cleanupText2D();
+#endif
 }
 
 World* World::GetInstance()
@@ -254,7 +257,8 @@ void World::Draw()
 		// Draw model
 		(*it)->Draw();
 	}
-
+#if defined(PLATFORM_OSX)
+#else
 	int hp_offset = 3;
 	char text[256];
 	char health[256];
@@ -270,17 +274,20 @@ void World::Draw()
 			health[i] = ' ';
 	}
 
-	sprintf_s(text, "%.2f", glfwGetTime());
-	printText2D(text, 10, 570, 24);
-	printText2D(health, 610, 570, 24);
+    sprintf_s(text, "%.2f", glfwGetTime());
+    printText2D(text, 10, 570, 24);
+    printText2D(health, 610, 570, 24);
+    
+    sprintf_s(score, "%i", Game::GetInstance()->GetScore());
+    printText2D(score, 305, 570, 24);
+    
 
-	sprintf_s(score, "%i", Game::GetInstance()->GetScore());
-	printText2D(score, 305, 570, 24);
 
-
+	
 	if (Game::GetInstance()->GameOver())
 		printText2D("You lose!", 305, 285, 40);
-
+#endif
+    
 	// Restore previous shader
 	Renderer::SetShader((ShaderType) prevShader);
 
