@@ -328,7 +328,7 @@ bool Renderer::LoadOBJ(	const char * path,
 	return true;
 }
 
-glm::vec3* Renderer::RenderTriangleSurfaceShadowVolume(glm::vec3 vertices[3], glm::vec3 surfacePos, glm::vec4 lightPos){
+void Renderer::RenderTriangleSurfaceShadowVolume(glm::vec3 vertices[3], glm::vec3 surfacePos, glm::vec4 lightPos){
 
 	glm::vec3 nearTriangleSurface[] = {
 		vertices[0] + surfacePos,
@@ -338,14 +338,7 @@ glm::vec3* Renderer::RenderTriangleSurfaceShadowVolume(glm::vec3 vertices[3], gl
 	glm::vec3 farTriangleSurface[3];
 
 	for (int i = 0; i < 3; ++i){
-		if (lightPos.w == 1){
-			// point light, in which case, go from point to far Surface
-			farTriangleSurface[i] = nearTriangleSurface[i] - glm::vec3(lightPos);
-		}
-		else {
-			// directional, meaning go from just the near plane to far plane.
-			farTriangleSurface[i] = - glm::vec3(lightPos);
-		}
+		farTriangleSurface[i] = nearTriangleSurface[i] - glm::vec3(lightPos);
 		glm::normalize(farTriangleSurface[i]);
 		farTriangleSurface[i] *= M_INFINITY;
 		if (lightPos.w == 1){
@@ -354,37 +347,49 @@ glm::vec3* Renderer::RenderTriangleSurfaceShadowVolume(glm::vec3 vertices[3], gl
 		}
 		else {
 			// directional, meaning go from just the near plane to far plane.
-			farTriangleSurface[i] += nearTriangleSurface[i];
+			farTriangleSurface[i] += surfacePos;
 		}
 	}
 
-	//// convert the vertex info from nearTriangleSurface to something much simpler in order to
-	//float near_surface[3][3] = {
-	//	{ nearTriangleSurface[0].x, nearTriangleSurface[0].y, nearTriangleSurface[0].z },
-	//	{ nearTriangleSurface[1].x, nearTriangleSurface[1].y, nearTriangleSurface[1].z },
-	//	{ nearTriangleSurface[2].x, nearTriangleSurface[2].y, nearTriangleSurface[2].z },
-	//};
-
-	//float far_surface[3][3] = {
-	//	{ farTriangleSurface[0].x, farTriangleSurface[0].y, farTriangleSurface[0].z },
-	//	{ farTriangleSurface[1].x, farTriangleSurface[1].y, farTriangleSurface[1].z },
-	//	{ farTriangleSurface[2].x, farTriangleSurface[2].y, farTriangleSurface[2].z },
-	//};
-
-	//generate the quad strips vertex buffer using simply the near and far planes.
-
-	glm::vec3 mQuadStrip[] = {
-		nearTriangleSurface[0],
-		farTriangleSurface[0],
-		nearTriangleSurface[1],
-		farTriangleSurface[1],
-		nearTriangleSurface[2],
-		farTriangleSurface[2],
-		nearTriangleSurface[0],
-		farTriangleSurface[0]
+	// convert the vertex info from nearTriangleSurface to something much simpler in order to
+	float near_surface[3][3] = {
+		{ nearTriangleSurface[0].x, nearTriangleSurface[0].y, nearTriangleSurface[0].z },
+		{ nearTriangleSurface[1].x, nearTriangleSurface[1].y, nearTriangleSurface[1].z },
+		{ nearTriangleSurface[2].x, nearTriangleSurface[2].y, nearTriangleSurface[2].z },
 	};
 
-	return mQuadStrip;
+	float far_surface[3][3] = {
+		{ farTriangleSurface[0].x, farTriangleSurface[0].y, farTriangleSurface[0].z },
+		{ farTriangleSurface[1].x, farTriangleSurface[1].y, farTriangleSurface[1].z },
+		{ farTriangleSurface[2].x, farTriangleSurface[2].y, farTriangleSurface[2].z },
+	};
+
+	/* back cap */
+	glBegin(GL_TRIANGLES);
+		glVertex3fv(far_surface[0]);
+		glVertex3fv(far_surface[1]);
+		glVertex3fv(far_surface[2]);
+	glEnd();
+
+	/* front cap */
+	glBegin(GL_TRIANGLES);
+		glVertex3fv(near_surface[0]);
+		glVertex3fv(near_surface[1]);
+		glVertex3fv(near_surface[2]);
+	glEnd();
+
+	glBegin(GL_QUAD_STRIP);
+
+	// now we bound the volume on the sides, using a Quad Strip:
+
+	glBegin(GL_QUAD_STRIP);
+	glVertex3fv(near_surface[0]);
+	glVertex3fv(far_surface[0]);
+	for (int i = 1; i <= 3; i++) {
+		glVertex3fv(near_surface[i % 4]);
+		glVertex3fv(far_surface[i % 4]);
+	}
+	glEnd();
 }
 
 // borowed from Josh Beam
@@ -398,7 +403,7 @@ void Renderer::draw_shadow()
 	glOrtho(0, 1, 1, 0, 0, 1);
 	glDisable(GL_DEPTH_TEST);
 
-	glColor4f(0.0f, 0.0f, 1.0f, 0.5f);
+	glColor4f(0.0f, 0.0f, 0.0f, 0.5f);
 	glBegin(GL_QUADS);
 		glVertex2i(0, 0);
 		glVertex2i(0, 1);

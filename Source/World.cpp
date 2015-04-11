@@ -37,7 +37,7 @@ const vec3 lightColor(1.0f, 1.0f, 1.0f);
 const float lightKc = 0.0f;
 const float lightKl = 1.0f;
 const float lightKq = 2.0f;
-const vec4 lightPosition(0.0f, 1.0f, 0.0f, 0.0f);
+const vec4 lightPosition(0.0f, 10.0f, 0.0f, 0.0f);
 
 // boolean to display shadow volumes. Can be toggled on or off during runtime.
 bool show_shadow_volumes = false;
@@ -187,18 +187,6 @@ void World::Draw()
 
 	//Bind the frame buffer so we render into it instead of the screen.
 	glBindFramebuffer(GL_FRAMEBUFFER, FrameBufferID);
-	//glViewport(0,0, 1024, 1024);
-
-	//backface culling
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
-
-	// enable depth testing
-	glDepthFunc(GL_LESS);
-
-	//clear the screen (current buffer.)
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
 	// Create a texture to which we will render the depth information.
 	GLuint DepthTextureID;
@@ -216,11 +204,7 @@ void World::Draw()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,GL_TEXTURE_2D, DepthTextureID, 0);
-
-	// explicitly point out that we will not be drawing to the buffer. we only need the depth info
-	glDrawBuffer(GL_NONE);
-	glReadBuffer(GL_NONE);
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, DepthTextureID, 0);
 
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE){
 		std::cout << "FRAME BUFFER NOT OKAY!" << std::endl;
@@ -270,41 +254,6 @@ void World::Draw()
 	glm::mat4 depthModelMatrix = glm::mat4(1.0);
 	glm::mat4 depthMVP = depthProjectionMatrix * depthViewMatrix * depthModelMatrix;
 	
-	// at this point, we hae enough information to complete the first pass to deveople the depth texture.
-	// Use the basic shaders
-	Renderer::SetShader(SHADER_BASIC);
-	glUseProgram(Renderer::GetShaderProgramID());
-
-	// the the handle for the depthMVP in the shader and send the depthMVP.
-	GLuint DepthMatrixID = glGetUniformLocation(Renderer::GetShaderProgramID(), "depthMVP");
-	glUniformMatrix4fv(DepthMatrixID, 1, GL_FALSE, &depthMVP[0][0]);
-
-	// Draw the models:
-	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
-	{
-		// Draw model
-		(*it)->Draw();
-	}
-	
-	// before continuing, we need to determine the conversion matrix, to go from the light's perspective, to the camera's
-	
-	glm::mat4 conversionMatrix(
-		0.5, 0.0, 0.0, 0.0,
-		0.0, 0.5, 0.0, 0.0,
-		0.0, 0.0, 0.5, 0.0,
-		0.5, 0.5, 0.5, 1.0
-		);
-
-	glm::mat4 convertedDepthMVP = conversionMatrix*depthMVP;
-	
-	// now we want to render to the screen, so unbind the framebuffer for depth.
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	//glViewport(0, 0, 1024, 768); // Render on the whole framebuffer, complete from the lower left corner to the upper right
-
-	// cull the back faces. they don't matter at this point.
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
-
 	// Use the main shader
 	Renderer::SetShader(main_shader);
 	glUseProgram(Renderer::GetShaderProgramID());
@@ -321,10 +270,6 @@ void World::Draw()
 	glUniform4f(LightPositionID, lightPosition.x, lightPosition.y, lightPosition.z, lightPosition.w);
 	glUniform3f(LightColorID, lightColor.r, lightColor.g, lightColor.b);
 	glUniform3f(LightAttenuationID, lightKc, lightKl, lightKq);
-
-	// for shadows, get and then send the corrected depthMVP
-	GLuint ConvertedDepthMVPID = glGetUniformLocation(Renderer::GetShaderProgramID(), "correctedDepthMVP");
-	glUniformMatrix4fv(ConvertedDepthMVPID, 1, GL_FALSE, &convertedDepthMVP[0][0]);
 	
 	// Draw models
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
@@ -359,11 +304,12 @@ void World::Draw()
 	if (Game::GetInstance()->GameOver())
 		printText2D("You lose!", 305, 285, 40);
 
-	// now we go about adding our shadow volumes
-	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
-	{
-		(*it)->RenderShadowVolume(lightPosition);
-	}
+	//// now we go about adding our shadow volumes
+	//for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
+	//{
+	//	(*it)->RenderShadowVolume(lightPosition);
+	//}
+
 	Renderer::EndFrame();
 }
 
@@ -401,17 +347,12 @@ void World::LoadCameras()
 	mModel.push_back(ship_model);
 
 	CubeModel * floor = new CubeModel();
-	floor->SetPosition(vec3(0.0f, -5.0f, 1.0f));
-	floor->SetScaling(vec3(20.0f, 0.5f, 20.0f));
+	floor->SetPosition(vec3(-2.0f, -5.0f, 1.0f));
+	floor->SetScaling(vec3(10.0f, 0.5f, 10.0f));
 	floor->ActivateCollisions(false);
 	mModel.push_back(floor);
 
-	CubeModel * topCube = new CubeModel();
-	topCube->SetPosition(vec3(0.0f, 0.0f, 0.0f));
-	mModel.push_back(topCube);
-	CubeModel * bottomCube = new CubeModel();
-	bottomCube->SetPosition(vec3(0.0f, -10.0f, 0.0f));
-	mModel.push_back(bottomCube);
+	mModel.push_back(new CubeModel());
 
     mCurrentCamera = 0;
 
