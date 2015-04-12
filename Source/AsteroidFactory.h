@@ -9,12 +9,15 @@
 #include "AsteroidModel.h"
 #include "NewAsteroid.h"
 #include "Variables.h"
+#include "CollectionAsteroid.h"
 
 class AsteroidFactory{
 public:
 	~AsteroidFactory();
 	static AsteroidModel* createAsteroid(int type);
 	static NewAsteroid* createNewAsteroid(int type);
+	static void RandomizeCoefficients(NewAsteroid*);
+	static CollectionAsteroid* createCollection();
 
 private:
 	AsteroidFactory();
@@ -29,4 +32,5 @@ private:
 	static const float ROTATION_SPEED_MIN;
 	static const float SPEED_MAX;
 	static const float SPEED_MIN;
+	static const int ASTEROID_MAX_PER_COLLECTION;
 };

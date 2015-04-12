@@ -9,6 +9,8 @@
 #include "Model.h"
 #include "Texture.hpp"
 
+class CollectionAsteroid;
+
 class NewAsteroid : public Model
 {
 public:

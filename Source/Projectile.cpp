@@ -62,7 +62,7 @@ Projectile::Projectile(glm::vec3 o, glm::vec3 d)
 	mPosition = o;
 	mDirection = glm::normalize(d);
 	mCollisionRadius = 1;
-	mSpeed = 45;
+	mSpeed = 100;
 	name = "PROJECTILE";
 }
 
