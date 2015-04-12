@@ -11,7 +11,6 @@ CollectionAsteroid::CollectionAsteroid() : Model()
 	name = "MANYASTEROIDS";
 }
 
-
 CollectionAsteroid::~CollectionAsteroid()
 {
 }

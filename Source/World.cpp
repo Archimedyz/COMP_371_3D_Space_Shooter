@@ -24,6 +24,7 @@
 #include "EventManager.h"
 #include "NewAsteroid.h"
 #include <GLFW/glfw3.h>
+#include "CollectionAsteroid.h"
 
 using namespace std;
 using namespace glm;
@@ -170,7 +171,7 @@ void World::Update(float dt)
 		}
 
 		if (++addCounter > 100){
-			mModel.push_back(AsteroidFactory::createNewAsteroid(0));
+			//mModel.push_back(AsteroidFactory::createNewAsteroid(0));
 			addCounter = 0;
 		}
 	}
@@ -314,11 +315,6 @@ void World::LoadScene(const char * scene_path)
 	mModel.push_back(AsteroidFactory::createNewAsteroid(0));
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
-
-	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
-
-	//Loader::loadModel();
-
     LoadCameras();
 }
 
@@ -333,22 +329,31 @@ void World::LoadCameras()
 	//CubeModel * ship_model = new CubeModel();
 	ShipModel * ship_model = new ShipModel();
 	player = ship_model;
-	ship_model->SetPosition(vec3(0.0f, -5.0f, 0.0f));
+	ship_model->SetPosition(vec3(0.0f, 0.0f, 0.0f));
 	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
 
-	CubeModel * floor = new CubeModel();
-	floor->SetPosition(vec3(-2.0f, -10.0f, 1.0f));
-	floor->SetScaling(vec3(10.0f, 0.5f, 10.0f));
-	floor->ActivateCollisions(false);
-	mModel.push_back(floor);
+	CollectionAsteroid *c = new CollectionAsteroid();
+	NewAsteroid *na = new NewAsteroid();
+	NewAsteroid *nb = new NewAsteroid();
 
+	na->SetPosition(vec3(1, 0, 0));
+	nb->SetPosition(vec3(0, 1, 0));
 
+	na->ActivateCollisions(false);
+	nb->ActivateCollisions(false);
+
+	c->addChild(na);
+	c->addChild(nb);
+	c->SetPosition(vec3(0, 0, 0));
+	c->setDirection(vec3(1, 0, 0));
+
+	mModel.push_back(c);
+
+	cout << na->GetPosition().x << endl;
 
     mCurrentCamera = 0;
-
-
 	mCamera.push_back(new FreeRoamCamera(vec3(2.0f, 2.0f, 2.0f), vec3(-1.0f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f)));
 }
 

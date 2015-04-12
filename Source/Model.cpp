@@ -34,6 +34,7 @@ mCameraYRotationAngleInDegrees(0.0f), mCameraXRotationAngleInDegrees(0.0f), mCam
 	mXAxis = glm::normalize(glm::cross(lookAt, vec3(0.0f, 1.0f, 0.0f)));
 	mYAxis = glm::cross(mXAxis, lookAt);
 	mZAxis = -lookAt;
+	parent = NULL;
 }
 
 Model::~Model()
@@ -157,7 +158,7 @@ void Model::CheckCollisions(std::vector<Model*> &models)
 
 	if (!CollisionsOn) // if collisions are off for this model, do nothing
 		return;
-	if (this->GetName() == "MANYASTEROIDS") // if this is an asteroid cllection, do nothing. theyre handled individually
+	if (this->GetName() == "MANYASTEROIDS") // if this is an asteroid collection, do nothing. theyre handled individually
 		return;
 
 	vec3 adjusted_position = vec3(0, 0, 0);
@@ -165,7 +166,7 @@ void Model::CheckCollisions(std::vector<Model*> &models)
 	{
 		if ((*it) != this && (*it)->CollisionsOn) // Make sure the object isn't being compared to itself and that both objects are collidable.
 		{
-			if ((*it)->GetName() == "ASTEROID" && this->GetName() == "ASTEROID")
+			if (!((*it)->GetName() == "ASTEROID" && this->GetName() == "ASTEROID"))
 			{
 				// adjust for the parent position
 				if (parent != NULL)
