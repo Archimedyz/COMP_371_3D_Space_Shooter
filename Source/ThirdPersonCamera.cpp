@@ -37,7 +37,6 @@ FMOD_RESULT result;
 FMOD_RESULT actionResult;
 FMOD_SOUND * music;
 FMOD_SOUND * laserSound;
-FMOD_SOUND * explosionSound;
 FMOD_CHANNEL * musicChannel;
 FMOD_CHANNEL * actionChannel;
 

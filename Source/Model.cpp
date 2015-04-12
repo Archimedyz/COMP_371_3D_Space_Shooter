@@ -27,7 +27,7 @@ const char * explosionPath = "../Resources/Sounds/explosion_sound.wav";
 #endif
 
 //Sound variables
-FMOD_RESULT result;
+FMOD_RESULT explosionResult;
 FMOD_SOUND * explosionSound;
 FMOD_CHANNEL * explosionChannel;
 
@@ -52,8 +52,8 @@ mCameraYRotationAngleInDegrees(0.0f), mCameraXRotationAngleInDegrees(0.0f), mCam
 	parent = NULL;
     
     //Create Explosion sound
-    result = FMOD_System_CreateSound(Variables::fmodsystem, explosionPath, FMOD_CREATESAMPLE, 0, &explosionSound);
-    if(result != FMOD_OK)
+    explosionResult = FMOD_System_CreateSound(Variables::fmodsystem, explosionPath, FMOD_CREATESAMPLE, 0, &explosionSound);
+    if(explosionResult != FMOD_OK)
     {
         printf("Problem Creating: %s", explosionPath);
     }
@@ -216,8 +216,8 @@ void Model::CheckCollisions(std::vector<Model*> &models)
 							mDestroyed = true;
 							(*it)->SetDestroy(true); // Set both destroyed flags to true so the collided objects are removed.
                             
-                            result = FMOD_System_PlaySound(Variables::fmodsystem,FMOD_CHANNEL_FREE, explosionSound, 0, &explosionChannel);
-                            if(result != FMOD_OK)
+                            explosionResult = FMOD_System_PlaySound(Variables::fmodsystem,FMOD_CHANNEL_FREE, explosionSound, 0, &explosionChannel);
+                            if(explosionResult != FMOD_OK)
                             {
                                 printf("Problem playing Explosion sound.");
                             }
