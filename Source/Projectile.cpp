@@ -4,6 +4,7 @@
 // 
 //--------------------------------------------------------------------------------------------------------------
 
+//Projectile texture from here: http://www.colorcombos.com/images/colors/FF0000.png
 
 
 #include "Projectile.h"
@@ -13,7 +14,9 @@
 // Include GLEW - OpenGL Extension Wrangler
 #include <GL/glew.h>
 #include "Loader.h"
+#include "Texture.hpp"
 
+GLuint projectileTexture;
 
 time_t Projectile::LastFired = 0;
 std::vector<glm::vec3> Projectile::vArray;
@@ -26,11 +29,13 @@ std::vector<unsigned short> Projectile::indices;
 void Projectile::LoadBuffers()
 {
 #if defined(PLATFORM_OSX)
-	const char * modelPath = "Models/bullet.obj";
+	const char * modelPath = "Models/bullet2.obj";
 #else
 	const char * modelPath = "../Resources/Models/bullet2.obj";
 #endif
 	Loader::loadModel(modelPath, Projectile::vArray, Projectile::vertexbuffer, Projectile::uvbuffer, Projectile::normalbuffer, Projectile::elementbuffer, Projectile::indices);
+
+	projectileTexture = loadBMP_custom("../Resources/Textures/ProjectileTexture.bmp");
 }
 
 
@@ -73,6 +78,7 @@ void Projectile::Draw()
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 
+	glBindTexture(GL_TEXTURE_2D, projectileTexture);
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -120,6 +126,7 @@ void Projectile::Draw()
 		(void*)0           // element array buffer offset
 		);
 
+	glBindTexture(GL_TEXTURE_2D, 0);
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
