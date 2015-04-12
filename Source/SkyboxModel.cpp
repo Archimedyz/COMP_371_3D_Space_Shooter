@@ -19,7 +19,7 @@ void SkyboxModel::LoadBuffers()
 #if defined(PLATFORM_OSX)
 	const char * modelPath = "Resources/Models/Final_Skybox_V2.obj";
 #else
-	const char * modelPath = "../Resources/Models/SkyboxTest.obj";
+	const char * modelPath = "../Resources/Models/Final_Skybox_V2.obj";
 #endif
 	Loader::loadModel(modelPath, SkyboxModel::vArray, SkyboxModel::vertexbuffer, SkyboxModel::uvbuffer, SkyboxModel::normalbuffer, SkyboxModel::elementbuffer, SkyboxModel::indices);
 	
