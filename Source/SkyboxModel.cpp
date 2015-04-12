@@ -24,7 +24,7 @@ void SkyboxModel::LoadBuffers()
 #if defined(PLATFORM_OSX)
 	const char * modelPath = "Models/skyboxRegularNormals.obj";
 #else
-	const char * modelPath = "../Resources/Models/skyboxRegularNormals.obj";
+	const char * modelPath = "../Resources/Models/skyboxRegularNormalsUpdated1045.obj";
 #endif
 	Loader::loadModel(modelPath, SkyboxModel::vArray, SkyboxModel::vertexbuffer, SkyboxModel::uvbuffer, SkyboxModel::normalbuffer, SkyboxModel::elementbuffer, SkyboxModel::indices);
 	
