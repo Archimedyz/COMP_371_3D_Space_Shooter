@@ -334,7 +334,7 @@ void World::LoadCameras()
 	ShipModel * ship_model = new ShipModel();
 	player = ship_model;
 	ship_model->SetPosition(vec3(0.0f, -5.0f, 0.0f));
-	ship_model->ActivateCollisions(true);
+	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
 
