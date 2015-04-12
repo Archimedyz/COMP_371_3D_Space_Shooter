@@ -1,7 +1,10 @@
 //--------------------------------------------------------------------------------------------------------------
 // Contributors
 // Nicholas Dudek
-// 
+// Skyler Wittman
+// Awais Ali
+// Zackary Valenta
+// each individual mostly instantiated their own parts and made sure references were correct
 //--------------------------------------------------------------------------------------------------------------
 
 

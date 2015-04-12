@@ -1,11 +1,14 @@
-
 //--------------------------------------------------------------------------------------------------------------
 // Contributors
-// Andrey Uspenskiy
-// Nicholas Dudek
-// Skyler Wittman
+// Awais Ali (buffer referencing)
+// Nicholas Dudek (model structure)
+// Skyler Wittman (implementation, paths)
 //--------------------------------------------------------------------------------------------------------------
 //model from http://blenderartists.org/forum/showthread.php?142414-A-Quick-amp-Simple-Borg-Cube
+
+// The space station is exactly the same as skybox. But we created a new class because we declare the texture and the
+// buffer names directly in the class itself. Many of the model classes could be worked into one if only they had mutator
+// methods and then attributes could be set from World.cpp where the object is made.
 
 #include "SpaceStationModel.h"
 
@@ -18,7 +21,7 @@ unsigned int SpaceStationModel::normalbuffer;
 unsigned int SpaceStationModel::elementbuffer;
 std::vector<unsigned short> SpaceStationModel::indices;
 
-//initiate GLuint to hold skybox texture
+//initiate GLuint to hold space station texture
 GLuint spaceStationBMP;
 
 
@@ -29,9 +32,10 @@ void SpaceStationModel::LoadBuffers()
 #else
     const char * modelPath = "../Resources/Models/Final_Skybox_V3.obj";
 #endif
+    // calls loadModel to place all of the proper numbers into their buffers and relate indices for mapping.
     Loader::loadModel(modelPath, SpaceStationModel::vArray, SpaceStationModel::vertexbuffer, SpaceStationModel::uvbuffer, SpaceStationModel::normalbuffer, SpaceStationModel::elementbuffer, SpaceStationModel::indices);
     
-    // load texture for skybox
+    // load texture for space station
     spaceStationBMP = loadBMP_custom("../Resources/Textures/SpaceStationTexture.bmp");
 }
 

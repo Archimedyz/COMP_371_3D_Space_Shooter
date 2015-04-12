@@ -1,7 +1,7 @@
 
 //--------------------------------------------------------------------------------------------------------------
 // Contributors
-// Andrey Uspenskiy
+// 
 // Nicholas Dudek
 // Skyler Wittman
 //--------------------------------------------------------------------------------------------------------------
@@ -11,6 +11,7 @@
 #ifndef __COMP371_Framework__SkyboxModel__
 #define __COMP371_Framework__SkyboxModel__
 
+//all includes are in here so .cpp can just include the .h file
 #include <stdio.h>
 #include "Model.h"
 #include "Renderer.h"
