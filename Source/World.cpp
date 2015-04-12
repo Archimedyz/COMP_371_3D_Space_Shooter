@@ -337,6 +337,8 @@ void World::LoadCameras()
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
 
+	station = new CubeModel(vec3(10.0f, 1.0f, 10.0f));
+	station->SetPosition(vec3(0.0f, -6.0f, 0.0f));
 	station->ActivateCollisions(false);
 	mModel.push_back(station);
 
