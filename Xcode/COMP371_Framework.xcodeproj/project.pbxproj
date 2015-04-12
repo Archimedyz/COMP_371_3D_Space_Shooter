@@ -44,6 +44,7 @@
 		D4F9C7F11AC4D1F800F5AB97 /* vboindexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7EA1AC4D1F800F5AB97 /* vboindexer.cpp */; };
 		D4F9C7F41AC4DAF300F5AB97 /* Models in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4F9C7F31AC4DA6500F5AB97 /* Models */; };
 		D4F9C7F51AC4DAF300F5AB97 /* Scenes in CopyFiles */ = {isa = PBXBuildFile; fileRef = D463011A1ABBC4EA00BF8F32 /* Scenes */; };
+		D4FFAD3F1ADAE03900B5BB6F /* SpaceStationModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FFAD3D1ADAE03900B5BB6F /* SpaceStationModel.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -129,6 +130,8 @@
 		D4F9C7EA1AC4D1F800F5AB97 /* vboindexer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vboindexer.cpp; sourceTree = "<group>"; };
 		D4F9C7EB1AC4D1F800F5AB97 /* vboindexer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vboindexer.hpp; sourceTree = "<group>"; };
 		D4F9C7F31AC4DA6500F5AB97 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = ../Resources/Models; sourceTree = "<group>"; };
+		D4FFAD3D1ADAE03900B5BB6F /* SpaceStationModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpaceStationModel.cpp; sourceTree = "<group>"; };
+		D4FFAD3E1ADAE03900B5BB6F /* SpaceStationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceStationModel.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				D41878EC1AD9C22300731D8A /* SkyboxModel.cpp */,
+				D4FFAD3D1ADAE03900B5BB6F /* SpaceStationModel.cpp */,
+				D4FFAD3E1ADAE03900B5BB6F /* SpaceStationModel.h */,
 				D41878ED1AD9C22300731D8A /* SkyboxModel.h */,
 			);
 			name = Skybox;
@@ -383,6 +388,7 @@
 				D4F9C7F11AC4D1F800F5AB97 /* vboindexer.cpp in Sources */,
 				D4BAD0841AAE78E300698FF2 /* Path.cpp in Sources */,
 				D4BAD0831AAE78E300698FF2 /* Model.cpp in Sources */,
+				D4FFAD3F1ADAE03900B5BB6F /* SpaceStationModel.cpp in Sources */,
 				D4BAD0801AAE78E300698FF2 /* CubeModel.cpp in Sources */,
 				D4BAD0821AAE78E300698FF2 /* main.cpp in Sources */,
 				D4BAD0851AAE78E300698FF2 /* Projectile.cpp in Sources */,
