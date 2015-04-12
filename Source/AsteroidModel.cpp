@@ -131,16 +131,8 @@ void AsteroidModel::Update(float dt)
 
 void AsteroidModel::Draw()
 {
-	glUseProgram(Renderer::GetShaderProgramID());
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
-
-	// Bind our texture in Texture Unit 0
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, Texture);
-	// Set our "myTextureSampler" sampler to user Texture Unit 0
-	glUniform1i(TextureID, 0);
-
 
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
@@ -153,24 +145,25 @@ void AsteroidModel::Draw()
 		0, // stride
 		(void*)0 // array buffer offset
 		);
-	// 2nd attribute buffer : UVs
+	
+	// 2nd attribute buffer : normals
 	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, Loader::uvbufferAst);
+	glBindBuffer(GL_ARRAY_BUFFER, Loader::normalbufferAst);
 	glVertexAttribPointer(
 		1, // attribute
-		2, // size
+		3, // size
 		GL_FLOAT, // type
 		GL_FALSE, // normalized?
 		0, // stride
 		(void*)0 // array buffer offset
 		);
-	// 3rd attribute buffer : normals
 
+	// 3rd. UV buffer data.
 	glEnableVertexAttribArray(2);
-	glBindBuffer(GL_ARRAY_BUFFER, Loader::normalbufferAst);
+	glBindBuffer(GL_ARRAY_BUFFER, Loader::uvbufferAst);
 	glVertexAttribPointer(
 		2, // attribute
-		3, // size
+		2, // size
 		GL_FLOAT, // type
 		GL_FALSE, // normalized?
 		0, // stride

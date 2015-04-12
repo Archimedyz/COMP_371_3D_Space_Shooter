@@ -30,6 +30,7 @@ bool paused = false;
 
 World* World::instance;
 int World::addCounter;
+static int added = 0;
 
 World::World()
 {
@@ -148,9 +149,10 @@ void World::Update(float dt)
 			}
 		}
 
-		if (++addCounter > 100){
+		if (++addCounter > 100 && added < 10){
 			mModel.push_back(AsteroidFactory::createAsteroid(0));
 			addCounter = 0;
+			++added;
 		}
 	}
 	
@@ -161,6 +163,7 @@ void World::Draw()
 	Renderer::BeginFrame();
 	
 	// Set shader to use
+	Renderer::SetShader(SHADER_SOLID_COLOR);
 	glUseProgram(Renderer::GetShaderProgramID());
 
 	// This looks for the MVP Uniform variable in the Vertex Program
