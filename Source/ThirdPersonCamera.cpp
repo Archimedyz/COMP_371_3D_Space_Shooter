@@ -42,6 +42,22 @@ bool playerControlPitch = true;
 bool playerWasAligned = false;
 const float REACTION = 75.0f;
 
+//Sound variables
+FMOD_RESULT result;
+FMOD_RESULT actionResult;
+FMOD_SOUND * music;
+FMOD_SOUND * laserSound;
+FMOD_CHANNEL * musicChannel;
+FMOD_CHANNEL * actionChannel;
+
+#if defined(PLATFORM_OSX)
+const char * backgroundPath = "Sounds/space_sound.mp3";
+const char * laserPath = "Sounds/laser_sound.wav";
+#else
+const char * backgroundPath = "../Resources/Sounds/space_sound.mp3";
+const char * laserPath = "../Resources/Sounds/laser_sound.wav";
+#endif
+
 ThirdPersonCamera::ThirdPersonCamera(Model* targetModel)
 	: Camera(), mTargetModel(targetModel), mHorizontalAngle(0.0f), mVerticalAngle(0.0f), mRadius(10.0f),
 	mModelHorizontalSensitivity(35.0f), mModelVerticalSensitivity(35.0f), mModelStandardSpeed(STANDARD_SPEED),
@@ -51,6 +67,32 @@ ThirdPersonCamera::ThirdPersonCamera(Model* targetModel)
 	assert(mTargetModel != nullptr);
 	CalculateCameraBasis();
 	mModelCurrentSpeed = mModelStandardSpeed;
+    
+    //Initialize fmod
+    result = FMOD_System_Create(&Variables::fmodsystem);
+    result = FMOD_System_Init(Variables::fmodsystem, 32, FMOD_INIT_NORMAL, 0);
+    
+    //Create background sound
+    result = FMOD_System_CreateStream(Variables::fmodsystem, backgroundPath, FMOD_SOFTWARE | FMOD_2D, 0, &music);
+    if(result != FMOD_OK)
+    {
+        printf("Problem Creating: %s", backgroundPath);
+    }
+    
+    //Play background sound
+    result = FMOD_System_PlaySound(Variables::fmodsystem,FMOD_CHANNEL_FREE, music, 0, &musicChannel);
+    if(result != FMOD_OK)
+    {
+        printf("Problem playing background sound");
+    }
+    FMOD_System_Update(Variables::fmodsystem);
+    
+    //CreateLaser sounds
+    result = FMOD_System_CreateSound(Variables::fmodsystem, laserPath, FMOD_CREATESAMPLE, 0, &laserSound);
+    if(result != FMOD_OK)
+    {
+        printf("Problem Creating: %s", laserPath);
+    }
 }
 
 ThirdPersonCamera::~ThirdPersonCamera()
@@ -368,6 +410,13 @@ void ThirdPersonCamera::TranslateControls(float dt, bool space, bool shift, bool
 		Projectile *proj = new Projectile(mTargetModel->GetPosition(), mLookAt);
 		proj->SetXRotation(mTargetModel->GetXAxis(), mVerticalAngle);
 		proj->SetYRotation(mTargetModel->GetYAxis(), mHorizontalAngle);
+        
+        result = FMOD_System_PlaySound(Variables::fmodsystem,FMOD_CHANNEL_FREE, laserSound, 0, &actionChannel);
+        if(result != FMOD_OK)
+        {
+            printf("Problem playing laser sound.");
+        }
+        FMOD_System_Update(Variables::fmodsystem);
 
 		World::GetInstance()->AddModel(proj);
 		Projectile::SetLastFired(time(NULL)); // Set the last time fired to the current time.

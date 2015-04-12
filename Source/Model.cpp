@@ -20,6 +20,17 @@ using namespace glm;
 
 class AsteroidModel;
 
+#if defined(PLATFORM_OSX)
+const char * explosionPath = "Sounds/explosion_sound.wav";
+#else
+const char * explosionPath = "../Resources/Sounds/explosion_sound.wav";
+#endif
+
+//Sound variables
+FMOD_RESULT explosionResult;
+FMOD_SOUND * explosionSound;
+FMOD_CHANNEL * explosionChannel;
+
 Model::Model() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
 }
@@ -39,6 +50,13 @@ mCameraYRotationAngleInDegrees(0.0f), mCameraXRotationAngleInDegrees(0.0f), mCam
 	mYAxis = glm::cross(mXAxis, lookAt);
 	mZAxis = -lookAt;
 	parent = NULL;
+    
+    //Create Explosion sound
+    explosionResult = FMOD_System_CreateSound(Variables::fmodsystem, explosionPath, FMOD_CREATESAMPLE, 0, &explosionSound);
+    if(explosionResult != FMOD_OK)
+    {
+        printf("Problem Creating: %s", explosionPath);
+    }
 }
 
 Model::~Model()
@@ -197,6 +215,13 @@ void Model::CheckCollisions(std::vector<Model*> &models)
 						{
 							mDestroyed = true;
 							(*it)->SetDestroy(true); // Set both destroyed flags to true so the collided objects are removed.
+                            
+                            explosionResult = FMOD_System_PlaySound(Variables::fmodsystem,FMOD_CHANNEL_FREE, explosionSound, 0, &explosionChannel);
+                            if(explosionResult != FMOD_OK)
+                            {
+                                printf("Problem playing Explosion sound.");
+                            }
+                            FMOD_System_Update(Variables::fmodsystem);
 
 							Game::GetInstance()->AddScore(100);
 						}
