@@ -16,6 +16,8 @@ GLuint imageLT;
 GLuint imageUP;
 GLuint imageDN;
 
+GLuint singleSkyboxBMP;
+
 
 void SkyboxModel::LoadBuffers()
 {
@@ -34,6 +36,7 @@ void SkyboxModel::LoadBuffers()
 	imageLT = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_LT.bmp");
 	imageUP = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_UP.bmp");
 	imageDN = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_DN.bmp");
+	singleSkyboxBMP = loadBMP_custom("../Resources/Skybox/space_skybox_2.bmp");
 }
 
 SkyboxModel::SkyboxModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, -1.0f))
