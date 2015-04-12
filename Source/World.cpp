@@ -1,13 +1,12 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// 
+// 
+//--------------------------------------------------------------------------------------------------------------
+
 
 #include "World.h"
+#include "ParsingHelper.h"
 #include "Renderer.h"
 #include "ParsingHelper.h"
 #include "StaticCamera.h"
@@ -22,10 +21,9 @@
 #include "Loader.h"
 #include "Texture.hpp"
 #include "Text2D.h"
-
-#include <GLFW/glfw3.h>
 #include "EventManager.h"
 #include "NewAsteroid.h"
+#include <GLFW/glfw3.h>
 
 using namespace std;
 using namespace glm;
@@ -352,33 +350,16 @@ void World::LoadCameras()
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
 
-	/*CubeModel * floor = new CubeModel();
-	floor->SetPosition(vec3(-2.0f, -5.0f, 1.0f));
+	CubeModel * floor = new CubeModel();
+	floor->SetPosition(vec3(-2.0f, -10.0f, 1.0f));
 	floor->SetScaling(vec3(10.0f, 0.5f, 10.0f));
 	floor->ActivateCollisions(false);
-	mModel.push_back(floor);*/
+	mModel.push_back(floor);
 
     mCurrentCamera = 0;
 
 
 	mCamera.push_back(new FreeRoamCamera(vec3(2.0f, 2.0f, 2.0f), vec3(-1.0f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f)));
-}
-
-Path* World::FindPath(ci_string pathName)
-{
-    for(std::vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
-    {
-        if((*it)->GetCIName() == pathName)
-        {
-            return *it;
-        }
-    }
-    return nullptr;
-}
-
-Model* World::FindModelByIndex(unsigned int index)
-{
-    return mModel.size() > 0 ? mModel[index % mModel.size()] : nullptr;
 }
 
 void World::AddModel(Model* mdl)

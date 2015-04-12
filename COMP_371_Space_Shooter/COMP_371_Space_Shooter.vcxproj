@@ -125,8 +125,6 @@
     <ClInclude Include="..\Source\World.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Scenes\CoordinateSystem.scene" />
-    <None Include="..\Scenes\PathScene.scene" />
     <None Include="..\Shaders\BasicShader.fragmentshader" />
     <None Include="..\Shaders\BasicShader.vertexshader" />
     <None Include="..\Shaders\BlueColor.fragmentshader" />

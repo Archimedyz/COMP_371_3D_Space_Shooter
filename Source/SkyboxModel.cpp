@@ -1,7 +1,6 @@
-// Contributors:
-//Skyler Wittman
-//Nicholas Dudek
-//Andrey Uspenskiy
+
+
+
 
 #include "SkyboxModel.h"
 

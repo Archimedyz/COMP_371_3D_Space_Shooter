@@ -1,7 +1,11 @@
-// Contributors:
-//Skyler Wittman
-//Nicholas Dudek
-//Andrey Uspenskiy
+
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Andrey Uspenskiy
+// Nicholas Dudek
+// Skyler Wittman
+//--------------------------------------------------------------------------------------------------------------
+
 
 #pragma once
 #ifndef __COMP371_Framework__SkyboxModel__

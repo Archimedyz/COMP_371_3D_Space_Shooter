@@ -1,8 +1,13 @@
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// 
+// 
+//--------------------------------------------------------------------------------------------------------------
+
 #include "AsteroidModel.h"
 #include "Variables.h"
 #include "Renderer.h"
 #include <string>
-// Include GLEW - OpenGL Extension Wrangler
 #include <GL/glew.h>
 
 using namespace glm;

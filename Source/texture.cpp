@@ -1,12 +1,17 @@
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Andrey Uspenskiy
+// 
+//--------------------------------------------------------------------------------------------------------------
+
+
 #pragma warning(disable: 4996)
 //From http://www.opengl-tutorial.org/beginners-tutorials/tutorial-5-a-textured-cube/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include <GL/glew.h>
-
 #include <GLFW/glfw3.h>
 
 

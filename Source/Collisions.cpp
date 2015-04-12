@@ -1,10 +1,10 @@
-//
-//  Collisions.cpp
-//  COMP371_Framework
-//
-//  Created by Nick Dudek on 2015-04-05.
-//  Copyright (c) 2015 Concordia. All rights reserved.
-//
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Nicholas Dudek
+// 
+//--------------------------------------------------------------------------------------------------------------
+
+
 
 #include "Collisions.h"
 #include "Model.h"

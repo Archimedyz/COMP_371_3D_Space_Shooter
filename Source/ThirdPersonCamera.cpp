@@ -1,11 +1,10 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 28/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// 
+// 
+//--------------------------------------------------------------------------------------------------------------
+
+
 
 #include "ThirdPersonCamera.h"
 #include "EventManager.h"
@@ -15,10 +14,9 @@
 #include <glm/gtx/vector_angle.hpp>
 #include <GLFW/glfw3.h>
 #include <algorithm>
+#include "Projectile.h"
 
 #define pi 3.14159265
-
-#include "Projectile.h"
 
 using namespace glm;
 
