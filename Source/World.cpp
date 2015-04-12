@@ -31,7 +31,7 @@ using namespace glm;
 World* World::instance;
 int World::addCounter;
 SkyboxModel* skybox;
-// Load textures for Skybox
+ShipModel * ship_model;
 
 // Light Coefficients. We are using directional light.
 const vec3 lightColor(1.0f, 1.0f, 1.0f);
@@ -173,6 +173,8 @@ void World::Update(float dt)
 			mModel.push_back(AsteroidFactory::createNewAsteroid(0));
 			addCounter = 0;
 		}
+		vec3 tempPosition = vec3(ship_model->GetPosition());
+		skybox->SetPosition(tempPosition);
 	}
 }
 
@@ -331,7 +333,7 @@ void World::LoadCameras()
 
 	// Cube "ship" Character controlled with Third Person Camera
 	//CubeModel * ship_model = new CubeModel();
-	ShipModel * ship_model = new ShipModel();
+	ship_model = new ShipModel();
 	player = ship_model;
 	ship_model->SetPosition(vec3(0.0f, -5.0f, 0.0f));
 	ship_model->ActivateCollisions(true);
