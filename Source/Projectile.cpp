@@ -29,9 +29,9 @@ std::vector<unsigned short> Projectile::indices;
 void Projectile::LoadBuffers()
 {
 #if defined(PLATFORM_OSX)
-	const char * modelPath = "Models/bullet2.obj";
+	const char * modelPath = "Models/projectile.obj";
 #else
-	const char * modelPath = "../Resources/Models/bullet2.obj";
+	const char * modelPath = "../Resources/Models/projectile.obj";
 #endif
 	Loader::loadModel(modelPath, Projectile::vArray, Projectile::vertexbuffer, Projectile::uvbuffer, Projectile::normalbuffer, Projectile::elementbuffer, Projectile::indices);
 
@@ -64,6 +64,7 @@ Projectile::Projectile(glm::vec3 o, glm::vec3 d)
 	mCollisionRadius = 1;
 	mSpeed = 45;
 	name = "PROJECTILE";
+	SetScaling(vec3(5.0f, 5.0f, 5.0f));
 }
 
 void Projectile::Update(float dt)
@@ -91,24 +92,24 @@ void Projectile::Draw()
 		(void*)0            // array buffer offset
 		);
 
-	// 2nd attribute buffer : UVs
+	// 2nd attribute buffer : normals
 	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
 	glVertexAttribPointer(
 		1,                                // attribute
-		2,                                // size
+		3,                                // size
 		GL_FLOAT,                         // type
 		GL_FALSE,                         // normalized?
 		0,                                // stride
 		(void*)0                          // array buffer offset
 		);
 
-	// 3rd attribute buffer : normals
-	glEnableVertexAttribArray(2);
-	glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
+	// 4th attribute buffer : UVs
+	glEnableVertexAttribArray(3);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
 	glVertexAttribPointer(
-		2,                                // attribute
-		3,                                // size
+		3,                                // attribute
+		2,                                // size
 		GL_FLOAT,                         // type
 		GL_FALSE,                         // normalized?
 		0,                                // stride
@@ -127,9 +128,10 @@ void Projectile::Draw()
 		);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
+
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(2);
+	glDisableVertexAttribArray(3);
 }
 
 void Projectile::SetDirection(glm::vec3 dir)

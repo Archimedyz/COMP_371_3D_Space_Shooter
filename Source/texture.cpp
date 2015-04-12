@@ -35,17 +35,17 @@ GLuint loadBMP_custom(const char * imagepath){
 
 	// If less than 54 bytes are read, problem
 	if ( fread(header, 1, 54, file)!=54 ){ 
-		printf("Not a correct BMP file\n");
+		printf("Not a correct BMP file(1)\n");
 		return 0;
 	}
 	// A BMP files always begins with "BM"
 	if ( header[0]!='B' || header[1]!='M' ){
-		printf("Not a correct BMP file\n");
+		printf("Not a correct BMP file(2)\n");
 		return 0;
 	}
 	// Make sure this is a 24bpp file
-	if ( *(int*)&(header[0x1E])!=0  )         {printf("Not a correct BMP file\n");    return 0;}
-	if ( *(int*)&(header[0x1C])!=24 )         {printf("Not a correct BMP file\n");    return 0;}
+	if ( *(int*)&(header[0x1E])!=0  )         {printf("Not a correct BMP file(3)\n");    return 0;}
+	if ( *(int*)&(header[0x1C])!=24 )         {printf("Not a correct BMP file(4)\n");    return 0;}
 
 	// Read the information about the image
 	dataPos    = *(int*)&(header[0x0A]);
