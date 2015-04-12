@@ -33,6 +33,7 @@ World* World::instance;
 int World::addCounter;
 SkyboxModel* skybox;
 ShipModel * ship_model;
+CubeModel * station;
 
 // Light Coefficients. We are using directional light.
 const vec3 lightColor(1.0f, 1.0f, 1.0f);
@@ -335,6 +336,9 @@ void World::LoadCameras()
 	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
+
+	station->ActivateCollisions(false);
+	mModel.push_back(station);
 
 	CollectionAsteroid *c = new CollectionAsteroid();
 	NewAsteroid *na = new NewAsteroid();
