@@ -44,12 +44,19 @@ private:
 	float mModelHorizontalSensitivity;
 	float mModelVerticalSensitivity;
 	float mModelStandardSpeed;
-	float mModelAcceration;
+	float mModelAcceleration;
 	float mModelDeceleration;
 	float mModelCurrentSpeed;
 	float mModelAnimationSpeed;
+	static const float STANDARD_SPEED;
+	static const float ACCELERATION;
+	static const float DECELERATION;
 	static const float SPEED_INCREASE_PERCENTAGE;
 	static const float SPEED_DECREASE_PERCENTAGE;
+
+	// control variables
+	static const float HORIZONTAL_SENSITIVITY;
+	static const float VERTICAL_SENSITIVITY;
 
 	// animation variables
 	float mModelCurrentPitch;
@@ -58,6 +65,7 @@ private:
 	static const float MAX_ANIMATION_PITCH_ANGLE;
 	static const float MAX_ANIMATION_YAW_ANGLE;
 	static const float MAX_ANIMATION_ROLL_ANGLE;
+	static const float ANIMATION_SPEED;
 
 	// player variables
 	static const float PLAYER_BOUNDING_GAME_RADIUS;
