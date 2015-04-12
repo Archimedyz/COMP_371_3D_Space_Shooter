@@ -21,7 +21,7 @@ ShipModel::ShipModel()
     //Loader::loadModel(modelPath);
     //amModels[0].LoadModelFromFile("Models/X_WING_2.obj");
     
-    amModels.LoadModelFromFile("Models/X_WING_2.obj");
+    amModels.LoadModelFromFile("Models/suzanne.obj");
     printf("Create Model.");
     CAssimpModel::FinalizeVBO();
 }
@@ -50,7 +50,6 @@ void ShipModel::Draw()
 
     CAssimpModel::BindModelsVAO();
     amModels.RenderModel();
-    printf("RENDER");
 /*
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);

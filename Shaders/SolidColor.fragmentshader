@@ -1,9 +1,9 @@
 #version 330 core
 
 // Ouput to fragment shader
-out vec3 color;
+out vec4 color;
 
-smooth in vec2 vTexCoord;
+in vec2 vTexCoord;
 
 uniform sampler2D gSampler;
 uniform vec4 vColor;
@@ -17,5 +17,5 @@ void main()
 
     vec4 vMixedColor = vTexColor * vColor;
 
-    color = vMixedColor;
+    color = vec4(1,1,1,1);
 }

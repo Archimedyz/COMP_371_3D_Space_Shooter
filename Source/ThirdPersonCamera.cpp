@@ -16,9 +16,12 @@
 #include <GLFW/glfw3.h>
 #include <algorithm>
 
+#include "sound.h"
+
 #define pi 3.14159265
 
 #include "Projectile.h"
+
 
 using namespace glm;
 
@@ -262,6 +265,9 @@ void ThirdPersonCamera::Update(float dt)
 
 	if (glfwGetMouseButton(EventManager::GetWindow(), GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS && (time(NULL)-Projectile::GetLastFired() > 0)) // Shoot, if left click and enough time has elapsed.
 	{
+        Sound::initialize();
+        Sound::load("Models/laser_sound.wav");
+        Sound::play();
 		Projectile *p = new Projectile(currentPosition, mLookAt); // Start position should be set to a specific postion in relation the ship model's position AND direction should be adjusted to where ship is facing, not the lookAt
 		World::GetInstance()->AddModel(p);
 		Projectile::SetLastFired(time(NULL)); // Set the last time fired to the current time.

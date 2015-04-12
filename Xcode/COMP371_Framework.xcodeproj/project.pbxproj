@@ -16,6 +16,8 @@
 		360823BF1AD8830A00E4B598 /* shaders.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360823BD1AD8830A00E4B598 /* shaders.cpp */; };
 		360823C21AD883A500E4B598 /* vertexBufferObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360823C01AD883A500E4B598 /* vertexBufferObject.cpp */; };
 		360823C51AD8866800E4B598 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 360823C31AD8866800E4B598 /* texture.cpp */; };
+		3611E9DF1ADA337900A4204A /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3611E9DE1ADA337900A4204A /* libfmodex.dylib */; };
+		3611E9E21ADA366600A4204A /* sound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3611E9E01ADA366600A4204A /* sound.cpp */; };
 		361F4D011AD89AEC005E0A54 /* libfreeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 361F4D001AD89AEC005E0A54 /* libfreeimage.a */; };
 		368691621AD4313D00BF4726 /* libIL.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 368691611AD4313D00BF4726 /* libIL.1.dylib */; };
 		368691641AD4315200BF4726 /* libILU.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 368691631AD4315200BF4726 /* libILU.1.dylib */; };
@@ -81,6 +83,10 @@
 		360823C11AD883A500E4B598 /* vertexBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vertexBufferObject.h; sourceTree = "<group>"; };
 		360823C31AD8866800E4B598 /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
 		360823C41AD8866800E4B598 /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = texture.h; sourceTree = "<group>"; };
+		3611E9DE1ADA337900A4204A /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmodex.dylib; path = /usr/local/lib/libfmodex.dylib; sourceTree = "<absolute>"; };
+		3611E9E01ADA366600A4204A /* sound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sound.cpp; sourceTree = "<group>"; };
+		3611E9E11ADA366600A4204A /* sound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sound.h; sourceTree = "<group>"; };
+		3611E9E31ADA36C800A4204A /* Sound */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sound; sourceTree = "<group>"; };
 		361F4D001AD89AEC005E0A54 /* libfreeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreeimage.a; path = ../../../../../usr/local/Cellar/freeimage/3.16.0/lib/libfreeimage.a; sourceTree = "<group>"; };
 		368691611AD4313D00BF4726 /* libIL.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libIL.1.dylib; path = /usr/local/Cellar/devil/1.7.8_1/lib/libIL.1.dylib; sourceTree = "<absolute>"; };
 		368691631AD4315200BF4726 /* libILU.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libILU.1.dylib; path = /usr/local/Cellar/devil/1.7.8_1/lib/libILU.1.dylib; sourceTree = "<absolute>"; };
@@ -135,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3611E9DF1ADA337900A4204A /* libfmodex.dylib in Frameworks */,
 				361F4D011AD89AEC005E0A54 /* libfreeimage.a in Frameworks */,
 				368691661AD4316600BF4726 /* libILUT.1.dylib in Frameworks */,
 				368691641AD4315200BF4726 /* libILU.1.dylib in Frameworks */,
@@ -155,6 +162,7 @@
 		034F0BB11A700D0F0028E1BA /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3611E9DE1ADA337900A4204A /* libfmodex.dylib */,
 				368691651AD4316600BF4726 /* libILUT.1.dylib */,
 				368691631AD4315200BF4726 /* libILU.1.dylib */,
 				368691611AD4313D00BF4726 /* libIL.1.dylib */,
@@ -173,6 +181,7 @@
 		034F0BB31A7010160028E1BA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3611E9E31ADA36C800A4204A /* Sound */,
 				D4F9C7F31AC4DA6500F5AB97 /* Models */,
 				D463011A1ABBC4EA00BF8F32 /* Scenes */,
 				034F0BB41A70103C0028E1BA /* Shaders */,
@@ -220,6 +229,8 @@
 				D4BAD0761AAE78E300698FF2 /* Variables.h */,
 				D4BAD0771AAE78E300698FF2 /* World.cpp */,
 				D4BAD0781AAE78E300698FF2 /* World.h */,
+				3611E9E01ADA366600A4204A /* sound.cpp */,
+				3611E9E11ADA366600A4204A /* sound.h */,
 			);
 			name = Source;
 			path = ../Source;
@@ -351,6 +362,7 @@
 				D4BAD0881AAE78E300698FF2 /* StaticCamera.cpp in Sources */,
 				D4BAD08B1AAE78E300698FF2 /* World.cpp in Sources */,
 				D4BAD07A1AAE78E300698FF2 /* AsteroidModel.cpp in Sources */,
+				3611E9E21ADA366600A4204A /* sound.cpp in Sources */,
 				D4BAD07F1AAE78E300698FF2 /* Camera.cpp in Sources */,
 				D46301141ABBC27500BF8F32 /* Renderer.cpp in Sources */,
 				360823BB1AD87E1D00E4B598 /* assimp_model.cpp in Sources */,
@@ -471,7 +483,7 @@
 					../ThirdParty/glm,
 					"../ThirdParty/glfw-3.0.4/include",
 					"../ThirdParty/glew-1.10.0/include",
-					/usr/local/include,
+					../ThirdParty/fmode/include,
 				);
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
@@ -479,22 +491,18 @@
 					../ThirdParty/glm,
 					"../ThirdParty/glfw-3.0.4/include",
 					"../ThirdParty/glew-1.10.0/include",
-					/usr/local/include,
+					../ThirdParty/fmode/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"../ThirdParty/glew-1.10.0/lib/Release/osx",
-					"../ThirdParty/glfw-3.0.4/lib/osx",
-					/usr/local/lib,
-					/usr/local/Cellar/devil/1.7.8_1/lib,
-					/usr/local/Cellar/freeimage/3.16.0/lib,
+					"<Multiple",
+					"values>",
+					/usr/local/include,
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
+					../ThirdParty/fmode/lib,
 					"../ThirdParty/glfw-3.0.4/lib/osx",
-					/usr/local/lib,
-					/usr/local/Cellar/devil/1.7.8_1/lib,
 				);
 				"OTHER_CFLAGS[arch=*]" = "-ferror-limit=0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -516,7 +524,7 @@
 					../ThirdParty/glm,
 					"../ThirdParty/glfw-3.0.4/include",
 					"../ThirdParty/glew-1.10.0/include",
-					/usr/local/include,
+					../ThirdParty/fmode/include,
 				);
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
@@ -524,15 +532,17 @@
 					../ThirdParty/glm,
 					"../ThirdParty/glfw-3.0.4/include",
 					"../ThirdParty/glew-1.10.0/include",
-					/usr/local/include,
+					../ThirdParty/fmode/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"../ThirdParty/glew-1.10.0/lib/Release/osx",
-					"../ThirdParty/glfw-3.0.4/lib/osx",
-					/usr/local/lib,
-					/usr/local/Cellar/devil/1.7.8_1/lib,
-					/usr/local/Cellar/freeimage/3.16.0/lib,
+					"<Multiple",
+					"values>",
+					/usr/local/include,
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = (
+					"<Multiple",
+					"values>",
+					../ThirdParty/fmode/lib,
 				);
 				"OTHER_CFLAGS[arch=*]" = "-ferror-limit=0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
