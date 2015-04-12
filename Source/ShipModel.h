@@ -29,5 +29,10 @@ protected:
 	static unsigned int normalbuffer;
 	static unsigned int elementbuffer;
 	static std::vector<unsigned short> indices;
+
+	static const glm::vec3 upperLeftLaserPosition;
+	static const glm::vec3 upperRightLaserPosition;
+	static const glm::vec3 lowerLeftLaserPosition;
+	static const glm::vec3 lowerRightLaserPosition;
 };
 
