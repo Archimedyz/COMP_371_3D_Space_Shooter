@@ -329,10 +329,11 @@ void World::LoadCameras()
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
 
-	// test particle
-	vec3 thrusterPosition = ship_model->GetPosition() + vec3(0.0f, 0.0f, 0.5f);
-	ThrusterParticles * test_thrusters = new ThrusterParticles(thrusterPosition, vec3(0.0f, 0.0f, 1.0f));		// orientation here may need to be changed to the opposite of the ship's look at
-	test_thrusters->setParentModel(ship_model);
+	// test particle on space ship model
+	vec3 thrusterPosition = spaceStation_model->GetPosition() + vec3(0.0f, 1.0f, 0.0f);
+	ThrusterParticles * test_thrusters = new ThrusterParticles(thrusterPosition, vec3(0.0f, 1.0f, 0.0f));		// orientation here may need to be changed to the opposite of the ship's look at
+	test_thrusters->setParentModel(spaceStation_model);
+	test_thrusters->SetName("TEST THRUSTERS");
 	mModel.push_back(test_thrusters);
 
 	/*CubeModel * floor = new CubeModel();

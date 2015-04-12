@@ -38,6 +38,7 @@ public:
 
 	virtual glm::mat4 GetWorldMatrix() const;
 
+	void SetName(std::string newName) { name = newName; }
 	void SetPosition(glm::vec3 position);
 	void SetScaling(glm::vec3 scaling);
 	void SetXRotation(glm::vec3 axis, float angleDegrees);

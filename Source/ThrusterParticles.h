@@ -15,6 +15,8 @@ public:
 	void RenderShadowVolume(glm::vec4 lightPos) {}
 
 private:
+	Particle* generateNewParticle();
+
 	Model* parentModel;
 	glm::vec3 orientation;
 	std::vector<Particle*> particles;

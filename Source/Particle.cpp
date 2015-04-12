@@ -1,13 +1,14 @@
 #include "Particle.h"
 #include "Renderer.h"
+#include <time.h>
 
 // Include GLEW - OpenGL Extension Wrangler
 #include <GL/glew.h>
 
 using namespace glm;
 
-Particle::Particle(float size, glm::vec3 quadraticMovement, float speed, float duration) :
-	Model(), quadraticMovement(quadraticMovement), speed(speed), duration(duration)
+Particle::Particle(float size, glm::vec3 quadraticMovement, float speed, float roatationInDegrees, float duration) :
+Model(), quadraticMovement(quadraticMovement), speed(speed), rotation(roatationInDegrees), duration(duration)
 {
 	startTime = time(NULL);
 	ka = 0.5f;
@@ -222,17 +223,21 @@ void Particle::RenderShadowVolume(glm::vec4 lightPos)
 
 bool Particle::isExpired() const
 {
-	return ((time(NULL) - startTime) >= duration);
+	float currentTime = time(NULL);
+	std:: cout << currentTime << std::endl;
+	float lifetime = currentTime - startTime;
+	return lifetime >= duration;
 }
 
 float Particle::getXMovementValue()
 {
-	float dt = time(NULL) - startTime;
-	return dt * speed;
+	float currentTime = time(NULL);
+	float dt = currentTime - startTime;
+	return (dt * (speed/1000));
 }
 
 float Particle::getYMovementValue()
 {
 	float dt = time(NULL) - startTime;
-	return (quadraticMovement.x * dt * dt) + (quadraticMovement.y * dt) + (quadraticMovement.z);
+	return (((quadraticMovement.x * dt * dt) + (quadraticMovement.y * dt) + (quadraticMovement.z)) * (speed / 1000));
 }
