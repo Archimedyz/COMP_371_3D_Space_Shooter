@@ -38,7 +38,6 @@ void ShipModel::LoadBuffers()
 	mShipTexture = loadBMP_custom("../Resources/Textures/SpaceShipTexture.bmp");
 }
 
-
 ShipModel::ShipModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
 	//initializing ship with lighting
@@ -52,6 +51,10 @@ ShipModel::ShipModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f,
 	CollisionsOn = true;
 }
 
+ShipModel::ShipModel(glm::vec3 position, glm::vec3 scaling) : Model(position, scaling)
+{
+	LoadBuffers();
+}
 
 ShipModel::~ShipModel()
 {
@@ -63,8 +66,11 @@ ShipModel::~ShipModel()
 
 void ShipModel::Update(float dt)
 {
+	// If you are curious, un-comment this line to have spinning cubes!
+	// That will only work if your world transform is correct...
+	//mRotationAngleInDegrees += 90 * dt; // spins by 90 degrees per second
 
-
+	Model::Update(dt);
 }
 
 void ShipModel::Draw()

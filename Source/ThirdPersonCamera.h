@@ -21,7 +21,11 @@ public:
     virtual glm::mat4 GetViewMatrix() const;
 
 private:
+	void TranslateControls(float dt, bool space, bool shift, bool a, bool d, bool w, bool s, bool mouseLeft);
     virtual void CalculateCameraBasis();
+	bool isUpBetween90and270() const;
+	bool isTargetModelOutOfBounds() const;
+	std::vector<float> getVHAnglesBetweenVectors(glm::vec3 vector1, glm::vec3 vector2) const;
     Model* mTargetModel;
     
     // Cartesian Coordinates
@@ -53,4 +57,7 @@ private:
 	static const float MAX_ANIMATION_PITCH_ANGLE;
 	static const float MAX_ANIMATION_YAW_ANGLE;
 	static const float MAX_ANIMATION_ROLL_ANGLE;
+
+	// player variables
+	static const float PLAYER_BOUNDING_GAME_RADIUS;
 };

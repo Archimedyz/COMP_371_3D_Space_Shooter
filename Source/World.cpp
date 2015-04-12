@@ -333,7 +333,9 @@ void World::LoadCameras()
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
 
 	// Cube "ship" Character controlled with Third Person Camera
-	//CubeModel * ship_model = new CubeModel();
+	CubeModel * spaceStation_model = new CubeModel();
+	spaceStation_model->SetPosition(vec3(0.0f, 0.0f, 0.0f));
+	mModel.push_back(spaceStation_model);
 	ship_model = new ShipModel();
 	player = ship_model;
 	ship_model->SetPosition(vec3(0.0f, -5.0f, 0.0f));
