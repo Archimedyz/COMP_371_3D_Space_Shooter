@@ -7,6 +7,7 @@
 #pragma once
 
 #include "Model.h"
+#include "Texture.hpp"
 
 class NewAsteroid : public Model
 {
