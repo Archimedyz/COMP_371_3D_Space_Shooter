@@ -195,6 +195,7 @@ void World::Draw()
 	GLuint LightMVPID = glGetUniformLocation(Renderer::GetShaderProgramID(), "lightMVP");
 
 	// Set shader to use
+	Renderer::SetShader(SHADER_PHONG);
 	glUseProgram(Renderer::GetShaderProgramID());
 
 	// This looks for the MVP Uniform variable in the Vertex Program
