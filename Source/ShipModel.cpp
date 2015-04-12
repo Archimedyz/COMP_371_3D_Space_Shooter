@@ -23,6 +23,12 @@ unsigned int ShipModel::normalbuffer;
 unsigned int ShipModel::elementbuffer;
 std::vector<unsigned short> ShipModel::indices;
 
+// positions of the lasers relative to the ship positioned at (0,0,0) and scaled to (0.5,0.5,0.5)
+const glm::vec3 ShipModel::upperLeftLaserPosition = vec3(2.3f, 0.65f, 1.6f);
+const glm::vec3 ShipModel::upperRightLaserPosition = vec3(-2.3f, 0.65f, 1.6f);
+const glm::vec3 ShipModel::lowerLeftLaserPosition = vec3(-2.3f, 0.65f, 1.6f);
+const glm::vec3 ShipModel::lowerRightLaserPosition = vec3(-2.3f, -0.7f, 1.6f);
+
 GLuint mShipTexture;
 
 void ShipModel::LoadBuffers()
