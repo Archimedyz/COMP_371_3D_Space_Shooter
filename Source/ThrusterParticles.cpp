@@ -42,7 +42,7 @@ void ThrusterParticles::Update(float dt)
 		{
 			cout << "particle destroyed" << endl;
 			delete particles[i];
-			expiredParticles.push_back(i);
+			particles.erase(particles.begin() + i);
 		}
 		else
 		{
@@ -52,11 +52,6 @@ void ThrusterParticles::Update(float dt)
 			displacement = vec3(glm::rotate(mat4(1.0f), particles[i]->getRotationAngleInDegrees(), particleXAxis) * vec4(displacement, 0.0f));
 			particles[i]->SetPosition(particles[i]->GetPosition() + displacement);
 		}
-	}
-
-	for (int i : expiredParticles)
-	{
-		particles.erase(particles.begin() + i);
 	}
 }
 
