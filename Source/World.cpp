@@ -173,7 +173,7 @@ void World::Update(float dt)
 		}
 
 		if (++addCounter > 100){
-			//mModel.push_back(AsteroidFactory::createNewAsteroid(0));
+			mModel.push_back(AsteroidFactory::createCollection());
 			addCounter = 0;
 		}
 		//skybox position updates with ship position
@@ -325,6 +325,7 @@ void World::LoadScene(const char * scene_path)
 
 void World::LoadCameras()
 {
+	srand(NULL);
     // Setup Camera
     mCamera.push_back(new StaticCamera(vec3(3.0f, 5.0f, 5.0f),  vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(10.0f, 30.0f, 10.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
@@ -342,31 +343,6 @@ void World::LoadCameras()
 	station->SetPosition(vec3(0.0f, -6.0f, 0.0f));
 	station->ActivateCollisions(false);
 	mModel.push_back(station);
-
-	CollectionAsteroid *c = new CollectionAsteroid();
-	NewAsteroid *na = new NewAsteroid();
-	NewAsteroid *nb = new NewAsteroid();
-	NewAsteroid *nc = new NewAsteroid();
-	NewAsteroid *nd = new NewAsteroid();
-	NewAsteroid *ne = new NewAsteroid();
-
-
-	na->SetPosition(vec3(1, 0, 0));
-	nb->SetPosition(vec3(0, 1, 0));
-	nc->SetPosition(vec3(0, 1, 1));
-	nd->SetPosition(vec3(1, 1, 0));
-	ne->SetPosition(vec3(1, 1, 1));
-
-	c->addChild(na);
-	c->addChild(nb);
-	c->addChild(nc);
-	c->addChild(nd);
-	c->addChild(ne);
-
-	c->SetPosition(vec3(0, 0, 0));
-	c->setDirection(vec3(1, 0, 0));
-
-	mModel.push_back(c);
 
     mCurrentCamera = 0;
 	mCamera.push_back(new FreeRoamCamera(vec3(2.0f, 2.0f, 2.0f), vec3(-1.0f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f)));
