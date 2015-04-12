@@ -37,7 +37,10 @@ void main()
 	vec3 reflected_vector = 2.0f * dot(normal_vector, light_vector) * normal_vector - light_vector;
 	vec3 eye_vector = normalize(eyeVector);
 
-	vec3 temp_color = texture(textureMap, UV).rgb;
+	vec3 final_color = v_color;
+	if(v_color == vec3(0.0f, 0.0f, 0.0f)){
+		final_color = texture(textureMap, UV).rgb;
+	}
 
 	a_factor = 1.0f;
 	if(lightVector.w == 1){
@@ -45,7 +48,6 @@ void main()
 		a_factor = 1.0f / ((lightAttenuation.x + lightAttenuation.y * length(vec3(lightVector)) + pow(lightAttenuation.z, 2)));
 	}
 
-	vec3 i_amb = v_color;
 	vec3 i_light = vec3(lightColor);
 
 	float k_amb = materialCoefficients.x;
@@ -59,5 +61,5 @@ void main()
 
 	vec3 total_intensity = amb_intensity + diff_intensity + spec_intensity;
 
-	color = temp_color * total_intensity;
+	color = final_color * total_intensity;
 }
