@@ -34,7 +34,7 @@ static int added = 0;
 
 World::World()
 {
-    instance = this;
+	instance = this;
 	addCounter = 0;
 }
 
@@ -48,8 +48,8 @@ World::~World()
 
 	mModel.clear();
 
-    // Paths
-    for (vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
+	// Paths
+	for (vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
 	{
 		delete *it;
 	}
@@ -65,57 +65,57 @@ World::~World()
 
 World* World::GetInstance()
 {
-    return instance;
+	return instance;
 }
 
 void World::Update(float dt)
 {
-		// User Inputs
-		// 0 1 2 3 to change the Camera
-		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1) == GLFW_PRESS)
+	// User Inputs
+	// 0 1 2 3 to change the Camera
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1) == GLFW_PRESS)
+	{
+		mCurrentCamera = 0;
+	}
+	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_2) == GLFW_PRESS)
+	{
+		if (mCamera.size() > 1)
 		{
-			mCurrentCamera = 0;
+			mCurrentCamera = 1;
 		}
-		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_2) == GLFW_PRESS)
+	}
+	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_3) == GLFW_PRESS)
+	{
+		if (mCamera.size() > 2)
 		{
-			if (mCamera.size() > 1)
-			{
-				mCurrentCamera = 1;
-			}
+			mCurrentCamera = 2;
 		}
-		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_3) == GLFW_PRESS)
+	}
+	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_4) == GLFW_PRESS)
+	{
+		// Spline camera
+		if (mCamera.size() > 3)
 		{
-			if (mCamera.size() > 2)
-			{
-				mCurrentCamera = 2;
-			}
+			mCurrentCamera = 3;
 		}
-		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_4) == GLFW_PRESS)
-		{
-			// Spline camera
-			if (mCamera.size() > 3)
-			{
-				mCurrentCamera = 3;
-			}
-		}
+	}
 
-		// 0 and 9 to change the shader
-		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_0) == GLFW_PRESS)
-		{
-			Renderer::SetShader(SHADER_SOLID_COLOR);
-		}
-		else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_9) == GLFW_PRESS)
-		{
-			Renderer::SetShader(SHADER_BLUE);
-		}
+	// 0 and 9 to change the shader
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_0) == GLFW_PRESS)
+	{
+		Renderer::SetShader(SHADER_SOLID_COLOR);
+	}
+	else if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_9) == GLFW_PRESS)
+	{
+		Renderer::SetShader(SHADER_BLUE);
+	}
 
-		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_SPACE) == GLFW_PRESS)
-		{
-			paused = !paused;
-			std::cout << "SPACE\n";
-		}
+	if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_SPACE) == GLFW_PRESS)
+	{
+		paused = !paused;
+		std::cout << "SPACE\n";
+	}
 
-		if (!paused){
+	if (!paused){
 		// Update current Camera
 		mCamera[mCurrentCamera]->Update(dt);
 
@@ -149,25 +149,25 @@ void World::Update(float dt)
 			}
 		}
 
-		if (++addCounter > 100 && added < 10){
-			mModel.push_back(AsteroidFactory::createAsteroid(0));
+		if (++addCounter > 100){
+			mModel.push_back(AsteroidFactory::createAsteroid(added % 2));
 			addCounter = 0;
 			++added;
 		}
 	}
-	
+
 }
 
 void World::Draw()
 {
 	Renderer::BeginFrame();
-	
+
 	// Set shader to use
 	Renderer::SetShader(SHADER_SOLID_COLOR);
 	glUseProgram(Renderer::GetShaderProgramID());
 
 	// This looks for the MVP Uniform variable in the Vertex Program
-	GLuint VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform"); 
+	GLuint VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform");
 
 	// Send the view projection constants to the shader
 	mat4 VP = mCamera[mCurrentCamera]->GetViewProjectionMatrix();
@@ -181,7 +181,7 @@ void World::Draw()
 	}
 
 	// Draw Path Lines
-	
+
 	// Set Shader for path lines
 	unsigned int prevShader = Renderer::GetCurrentShader();
 	Renderer::SetShader(SHADER_PATH_LINES);
@@ -198,7 +198,7 @@ void World::Draw()
 	}
 
 	// Restore previous shader
-	Renderer::SetShader((ShaderType) prevShader);
+	Renderer::SetShader((ShaderType)prevShader);
 
 	Renderer::EndFrame();
 
@@ -209,7 +209,7 @@ void World::LoadScene(const char * scene_path)
 	// All the commented out code that was used for the assignment to load paths and things is at the end of this file.
 	// I moved it there since it's just extra clutter to keep it here commented out, it can probably
 	// be deleted. -Nick
-    
+
 	mModel.push_back(AsteroidFactory::createAsteroid(0));
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
@@ -218,20 +218,20 @@ void World::LoadScene(const char * scene_path)
 
 	//Loader::loadModel();
 
-    LoadCameras();
+	LoadCameras();
 }
 
 void World::LoadCameras()
 {
-    // Setup Camera
-    mCamera.push_back(new StaticCamera(vec3(3.0f, 5.0f, 5.0f),  vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
-    mCamera.push_back(new StaticCamera(vec3(3.0f, 30.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
-    mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
-    
+	// Setup Camera
+	mCamera.push_back(new StaticCamera(vec3(3.0f, 5.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
+	mCamera.push_back(new StaticCamera(vec3(3.0f, 30.0f, 5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
+	mCamera.push_back(new StaticCamera(vec3(0.5f, 0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
+
 	CubeModel * character = new CubeModel();
-    character->SetPosition(vec3(0.0f, 0.0f, 0.0f));
+	character->SetPosition(vec3(0.0f, 0.0f, 0.0f));
 	character->ActivateCollisions(false);
-    mModel.push_back(character);
+	mModel.push_back(character);
 
 	// Cube "ship" Character controlled with Third Person Camera
 	//CubeModel * ship_model = new CubeModel();
@@ -241,24 +241,24 @@ void World::LoadCameras()
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);*/
 
-    mCurrentCamera = 0;
+	mCurrentCamera = 0;
 }
 
 Path* World::FindPath(ci_string pathName)
 {
-    for(std::vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
-    {
-        if((*it)->GetName() == pathName)
-        {
-            return *it;
-        }
-    }
-    return nullptr;
+	for (std::vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
+	{
+		if ((*it)->GetName() == pathName)
+		{
+			return *it;
+		}
+	}
+	return nullptr;
 }
 
 Model* World::FindModelByIndex(unsigned int index)
 {
-    return mModel.size() > 0 ? mModel[index % mModel.size()] : nullptr;
+	return mModel.size() > 0 ? mModel[index % mModel.size()] : nullptr;
 }
 
 void World::AddModel(Model* mdl)
