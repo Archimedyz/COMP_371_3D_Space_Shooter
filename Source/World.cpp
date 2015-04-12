@@ -15,7 +15,6 @@
 #include "FreeRoamCamera.h"
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
-#include "SphereModel.h"
 #include "Path.h"
 #include "Projectile.h"
 #include "ShipModel.h"
