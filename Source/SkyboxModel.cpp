@@ -1,3 +1,5 @@
+//Skybox texture from here: https://hondadarrell.wordpress.com/2010/01/20/creating-3d-space-skyboxes/
+
 #include "SkyboxModel.h"
 
 std::vector<glm::vec3> SkyboxModel::vArray;
@@ -16,12 +18,12 @@ void SkyboxModel::LoadBuffers()
 #if defined(PLATFORM_OSX)
 	const char * modelPath = "Resources/Models/Final_Skybox_V1.obj";
 #else
-	const char * modelPath = "../Resources/Models/Final_Skybox_V1.obj";
+	const char * modelPath = "../Resources/Models/skyboxRegularNormalsUpdated1237.obj";
 #endif
 	Loader::loadModel(modelPath, SkyboxModel::vArray, SkyboxModel::vertexbuffer, SkyboxModel::uvbuffer, SkyboxModel::normalbuffer, SkyboxModel::elementbuffer, SkyboxModel::indices);
 	
 	// load texture for skybox
-	singleSkyboxBMP = loadBMP_custom("../Resources/Skybox/space_skybox_2.bmp");
+	singleSkyboxBMP = loadBMP_custom("../Resources/Textures/SkyboxTexture.bmp");
 }
 
 SkyboxModel::SkyboxModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, -1.0f))

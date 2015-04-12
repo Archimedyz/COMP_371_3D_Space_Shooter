@@ -136,7 +136,7 @@
     <None Include="..\Shaders\SolidColor.vertexshader" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Resource\Models\uvmap.DDS" />
+    <Image Include="..\Resources\Textures\uvmap.DDS" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
