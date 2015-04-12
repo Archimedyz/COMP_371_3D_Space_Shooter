@@ -32,7 +32,7 @@ private:
 	glm::vec3 quadraticMovement;
 	float speed;
 	float rotation;
-	float startTime;
+	time_t startTime;
 	float duration;
 
 	std::vector<glm::vec3> vertex_array;

@@ -223,7 +223,7 @@ void Particle::RenderShadowVolume(glm::vec4 lightPos)
 
 bool Particle::isExpired() const
 {
-	float currentTime = time(NULL);
+	time_t currentTime = time(NULL);
 	std:: cout << currentTime << std::endl;
 	float lifetime = currentTime - startTime;
 	return lifetime >= duration;
@@ -231,13 +231,13 @@ bool Particle::isExpired() const
 
 float Particle::getXMovementValue()
 {
-	float currentTime = time(NULL);
+	time_t currentTime = time(NULL);
 	float dt = currentTime - startTime;
 	return (dt * (speed/1000));
 }
 
 float Particle::getYMovementValue()
 {
-	float dt = time(NULL) - startTime;
+	time_t dt = time(NULL) - startTime;
 	return (((quadraticMovement.x * dt * dt) + (quadraticMovement.y * dt) + (quadraticMovement.z)) * (speed / 1000));
 }
