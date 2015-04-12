@@ -21,6 +21,7 @@
 #include "ShipModel.h"
 #include "SkyboxModel.h"
 #include "Loader.h"
+#include "Texture.hpp"
 #include "Text2D.h"
 
 #include <GLFW/glfw3.h>
@@ -59,12 +60,12 @@ World::World()
 	NewAsteroid::LoadBuffers();
 	Projectile::LoadBuffers();
 	ShipModel::LoadBuffers();
-	imageBK = loadBMP_custom("GalaxySkybox/Galaxy_BK.bmp");
-	imageFT = loadBMP_custom("GalaxySkybox/Galaxy_FT.bmp");
-	imageRT = loadBMP_custom("GalaxySkybox/Galaxy_RT.bmp");
-	imageLT = loadBMP_custom("GalaxySkybox/Galaxy_LT.bmp");
-	imageUP = loadBMP_custom("GalaxySkybox/Galaxy_UP.bmp");
-	imageDN = loadBMP_custom("GalaxySkybox/Galaxy_DN.bmp");
+	imageBK = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_BK.bmp");
+	imageFT = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_FT.bmp");
+	imageRT = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_RT.bmp");
+	imageLT = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_LT.bmp");
+	imageUP = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_UP.bmp");
+	imageDN = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_DN.bmp");
 	SkyboxModel::LoadBuffers();
 
 	skybox = new SkyboxModel();

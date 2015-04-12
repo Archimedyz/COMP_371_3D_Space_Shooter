@@ -90,6 +90,7 @@
     <ClCompile Include="..\Source\SphereModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\Text2D.cpp" />
+    <ClCompile Include="..\Source\Texture.cpp" />
     <ClCompile Include="..\Source\ThirdPersonCamera.cpp" />
     <ClCompile Include="..\Source\Variables.cpp" />
     <ClCompile Include="..\Source\vboindexer.cpp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="..\Source\SphereModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
     <ClInclude Include="..\Source\Text2D.h" />
+    <ClInclude Include="..\Source\Texture.hpp" />
     <ClInclude Include="..\Source\ThirdPersonCamera.h" />
     <ClInclude Include="..\Source\Variables.h" />
     <ClInclude Include="..\Source\vboindexer.hpp" />
