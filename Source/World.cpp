@@ -25,6 +25,7 @@
 #include <GLFW/glfw3.h>
 #include "EventManager.h"
 #include "NewAsteroid.h"
+#include "CollectionAsteroid.h"
 
 using namespace std;
 using namespace glm;
@@ -85,7 +86,7 @@ World* World::GetInstance()
 
 void World::Update(float dt)
 {
-	if (Game::GetInstance()->GameOver() == false)
+	//if (Game::GetInstance()->GameOver() == false)
 	{
 		// User Inputs
 		// 1 2 3 4 to change the Camera
@@ -162,7 +163,7 @@ void World::Update(float dt)
 		}
 
 		if (++addCounter > 100){
-			mModel.push_back(AsteroidFactory::createNewAsteroid(0));
+		//	mModel.push_back(AsteroidFactory::createNewAsteroid(0));
 			addCounter = 0;
 		}
 	}
@@ -322,6 +323,24 @@ void World::LoadCameras()
 	player = ship_model;
 	ship_model->SetPosition(vec3(0.0f, -5.0f, 0.0f));
 	ship_model->ActivateCollisions(true);
+
+	CollectionAsteroid *collection = new CollectionAsteroid();
+
+	NewAsteroid *na = new NewAsteroid();
+	NewAsteroid *nb = new NewAsteroid();
+
+	na->SetPosition(vec3(1, 0, 0));
+	nb->SetPosition(vec3(0, 1, 0));
+
+	collection->SetPosition(vec3(0, 0, 0));
+	collection->setDirection(vec3(1, 1, 0));
+	collection->addChild(na);
+	collection->addChild(nb);
+
+	mModel.push_back(collection);
+	mModel.push_back(na);
+	mModel.push_back(nb);
+
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
 

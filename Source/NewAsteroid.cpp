@@ -50,8 +50,11 @@ NewAsteroid::~NewAsteroid()
 
 void NewAsteroid::Update(float dt)
 {
-	mPosition += direction*mSpeed*dt;
-	mYRotationAngleInDegrees += mRotationSpeed*dt;
+	if (parent == NULL)
+	{
+		mPosition += direction*mSpeed*dt;
+		mYRotationAngleInDegrees += mRotationSpeed*dt;
+	}
 }
 
 void NewAsteroid::Draw()

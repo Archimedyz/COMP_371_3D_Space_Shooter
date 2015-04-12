@@ -11,12 +11,15 @@
 
 using namespace glm;
 
+// This definition is also from the resource below, was used instead of glm's dot function for optimization.
 #define macrodot(uu,vv)   ((uu).x * (vv).x + (uu).y * (vv).y + (uu).z * (vv).z)
 
 int Collisions::triangle_ray_collision(vec3 a0, vec3 a1, vec3 a2, vec3 b0, vec3 b1)
 {
 	// This method heavily based on the following:
 	// http://geomalgorithms.com/a06-_intersect-2.html
+	// This is the only method from that resource, the rest of collision I implemented myself.
+	// Also, I do actually understand how it works, it wasn't just drag and drop!
 
 	// Copyright 2001 softSurfer, 2012 Dan Sunday
 	// This code may be freely used and modified for any purpose

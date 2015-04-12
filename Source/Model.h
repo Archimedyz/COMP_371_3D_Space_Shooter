@@ -67,12 +67,18 @@ public:
     void SetSpeed(float spd);
 	bool CollisionsOn; // For debugging probably
 
+	// getter / setter for parent models
+	void AssignParent(Model *m) { parent = m; }
+	Model* GetParent() { return parent; }
+
 	// must be called in setup once before any members of the class are instantiated. loads the drawing buffers. overload it with the appropriate filename.
 	static void LoadBuffers();
 
 	// SHADOW STUFF
 	struct surface{};
 
+	// optimizing? maybe?
+	static glm::mat4 IDENT;
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token);
 
@@ -97,6 +103,9 @@ protected:
 
 	// drawing buffers. each subclass has a set of these buffers which contain the modelspace coordinates of the vertices. 
 	std::vector<glm::vec3> vArray;
+
+	// parent model used for hierarchical transforms
+	Model *parent;
 	
     // Makes the model follow a path defined by a set of waypoints
     Path* mPath;

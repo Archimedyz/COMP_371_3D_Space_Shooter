@@ -17,11 +17,14 @@
 #include "Renderer.h"
 #include "NewAsteroid.h"
 #include <GL/glew.h>
+#include "CollectionAsteroid.h"
 
 using namespace std;
 using namespace glm;
 
 class AsteroidModel;
+
+mat4 Model::IDENT = mat4(1.0f);
 
 Model::Model() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
@@ -173,20 +176,20 @@ glm::mat4 Model::GetWorldMatrix() const
 {
 	mat4 worldMatrix(1.0f);
 
-	mat4 t = glm::translate(mat4(1.0f), mPosition);
+	mat4 t = glm::translate(IDENT, mPosition);
 
-	mat4 rx = glm::rotate(mat4(1.0f), mXRotationAngleInDegrees, mXAxis);
-	mat4 ry = glm::rotate(mat4(1.0f), mYRotationAngleInDegrees, mYAxis);
-	mat4 rz = glm::rotate(mat4(1.0f), mZRotationAngleInDegrees, mZAxis);
+	mat4 rx = glm::rotate(IDENT, mXRotationAngleInDegrees, mXAxis);
+	mat4 ry = glm::rotate(IDENT, mYRotationAngleInDegrees, mYAxis);
+	mat4 rz = glm::rotate(IDENT, mZRotationAngleInDegrees, mZAxis);
 
+	mat4 rcx = glm::rotate(IDENT, mCameraXRotationAngleInDegrees, mCamXAxis);
+	mat4 rcy = glm::rotate(IDENT, mCameraYRotationAngleInDegrees, mCamYAxis);
+	mat4 rcz = glm::rotate(IDENT, mCameraZRotationAngleInDegrees, mCamZAxis);
+	mat4 s = glm::scale(IDENT, mScaling);
+	worldMatrix = t * rcy * rcx * rcz * ry * rx * rz * s;
 
-	
-	mat4 rcx = glm::rotate(mat4(1.0f), mCameraXRotationAngleInDegrees, mCamXAxis);
-	mat4 rcy = glm::rotate(mat4(1.0f), mCameraYRotationAngleInDegrees, mCamYAxis);
-	mat4 rcz = glm::rotate(mat4(1.0f), mCameraZRotationAngleInDegrees, mCamZAxis); 
-	mat4 s = glm::scale(mat4(1.0f), mScaling);
-	worldMatrix = t */* rcy * rcx * rcz **/ ry * rx * rz * s;
-
+	if (parent != NULL)
+		return (parent->GetWorldMatrix() * worldMatrix);
 	return worldMatrix;
 }
 
@@ -249,39 +252,51 @@ void Model::SetCollisionRadius(float r)
 void Model::CheckCollisions(std::vector<Model*> &models)
 {
 	// Remove things at center, for debugging, removes asteroids that get stuck in the middle.
-//	if (glm::distance(mPosition, glm::vec3(0.0f, 0.0f, 0.0f)) < 1 && CollisionsOn)
-//		mDestroyed = true;
+	//	if (glm::distance(mPosition, glm::vec3(0.0f, 0.0f, 0.0f)) < 1 && CollisionsOn)
+	//		mDestroyed = true;
 	// Check the current model against all the rest
 
+	if (this->CollisionsOn == false) // dont bother checking if this isnt colliding
+		return;
+	if (this->GetName() == "MANYASTEROIDS") // dont check if this is an asteroid collection, they're checked individually
+		return;
 
-	for (std::vector<Model*>::iterator it = models.begin(); it < models.end(); ++it)
-	{
-		if ((*it) != this && CollisionsOn && (*it)->CollisionsOn) // Make sure the object isn't being compared to itself and that both objects are collidable.
+
+
+
+
+		for (std::vector<Model*>::iterator it = models.begin(); it < models.end(); ++it)
 		{
-			if (glm::distance(mPosition, (*it)->GetPosition()) <= (mCollisionRadius + (*it)->GetCollisionRadius())) // If the distance is less than the radii combined, collide.
+			if ((*it) != this && (*it)->CollisionsOn) // Make sure the object isn't being compared to itself and that both objects are collidable.
 			{
-				if (Collisions::collide_objects(this, (*it)))
+				if (!((*it)->GetName() == "ASTEROID" && this->GetName() == "ASTEROID")) // dont let asteroids collide
 				{
-					if ((*it)->GetName() == "ASTEROID" && this->GetName() == "ASTEROID")
+					if (parent != NULL)
+						if (glm::distance(mPosition, (*it)->GetPosition()) <= (mCollisionRadius + (*it)->GetCollisionRadius())) // If the distance is less than the radii combined, collide.
 					{
-							mDestroyed = true;
-							(*it)->SetDestroy(true);
-					}
-					if ((*it)->GetName() == "PROJECTILE" && this->GetName() == "ASTEROID")
-					{
-						mDestroyed = true;
-						(*it)->SetDestroy(true); // Set both destroyed flags to true so the collided objects are removed.
-						Game::GetInstance()->AddScore(100);
-					}
 
-					if ((*it)->GetName() == "SHIP" && this->GetName() == "ASTEROID")
-					{
-						mDestroyed = true;
-						Game::GetInstance()->GetHit();
+						if (Collisions::collide_objects(this, (*it)))
+						{
+							if ((*it)->GetName() == "PROJECTILE" && this->GetName() == "ASTEROID")
+							{
+								mDestroyed = true;
+								if (this->GetParent() != NULL)
+									static_cast<CollectionAsteroid*>(this->GetParent())->getDestroyed();
+								(*it)->SetDestroy(true); // Set both destroyed flags to true so the collided objects are removed.
+								Game::GetInstance()->AddScore(100);
+							}
+
+							if ((*it)->GetName() == "SHIP" && this->GetName() == "ASTEROID")
+							{
+								mDestroyed = true;
+								if (this->GetParent() != NULL)
+									static_cast<CollectionAsteroid*>(this->GetParent())->getDestroyed();
+								Game::GetInstance()->GetHit();
+							}
+						}
 					}
 				}
 			}
-		}
 	}
 }
 
