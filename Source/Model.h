@@ -69,6 +69,10 @@ public:
 	// must be called in setup once before any members of the class are instantiated. loads the drawing buffers. overload it with the appropriate filename.
 	static void LoadBuffers();
 
+	// hierarchical transform stuff
+	void AssignParent(Model *p) { parent = p; }
+	Model *GetParent() { return parent; }
+
 	// SHADOW STUFF
 	struct surface{};
 
@@ -95,6 +99,9 @@ protected:
 
 	// drawing buffers. each subclass has a set of these buffers which contain the modelspace coordinates of the vertices. 
 	std::vector<glm::vec3> vArray;
+
+	// hierarchical transform stuff
+	Model* parent;
 	
     // Makes the model follow a path defined by a set of waypoints
     Path* mPath;

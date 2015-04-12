@@ -70,6 +70,7 @@
     <ClCompile Include="..\Source\AsteroidFactory.cpp" />
     <ClCompile Include="..\Source\AsteroidModel.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
+    <ClCompile Include="..\Source\CollectionAsteroid.cpp" />
     <ClCompile Include="..\Source\Collisions.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
@@ -99,6 +100,7 @@
     <ClInclude Include="..\Source\AsteroidFactory.h" />
     <ClInclude Include="..\Source\AsteroidModel.h" />
     <ClInclude Include="..\Source\Camera.h" />
+    <ClInclude Include="..\Source\CollectionAsteroid.h" />
     <ClInclude Include="..\Source\Collisions.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
