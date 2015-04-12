@@ -6,7 +6,6 @@
 
 #pragma once
 
-#include "AsteroidModel.h"
 #include "NewAsteroid.h"
 #include "Variables.h"
 #include "CollectionAsteroid.h"
@@ -14,7 +13,6 @@
 class AsteroidFactory{
 public:
 	~AsteroidFactory();
-	static AsteroidModel* createAsteroid(int type);
 	static NewAsteroid* createNewAsteroid(int type);
 	static void RandomizeCoefficients(NewAsteroid*);
 	static CollectionAsteroid* createCollection();
