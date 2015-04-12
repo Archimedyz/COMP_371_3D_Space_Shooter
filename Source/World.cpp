@@ -6,6 +6,7 @@
 //
 // Copyright (c) 2014-2015 Concordia University. All rights reserved.
 //
+#include <ctime>
 
 #include "World.h"
 #include "Renderer.h"
@@ -89,6 +90,8 @@ void World::Update(float dt)
 {
 	if (Game::GetInstance()->GameOver() == false)
 	{
+		cout << glfwGetTime() * 1000 << endl;
+
 		// User Inputs
 		// 1 2 3 4 to change the Camera
 		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1) == GLFW_PRESS)
@@ -331,6 +334,7 @@ void World::LoadCameras()
 
 	// test particle on space ship model
 	vec3 thrusterPosition = spaceStation_model->GetPosition() + vec3(0.0f, 1.0f, 0.0f);
+	cout << thrusterPosition.x << ", " << thrusterPosition.y << ", " << thrusterPosition.z << endl;
 	ThrusterParticles * test_thrusters = new ThrusterParticles(thrusterPosition, vec3(0.0f, 1.0f, 0.0f));		// orientation here may need to be changed to the opposite of the ship's look at
 	test_thrusters->setParentModel(spaceStation_model);
 	test_thrusters->SetName("TEST THRUSTERS");

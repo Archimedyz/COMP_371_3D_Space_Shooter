@@ -3,6 +3,7 @@
 
 // Include GLEW - OpenGL Extension Wrangler
 #include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 using namespace glm;
 using namespace std;
@@ -25,7 +26,7 @@ void ThrusterParticles::Update(float dt)
 
 	if (particles.size() < 40)
 	{
-		cout << particles.size() << endl;
+		// cout << particles.size() << endl;
 		particles.push_back(generateNewParticle());
 	}
 
@@ -65,8 +66,8 @@ void ThrusterParticles::Draw()
 
 Particle* ThrusterParticles::generateNewParticle()
 {
-	time_t currentTime = time(NULL);
-	srand(currentTime);
+	double currentTime = glfwGetTime();
+	srand(currentTime * 1000);
 	float random = rand();
 	float randomSize = 0.1f / ((rand() % 4) + 1);		// size will be from 0.025 and 0.1
 	float randomDuration = ((rand() % 3) + 1);			// duration will be from 1 and 3
