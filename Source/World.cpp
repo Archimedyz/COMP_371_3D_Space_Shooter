@@ -171,7 +171,7 @@ void World::Update(float dt)
 		}
 
 		if (++addCounter > 100){
-			//mModel.push_back(AsteroidFactory::createNewAsteroid(0));
+			mModel.push_back(AsteroidFactory::createCollection());
 			addCounter = 0;
 		}
 		//skybox position updates with ship position
@@ -315,7 +315,6 @@ void World::LoadScene(const char * scene_path)
 	// I moved it there since it's just extra clutter to keep it here commented out, it can probably
 	// be deleted. -Nick
     
-	//mModel.push_back(AsteroidFactory::createNewAsteroid(0));
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
     LoadCameras();
@@ -323,6 +322,8 @@ void World::LoadScene(const char * scene_path)
 
 void World::LoadCameras()
 {
+	srand(time(NULL));
+
     // Setup Camera
     mCamera.push_back(new StaticCamera(vec3(3.0f, 5.0f, 5.0f),  vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(10.0f, 30.0f, 10.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
@@ -332,35 +333,10 @@ void World::LoadCameras()
 	//CubeModel * ship_model = new CubeModel();
 	ship_model = new ShipModel();
 	player = ship_model;
-	ship_model->SetPosition(vec3(0.0f, 0.0f, -10.0f));
+	ship_model->SetPosition(vec3(0.0f, 0.0f, 50.0f));
 	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
-
-	CollectionAsteroid *c = new CollectionAsteroid();
-	NewAsteroid *na = new NewAsteroid();
-	NewAsteroid *nb = new NewAsteroid();
-	NewAsteroid *nc = new NewAsteroid();
-	NewAsteroid *nd = new NewAsteroid();
-	NewAsteroid *ne = new NewAsteroid();
-
-
-	na->SetPosition(vec3(1, 0, 0));
-	nb->SetPosition(vec3(0, 1, 0));
-	nc->SetPosition(vec3(0, 1, 1));
-	nd->SetPosition(vec3(1, 1, 0));
-	ne->SetPosition(vec3(1, 1, 1));
-
-	c->addChild(na);
-	c->addChild(nb);
-	c->addChild(nc);
-	c->addChild(nd);
-	c->addChild(ne);
-
-	c->SetPosition(vec3(0, 0, 0));
-	c->setDirection(vec3(1, 0, 0));
-
-	mModel.push_back(c);
 
     mCurrentCamera = 0;
 	mCamera.push_back(new FreeRoamCamera(vec3(2.0f, 2.0f, 2.0f), vec3(-1.0f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f)));
