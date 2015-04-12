@@ -68,7 +68,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\AsteroidFactory.cpp" />
-    <ClCompile Include="..\Source\AsteroidModel.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
     <ClCompile Include="..\Source\CollectionAsteroid.cpp" />
     <ClCompile Include="..\Source\Collisions.cpp" />
@@ -85,7 +84,6 @@
     <ClCompile Include="..\Source\Path.cpp" />
     <ClCompile Include="..\Source\Projectile.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
-    <ClCompile Include="..\Source\shader.cpp" />
     <ClCompile Include="..\Source\ShipModel.cpp" />
     <ClCompile Include="..\Source\SkyboxModel.cpp" />
     <ClCompile Include="..\Source\SpaceStationModel.cpp" />
@@ -99,7 +97,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\AsteroidFactory.h" />
-    <ClInclude Include="..\Source\AsteroidModel.h" />
     <ClInclude Include="..\Source\Camera.h" />
     <ClInclude Include="..\Source\CollectionAsteroid.h" />
     <ClInclude Include="..\Source\Collisions.h" />
@@ -116,7 +113,6 @@
     <ClInclude Include="..\Source\Path.h" />
     <ClInclude Include="..\Source\Projectile.h" />
     <ClInclude Include="..\Source\Renderer.h" />
-    <ClInclude Include="..\Source\shader.hpp" />
     <ClInclude Include="..\Source\ShipModel.h" />
     <ClInclude Include="..\Source\SkyboxModel.h" />
     <ClInclude Include="..\Source\SpaceStationModel.h" />
@@ -131,7 +127,6 @@
   <ItemGroup>
     <None Include="..\Shaders\BasicShader.fragmentshader" />
     <None Include="..\Shaders\BasicShader.vertexshader" />
-    <None Include="..\Shaders\BlueColor.fragmentshader" />
     <None Include="..\Shaders\PathLines.fragmentshader" />
     <None Include="..\Shaders\PathLines.vertexshader" />
     <None Include="..\Shaders\Phong.fragmentshader" />

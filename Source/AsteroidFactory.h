@@ -6,14 +6,12 @@
 
 #pragma once
 
-#include "AsteroidModel.h"
 #include "NewAsteroid.h"
 #include "Variables.h"
 
 class AsteroidFactory{
 public:
 	~AsteroidFactory();
-	static AsteroidModel* createAsteroid(int type);
 	static NewAsteroid* createNewAsteroid(int type);
 	static void RandomizeCoefficients(NewAsteroid*);
 

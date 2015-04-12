@@ -10,8 +10,6 @@
 #include <stdlib.h>
 #include <vector>
 #include <string>
-
-#include "shader.hpp"
 #include "texture.hpp"
 #include "objloader.hpp"
 #include "vboindexer.hpp"
