@@ -32,7 +32,7 @@ SkyboxModel::SkyboxModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1
 	n = 100.0f;
 
 	mPosition = glm::vec3(0.0f, 0.0f, 0.0f);
-	mScaling = glm::vec3(10.0f, 10.0f, 10.0f);
+	mScaling = glm::vec3(100.0f, 100.0f, 100.0f);
 
 	CollisionsOn = false;
 }
