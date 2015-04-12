@@ -22,7 +22,7 @@ GLuint singleSkyboxBMP;
 void SkyboxModel::LoadBuffers()
 {
 #if defined(PLATFORM_OSX)
-	const char * modelPath = "Models/skyboxRegularNormals.obj";
+	const char * modelPath = "Models/skyboxRegularNormalsUpdated1045.obj";
 #else
 	const char * modelPath = "../Resources/Models/skyboxRegularNormalsUpdated1045.obj";
 #endif
@@ -48,7 +48,7 @@ SkyboxModel::SkyboxModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1
 	n = 15.0f;
 
 	mPosition = glm::vec3(0.0f, 0.0f, 0.0f);
-	mScaling = glm::vec3(15.0f, 15.0f, 15.0f);
+	mScaling = glm::vec3(150.0f, 150.0f, 150.0f);
 
 	CollisionsOn = false;
 }
