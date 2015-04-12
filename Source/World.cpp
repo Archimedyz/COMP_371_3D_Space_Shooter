@@ -315,7 +315,7 @@ void World::LoadScene(const char * scene_path)
 	// I moved it there since it's just extra clutter to keep it here commented out, it can probably
 	// be deleted. -Nick
     
-	mModel.push_back(AsteroidFactory::createNewAsteroid(0));
+	//mModel.push_back(AsteroidFactory::createNewAsteroid(0));
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
     LoadCameras();
