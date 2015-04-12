@@ -254,6 +254,8 @@ void World::Draw()
 	glm::mat4 depthModelMatrix = glm::mat4(1.0);
 	glm::mat4 depthMVP = depthProjectionMatrix * depthViewMatrix * depthModelMatrix;
 	
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
 	// Use the main shader
 	Renderer::SetShader(main_shader);
 	glUseProgram(Renderer::GetShaderProgramID());
@@ -347,13 +349,21 @@ void World::LoadCameras()
 	mModel.push_back(ship_model);
 
 	CubeModel * floor = new CubeModel();
-	floor->SetPosition(vec3(-2.0f, -5.0f, 1.0f));
-	floor->SetScaling(vec3(10.0f, 0.5f, 10.0f));
+	floor->SetPosition(vec3(0.0f, -5.0f, 0.0f));
+	floor->SetScaling(vec3(20.0f, 0.5f, 20.0f));
 	floor->ActivateCollisions(false);
 	mModel.push_back(floor);
 
-	mModel.push_back(new CubeModel());
+	CubeModel * topCube = new CubeModel();
+	topCube->SetPosition(vec3(0.0f, 0.0f, 0.0f));
+	topCube->ActivateCollisions(false);
+	mModel.push_back(topCube);
 
+	CubeModel * bottomCube = new CubeModel();
+	bottomCube->SetPosition(vec3(0.0f, -10.0f, 0.0f));
+	bottomCube->ActivateCollisions(false);
+	mModel.push_back(bottomCube);
+	
     mCurrentCamera = 0;
 
 
