@@ -12,7 +12,7 @@
 // Include GLEW - OpenGL Extension Wrangler
 using namespace glm;
 
-AsteroidModel::AsteroidModel() : Model()
+AsteroidModel::AsteroidModel(int i) : Model()
 {
 
 #if defined(PLATFORM_OSX)
@@ -31,8 +31,15 @@ AsteroidModel::AsteroidModel() : Model()
 	GLuint ModelMatrixID = glGetUniformLocation(programID, "M");*/
 
 	// Load the texture
-	GLuint Texture = loadBMP_custom("../Resources/Textures/AM1.BMP");
 
+	if (i == 1){
+		std::cout << "1";
+		Texture = loadBMP_custom("../Resources/Textures/AM1.BMP");
+	}
+	else {
+		std::cout << "22\n";
+		Texture = loadBMP_custom("../Resources/Textures/AM22.BMP");
+	}
 	// Get a handle for our "myTextureSampler" uniform
 	GLuint TextureID = glGetUniformLocation(Renderer::GetShaderProgramID(), "myTextureSampler");
 
@@ -133,6 +140,11 @@ void AsteroidModel::Draw()
 {
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
+
+	//glGenTextures(1, &Texture);
+
+	// "Bind" the newly created texture : all future texture functions will modify this texture
+	glBindTexture(GL_TEXTURE_2D, Texture);
 
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);

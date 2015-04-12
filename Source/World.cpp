@@ -149,8 +149,8 @@ void World::Update(float dt)
 			}
 		}
 
-		if (++addCounter > 100 && added < 10){
-			mModel.push_back(AsteroidFactory::createAsteroid(0));
+		if (++addCounter > 100){
+			mModel.push_back(AsteroidFactory::createAsteroid(added % 2));
 			addCounter = 0;
 			++added;
 		}

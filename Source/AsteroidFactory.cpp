@@ -19,8 +19,7 @@ AsteroidFactory::AsteroidFactory(){}
 AsteroidFactory::~AsteroidFactory(){}
 AsteroidModel* AsteroidFactory::createAsteroid(int type){
 
-
-		AsteroidModel* asteroid = new AsteroidModel();
+		AsteroidModel* asteroid = new AsteroidModel(type);
 
 		//Randomize these Elements fo use later.
 		float alpha = ALPHA_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (ALPHA_MAX - ALPHA_MIN));

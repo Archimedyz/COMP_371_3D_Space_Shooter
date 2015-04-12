@@ -5,7 +5,7 @@
 class AsteroidModel : public Model
 {
 public:
-	AsteroidModel();
+	AsteroidModel(int i);
 	virtual ~AsteroidModel();
 	virtual void Update(float dt);
 	virtual void Draw();
@@ -36,10 +36,9 @@ private:
 	glm::vec3 mDirection;
 
 	// Load the texture
-	unsigned int Texture;
 
 	// Get a handle for our "myTextureSampler" uniform
-	unsigned int TextureID;
+	unsigned int Texture;
 	unsigned int programID;
 
 };
