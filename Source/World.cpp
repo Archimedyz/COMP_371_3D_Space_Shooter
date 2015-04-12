@@ -35,11 +35,24 @@ using namespace glm;
 World* World::instance;
 int World::addCounter;
 SkyboxModel* skybox;
+// Load textures for Skybox
+GLuint imageBK;
+GLuint imageFT;
+GLuint imageRT;
+GLuint imageLT;
+GLuint imageUP;
+GLuint imageDN;
 
 World::World()
 {
     instance = this;
 	addCounter = 0;
+	imageBK = loadBMP_custom("GalaxySkybox/Galaxy_BK.bmp");
+	imageFT = loadBMP_custom("GalaxySkybox/Galaxy_FT.bmp");
+	imageRT = loadBMP_custom("GalaxySkybox/Galaxy_RT.bmp");
+	imageLT = loadBMP_custom("GalaxySkybox/Galaxy_LT.bmp");
+	imageUP = loadBMP_custom("GalaxySkybox/Galaxy_UP.bmp");
+	imageDN = loadBMP_custom("GalaxySkybox/Galaxy_DN.bmp");
 	skybox = new SkyboxModel(vec3(0.0f, 0.0f, 0.0f), vec3(100.0f, 100.0f, 100.0f));
 	skybox->ActivateCollisions(false);
 }
