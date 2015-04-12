@@ -6,7 +6,8 @@
 
 using namespace glm;
 
-Particle::Particle(float size, glm::vec3 quadraticMovement, float duration) : Model(), quadraticMovement(quadraticMovement), duration(duration)
+Particle::Particle(float size, glm::vec3 quadraticMovement, float speed, float duration) :
+	Model(), quadraticMovement(quadraticMovement), speed(speed), duration(duration)
 {
 	startTime = time(NULL);
 	ka = 0.5f;
@@ -108,14 +109,6 @@ void Particle::Update(float dt)
 	// If you are curious, un-comment this line to have spinning cubes!
 	// That will only work if your world transform is correct...
 	//mRotationAngleInDegrees += 90 * dt; // spins by 90 degrees per second
-
-	mat4 parentWorldMatrix = parentModel->GetWorldMatrix();
-
-}
-
-glm::mat4 Model::GetWorldMatrix() const
-{
-	
 }
 
 void Particle::Draw()
@@ -227,3 +220,19 @@ void Particle::RenderShadowVolume(glm::vec4 lightPos)
 	}
 }
 
+bool Particle::isExpired() const
+{
+	return ((time(NULL) - startTime) >= duration);
+}
+
+float Particle::getXMovementValue()
+{
+	float dt = time(NULL) - startTime;
+	return dt * speed;
+}
+
+float Particle::getYMovementValue()
+{
+	float dt = time(NULL) - startTime;
+	return (quadraticMovement.x * dt * dt) + (quadraticMovement.y * dt) + (quadraticMovement.z);
+}

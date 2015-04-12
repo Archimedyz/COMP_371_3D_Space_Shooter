@@ -17,6 +17,7 @@
 #include "CubeModel.h"
 #include "SphereModel.h"
 #include "Particle.h"
+#include "ThrusterParticles.h"
 #include "Path.h"
 #include "Projectile.h"
 #include "ShipModel.h"
@@ -329,9 +330,10 @@ void World::LoadCameras()
 	mModel.push_back(ship_model);
 
 	// test particle
-	Particle * test_particle = new Particle(0.1f, vec3(0.0f, 1.0f, 0.0f), 500.0f);
-	test_particle->SetPosition(vec3(0.0f, 5.0f, 0.0f));
-	mModel.push_back(test_particle);
+	vec3 thrusterPosition = ship_model->GetPosition() + vec3(0.0f, 0.0f, 0.5f);
+	ThrusterParticles * test_thrusters = new ThrusterParticles(thrusterPosition, vec3(0.0f, 0.0f, 1.0f));		// orientation here may need to be changed to the opposite of the ship's look at
+	test_thrusters->setParentModel(ship_model);
+	mModel.push_back(test_thrusters);
 
 	/*CubeModel * floor = new CubeModel();
 	floor->SetPosition(vec3(-2.0f, -5.0f, 1.0f));

@@ -6,14 +6,16 @@
 class Particle : public Model
 {
 public:
-	Particle(float size, glm::vec3 quadraticMovement, float duration);
+	Particle(float size, glm::vec3 quadraticMovement, float speed, float roatationInDegrees, float duration);
 	virtual ~Particle();
-
-	void setParentModel(Model* model) { parentModel = model; }
 
 	virtual void Update(float dt);
 	virtual void Draw();
 	virtual void RenderShadowVolume(glm::vec4 lightPos);
+	bool isExpired() const;
+	float getXMovementValue();
+	float getYMovementValue();
+	float getRotationAngleInDegrees() { return rotation; }
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token);
 
@@ -27,8 +29,8 @@ private:
 	};
 
 	// particle attributes
-	Model* parentModel;
 	glm::vec3 quadraticMovement;
+	float speed;
 	float rotation;
 	float startTime;
 	float duration;

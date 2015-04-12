@@ -56,6 +56,9 @@ public:
 	glm::vec3 GetXAxis() const			{ return mXAxis; }
 	glm::vec3 GetYAxis() const			{ return mYAxis; }
 	glm::vec3 GetZAxis() const			{ return mZAxis; }
+	glm::vec3 GetCamXAxis() const		{ return mCamXAxis; }
+	glm::vec3 GetCamYAxis() const		{ return mCamYAxis; }
+	glm::vec3 GetCamZAxis() const		{ return mCamZAxis; }
 	float     GetXRotationAngle() const	{ return mXRotationAngleInDegrees; }
 	float     GetYRotationAngle() const	{ return mYRotationAngleInDegrees; }
 	float     GetZRotationAngle() const	{ return mZRotationAngleInDegrees; }

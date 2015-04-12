@@ -3,22 +3,19 @@
 #include "Particle.h"
 #include <vector>
 
-class ThrusterParticles
+class ThrusterParticles : public Model
 {
 public:
 	ThrusterParticles(glm::vec3 position, glm::vec3 orientation);
 	virtual ~ThrusterParticles();
 
 	void setParentModel(Model* model) { parentModel = model; }
-
 	virtual void Update(float dt);
 	virtual void Draw();
-	virtual void RenderShadowVolume(glm::vec4 lightPos);
-protected:
-	virtual bool ParseLine(const std::vector<ci_string> &token);
+	void RenderShadowVolume(glm::vec4 lightPos) {}
 
 private:
 	Model* parentModel;
-	glm::vec3 position;
 	glm::vec3 orientation;
+	std::vector<Particle*> particles;
 };
