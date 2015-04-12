@@ -12,6 +12,7 @@
 #include "ParsingHelper.h"
 #include <vector>
 #include <time.h>
+#include <glm/glm.hpp>
 
 class Camera;
 class Model;
@@ -55,4 +56,6 @@ private:
 	unsigned int mCurrentCamera;
 
 	clock_t Clock;
+
+	bool isParallel(glm::vec3 v1, glm::vec3 v2);
 };
