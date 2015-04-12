@@ -11,9 +11,7 @@
 #include <vector>
 #include <string>
 
-#include "shader.hpp"
 #include "texture.hpp"
-#include "controls.hpp"
 #include "objloader.hpp"
 #include "vboindexer.hpp"
 #include "glm/ext.hpp"

@@ -30,6 +30,7 @@
 using namespace std;
 using namespace glm;
 
+//declare pointers to models so we can reference them
 World* World::instance;
 int World::addCounter;
 SkyboxModel* skybox;
@@ -49,14 +50,17 @@ World::World()
 	addCounter = 0;
 #if defined(PLATFORM_OSX)
 #else
+    //Text2D only works on PC
 	initText2D("../Resources/Textures/Holstein.dds");
 #endif
+    //create buffers for models so we can load them into world
 	NewAsteroid::LoadBuffers();
 	Projectile::LoadBuffers();
 	ShipModel::LoadBuffers();
 	SkyboxModel::LoadBuffers();
 	SpaceStationModel::LoadBuffers();
-
+    
+    //skybox creation
 	skybox = new SkyboxModel();
 	mModel.push_back(skybox);
 }
