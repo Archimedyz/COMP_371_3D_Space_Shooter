@@ -14,6 +14,8 @@
 #include <GLM/glm.hpp>
 #include "Game.h"
 #include "Collisions.h"
+#include "fmod/fmod.h"
+#include "Variables.h"
 
 class Path;
 class BSpline;

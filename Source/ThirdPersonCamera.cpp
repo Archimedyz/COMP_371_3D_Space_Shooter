@@ -78,7 +78,7 @@ ThirdPersonCamera::ThirdPersonCamera(Model* targetModel)
     }
     FMOD_System_Update(Variables::fmodsystem);
     
-    //Create explosion and Laser sounds
+    //CreateLaser sounds
     result = FMOD_System_CreateSound(Variables::fmodsystem, laserPath, FMOD_CREATESAMPLE, 0, &laserSound);
     if(result != FMOD_OK)
     {
