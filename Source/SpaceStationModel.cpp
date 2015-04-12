@@ -122,7 +122,7 @@ void SpaceStationModel::Draw()
     
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
-    glDisableVertexAttribArray(2);
+    glDisableVertexAttribArray(3);
     
     glBindTexture(GL_TEXTURE_2D, 0);
 }
