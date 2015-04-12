@@ -1,3 +1,5 @@
+//Skybox texture from here: https://hondadarrell.wordpress.com/2010/01/20/creating-3d-space-skyboxes/
+
 #include "SkyboxModel.h"
 
 std::vector<glm::vec3> SkyboxModel::vArray;
@@ -7,36 +9,21 @@ unsigned int SkyboxModel::normalbuffer;
 unsigned int SkyboxModel::elementbuffer;
 std::vector<unsigned short> SkyboxModel::indices;
 
-
-
-GLuint imageBK;
-GLuint imageFT;
-GLuint imageRT;
-GLuint imageLT;
-GLuint imageUP;
-GLuint imageDN;
-
+//initiate GLuint to hold skybox texture
 GLuint singleSkyboxBMP;
 
 
 void SkyboxModel::LoadBuffers()
 {
 #if defined(PLATFORM_OSX)
-	const char * modelPath = "Models/skyboxRegularNormalsUpdated1045.obj";
+	const char * modelPath = "Resources/Models/Final_Skybox_V2.obj";
 #else
-	const char * modelPath = "../Resources/Models/Final_Skybox_V1.obj";
+	const char * modelPath = "../Resources/Models/Final_Skybox_V2.obj";
 #endif
 	Loader::loadModel(modelPath, SkyboxModel::vArray, SkyboxModel::vertexbuffer, SkyboxModel::uvbuffer, SkyboxModel::normalbuffer, SkyboxModel::elementbuffer, SkyboxModel::indices);
 	
-	// load textures
-
-	imageBK = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_BK.bmp");
-	imageFT = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_FT.bmp");
-	imageRT = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_RT.bmp");
-	imageLT = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_LT.bmp");
-	imageUP = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_UP.bmp");
-	imageDN = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_DN.bmp");
-	singleSkyboxBMP = loadBMP_custom("../Resources/Skybox/space_skybox_2.bmp");
+	// load texture for skybox
+	singleSkyboxBMP = loadBMP_custom("../Resources/Textures/SkyboxTexture.bmp");
 }
 
 SkyboxModel::SkyboxModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, -1.0f))
@@ -48,7 +35,7 @@ SkyboxModel::SkyboxModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1
 	n = 15.0f;
 
 	mPosition = glm::vec3(0.0f, 0.0f, 0.0f);
-	mScaling = glm::vec3(150.0f, 150.0f, 150.0f);
+	mScaling = glm::vec3(500.0f, 500.0f, 500.0f);
 
 	CollisionsOn = false;
 }
