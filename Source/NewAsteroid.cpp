@@ -25,7 +25,7 @@ unsigned int NewAsteroid::normalbuffer;
 unsigned int NewAsteroid::elementbuffer;
 std::vector<unsigned short> NewAsteroid::indices;
 
-GLuint mTexture;
+GLuint mAsteroidTexture;
 
 
 NewAsteroid::NewAsteroid() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(0.0f, 0.0f, -1.0f))
@@ -41,9 +41,7 @@ NewAsteroid::NewAsteroid() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 
 	mCollisionRadius = 4;
 	CollisionsOn = true;
 	mSpeed = 100;
-
-	mTexture = loadBMP_custom("../Resources/Textures/AsteroidTexture.bmp");
-}
+	}
 
 void NewAsteroid::LoadBuffers()
 {
@@ -53,6 +51,8 @@ void NewAsteroid::LoadBuffers()
 	const char * modelPath = "../Resources/Models/asteroid0.obj";
 #endif
 	Loader::loadModel(modelPath, NewAsteroid::vArray, NewAsteroid::vertexbuffer, NewAsteroid::uvbuffer, NewAsteroid::normalbuffer, NewAsteroid::elementbuffer, NewAsteroid::indices);
+
+	mAsteroidTexture = loadBMP_custom("../Resources/Textures/AsteroidTexture.bmp");
 }
 
 NewAsteroid::~NewAsteroid()
@@ -71,7 +71,7 @@ void NewAsteroid::Draw()
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 
-	glBindTexture(GL_TEXTURE_2D, mTexture);
+	glBindTexture(GL_TEXTURE_2D, mAsteroidTexture);
 
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);

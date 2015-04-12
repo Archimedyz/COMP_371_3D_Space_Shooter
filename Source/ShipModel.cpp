@@ -24,6 +24,8 @@ unsigned int ShipModel::normalbuffer;
 unsigned int ShipModel::elementbuffer;
 std::vector<unsigned short> ShipModel::indices;
 
+GLuint mShipTexture;
+
 void ShipModel::LoadBuffers()
 {
 #if defined(PLATFORM_OSX)
@@ -32,6 +34,8 @@ void ShipModel::LoadBuffers()
 	const char * modelPath = "../Resources/Models/newship.obj";
 #endif
 	Loader::loadModel(modelPath, ShipModel::vArray, ShipModel::vertexbuffer, ShipModel::uvbuffer, ShipModel::normalbuffer, ShipModel::elementbuffer, ShipModel::indices);
+
+	mShipTexture = loadBMP_custom("../Resources/Textures/SpaceShipTexture.bmp");
 }
 
 
@@ -69,6 +73,8 @@ void ShipModel::Draw()
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 
+	glBindTexture(GL_TEXTURE_2D, mShipTexture);
+
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -81,24 +87,24 @@ void ShipModel::Draw()
 		(void*)0            // array buffer offset
 		);
 
-	// 2nd attribute buffer : UVs
+	// 2nd attribute buffer : normals
 	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
 	glVertexAttribPointer(
 		1,                                // attribute
-		2,                                // size
+		3,                                // size
 		GL_FLOAT,                         // type
 		GL_FALSE,                         // normalized?
 		0,                                // stride
 		(void*)0                          // array buffer offset
 		);
 
-	// 3rd attribute buffer : normals
-	glEnableVertexAttribArray(2);
-	glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
+	// 4th attribute buffer : UVs
+	glEnableVertexAttribArray(3);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
 	glVertexAttribPointer(
-		2,                                // attribute
-		3,                                // size
+		3,                                // attribute
+		2,                                // size
 		GL_FLOAT,                         // type
 		GL_FALSE,                         // normalized?
 		0,                                // stride
@@ -119,7 +125,10 @@ void ShipModel::Draw()
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(2);
+	glDisableVertexAttribArray(3);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+
 }
 
 void ShipModel::RenderShadowVolume(glm::vec4 lightPos){
