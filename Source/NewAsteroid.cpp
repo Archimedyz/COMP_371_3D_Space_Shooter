@@ -4,6 +4,8 @@
 // 
 //--------------------------------------------------------------------------------------------------------------
 
+//Asteroid model from: https://www.filterforge.com/filters/3215.html
+
 #include "NewAsteroid.h"
 #include "Variables.h"
 #include "Renderer.h"

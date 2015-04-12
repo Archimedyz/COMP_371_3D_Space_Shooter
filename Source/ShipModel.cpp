@@ -4,6 +4,8 @@
 // 
 //--------------------------------------------------------------------------------------------------------------
 
+//Space ship model from: http://st.depositphotos.com/1757833/1959/i/950/depositphotos_19594413-Blue-spaceship-body-Seamless-texture.jpg
+
 #include "ShipModel.h"
 #include "Loader.h"
 #include <stdio.h>
@@ -27,7 +29,7 @@ void ShipModel::LoadBuffers()
 #if defined(PLATFORM_OSX)
 	const char * modelPath = "Models/newship.obj";
 #else
-	const char * modelPath = "../Resources/Models/X_WING_2.obj";
+	const char * modelPath = "../Resources/Models/newship.obj";
 #endif
 	Loader::loadModel(modelPath, ShipModel::vArray, ShipModel::vertexbuffer, ShipModel::uvbuffer, ShipModel::normalbuffer, ShipModel::elementbuffer, ShipModel::indices);
 }
