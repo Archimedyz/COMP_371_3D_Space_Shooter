@@ -24,7 +24,7 @@ void SkyboxModel::LoadBuffers()
 #if defined(PLATFORM_OSX)
 	const char * modelPath = "Models/skyboxRegularNormalsUpdated1045.obj";
 #else
-	const char * modelPath = "../Resources/Models/skyboxRegularNormalsUpdated1045.obj";
+	const char * modelPath = "../Resources/Models/Final_Skybox_V1.obj";
 #endif
 	Loader::loadModel(modelPath, SkyboxModel::vArray, SkyboxModel::vertexbuffer, SkyboxModel::uvbuffer, SkyboxModel::normalbuffer, SkyboxModel::elementbuffer, SkyboxModel::indices);
 	
@@ -73,7 +73,7 @@ void SkyboxModel::Draw()
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 
-	glBindTexture(GL_TEXTURE_2D, imageBK);
+	glBindTexture(GL_TEXTURE_2D, singleSkyboxBMP);
 
 
 	// 1rst attribute buffer : vertices
