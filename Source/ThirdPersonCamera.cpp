@@ -45,7 +45,7 @@ FMOD_CHANNEL * actionChannel;
 const char * backgroundPath = "Sounds/space_sound.mp3";
 const char * laserPath = "Sounds/laser_sound.wav";
 #else
-const char * backgroundPath = "../Resources/Sounds/space_sound.wav";
+const char * backgroundPath = "../Resources/Sounds/space_sound.mp3";
 const char * laserPath = "../Resources/Sounds/laser_sound.wav";
 #endif
 
