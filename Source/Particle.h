@@ -14,7 +14,7 @@ public:
 	virtual void RenderShadowVolume(glm::vec4 lightPos);
 	bool isExpired() const;
 	float getXMovementValue();
-	float getYMovementValue();
+	float getYMovementValue(double xMovement);
 	float getRotationAngleInDegrees() { return rotation; }
 protected:
 	virtual bool ParseLine(const std::vector<ci_string> &token);
@@ -32,7 +32,7 @@ private:
 	glm::vec3 quadraticMovement;
 	float speed;
 	float rotation;
-	time_t startTime;
+	double startTime;
 	float duration;
 
 	std::vector<glm::vec3> vertex_array;
