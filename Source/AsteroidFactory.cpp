@@ -119,6 +119,7 @@ NewAsteroid* AsteroidFactory::createNewAsteroid(int type)
 void AsteroidFactory::RandomizeCoefficients(NewAsteroid* asteroid)
 {
 	//Randomize these Elements fo use later.
+	srand(time(NULL));
 	float alpha = ALPHA_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (ALPHA_MAX - ALPHA_MIN));
 	float beta = BETA_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (BETA_MAX - BETA_MIN));
 	float x = cosf(alpha)*cosf(beta);
@@ -137,7 +138,7 @@ void AsteroidFactory::RandomizeCoefficients(NewAsteroid* asteroid)
 	float rotationSpeed = ROTATION_SPEED_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (ROTATION_SPEED_MAX - ROTATION_SPEED_MIN));
 	// randomized speed
 	float speed = SPEED_MIN + static_cast<float>(rand()) / static_cast<float>(RAND_MAX / (SPEED_MAX - SPEED_MIN));
-
+	speed = rand() % 4;
 	asteroid->SetYRotation(rotationAxis, initialRotationAngle);
 	asteroid->SetSpeed(speed);
 	asteroid->SetRotationSpeed(rotationSpeed);

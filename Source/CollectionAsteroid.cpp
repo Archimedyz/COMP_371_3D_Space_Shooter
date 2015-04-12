@@ -1,6 +1,7 @@
 #include "CollectionAsteroid.h"
 #include "NewAsteroid.h"
 #include "AsteroidFactory.h"
+#include "World.h"
 
 using namespace std;
 using namespace glm;
@@ -8,6 +9,7 @@ using namespace glm;
 CollectionAsteroid::CollectionAsteroid() : Model()
 {
 	mSpeed = 1;
+	CollisionsOn = true;
 	name = "MANYASTEROIDS";
 }
 
@@ -42,6 +44,7 @@ void CollectionAsteroid::getDestroyed()
 		children[i]->SetDirection(direction + (children[i]->GetPosition() - mPosition));
 		AsteroidFactory::RandomizeCoefficients(children[i]);
 		children[i]->AssignParent(NULL);
+		World::GetInstance()->AddModel(children[i]);
 	}
 	mDestroyed = true;
 }

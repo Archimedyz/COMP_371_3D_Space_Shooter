@@ -151,16 +151,26 @@ void Model::SetCollisionRadius(float r)
 
 void Model::CheckCollisions(std::vector<Model*> &models)
 {
-	// Remove things at center, for debugging, removes asteroids that get stuck in the middle.
-//	if (glm::distance(mPosition, glm::vec3(0.0f, 0.0f, 0.0f)) < 1 && CollisionsOn)
-//		mDestroyed = true;
-	// Check the current model against all the rest
-
 	if (!CollisionsOn) // if collisions are off for this model, do nothing
 		return;
-	if (this->GetName() == "MANYASTEROIDS") // if this is an asteroid collection, do nothing. theyre handled individually
-		return;
 
+	if (this->GetName() == "MANYASTEROIDS") // if this is an asteroid collection, check each child individually
+	{
+		vector<NewAsteroid*> parts = static_cast<CollectionAsteroid*>(this)->GetChildren();
+		for (int i = 0; i < parts.size(); ++i)
+		{
+			parts[i]->CheckCollisions(models);
+			if (parts[i]->IsDestroyed())
+			{
+				mDestroyed = true;
+				parts.erase(parts.begin() + i);
+			}
+		}
+		if (mDestroyed)
+			static_cast<CollectionAsteroid*>(this)->getDestroyed();
+
+		return;
+	}
 	vec3 adjusted_position = vec3(0, 0, 0);
 	for (std::vector<Model*>::iterator it = models.begin(); it < models.end(); ++it)
 	{
@@ -183,8 +193,7 @@ void Model::CheckCollisions(std::vector<Model*> &models)
 						{
 							mDestroyed = true;
 							(*it)->SetDestroy(true); // Set both destroyed flags to true so the collided objects are removed.
-							if (parent != NULL)
-								static_cast<CollectionAsteroid*>(this->GetParent())->getDestroyed();
+
 							Game::GetInstance()->AddScore(100);
 						}
 

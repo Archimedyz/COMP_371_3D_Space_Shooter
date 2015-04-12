@@ -329,7 +329,7 @@ void World::LoadCameras()
 	//CubeModel * ship_model = new CubeModel();
 	ShipModel * ship_model = new ShipModel();
 	player = ship_model;
-	ship_model->SetPosition(vec3(0.0f, 0.0f, 0.0f));
+	ship_model->SetPosition(vec3(0.0f, 0.0f, -10.0f));
 	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
@@ -337,21 +337,27 @@ void World::LoadCameras()
 	CollectionAsteroid *c = new CollectionAsteroid();
 	NewAsteroid *na = new NewAsteroid();
 	NewAsteroid *nb = new NewAsteroid();
+	NewAsteroid *nc = new NewAsteroid();
+	NewAsteroid *nd = new NewAsteroid();
+	NewAsteroid *ne = new NewAsteroid();
+
 
 	na->SetPosition(vec3(1, 0, 0));
 	nb->SetPosition(vec3(0, 1, 0));
-
-	na->ActivateCollisions(false);
-	nb->ActivateCollisions(false);
+	nc->SetPosition(vec3(0, 1, 1));
+	nd->SetPosition(vec3(1, 1, 0));
+	ne->SetPosition(vec3(1, 1, 1));
 
 	c->addChild(na);
 	c->addChild(nb);
+	c->addChild(nc);
+	c->addChild(nd);
+	c->addChild(ne);
+
 	c->SetPosition(vec3(0, 0, 0));
 	c->setDirection(vec3(1, 0, 0));
 
 	mModel.push_back(c);
-
-	cout << na->GetPosition().x << endl;
 
     mCurrentCamera = 0;
 	mCamera.push_back(new FreeRoamCamera(vec3(2.0f, 2.0f, 2.0f), vec3(-1.0f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f)));
