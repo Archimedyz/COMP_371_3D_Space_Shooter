@@ -73,6 +73,9 @@ void SkyboxModel::Draw()
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 
+	glBindTexture(GL_TEXTURE_2D, imageBK);
+
+
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -122,6 +125,8 @@ void SkyboxModel::Draw()
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void SkyboxModel::RenderShadowVolume(glm::vec4 lightPos){
