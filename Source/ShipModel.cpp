@@ -27,7 +27,7 @@ void ShipModel::LoadBuffers()
 #if defined(PLATFORM_OSX)
 	const char * modelPath = "Models/newship.obj";
 #else
-	const char * modelPath = "../Resources/Models/newship.obj";
+	const char * modelPath = "../Resources/Models/X_WING_2.obj";
 #endif
 	Loader::loadModel(modelPath, ShipModel::vArray, ShipModel::vertexbuffer, ShipModel::uvbuffer, ShipModel::normalbuffer, ShipModel::elementbuffer, ShipModel::indices);
 }
