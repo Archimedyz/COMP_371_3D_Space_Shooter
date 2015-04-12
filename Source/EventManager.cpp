@@ -69,7 +69,7 @@ void EventManager::Initialize()
     
     // Open a window and create its OpenGL context
     glfwWindowHint(GLFW_RESIZABLE, 0);
-    spWindow = glfwCreateWindow(width, height, "COMP371 Space Shooter", glfwGetPrimaryMonitor(), NULL);
+    spWindow = glfwCreateWindow(width, height, "COMP371 Space Shooter", NULL, NULL);
 
 	if (spWindow == nullptr)
 	{
