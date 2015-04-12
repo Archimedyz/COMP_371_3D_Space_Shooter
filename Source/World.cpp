@@ -53,6 +53,7 @@ World::World()
 	Projectile::LoadBuffers();
 	ShipModel::LoadBuffers();
 	SkyboxModel::LoadBuffers();
+
 	skybox = new SkyboxModel();
 	mModel.push_back(skybox);
 }
