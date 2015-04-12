@@ -26,7 +26,6 @@ void ThrusterParticles::Update(float dt)
 
 	if (particles.size() < 40)
 	{
-		// cout << particles.size() << endl;
 		particles.push_back(generateNewParticle());
 	}
 
@@ -41,7 +40,6 @@ void ThrusterParticles::Update(float dt)
 		// if the particle is expired, delete it and erase it from the particles vector
 		if (particles[i]->isExpired())
 		{
-			cout << "particle destroyed" << endl;
 			delete particles[i];
 			particles.erase(particles.begin() + i);
 		}
