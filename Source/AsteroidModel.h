@@ -7,6 +7,10 @@
 #pragma once
 
 #include "Model.h"
+#include "Variables.h"
+#include "Renderer.h"
+#include <string>
+#include <GL/glew.h>
 
 class AsteroidModel : public Model
 {

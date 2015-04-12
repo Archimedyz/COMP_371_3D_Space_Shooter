@@ -31,20 +31,21 @@
 		D4BAD0831AAE78E300698FF2 /* Model.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0661AAE78E300698FF2 /* Model.cpp */; };
 		D4BAD0841AAE78E300698FF2 /* Path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0691AAE78E300698FF2 /* Path.cpp */; };
 		D4BAD0851AAE78E300698FF2 /* Projectile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD06B1AAE78E300698FF2 /* Projectile.cpp */; };
-		D4BAD0871AAE78E300698FF2 /* SphereModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD06F1AAE78E300698FF2 /* SphereModel.cpp */; };
 		D4BAD0881AAE78E300698FF2 /* StaticCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0711AAE78E300698FF2 /* StaticCamera.cpp */; };
 		D4BAD0891AAE78E300698FF2 /* ThirdPersonCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0731AAE78E300698FF2 /* ThirdPersonCamera.cpp */; };
 		D4BAD08A1AAE78E300698FF2 /* Variables.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0751AAE78E300698FF2 /* Variables.cpp */; };
 		D4BAD08B1AAE78E300698FF2 /* World.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4BAD0771AAE78E300698FF2 /* World.cpp */; };
 		D4F9C7EC1AC4D1F800F5AB97 /* Loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E01AC4D1F800F5AB97 /* Loader.cpp */; };
 		D4F9C7ED1AC4D1F800F5AB97 /* objloader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E21AC4D1F800F5AB97 /* objloader.cpp */; };
-		D4F9C7EE1AC4D1F800F5AB97 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E41AC4D1F800F5AB97 /* shader.cpp */; };
 		D4F9C7EF1AC4D1F800F5AB97 /* ShipModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E61AC4D1F800F5AB97 /* ShipModel.cpp */; };
 		D4F9C7F01AC4D1F800F5AB97 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E81AC4D1F800F5AB97 /* texture.cpp */; };
 		D4F9C7F11AC4D1F800F5AB97 /* vboindexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7EA1AC4D1F800F5AB97 /* vboindexer.cpp */; };
 		D4F9C7F41AC4DAF300F5AB97 /* Models in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4F9C7F31AC4DA6500F5AB97 /* Models */; };
 		D4F9C7F51AC4DAF300F5AB97 /* Scenes in CopyFiles */ = {isa = PBXBuildFile; fileRef = D463011A1ABBC4EA00BF8F32 /* Scenes */; };
 		D4FFAD3F1ADAE03900B5BB6F /* SpaceStationModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FFAD3D1ADAE03900B5BB6F /* SpaceStationModel.cpp */; };
+		D4FFAD461ADAE6A600B5BB6F /* CollectionAsteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FFAD401ADAE6A600B5BB6F /* CollectionAsteroid.cpp */; };
+		D4FFAD471ADAE6A600B5BB6F /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FFAD421ADAE6A600B5BB6F /* Particle.cpp */; };
+		D4FFAD481ADAE6A600B5BB6F /* Text2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4FFAD441ADAE6A600B5BB6F /* Text2D.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -107,8 +108,6 @@
 		D4BAD06A1AAE78E300698FF2 /* Path.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Path.h; sourceTree = "<group>"; };
 		D4BAD06B1AAE78E300698FF2 /* Projectile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Projectile.cpp; sourceTree = "<group>"; };
 		D4BAD06C1AAE78E300698FF2 /* Projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Projectile.h; sourceTree = "<group>"; };
-		D4BAD06F1AAE78E300698FF2 /* SphereModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SphereModel.cpp; sourceTree = "<group>"; };
-		D4BAD0701AAE78E300698FF2 /* SphereModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SphereModel.h; sourceTree = "<group>"; };
 		D4BAD0711AAE78E300698FF2 /* StaticCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticCamera.cpp; sourceTree = "<group>"; };
 		D4BAD0721AAE78E300698FF2 /* StaticCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticCamera.h; sourceTree = "<group>"; };
 		D4BAD0731AAE78E300698FF2 /* ThirdPersonCamera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ThirdPersonCamera.cpp; sourceTree = "<group>"; };
@@ -121,8 +120,6 @@
 		D4F9C7E11AC4D1F800F5AB97 /* Loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loader.h; sourceTree = "<group>"; };
 		D4F9C7E21AC4D1F800F5AB97 /* objloader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objloader.cpp; sourceTree = "<group>"; };
 		D4F9C7E31AC4D1F800F5AB97 /* objloader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = objloader.hpp; sourceTree = "<group>"; };
-		D4F9C7E41AC4D1F800F5AB97 /* shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
-		D4F9C7E51AC4D1F800F5AB97 /* shader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
 		D4F9C7E61AC4D1F800F5AB97 /* ShipModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShipModel.cpp; sourceTree = "<group>"; };
 		D4F9C7E71AC4D1F800F5AB97 /* ShipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShipModel.h; sourceTree = "<group>"; };
 		D4F9C7E81AC4D1F800F5AB97 /* texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = texture.cpp; sourceTree = "<group>"; };
@@ -132,6 +129,12 @@
 		D4F9C7F31AC4DA6500F5AB97 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = ../Resources/Models; sourceTree = "<group>"; };
 		D4FFAD3D1ADAE03900B5BB6F /* SpaceStationModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpaceStationModel.cpp; sourceTree = "<group>"; };
 		D4FFAD3E1ADAE03900B5BB6F /* SpaceStationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceStationModel.h; sourceTree = "<group>"; };
+		D4FFAD401ADAE6A600B5BB6F /* CollectionAsteroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CollectionAsteroid.cpp; sourceTree = "<group>"; };
+		D4FFAD411ADAE6A600B5BB6F /* CollectionAsteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionAsteroid.h; sourceTree = "<group>"; };
+		D4FFAD421ADAE6A600B5BB6F /* Particle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Particle.cpp; sourceTree = "<group>"; };
+		D4FFAD431ADAE6A600B5BB6F /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
+		D4FFAD441ADAE6A600B5BB6F /* Text2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Text2D.cpp; sourceTree = "<group>"; };
+		D4FFAD451ADAE6A600B5BB6F /* Text2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Text2D.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +205,12 @@
 				D463010E1ABBA63000BF8F32 /* Cameras */,
 				D463010F1ABBA64300BF8F32 /* Models */,
 				D41878EB1AD9C1E500731D8A /* Skybox */,
+				D4FFAD401ADAE6A600B5BB6F /* CollectionAsteroid.cpp */,
+				D4FFAD411ADAE6A600B5BB6F /* CollectionAsteroid.h */,
+				D4FFAD421ADAE6A600B5BB6F /* Particle.cpp */,
+				D4FFAD431ADAE6A600B5BB6F /* Particle.h */,
+				D4FFAD441ADAE6A600B5BB6F /* Text2D.cpp */,
+				D4FFAD451ADAE6A600B5BB6F /* Text2D.h */,
 				D4BAD0631AAE78E300698FF2 /* EventManager.cpp */,
 				D4BAD0641AAE78E300698FF2 /* EventManager.h */,
 				D4BAD0651AAE78E300698FF2 /* main.cpp */,
@@ -269,8 +278,6 @@
 				D4BAD0621AAE78E300698FF2 /* CubeModel.h */,
 				D4BAD0661AAE78E300698FF2 /* Model.cpp */,
 				D4BAD0671AAE78E300698FF2 /* Model.h */,
-				D4BAD06F1AAE78E300698FF2 /* SphereModel.cpp */,
-				D4BAD0701AAE78E300698FF2 /* SphereModel.h */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -295,8 +302,6 @@
 				D4F9C7E11AC4D1F800F5AB97 /* Loader.h */,
 				D4F9C7E21AC4D1F800F5AB97 /* objloader.cpp */,
 				D4F9C7E31AC4D1F800F5AB97 /* objloader.hpp */,
-				D4F9C7E41AC4D1F800F5AB97 /* shader.cpp */,
-				D4F9C7E51AC4D1F800F5AB97 /* shader.hpp */,
 				D4F9C7E61AC4D1F800F5AB97 /* ShipModel.cpp */,
 				D4F9C7E71AC4D1F800F5AB97 /* ShipModel.h */,
 				D4F9C7E81AC4D1F800F5AB97 /* texture.cpp */,
@@ -377,13 +382,14 @@
 				D4BAD07F1AAE78E300698FF2 /* Camera.cpp in Sources */,
 				D46301141ABBC27500BF8F32 /* Renderer.cpp in Sources */,
 				D4F9C7F01AC4D1F800F5AB97 /* texture.cpp in Sources */,
+				D4FFAD471ADAE6A600B5BB6F /* Particle.cpp in Sources */,
 				D4BAD0791AAE78E300698FF2 /* AsteroidFactory.cpp in Sources */,
 				D41878F41AD9CCF800731D8A /* FreeRoamCamera.cpp in Sources */,
 				D41878FA1AD9CD0800731D8A /* Laser.cpp in Sources */,
 				D41878FD1AD9CD2300731D8A /* Collisions.cpp in Sources */,
 				D4BAD08A1AAE78E300698FF2 /* Variables.cpp in Sources */,
-				D4BAD0871AAE78E300698FF2 /* SphereModel.cpp in Sources */,
-				D4F9C7EE1AC4D1F800F5AB97 /* shader.cpp in Sources */,
+				D4FFAD461ADAE6A600B5BB6F /* CollectionAsteroid.cpp in Sources */,
+				D4FFAD481ADAE6A600B5BB6F /* Text2D.cpp in Sources */,
 				D4F9C7EF1AC4D1F800F5AB97 /* ShipModel.cpp in Sources */,
 				D4F9C7F11AC4D1F800F5AB97 /* vboindexer.cpp in Sources */,
 				D4BAD0841AAE78E300698FF2 /* Path.cpp in Sources */,
