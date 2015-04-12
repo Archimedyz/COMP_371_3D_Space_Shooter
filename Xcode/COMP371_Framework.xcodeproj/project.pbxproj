@@ -223,8 +223,6 @@
 			isa = PBXGroup;
 			children = (
 				D41878EC1AD9C22300731D8A /* SkyboxModel.cpp */,
-				D4FFAD3D1ADAE03900B5BB6F /* SpaceStationModel.cpp */,
-				D4FFAD3E1ADAE03900B5BB6F /* SpaceStationModel.h */,
 				D41878ED1AD9C22300731D8A /* SkyboxModel.h */,
 			);
 			name = Skybox;
@@ -263,6 +261,8 @@
 		D463010F1ABBA64300BF8F32 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D4FFAD3D1ADAE03900B5BB6F /* SpaceStationModel.cpp */,
+				D4FFAD3E1ADAE03900B5BB6F /* SpaceStationModel.h */,
 				D4BAD0551AAE78E300698FF2 /* AsteroidModel.cpp */,
 				D4BAD0561AAE78E300698FF2 /* AsteroidModel.h */,
 				D4BAD0611AAE78E300698FF2 /* CubeModel.cpp */,

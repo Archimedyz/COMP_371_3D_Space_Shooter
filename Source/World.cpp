@@ -18,6 +18,7 @@
 #include "Projectile.h"
 #include "ShipModel.h"
 #include "SkyboxModel.h"
+#include "SpaceStationModel.h"
 #include "Loader.h"
 #include "Texture.hpp"
 #include "Text2D.h"
@@ -33,7 +34,7 @@ World* World::instance;
 int World::addCounter;
 SkyboxModel* skybox;
 ShipModel * ship_model;
-CubeModel * station;
+SpaceStationModel * station;
 
 // Light Coefficients. We are using directional light.
 const vec3 lightColor(1.0f, 1.0f, 1.0f);
@@ -337,7 +338,7 @@ void World::LoadCameras()
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
 
-	station = new CubeModel(vec3(10.0f, 1.0f, 10.0f));
+	station = new SpaceStationModel();
 	station->SetPosition(vec3(0.0f, -6.0f, 0.0f));
 	station->ActivateCollisions(false);
 	mModel.push_back(station);
