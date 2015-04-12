@@ -12,6 +12,8 @@
 		038B79161A6FF2E900111E36 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79151A6FF2E900111E36 /* Cocoa.framework */; };
 		038B791A1A6FF39000111E36 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B79191A6FF39000111E36 /* CoreVideo.framework */; };
 		038B791E1A6FF3EB00111E36 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038B791D1A6FF3EB00111E36 /* IOKit.framework */; };
+		36E25B891ADAE45C006DACF4 /* Sounds in CopyFiles */ = {isa = PBXBuildFile; fileRef = 36E25B881ADAE45C006DACF4 /* Sounds */; };
+		36E25B8B1ADAE682006DACF4 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 36E25B8A1ADAE682006DACF4 /* libfmodex.dylib */; };
 		D41878EE1AD9C22300731D8A /* SkyboxModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D41878EC1AD9C22300731D8A /* SkyboxModel.cpp */; };
 		D41878F11AD9CCF000731D8A /* NewAsteroid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D41878EF1AD9CCF000731D8A /* NewAsteroid.cpp */; };
 		D41878F41AD9CCF800731D8A /* FreeRoamCamera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D41878F21AD9CCF800731D8A /* FreeRoamCamera.cpp */; };
@@ -43,21 +45,20 @@
 		D4F9C7F01AC4D1F800F5AB97 /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7E81AC4D1F800F5AB97 /* texture.cpp */; };
 		D4F9C7F11AC4D1F800F5AB97 /* vboindexer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D4F9C7EA1AC4D1F800F5AB97 /* vboindexer.cpp */; };
 		D4F9C7F41AC4DAF300F5AB97 /* Models in CopyFiles */ = {isa = PBXBuildFile; fileRef = D4F9C7F31AC4DA6500F5AB97 /* Models */; };
-		D4F9C7F51AC4DAF300F5AB97 /* Scenes in CopyFiles */ = {isa = PBXBuildFile; fileRef = D463011A1ABBC4EA00BF8F32 /* Scenes */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		034F0BBF1A7017180028E1BA /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "";
-			dstSubfolderSpec = 16;
+			dstSubfolderSpec = 7;
 			files = (
+				36E25B891ADAE45C006DACF4 /* Sounds in CopyFiles */,
 				D4F9C7F41AC4DAF300F5AB97 /* Models in CopyFiles */,
-				D4F9C7F51AC4DAF300F5AB97 /* Scenes in CopyFiles */,
 				034F0BC11A7017370028E1BA /* Shaders in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -71,6 +72,8 @@
 		038B79191A6FF39000111E36 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		038B791B1A6FF3D100111E36 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		038B791D1A6FF3EB00111E36 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		36E25B881ADAE45C006DACF4 /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
+		36E25B8A1ADAE682006DACF4 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmodex.dylib; path = ../ThirdParty/fmod/lib/osx/libfmodex.dylib; sourceTree = "<group>"; };
 		D41878EC1AD9C22300731D8A /* SkyboxModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SkyboxModel.cpp; sourceTree = "<group>"; };
 		D41878ED1AD9C22300731D8A /* SkyboxModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkyboxModel.h; sourceTree = "<group>"; };
 		D41878EF1AD9CCF000731D8A /* NewAsteroid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NewAsteroid.cpp; sourceTree = "<group>"; };
@@ -87,7 +90,6 @@
 		D41879021AD9CD7F00731D8A /* SmallAsteroid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallAsteroid.h; sourceTree = "<group>"; };
 		D46301121ABBC27500BF8F32 /* Renderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		D46301131ABBC27500BF8F32 /* Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
-		D463011A1ABBC4EA00BF8F32 /* Scenes */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Scenes; path = ../Scenes; sourceTree = "<group>"; };
 		D4BAD0531AAE78E300698FF2 /* AsteroidFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AsteroidFactory.cpp; sourceTree = "<group>"; };
 		D4BAD0541AAE78E300698FF2 /* AsteroidFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsteroidFactory.h; sourceTree = "<group>"; };
 		D4BAD0551AAE78E300698FF2 /* AsteroidModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AsteroidModel.cpp; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36E25B8B1ADAE682006DACF4 /* libfmodex.dylib in Frameworks */,
 				D4A9DC9C1A7AFC1400CA6A53 /* libglfw3.a in Frameworks */,
 				D4A9DC9B1A7AFBFF00CA6A53 /* libGLEW.a in Frameworks */,
 				038B791E1A6FF3EB00111E36 /* IOKit.framework in Frameworks */,
@@ -151,6 +154,7 @@
 		034F0BB11A700D0F0028E1BA /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				36E25B8A1ADAE682006DACF4 /* libfmodex.dylib */,
 				038B79171A6FF35E00111E36 /* libGLEW.a */,
 				031A65F61A702EBB003BF698 /* libglfw3.a */,
 				038B791D1A6FF3EB00111E36 /* IOKit.framework */,
@@ -165,8 +169,8 @@
 		034F0BB31A7010160028E1BA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				36E25B881ADAE45C006DACF4 /* Sounds */,
 				D4F9C7F31AC4DA6500F5AB97 /* Models */,
-				D463011A1ABBC4EA00BF8F32 /* Scenes */,
 				034F0BB41A70103C0028E1BA /* Shaders */,
 			);
 			name = Resources;
@@ -480,11 +484,13 @@
 					../ThirdParty/glm,
 					"../ThirdParty/glfw-3.0.4/include",
 					"../ThirdParty/glew-1.10.0/include",
+					../ThirdParty/fmod/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
+					../ThirdParty/fmod/lib/osx,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -500,11 +506,13 @@
 					../ThirdParty/glm,
 					"../ThirdParty/glfw-3.0.4/include",
 					"../ThirdParty/glew-1.10.0/include",
+					../ThirdParty/fmod/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"../ThirdParty/glew-1.10.0/lib/Release/osx",
 					"../ThirdParty/glfw-3.0.4/lib/osx",
+					../ThirdParty/fmod/lib/osx,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

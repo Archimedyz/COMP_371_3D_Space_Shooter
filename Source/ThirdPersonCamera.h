@@ -10,6 +10,8 @@
 
 #include "Camera.h"
 #include "Model.h"
+#include "fmod/fmod.h"
+#include "Variables.h"
 
 class ThirdPersonCamera : public Camera
 {
