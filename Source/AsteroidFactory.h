@@ -15,6 +15,7 @@ public:
 	~AsteroidFactory();
 	static AsteroidModel* createAsteroid(int type);
 	static NewAsteroid* createNewAsteroid(int type);
+	static void RandomizeCoefficients(NewAsteroid*);
 
 private:
 	AsteroidFactory();
