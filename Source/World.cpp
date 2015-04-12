@@ -32,6 +32,7 @@ using namespace glm;
 
 World* World::instance;
 int World::addCounter;
+SkyboxModel* skybox;
 
 // Light Coefficients. We are using directional light.
 const vec3 lightColor(1.0f, 1.0f, 1.0f);
@@ -52,6 +53,8 @@ World::World()
 	Projectile::LoadBuffers();
 	ShipModel::LoadBuffers();
 	SkyboxModel::LoadBuffers();
+	skybox = new SkyboxModel();
+	mModel.push_back(skybox);
 }
 
 World::~World()
