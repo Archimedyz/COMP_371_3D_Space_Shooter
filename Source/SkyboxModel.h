@@ -42,6 +42,7 @@ protected:
 	static unsigned int normalbuffer;
 	static unsigned int elementbuffer;
 	static std::vector<unsigned short> indices;
+
 };
 
 #endif /* defined(__COMP371_Framework__SkyboxModel__) */

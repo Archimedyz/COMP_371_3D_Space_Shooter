@@ -32,12 +32,6 @@ World* World::instance;
 int World::addCounter;
 SkyboxModel* skybox;
 // Load textures for Skybox
-GLuint imageBK;
-GLuint imageFT;
-GLuint imageRT;
-GLuint imageLT;
-GLuint imageUP;
-GLuint imageDN;
 
 // Light Coefficients. We are using directional light.
 const vec3 lightColor(1.0f, 1.0f, 1.0f);
@@ -57,12 +51,6 @@ World::World()
 	NewAsteroid::LoadBuffers();
 	Projectile::LoadBuffers();
 	ShipModel::LoadBuffers();
-	imageBK = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_BK.bmp");
-	imageFT = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_FT.bmp");
-	imageRT = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_RT.bmp");
-	imageLT = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_LT.bmp");
-	imageUP = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_UP.bmp");
-	imageDN = loadBMP_custom("../Resources/Skybox/GalaxyBMP/Galaxy_DN.bmp");
 	SkyboxModel::LoadBuffers();
 
 	skybox = new SkyboxModel();
