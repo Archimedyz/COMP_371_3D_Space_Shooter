@@ -224,7 +224,6 @@ void Particle::RenderShadowVolume(glm::vec4 lightPos)
 bool Particle::isExpired() const
 {
 	time_t currentTime = time(NULL);
-	std:: cout << currentTime << std::endl;
 	float lifetime = currentTime - startTime;
 	return lifetime >= duration;
 }
