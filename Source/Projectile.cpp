@@ -28,7 +28,7 @@ void Projectile::LoadBuffers()
 #if defined(PLATFORM_OSX)
 	const char * modelPath = "Models/bullet.obj";
 #else
-	const char * modelPath = "../Resources/Models/bullet.obj";
+	const char * modelPath = "../Resources/Models/bullet2.obj";
 #endif
 	Loader::loadModel(modelPath, Projectile::vArray, Projectile::vertexbuffer, Projectile::uvbuffer, Projectile::normalbuffer, Projectile::elementbuffer, Projectile::indices);
 }
