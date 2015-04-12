@@ -173,6 +173,7 @@ void World::Update(float dt)
 			mModel.push_back(AsteroidFactory::createNewAsteroid(0));
 			addCounter = 0;
 		}
+		//skybox position updates with ship position
 		vec3 tempPosition = vec3(ship_model->GetPosition());
 		skybox->SetPosition(tempPosition);
 	}

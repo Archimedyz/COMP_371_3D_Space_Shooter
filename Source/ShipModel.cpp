@@ -41,6 +41,7 @@ void ShipModel::LoadBuffers()
 
 ShipModel::ShipModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
+	//initializing ship with lighting
 	name = "SHIP";
 	ka = 0.5f;
 	kd = 0.3f;
