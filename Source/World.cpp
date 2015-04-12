@@ -47,14 +47,7 @@ World::World()
 {
     instance = this;
 	addCounter = 0;
-	imageBK = loadBMP_custom("GalaxySkybox/Galaxy_BK.bmp");
-	imageFT = loadBMP_custom("GalaxySkybox/Galaxy_FT.bmp");
-	imageRT = loadBMP_custom("GalaxySkybox/Galaxy_RT.bmp");
-	imageLT = loadBMP_custom("GalaxySkybox/Galaxy_LT.bmp");
-	imageUP = loadBMP_custom("GalaxySkybox/Galaxy_UP.bmp");
-	imageDN = loadBMP_custom("GalaxySkybox/Galaxy_DN.bmp");
-	skybox = new SkyboxModel(vec3(0.0f, 0.0f, 0.0f), vec3(100.0f, 100.0f, 100.0f));
-	skybox->ActivateCollisions(false);
+	//skybox = new SkyboxModel(vec3(0.0f, 0.0f, 0.0f), vec3(100.0f, 100.0f, 100.0f));
 }
 
 World::~World()
@@ -159,7 +152,7 @@ void World::Draw()
 {
 	
 	Renderer::BeginFrame();
-	skybox->Draw();
+	//skybox->Draw();
 
 	// Set shader to use
 	glUseProgram(Renderer::GetShaderProgramID());
@@ -281,6 +274,10 @@ void World::LoadCameras()
 	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
+
+	CubeModel * cube = new CubeModel(vec3(1.0f, 1.0f, 1.0f));
+	cube->ActivateCollisions(false);
+	mModel.push_back(cube);
     
 
     mCurrentCamera = 0;
