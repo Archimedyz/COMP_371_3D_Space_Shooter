@@ -1,14 +1,10 @@
 //--------------------------------------------------------------------------------------------------------------
 // Contributors
-// 
+// Awais Ali
 // 
 //--------------------------------------------------------------------------------------------------------------
 
 #include "AsteroidModel.h"
-#include "Variables.h"
-#include "Renderer.h"
-#include <string>
-#include <GL/glew.h>
 
 using namespace glm;
 
