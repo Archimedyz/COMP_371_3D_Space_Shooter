@@ -1,7 +1,7 @@
 //--------------------------------------------------------------------------------------------------------------
 // Contributors
 // Nicholas Dudek
-// 
+// Zackary Valenta
 //--------------------------------------------------------------------------------------------------------------
 
 
@@ -152,6 +152,7 @@ void ThirdPersonCamera::Update(float dt)
     CalculateCameraBasis();
 }
 
+// by Zackary Valenta
 void ThirdPersonCamera::TranslateControls(float dt, bool space, bool shift, bool a, bool d, bool w, bool s, bool mouseLeft)
 {
 	// ************************************************************************************************************
@@ -363,17 +364,20 @@ void ThirdPersonCamera::TranslateControls(float dt, bool space, bool shift, bool
 	}
 }
 
+// by Zackary Valenta
 bool ThirdPersonCamera::isUpBetween90and270() const
 {
 	float mModedVerticalAngle = fmod(abs(mVerticalAngle), 360); // * ((mVerticalAngle >= 0) ? 1 : (-1));		// moded angle with sign
 	return (mModedVerticalAngle >= 90 && mModedVerticalAngle <= 270);
 }
 
+// by Zackary Valenta
 bool ThirdPersonCamera::isTargetModelOutOfBounds() const
 {
 	return (length(mTargetModel->GetPosition() - vec3(0.0f, 0.0f, 0.0f)) > PLAYER_BOUNDING_GAME_RADIUS);
 }
 
+// by Zackary Valenta
 vector<float> ThirdPersonCamera::getVHAnglesBetweenVectors(vec3 vector1, vec3 vector2) const
 {
 	vector<float> returnVector = vector<float>();
