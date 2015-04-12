@@ -63,6 +63,6 @@ void main()
 	} else {
 		// point, meaning light goes in all directions, so light vector direction is from the point to the vertex
 		vec4 lightPosition_CameraSpace = (ViewTransform * WorldLightPosition);
-		lightVector = vec4(vec3(lightPosition_CameraSpace - vertex_CameraSpace), 0);
+		lightVector = vec4((lightPosition_CameraSpace - vertex_CameraSpace).xyz, 0.0f);
 	}
 }
