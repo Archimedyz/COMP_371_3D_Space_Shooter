@@ -21,12 +21,22 @@
 using namespace glm;
 using namespace std;
 
+const float ThirdPersonCamera::STANDARD_SPEED = 3.5f;
+const float ThirdPersonCamera::ACCELERATION = 1.0f;
+const float ThirdPersonCamera::DECELERATION = -1.0f;
 const float ThirdPersonCamera::SPEED_INCREASE_PERCENTAGE = 0.5f;
 const float ThirdPersonCamera::SPEED_DECREASE_PERCENTAGE = 0.5f;
+
+const float ThirdPersonCamera::HORIZONTAL_SENSITIVITY = 0.5f;
+const float ThirdPersonCamera::VERTICAL_SENSITIVITY = 0.5f;
+
 const float ThirdPersonCamera::MAX_ANIMATION_PITCH_ANGLE = 20.0f;
 const float ThirdPersonCamera::MAX_ANIMATION_YAW_ANGLE = 25.0f;
 const float ThirdPersonCamera::MAX_ANIMATION_ROLL_ANGLE = 25.0f;
-const float ThirdPersonCamera::PLAYER_BOUNDING_GAME_RADIUS = 100.0f;		// 100.00f is good, this is just so controls aren't disabled until turn arround is complete
+const float ThirdPersonCamera::ANIMATION_SPEED = 100.0f;
+
+const float ThirdPersonCamera::PLAYER_BOUNDING_GAME_RADIUS = 100.0f;
+
 bool playerControlYaw = true;
 bool playerControlPitch = true;
 bool playerWasAligned = false;
@@ -34,8 +44,8 @@ const float REACTION = 75.0f;
 
 ThirdPersonCamera::ThirdPersonCamera(Model* targetModel)
 	: Camera(), mTargetModel(targetModel), mHorizontalAngle(0.0f), mVerticalAngle(0.0f), mRadius(10.0f),
-	mModelHorizontalSensitivity(35.0f), mModelVerticalSensitivity(35.0f), mModelStandardSpeed(3.5f),
-	mModelAcceration(1.0f), mModelDeceleration(-1.0f), mModelAnimationSpeed(100.0f), mModelCurrentPitch(0.0f),
+	mModelHorizontalSensitivity(35.0f), mModelVerticalSensitivity(35.0f), mModelStandardSpeed(STANDARD_SPEED),
+	mModelAcceleration(ACCELERATION), mModelDeceleration(DECELERATION), mModelAnimationSpeed(ANIMATION_SPEED), mModelCurrentPitch(0.0f),
 	mModelCurrentYaw(0.0f), mModelCurrentRoll(0.0f)
 {
 	assert(mTargetModel != nullptr);
@@ -160,7 +170,7 @@ void ThirdPersonCamera::TranslateControls(float dt, bool space, bool shift, bool
 	if (space)
 	{
 		// increase current model speed
-		mModelCurrentSpeed += mModelAcceration * dt;
+		mModelCurrentSpeed += mModelAcceleration * dt;
 		if (mModelCurrentSpeed > (mModelStandardSpeed * (1 + SPEED_INCREASE_PERCENTAGE)))
 		{
 			mModelCurrentSpeed = mModelStandardSpeed * (1 + SPEED_INCREASE_PERCENTAGE);
@@ -170,7 +180,7 @@ void ThirdPersonCamera::TranslateControls(float dt, bool space, bool shift, bool
 	// reduce model back to standard speed
 	else if (mModelCurrentSpeed > mModelStandardSpeed)
 	{
-		mModelCurrentSpeed -= mModelAcceration * dt;
+		mModelCurrentSpeed -= mModelAcceleration * dt;
 		// if the above line makes the value pass the standard speed, set to standard speed
 		if (mModelCurrentSpeed < mModelStandardSpeed)
 		{

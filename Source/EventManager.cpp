@@ -61,8 +61,11 @@ void EventManager::Initialize()
     
     //Get default screen resolution width and height
     const GLFWvidmode* nativeResolution = glfwGetVideoMode(glfwGetPrimaryMonitor());
-    width = nativeResolution->width;
-    height = nativeResolution->height;
+    width = 900;
+    height = 650;
+
+	//width = nativeResolution->width;
+	//height = nativeResolution->height;
     
     // Open a window and create its OpenGL context
     glfwWindowHint(GLFW_RESIZABLE, 0);

@@ -1,16 +1,16 @@
 #include "Particle.h"
 #include "Renderer.h"
-#include <time.h>
 
 // Include GLEW - OpenGL Extension Wrangler
 #include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 using namespace glm;
 
 Particle::Particle(float size, glm::vec3 quadraticMovement, float speed, float roatationInDegrees, float duration) :
 Model(), quadraticMovement(quadraticMovement), speed(speed), rotation(roatationInDegrees), duration(duration)
 {
-	startTime = time(NULL);
+	startTime = glfwGetTime();
 	ka = 0.5f;
 	kd = 0.1f;
 	ks = 0.7f;
@@ -30,7 +30,7 @@ Model(), quadraticMovement(quadraticMovement), speed(speed), rotation(roatationI
 	colors.push_back(vec3(1.00f, 0.50f, 0.00f));		// bright orange
 
 	// chose one of the colors at random
-	srand(time(NULL));
+	srand(glfwGetTime() * 1000);
 	vec3 randomColor = colors.at(rand() % 5);
 
 	// create a triangle with the color chosen
@@ -164,18 +164,6 @@ void Particle::Draw()
 	glDisableVertexAttribArray(0);
 }
 
-bool Particle::ParseLine(const std::vector<ci_string> &token)
-{
-	if (token.empty())
-	{
-		return true;
-	}
-	else
-	{
-		return Model::ParseLine(token);
-	}
-}
-
 void Particle::RenderShadowVolume(glm::vec4 lightPos)
 {
 	// for each triangle compsing the model:
@@ -223,14 +211,14 @@ void Particle::RenderShadowVolume(glm::vec4 lightPos)
 
 bool Particle::isExpired() const
 {
-	double currentTime = time(NULL);
+	double currentTime = glfwGetTime();
 	double lifetime = currentTime - startTime;
 	return lifetime >= duration;
 }
 
 float Particle::getXMovementValue()
 {
-	double currentTime = time(NULL);
+	double currentTime = glfwGetTime();
 	double dt = currentTime - startTime;
 	return (dt * (speed/1000));
 }

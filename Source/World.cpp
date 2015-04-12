@@ -7,7 +7,6 @@
 // each individual mostly instantiated their own parts and made sure references were correct
 //--------------------------------------------------------------------------------------------------------------
 
-
 #include "World.h"
 #include "ParsingHelper.h"
 #include "Renderer.h"
@@ -17,6 +16,8 @@
 #include "FreeRoamCamera.h"
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
+#include "Particle.h"
+#include "ThrusterParticles.h"
 #include "Path.h"
 #include "Projectile.h"
 #include "ShipModel.h"
@@ -106,6 +107,8 @@ void World::Update(float dt)
 {
 	if (Game::GetInstance()->GameOver() == false)
 	{
+		cout << glfwGetTime() * 1000 << endl;
+
 		// User Inputs
 		// 1 2 3 4 to change the Camera
 		if (glfwGetKey(EventManager::GetWindow(), GLFW_KEY_1) == GLFW_PRESS)
@@ -168,8 +171,6 @@ void World::Update(float dt)
 			{
 				if (mModel[i]->GetName() != "SHIP")
 					mModel[i]->SetDestroy(true);
-				else
-					mModel[i]->SetPosition(vec3(0.0f, 0.0f, 0.0f));
 			}
 			if (mModel[i]->IsDestroyed())
 			{
@@ -333,8 +334,8 @@ void World::LoadCameras()
     mCamera.push_back(new StaticCamera(vec3(10.0f, 30.0f, 10.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
 
-	// ship controlled with Third Person Camera
-	ship_model = new ShipModel();
+	// ship Character controlled with Third Person Camera
+	ShipModel * ship_model = new ShipModel();
 	player = ship_model;
 	ship_model->SetPosition(vec3(0.0f, 0.0f, -10.0f));
 	ship_model->ActivateCollisions(false);
@@ -345,6 +346,14 @@ void World::LoadCameras()
 	station->SetPosition(vec3(0.0f, -6.0f, 0.0f));
 	station->ActivateCollisions(false);
 	mModel.push_back(station);
+
+	// test particle on space ship model
+	vec3 thrusterPosition = station->GetPosition() + vec3(0.0f, 1.0f, 0.0f);
+	cout << thrusterPosition.x << ", " << thrusterPosition.y << ", " << thrusterPosition.z << endl;
+	ThrusterParticles * test_thrusters = new ThrusterParticles(thrusterPosition, vec3(0.0f, 1.0f, 0.0f));		// orientation here may need to be changed to the opposite of the ship's look at
+	test_thrusters->setParentModel(station);
+	test_thrusters->SetName("TEST THRUSTERS");
+	mModel.push_back(test_thrusters);
 
     mCurrentCamera = 0;
 	mCamera.push_back(new FreeRoamCamera(vec3(2.0f, 2.0f, 2.0f), vec3(-1.0f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f)));
