@@ -17,9 +17,9 @@ GLuint singleSkyboxBMP;
 void SkyboxModel::LoadBuffers()
 {
 #if defined(PLATFORM_OSX)
-	const char * modelPath = "Resources/Models/Final_Skybox_V2.obj";
+	const char * modelPath = "Resources/Models/Final_Skybox_V3.obj";
 #else
-	const char * modelPath = "../Resources/Models/Final_Skybox_V2.obj";
+	const char * modelPath = "../Resources/Models/Final_Skybox_V3.obj";
 #endif
 	Loader::loadModel(modelPath, SkyboxModel::vArray, SkyboxModel::vertexbuffer, SkyboxModel::uvbuffer, SkyboxModel::normalbuffer, SkyboxModel::elementbuffer, SkyboxModel::indices);
 	
@@ -38,7 +38,7 @@ SkyboxModel::SkyboxModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1
 
 	//skybox scaled to 50 units
 	mPosition = glm::vec3(0.0f, 0.0f, 0.0f);
-	mScaling = glm::vec3(525.0f, 525.0f, 525.0f);
+	mScaling = glm::vec3(200.0f, 200.0f, 200.0f);
 
 	CollisionsOn = false;
 }

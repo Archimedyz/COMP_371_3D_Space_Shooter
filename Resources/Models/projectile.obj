@@ -1,6 +1,6 @@
-# Blender v2.73 (sub 0) OBJ File: ''
+# Blender v2.73 (sub 0) OBJ File: 'projectile.blend'
 # www.blender.org
-mtllib bullet2.mtl
+mtllib projectile.mtl
 o Cylinder
 v 0.000000 -0.050000 -0.950000
 v 0.000000 0.050000 -0.950000
