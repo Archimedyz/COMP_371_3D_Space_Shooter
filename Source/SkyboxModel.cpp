@@ -2,6 +2,7 @@
 
 #include "SkyboxModel.h"
 
+//holders for buffers
 std::vector<glm::vec3> SkyboxModel::vArray;
 unsigned int SkyboxModel::vertexbuffer;
 unsigned int SkyboxModel::uvbuffer;
@@ -28,14 +29,16 @@ void SkyboxModel::LoadBuffers()
 
 SkyboxModel::SkyboxModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
+	//initializing skybox with lighting
 	name = "SKYBOX";
 	ka = 0.5f;
 	kd = 0.3f;
 	ks = 0.7f;
 	n = 15.0f;
 
+	//skybox scaled to 50 units
 	mPosition = glm::vec3(0.0f, 0.0f, 0.0f);
-	mScaling = glm::vec3(500.0f, 500.0f, 500.0f);
+	mScaling = glm::vec3(125.0f, 125.0f, 125.0f);
 
 	CollisionsOn = false;
 }
@@ -57,11 +60,11 @@ void SkyboxModel::Draw()
 {
 	Model::Draw();
 
+	//world matrix info
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 
 	glBindTexture(GL_TEXTURE_2D, singleSkyboxBMP);
-
 
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);

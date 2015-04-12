@@ -80,7 +80,7 @@
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Model.cpp" />
     <ClCompile Include="..\Source\NewAsteroid.cpp" />
-    <ClCompile Include="..\Source\objloader.cpp" />
+    <ClCompile Include="..\Source\Objloader.cpp" />
     <ClCompile Include="..\Source\Particle.cpp" />
     <ClCompile Include="..\Source\Path.cpp" />
     <ClCompile Include="..\Source\Projectile.cpp" />
@@ -93,7 +93,7 @@
     <ClCompile Include="..\Source\Texture.cpp" />
     <ClCompile Include="..\Source\ThirdPersonCamera.cpp" />
     <ClCompile Include="..\Source\Variables.cpp" />
-    <ClCompile Include="..\Source\vboindexer.cpp" />
+    <ClCompile Include="..\Source\Vboindexer.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -109,7 +109,7 @@
     <ClInclude Include="..\Source\Loader.h" />
     <ClInclude Include="..\Source\Model.h" />
     <ClInclude Include="..\Source\NewAsteroid.h" />
-    <ClInclude Include="..\Source\objloader.hpp" />
+    <ClInclude Include="..\Source\Objloader.hpp" />
     <ClInclude Include="..\Source\ParsingHelper.h" />
     <ClInclude Include="..\Source\Particle.h" />
     <ClInclude Include="..\Source\Path.h" />
@@ -123,7 +123,7 @@
     <ClInclude Include="..\Source\Texture.hpp" />
     <ClInclude Include="..\Source\ThirdPersonCamera.h" />
     <ClInclude Include="..\Source\Variables.h" />
-    <ClInclude Include="..\Source\vboindexer.hpp" />
+    <ClInclude Include="..\Source\Vboindexer.hpp" />
     <ClInclude Include="..\Source\World.h" />
   </ItemGroup>
   <ItemGroup>
