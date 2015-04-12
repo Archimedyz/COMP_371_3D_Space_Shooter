@@ -22,7 +22,7 @@ std::vector<unsigned short> SpaceStationModel::indices;
 GLuint spaceStationBMP;
 
 
-void SkyboxModel::LoadBuffers()
+void SpaceStationModel::LoadBuffers()
 {
 #if defined(PLATFORM_OSX)
     const char * modelPath = "Resources/Models/Final_Skybox_V3.obj";
