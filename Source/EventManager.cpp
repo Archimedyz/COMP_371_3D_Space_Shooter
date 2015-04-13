@@ -66,8 +66,8 @@ void EventManager::Initialize()
     
     // Open a window and create its OpenGL context
     glfwWindowHint(GLFW_RESIZABLE, 0);
-    spWindow = glfwCreateWindow(width, height, "COMP371 Space Shooter", glfwGetPrimaryMonitor(), NULL);
-
+    //spWindow = glfwCreateWindow(width, height, "COMP371 Space Shooter", glfwGetPrimaryMonitor(), NULL);		// pure full screen
+	spWindow = glfwCreateWindow(width, height, "COMP371 Space Shooter", nullptr, nullptr);						// full screen window
 	if (spWindow == nullptr)
 	{
 		fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );

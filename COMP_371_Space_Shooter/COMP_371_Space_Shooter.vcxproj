@@ -73,6 +73,7 @@
     <ClCompile Include="..\Source\Collisions.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
+    <ClCompile Include="..\Source\ExplosionParticles.cpp" />
     <ClCompile Include="..\Source\FreeRoamCamera.cpp" />
     <ClCompile Include="..\Source\Game.cpp" />
     <ClCompile Include="..\Source\Loader.cpp" />
@@ -80,6 +81,7 @@
     <ClCompile Include="..\Source\Model.cpp" />
     <ClCompile Include="..\Source\NewAsteroid.cpp" />
     <ClCompile Include="..\Source\Objloader.cpp" />
+    <ClCompile Include="..\Source\Particle.cpp" />
     <ClCompile Include="..\Source\Path.cpp" />
     <ClCompile Include="..\Source\Projectile.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
@@ -90,6 +92,7 @@
     <ClCompile Include="..\Source\Text2D.cpp" />
     <ClCompile Include="..\Source\Texture.cpp" />
     <ClCompile Include="..\Source\ThirdPersonCamera.cpp" />
+    <ClCompile Include="..\Source\ThrusterParticles.cpp" />
     <ClCompile Include="..\Source\Variables.cpp" />
     <ClCompile Include="..\Source\Vboindexer.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
@@ -101,6 +104,7 @@
     <ClInclude Include="..\Source\Collisions.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
+    <ClInclude Include="..\Source\ExplosionParticles.h" />
     <ClInclude Include="..\Source\FreeRoamCamera.h" />
     <ClInclude Include="..\Source\Game.h" />
     <ClInclude Include="..\Source\Loader.h" />
@@ -108,6 +112,7 @@
     <ClInclude Include="..\Source\NewAsteroid.h" />
     <ClInclude Include="..\Source\Objloader.hpp" />
     <ClInclude Include="..\Source\ParsingHelper.h" />
+    <ClInclude Include="..\Source\Particle.h" />
     <ClInclude Include="..\Source\Path.h" />
     <ClInclude Include="..\Source\Projectile.h" />
     <ClInclude Include="..\Source\Renderer.h" />
@@ -118,6 +123,7 @@
     <ClInclude Include="..\Source\Text2D.h" />
     <ClInclude Include="..\Source\Texture.hpp" />
     <ClInclude Include="..\Source\ThirdPersonCamera.h" />
+    <ClInclude Include="..\Source\ThrusterParticles.h" />
     <ClInclude Include="..\Source\Variables.h" />
     <ClInclude Include="..\Source\Vboindexer.hpp" />
     <ClInclude Include="..\Source\World.h" />
