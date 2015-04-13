@@ -1,9 +1,10 @@
 //--------------------------------------------------------------------------------------------------------------
 // Contributors
-// Nicholas Dudek
-// 
+// Nicholas Dudek (different textures)
+// Andrey Uspiensky (implementation)
 //--------------------------------------------------------------------------------------------------------------
 
+//From www.opengl-tutorials.org tutorials on loading textures
 
 #include "Loader.h"
 #include <stdio.h>

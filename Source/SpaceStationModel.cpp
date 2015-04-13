@@ -1,6 +1,6 @@
 //--------------------------------------------------------------------------------------------------------------
 // Contributors
-// Awais Ali (buffer referencing)
+// Awais Ali (Fixed order for sending vertex data to shaders.)
 // Nicholas Dudek (model structure)
 // Skyler Wittman (implementation, paths)
 //--------------------------------------------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 //--------------------------------------------------------------------------------------------------------------
 // Contributors
-// Nicholas Dudek
-// 
+// Nicholas Dudek (new asteroid creation, coefficient randomizing, and collection asteroid creation)
+// Awais Ali (Fixed order for sending vertex data to shaders and did original Asteroid creation)
 //--------------------------------------------------------------------------------------------------------------
 
 //Asteroid model from: https://www.filterforge.com/filters/3215.html

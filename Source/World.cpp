@@ -1,9 +1,10 @@
 //--------------------------------------------------------------------------------------------------------------
 // Contributors
-// Nicholas Dudek
-// Skyler Wittman
-// Awais Ali
-// Zackary Valenta
+// Nicholas Dudek (addmodel, pointer to player in world, some model creation, HUD score, hp, and losing screen)
+// Skyler Wittman (skybox, model pointers, cross platform, some model creation)
+// Awais Ali (lighting, other implementation stuff)
+// Zackary Valenta (camera stuff)
+// Robert Sharpe (HUD timer)
 // each individual mostly instantiated their own parts and made sure references were correct
 //--------------------------------------------------------------------------------------------------------------
 
