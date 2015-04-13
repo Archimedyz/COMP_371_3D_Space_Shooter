@@ -1,6 +1,4 @@
-# COMP_371_Space_Shooter
-COMP 371 Course Project: 3D Space Shooter.
-
+3D_SPACE_SHOOTER
 
 Welcome to the outer space Cadet!
 
