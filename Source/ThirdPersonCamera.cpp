@@ -124,8 +124,6 @@ void ThirdPersonCamera::Update(float dt)
 
 	vector<float> deviationFromCenter = getVHAnglesBetweenVectors(mLookAt, modelToCenter);
 
-	cout << "V: " << deviationFromCenter.at(0) << "    H: " << deviationFromCenter.at(1) << "     distance: " << length(mTargetModel->GetPosition() - vec3(0.0f, 0.0f, 0.0f)) << "    " << playerControlPitch << "   " << playerControlYaw << endl;		// shows calculated V and H deviations on console
-
 	if (!isTargetModelOutOfBounds() && playerControlYaw && playerControlPitch)
 	{
 		playerWasAligned = false;
@@ -446,8 +444,6 @@ vector<float> ThirdPersonCamera::getVHAnglesBetweenVectors(vec3 vector1, vec3 ve
 	float magnitude2XZ = length(vector2XZ);
 	float horizontalAngle = acosf(glm::dot(vector1XZ, vector2XZ) / (magnitude1XZ * magnitude2XZ));
 	returnVector.push_back(horizontalAngle);
-
-	// cout << "vertical: " << glm::dot(vector1YZ, vector2YZ) / (magnitude1YZ * magnitude2YZ) << "		horizontal: " << glm::dot(vector1XZ, vector2XZ) / (magnitude1XZ * magnitude2XZ) << endl;
 
 	return returnVector;
 }
