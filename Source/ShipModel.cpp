@@ -1,7 +1,9 @@
 //--------------------------------------------------------------------------------------------------------------
 // Contributors
-// 
-// 
+// Andrey Uspiensky
+// Awais Ali (buffer referencing)
+// Nicholas Dudek (model structure)
+// Skyler Wittman (implementation, paths)
 //--------------------------------------------------------------------------------------------------------------
 
 //Space ship model from: http://st.depositphotos.com/1757833/1959/i/950/depositphotos_19594413-Blue-spaceship-body-Seamless-texture.jpg
