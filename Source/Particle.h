@@ -16,8 +16,6 @@ public:
 	float getXMovementValue();
 	float getYMovementValue(double xMovement);
 	float getRotationAngleInDegrees() { return rotation; }
-protected:
-	virtual bool ParseLine(const std::vector<ci_string> &token);
 
 private:
 	// The vertex format could be different for different types of models
