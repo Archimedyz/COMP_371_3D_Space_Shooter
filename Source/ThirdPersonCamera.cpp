@@ -1,8 +1,8 @@
 //--------------------------------------------------------------------------------------------------------------
 // Contributors
 // Awais Ali (helped with sounds for windows.)
-// Nicholas Dudek
-// Zackary Valenta
+// Nicholas Dudek (firing controls)
+// Zackary Valenta (the rest after assignment framework)
 //--------------------------------------------------------------------------------------------------------------
 
 

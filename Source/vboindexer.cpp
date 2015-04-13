@@ -4,6 +4,8 @@
 // 
 //--------------------------------------------------------------------------------------------------------------
 
+//From www.opengl-tutorials.org tutorials on loading textures
+
 #include <vector>
 #include <map>
 
