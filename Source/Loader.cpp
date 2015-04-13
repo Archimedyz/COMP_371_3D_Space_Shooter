@@ -1,13 +1,16 @@
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Nicholas Dudek
+// 
+//--------------------------------------------------------------------------------------------------------------
+
+
 #include "Loader.h"
-// Include standard headers
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
 #include <string>
-
-#include "shader.hpp"
 #include "texture.hpp"
-#include "controls.hpp"
 #include "objloader.hpp"
 #include "vboindexer.hpp"
 #include "glm/ext.hpp"

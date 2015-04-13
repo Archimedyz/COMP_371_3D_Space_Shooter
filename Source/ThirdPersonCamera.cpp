@@ -1,11 +1,10 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 28/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Nicholas Dudek
+// Zackary Valenta
+//--------------------------------------------------------------------------------------------------------------
+
+
 
 #include "ThirdPersonCamera.h"
 #include "EventManager.h"
@@ -15,44 +14,75 @@
 #include <glm/gtx/vector_angle.hpp>
 #include <GLFW/glfw3.h>
 #include <algorithm>
+#include "Projectile.h"
 
 #define pi 3.14159265
-
-#include "Projectile.h"
 
 using namespace glm;
 using namespace std;
 
-const float ThirdPersonCamera::STANDARD_SPEED = 3.5f;
-const float ThirdPersonCamera::ACCELERATION = 1.0f;
-const float ThirdPersonCamera::DECELERATION = -1.0f;
 const float ThirdPersonCamera::SPEED_INCREASE_PERCENTAGE = 0.5f;
 const float ThirdPersonCamera::SPEED_DECREASE_PERCENTAGE = 0.5f;
-
-const float ThirdPersonCamera::HORIZONTAL_SENSITIVITY = 0.5f;
-const float ThirdPersonCamera::VERTICAL_SENSITIVITY = 0.5f;
-
 const float ThirdPersonCamera::MAX_ANIMATION_PITCH_ANGLE = 20.0f;
 const float ThirdPersonCamera::MAX_ANIMATION_YAW_ANGLE = 25.0f;
 const float ThirdPersonCamera::MAX_ANIMATION_ROLL_ANGLE = 25.0f;
-const float ThirdPersonCamera::ANIMATION_SPEED = 100.0f;
-
-const float ThirdPersonCamera::PLAYER_BOUNDING_GAME_RADIUS = 100.0f;
-
+const float ThirdPersonCamera::PLAYER_BOUNDING_GAME_RADIUS = 100.0f;		// 100.00f is good, this is just so controls aren't disabled until turn arround is complete
 bool playerControlYaw = true;
 bool playerControlPitch = true;
 bool playerWasAligned = false;
 const float REACTION = 75.0f;
 
+//Sound variables
+FMOD_RESULT result;
+FMOD_RESULT actionResult;
+FMOD_SOUND * music;
+FMOD_SOUND * laserSound;
+FMOD_CHANNEL * musicChannel;
+FMOD_CHANNEL * actionChannel;
+
+#if defined(PLATFORM_OSX)
+const char * backgroundPath = "Sounds/space_sound.mp3";
+const char * laserPath = "Sounds/laser_sound.wav";
+#else
+const char * backgroundPath = "../Resources/Sounds/space_sound.mp3";
+const char * laserPath = "../Resources/Sounds/laser_sound.wav";
+#endif
+
 ThirdPersonCamera::ThirdPersonCamera(Model* targetModel)
 	: Camera(), mTargetModel(targetModel), mHorizontalAngle(0.0f), mVerticalAngle(0.0f), mRadius(10.0f),
-	mModelHorizontalSensitivity(35.0f), mModelVerticalSensitivity(35.0f), mModelStandardSpeed(STANDARD_SPEED),
-	mModelAcceleration(ACCELERATION), mModelDeceleration(DECELERATION), mModelAnimationSpeed(ANIMATION_SPEED), mModelCurrentPitch(0.0f),
+	mModelHorizontalSensitivity(35.0f), mModelVerticalSensitivity(35.0f), mModelStandardSpeed(3.5f),
+	mModelAcceration(1.0f), mModelDeceleration(-1.0f), mModelAnimationSpeed(100.0f), mModelCurrentPitch(0.0f),
 	mModelCurrentYaw(0.0f), mModelCurrentRoll(0.0f)
 {
 	assert(mTargetModel != nullptr);
 	CalculateCameraBasis();
 	mModelCurrentSpeed = mModelStandardSpeed;
+    
+    //Initialize fmod
+    result = FMOD_System_Create(&Variables::fmodsystem);
+    result = FMOD_System_Init(Variables::fmodsystem, 32, FMOD_INIT_NORMAL, 0);
+    
+    //Create background sound
+    result = FMOD_System_CreateStream(Variables::fmodsystem, backgroundPath, FMOD_SOFTWARE | FMOD_2D, 0, &music);
+    if(result != FMOD_OK)
+    {
+        printf("Problem Creating: %s", backgroundPath);
+    }
+    
+    //Play background sound
+    result = FMOD_System_PlaySound(Variables::fmodsystem,FMOD_CHANNEL_FREE, music, 0, &musicChannel);
+    if(result != FMOD_OK)
+    {
+        printf("Problem playing background sound");
+    }
+    FMOD_System_Update(Variables::fmodsystem);
+    
+    //CreateLaser sounds
+    result = FMOD_System_CreateSound(Variables::fmodsystem, laserPath, FMOD_CREATESAMPLE, 0, &laserSound);
+    if(result != FMOD_OK)
+    {
+        printf("Problem Creating: %s", laserPath);
+    }
 }
 
 ThirdPersonCamera::~ThirdPersonCamera()
@@ -164,6 +194,7 @@ void ThirdPersonCamera::Update(float dt)
     CalculateCameraBasis();
 }
 
+// by Zackary Valenta
 void ThirdPersonCamera::TranslateControls(float dt, bool space, bool shift, bool a, bool d, bool w, bool s, bool mouseLeft)
 {
 	// ************************************************************************************************************
@@ -171,7 +202,7 @@ void ThirdPersonCamera::TranslateControls(float dt, bool space, bool shift, bool
 	if (space)
 	{
 		// increase current model speed
-		mModelCurrentSpeed += mModelAcceleration * dt;
+		mModelCurrentSpeed += mModelAcceration * dt;
 		if (mModelCurrentSpeed > (mModelStandardSpeed * (1 + SPEED_INCREASE_PERCENTAGE)))
 		{
 			mModelCurrentSpeed = mModelStandardSpeed * (1 + SPEED_INCREASE_PERCENTAGE);
@@ -181,7 +212,7 @@ void ThirdPersonCamera::TranslateControls(float dt, bool space, bool shift, bool
 	// reduce model back to standard speed
 	else if (mModelCurrentSpeed > mModelStandardSpeed)
 	{
-		mModelCurrentSpeed -= mModelAcceleration * dt;
+		mModelCurrentSpeed -= mModelAcceration * dt;
 		// if the above line makes the value pass the standard speed, set to standard speed
 		if (mModelCurrentSpeed < mModelStandardSpeed)
 		{
@@ -369,23 +400,33 @@ void ThirdPersonCamera::TranslateControls(float dt, bool space, bool shift, bool
 		Projectile *proj = new Projectile(mTargetModel->GetPosition(), mLookAt);
 		proj->SetXRotation(mTargetModel->GetXAxis(), mVerticalAngle);
 		proj->SetYRotation(mTargetModel->GetYAxis(), mHorizontalAngle);
+        
+        result = FMOD_System_PlaySound(Variables::fmodsystem,FMOD_CHANNEL_FREE, laserSound, 0, &actionChannel);
+        if(result != FMOD_OK)
+        {
+            printf("Problem playing laser sound.");
+        }
+        FMOD_System_Update(Variables::fmodsystem);
 
 		World::GetInstance()->AddModel(proj);
 		Projectile::SetLastFired(time(NULL)); // Set the last time fired to the current time.
 	}
 }
 
+// by Zackary Valenta
 bool ThirdPersonCamera::isUpBetween90and270() const
 {
 	float mModedVerticalAngle = fmod(abs(mVerticalAngle), 360); // * ((mVerticalAngle >= 0) ? 1 : (-1));		// moded angle with sign
 	return (mModedVerticalAngle >= 90 && mModedVerticalAngle <= 270);
 }
 
+// by Zackary Valenta
 bool ThirdPersonCamera::isTargetModelOutOfBounds() const
 {
 	return (length(mTargetModel->GetPosition() - vec3(0.0f, 0.0f, 0.0f)) > PLAYER_BOUNDING_GAME_RADIUS);
 }
 
+// by Zackary Valenta
 vector<float> ThirdPersonCamera::getVHAnglesBetweenVectors(vec3 vector1, vec3 vector2) const
 {
 	vector<float> returnVector = vector<float>();

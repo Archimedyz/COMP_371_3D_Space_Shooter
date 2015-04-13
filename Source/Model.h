@@ -1,11 +1,9 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Nicholas Dudek
+// 
+//--------------------------------------------------------------------------------------------------------------
+
 
 #pragma once 
 
@@ -16,6 +14,8 @@
 #include <GLM/glm.hpp>
 #include "Game.h"
 #include "Collisions.h"
+#include "fmod/fmod.h"
+#include "Variables.h"
 
 class Path;
 class BSpline;
@@ -38,7 +38,6 @@ public:
 
 	virtual glm::mat4 GetWorldMatrix() const;
 
-	void SetName(std::string newName) { name = newName; }
 	void SetPosition(glm::vec3 position);
 	void SetScaling(glm::vec3 scaling);
 	void SetXRotation(glm::vec3 axis, float angleDegrees);
@@ -57,9 +56,6 @@ public:
 	glm::vec3 GetXAxis() const			{ return mXAxis; }
 	glm::vec3 GetYAxis() const			{ return mYAxis; }
 	glm::vec3 GetZAxis() const			{ return mZAxis; }
-	glm::vec3 GetCamXAxis() const		{ return mCamXAxis; }
-	glm::vec3 GetCamYAxis() const		{ return mCamYAxis; }
-	glm::vec3 GetCamZAxis() const		{ return mCamZAxis; }
 	float     GetXRotationAngle() const	{ return mXRotationAngleInDegrees; }
 	float     GetYRotationAngle() const	{ return mYRotationAngleInDegrees; }
 	float     GetZRotationAngle() const	{ return mZRotationAngleInDegrees; }
@@ -75,11 +71,14 @@ public:
 	// must be called in setup once before any members of the class are instantiated. loads the drawing buffers. overload it with the appropriate filename.
 	static void LoadBuffers();
 
+	// hierarchical transform stuff
+	void AssignParent(Model *p) { parent = p; }
+	Model *GetParent() { return parent; }
+
 	// SHADOW STUFF
 	struct surface{};
 
 protected:
-	virtual bool ParseLine(const std::vector<ci_string> &token);
 
 	std::string name;
 	ci_string mName; // The model name is mainly for debugging
@@ -102,10 +101,12 @@ protected:
 
 	// drawing buffers. each subclass has a set of these buffers which contain the modelspace coordinates of the vertices. 
 	std::vector<glm::vec3> vArray;
+
+	// hierarchical transform stuff
+	Model* parent;
 	
     // Makes the model follow a path defined by a set of waypoints
     Path* mPath;
-	BSpline* mSpline;
 	float mSplineParameterT;
     float mSpeed;
     unsigned int mTargetWaypoint;

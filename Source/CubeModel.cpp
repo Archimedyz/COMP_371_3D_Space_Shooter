@@ -1,11 +1,9 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// 
+// 
+//--------------------------------------------------------------------------------------------------------------
+
 
 #include "CubeModel.h"
 #include "Renderer.h"
@@ -156,18 +154,6 @@ void CubeModel::Draw()
 	glDisableVertexAttribArray(2);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(0);
-}
-
-bool CubeModel::ParseLine(const std::vector<ci_string> &token)
-{
-	if (token.empty())
-	{
-		return true;
-	}
-	else
-	{
-		return Model::ParseLine(token);
-	}
 }
 
 void CubeModel::RenderShadowVolume(glm::vec4 lightPos){

@@ -44,12 +44,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../ThirdParty/fmod/include;../ThirdParty/DevIL/include;../ThirdParty/glew-1.10.0/include;../ThirdParty/glfw-3.0.4/include;../ThirdParty/glm</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>../ThirdParty/glew-1.10.0/lib/Release/Win32;../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc110</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../ThirdParty/fmod/lib/Win32;../ThirdParty/DevIL;../ThirdParty/glew-1.10.0/lib/Release/Win32;../ThirdParty/glfw-3.0.4/lib/Win32/lib-msvc110</AdditionalLibraryDirectories>
+      <AdditionalDependencies>fmodex_vc.lib;fmodexL_vc.lib;opengl32.lib;glew32s.lib;glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -68,8 +68,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Source\AsteroidFactory.cpp" />
-    <ClCompile Include="..\Source\AsteroidModel.cpp" />
     <ClCompile Include="..\Source\Camera.cpp" />
+    <ClCompile Include="..\Source\CollectionAsteroid.cpp" />
     <ClCompile Include="..\Source\Collisions.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
@@ -79,27 +79,25 @@
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Model.cpp" />
     <ClCompile Include="..\Source\NewAsteroid.cpp" />
-    <ClCompile Include="..\Source\objloader.cpp" />
-    <ClCompile Include="..\Source\Particle.cpp" />
+    <ClCompile Include="..\Source\Objloader.cpp" />
     <ClCompile Include="..\Source\Path.cpp" />
     <ClCompile Include="..\Source\Projectile.cpp" />
     <ClCompile Include="..\Source\Renderer.cpp" />
-    <ClCompile Include="..\Source\shader.cpp" />
     <ClCompile Include="..\Source\ShipModel.cpp" />
-    <ClCompile Include="..\Source\SphereModel.cpp" />
+    <ClCompile Include="..\Source\SkyboxModel.cpp" />
+    <ClCompile Include="..\Source\SpaceStationModel.cpp" />
     <ClCompile Include="..\Source\StaticCamera.cpp" />
     <ClCompile Include="..\Source\Text2D.cpp" />
-    <ClCompile Include="..\Source\texture.cpp" />
+    <ClCompile Include="..\Source\Texture.cpp" />
     <ClCompile Include="..\Source\ThirdPersonCamera.cpp" />
-    <ClCompile Include="..\Source\ThrusterParticles.cpp" />
     <ClCompile Include="..\Source\Variables.cpp" />
-    <ClCompile Include="..\Source\vboindexer.cpp" />
+    <ClCompile Include="..\Source\Vboindexer.cpp" />
     <ClCompile Include="..\Source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\AsteroidFactory.h" />
-    <ClInclude Include="..\Source\AsteroidModel.h" />
     <ClInclude Include="..\Source\Camera.h" />
+    <ClInclude Include="..\Source\CollectionAsteroid.h" />
     <ClInclude Include="..\Source\Collisions.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
@@ -108,30 +106,25 @@
     <ClInclude Include="..\Source\Loader.h" />
     <ClInclude Include="..\Source\Model.h" />
     <ClInclude Include="..\Source\NewAsteroid.h" />
-    <ClInclude Include="..\Source\objloader.hpp" />
+    <ClInclude Include="..\Source\Objloader.hpp" />
     <ClInclude Include="..\Source\ParsingHelper.h" />
-    <ClInclude Include="..\Source\Particle.h" />
     <ClInclude Include="..\Source\Path.h" />
     <ClInclude Include="..\Source\Projectile.h" />
     <ClInclude Include="..\Source\Renderer.h" />
-    <ClInclude Include="..\Source\shader.hpp" />
     <ClInclude Include="..\Source\ShipModel.h" />
-    <ClInclude Include="..\Source\SphereModel.h" />
+    <ClInclude Include="..\Source\SkyboxModel.h" />
+    <ClInclude Include="..\Source\SpaceStationModel.h" />
     <ClInclude Include="..\Source\StaticCamera.h" />
     <ClInclude Include="..\Source\Text2D.h" />
-    <ClInclude Include="..\Source\texture.hpp" />
+    <ClInclude Include="..\Source\Texture.hpp" />
     <ClInclude Include="..\Source\ThirdPersonCamera.h" />
-    <ClInclude Include="..\Source\ThrusterParticles.h" />
     <ClInclude Include="..\Source\Variables.h" />
-    <ClInclude Include="..\Source\vboindexer.hpp" />
+    <ClInclude Include="..\Source\Vboindexer.hpp" />
     <ClInclude Include="..\Source\World.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Scenes\CoordinateSystem.scene" />
-    <None Include="..\Scenes\PathScene.scene" />
     <None Include="..\Shaders\BasicShader.fragmentshader" />
     <None Include="..\Shaders\BasicShader.vertexshader" />
-    <None Include="..\Shaders\BlueColor.fragmentshader" />
     <None Include="..\Shaders\PathLines.fragmentshader" />
     <None Include="..\Shaders\PathLines.vertexshader" />
     <None Include="..\Shaders\Phong.fragmentshader" />
@@ -140,7 +133,7 @@
     <None Include="..\Shaders\SolidColor.vertexshader" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Resource\Models\uvmap.DDS" />
+    <Image Include="..\Resources\Textures\uvmap.DDS" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

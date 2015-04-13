@@ -1,16 +1,16 @@
 #include "Particle.h"
 #include "Renderer.h"
+#include <time.h>
 
 // Include GLEW - OpenGL Extension Wrangler
 #include <GL/glew.h>
-#include <GLFW/glfw3.h>
 
 using namespace glm;
 
 Particle::Particle(float size, glm::vec3 quadraticMovement, float speed, float roatationInDegrees, float duration) :
 Model(), quadraticMovement(quadraticMovement), speed(speed), rotation(roatationInDegrees), duration(duration)
 {
-	startTime = glfwGetTime();
+	startTime = time(NULL);
 	ka = 0.5f;
 	kd = 0.1f;
 	ks = 0.7f;
@@ -30,7 +30,7 @@ Model(), quadraticMovement(quadraticMovement), speed(speed), rotation(roatationI
 	colors.push_back(vec3(1.00f, 0.50f, 0.00f));		// bright orange
 
 	// chose one of the colors at random
-	srand(glfwGetTime() * 1000);
+	srand(time(NULL));
 	vec3 randomColor = colors.at(rand() % 5);
 
 	// create a triangle with the color chosen
@@ -223,14 +223,14 @@ void Particle::RenderShadowVolume(glm::vec4 lightPos)
 
 bool Particle::isExpired() const
 {
-	double currentTime = glfwGetTime();
+	double currentTime = time(NULL);
 	double lifetime = currentTime - startTime;
 	return lifetime >= duration;
 }
 
 float Particle::getXMovementValue()
 {
-	double currentTime = glfwGetTime();
+	double currentTime = time(NULL);
 	double dt = currentTime - startTime;
 	return (dt * (speed/1000));
 }

@@ -1,10 +1,17 @@
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// 
+// 
+//--------------------------------------------------------------------------------------------------------------
+
+//Space ship model from: http://st.depositphotos.com/1757833/1959/i/950/depositphotos_19594413-Blue-spaceship-body-Seamless-texture.jpg
+
 #include "ShipModel.h"
 #include "Loader.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
 
-#include "shader.hpp"
 #include "texture.hpp"
 #include "objloader.hpp"
 #include "vboindexer.hpp"
@@ -16,6 +23,14 @@ unsigned int ShipModel::normalbuffer;
 unsigned int ShipModel::elementbuffer;
 std::vector<unsigned short> ShipModel::indices;
 
+// positions of the lasers relative to the ship positioned at (0,0,0) and scaled to (0.5,0.5,0.5)
+const glm::vec3 ShipModel::upperLeftLaserPosition = vec3(2.3f, 0.65f, 1.6f);
+const glm::vec3 ShipModel::upperRightLaserPosition = vec3(-2.3f, 0.65f, 1.6f);
+const glm::vec3 ShipModel::lowerLeftLaserPosition = vec3(-2.3f, 0.65f, 1.6f);
+const glm::vec3 ShipModel::lowerRightLaserPosition = vec3(-2.3f, -0.7f, 1.6f);
+
+GLuint mShipTexture;
+
 void ShipModel::LoadBuffers()
 {
 #if defined(PLATFORM_OSX)
@@ -24,10 +39,13 @@ void ShipModel::LoadBuffers()
 	const char * modelPath = "../Resources/Models/newship.obj";
 #endif
 	Loader::loadModel(modelPath, ShipModel::vArray, ShipModel::vertexbuffer, ShipModel::uvbuffer, ShipModel::normalbuffer, ShipModel::elementbuffer, ShipModel::indices);
+
+	mShipTexture = loadBMP_custom("../Resources/Textures/SpaceShipTexture.bmp");
 }
 
 ShipModel::ShipModel() :Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
+	//initializing ship with lighting
 	name = "SHIP";
 	ka = 0.5f;
 	kd = 0.3f;
@@ -67,6 +85,8 @@ void ShipModel::Draw()
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 
+	glBindTexture(GL_TEXTURE_2D, mShipTexture);
+
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -79,24 +99,24 @@ void ShipModel::Draw()
 		(void*)0            // array buffer offset
 		);
 
-	// 2nd attribute buffer : UVs
+	// 2nd attribute buffer : normals
 	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
 	glVertexAttribPointer(
 		1,                                // attribute
-		2,                                // size
+		3,                                // size
 		GL_FLOAT,                         // type
 		GL_FALSE,                         // normalized?
 		0,                                // stride
 		(void*)0                          // array buffer offset
 		);
 
-	// 3rd attribute buffer : normals
-	glEnableVertexAttribArray(2);
-	glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
+	// 4th attribute buffer : UVs
+	glEnableVertexAttribArray(3);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
 	glVertexAttribPointer(
-		2,                                // attribute
-		3,                                // size
+		3,                                // attribute
+		2,                                // size
 		GL_FLOAT,                         // type
 		GL_FALSE,                         // normalized?
 		0,                                // stride
@@ -117,21 +137,11 @@ void ShipModel::Draw()
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(2);
-}
+	glDisableVertexAttribArray(3);
 
-bool ShipModel::ParseLine(const std::vector<ci_string> &token)
-{
-	if (token.empty())
-	{
-		return true;
-	}
-	else
-	{
-		return Model::ParseLine(token);
-	}
-}
+	glBindTexture(GL_TEXTURE_2D, 0);
 
+}
 
 void ShipModel::RenderShadowVolume(glm::vec4 lightPos){
 

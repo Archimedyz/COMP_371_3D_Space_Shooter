@@ -1,6 +1,15 @@
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Nicholas Dudek
+// 
+//--------------------------------------------------------------------------------------------------------------
+
 #pragma once
 
 #include "Model.h"
+#include "Texture.hpp"
+
+class CollectionAsteroid;
 
 class NewAsteroid : public Model
 {
@@ -19,9 +28,6 @@ public:
 
 	static void LoadBuffers();
 	std::vector<glm::vec3> get_varray() { return NewAsteroid::vArray; }
-
-protected:
-	virtual bool ParseLine(const std::vector<ci_string> &token);
 
 private:
 	// The vertex format could be different for different types of models

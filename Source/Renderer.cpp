@@ -1,11 +1,10 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Assignment framework
+// Awais Ali
+//--------------------------------------------------------------------------------------------------------------
+
+
 
 #include "Renderer.h"
 
@@ -83,14 +82,7 @@ void Renderer::Initialize()
                 LoadShaders(shaderPathPrefix + "SolidColor.vertexshader",
                             shaderPathPrefix + "SolidColor.fragmentshader")
                                );
-	sShaderProgramID.push_back(
-                LoadShaders(shaderPathPrefix + "PathLines.vertexshader",
-                            shaderPathPrefix + "PathLines.fragmentshader")
-                               );
-	sShaderProgramID.push_back(
-                LoadShaders(shaderPathPrefix + "SolidColor.vertexshader",
-                            shaderPathPrefix + "BlueColor.fragmentshader")
-                               );
+
 	sCurrentShader = 0;
 
 }

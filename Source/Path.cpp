@@ -1,11 +1,8 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Skyler Wittman (removed stuff we didn't need) 
+// 
+//--------------------------------------------------------------------------------------------------------------
 
 #include "Path.h"
 #include "Renderer.h"
@@ -61,29 +58,6 @@ void Path::Draw()
 	glDrawArrays(GL_LINE_LOOP, 0, mWaypoints.size());
 
 	glDisableVertexAttribArray(0);
-}
-
-bool Path::ParseLine(const std::vector<ci_string> &token)
-{
-    if (token.empty())
-    {
-        return true;
-    }
-	else if (token[0] == "waypoint")
-	{
-		assert(token.size() > 4);
-		assert(token[1] == "=");
-
-		float x = static_cast<float>(atof(token[2].c_str()));
-		float y = static_cast<float>(atof(token[3].c_str()));
-		float z = static_cast<float>(atof(token[4].c_str()));
-		AddWaypoint(glm::vec3(x, y, z));
-		return true;
-	}
-    else
-    {
-        return Model::ParseLine(token);
-    }
 }
 
 void Path::AddWaypoint(glm::vec3 point)

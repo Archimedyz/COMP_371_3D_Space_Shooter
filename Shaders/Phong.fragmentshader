@@ -7,6 +7,8 @@ uniform vec4 materialCoefficients; // x: ambient   y: diffuse   z: specular   w:
 uniform vec3 lightColor;
 uniform vec3 lightAttenuation; // x: kC  y: kL  z: kQ
 
+uniform sampler2D textureMap;
+
 // Inputs
 in vec3 v_color;		 // vertex color: also diffuse color
 
@@ -15,6 +17,9 @@ in vec3 eyeVector;       // Vector from the vertex to the Camera in View Space
 in vec4 lightVector;     // Vector from the vertex to the Light in View Space
 						 // Length of lightVector is the distance between light and vertex
 						 // if w = 1: Point light, if w = 0: directional light
+in vec4 shadow_position;
+in vec2 UV;
+
 
 // Ouput data
 out vec3 color;
@@ -32,13 +37,17 @@ void main()
 	vec3 reflected_vector = 2.0f * dot(normal_vector, light_vector) * normal_vector - light_vector;
 	vec3 eye_vector = normalize(eyeVector);
 
+	vec3 final_color = v_color;
+	if(v_color == vec3(0.0f, 0.0f, 0.0f)){
+		final_color = texture(textureMap, UV).rgb;
+	}
+
 	a_factor = 1.0f;
 	if(lightVector.w == 1){
 		// point, meaning light goes in all directions
 		a_factor = 1.0f / ((lightAttenuation.x + lightAttenuation.y * length(vec3(lightVector)) + pow(lightAttenuation.z, 2)));
 	}
 
-	vec3 i_amb = v_color;
 	vec3 i_light = vec3(lightColor);
 
 	float k_amb = materialCoefficients.x;
@@ -52,5 +61,5 @@ void main()
 
 	vec3 total_intensity = amb_intensity + diff_intensity + spec_intensity;
 
-	color = v_color * total_intensity;
+	color = final_color * total_intensity;
 }

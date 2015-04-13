@@ -1,11 +1,10 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Assignment framework
+// Awais Ali
+//--------------------------------------------------------------------------------------------------------------
+
+
 
 #pragma once
 
@@ -23,8 +22,6 @@ enum ShaderType
 	SHADER_PHONG,
 	SHADER_BASIC,
 	SHADER_SOLID_COLOR,
-	SHADER_PATH_LINES,
-	SHADER_BLUE,
 	NUM_SHADERS
 };
 

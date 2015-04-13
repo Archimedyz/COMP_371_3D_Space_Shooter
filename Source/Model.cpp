@@ -1,13 +1,9 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Nicholas Dudek
+// 
+//--------------------------------------------------------------------------------------------------------------
 
-// test comment ZACK!!!
 
 #include "Model.h"
 #include "Path.h"
@@ -17,11 +13,23 @@
 #include "Renderer.h"
 #include "NewAsteroid.h"
 #include <GL/glew.h>
+#include "CollectionAsteroid.h"
 
 using namespace std;
 using namespace glm;
 
 class AsteroidModel;
+
+#if defined(PLATFORM_OSX)
+const char * explosionPath = "Sounds/explosion_sound.wav";
+#else
+const char * explosionPath = "../Resources/Sounds/explosion_sound.wav";
+#endif
+
+//Sound variables
+FMOD_RESULT explosionResult;
+FMOD_SOUND * explosionSound;
+FMOD_CHANNEL * explosionChannel;
 
 Model::Model() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
@@ -33,7 +41,7 @@ Model::Model(glm::vec3 position, glm::vec3 scaling) : Model(position, scaling, g
 
 Model::Model(glm::vec3 position, glm::vec3 scaling, glm::vec3 lookAt) : mName("UNNAMED"), mPosition(position),
 mScaling(scaling), mYRotationAngleInDegrees(0.0f), mXRotationAngleInDegrees(0.0f), mZRotationAngleInDegrees(0.0f),
-mPath(nullptr), mSpeed(0.0f), mTargetWaypoint(1), mSpline(nullptr), mSplineParameterT(0.0f), mCollisionRadius(1.0f),
+mPath(nullptr), mSpeed(0.0f), mTargetWaypoint(1), mSplineParameterT(0.0f), mCollisionRadius(1.0f),
 CollisionsOn(true), mDestroyed(false),
 mCamXAxis(glm::vec3(1.0f, 0.0f, 0.0f)), mCamYAxis(glm::vec3(0.0f, 1.0f, 0.0f)), mCamZAxis(glm::vec3(0.0f, 0.0f, 1.0f)),
 mCameraYRotationAngleInDegrees(0.0f), mCameraXRotationAngleInDegrees(0.0f), mCameraZRotationAngleInDegrees(0.0f)
@@ -41,6 +49,14 @@ mCameraYRotationAngleInDegrees(0.0f), mCameraXRotationAngleInDegrees(0.0f), mCam
 	mXAxis = glm::normalize(glm::cross(lookAt, vec3(0.0f, 1.0f, 0.0f)));
 	mYAxis = glm::cross(mXAxis, lookAt);
 	mZAxis = -lookAt;
+	parent = NULL;
+    
+    //Create Explosion sound
+    explosionResult = FMOD_System_CreateSound(Variables::fmodsystem, explosionPath, FMOD_CREATESAMPLE, 0, &explosionSound);
+    if(explosionResult != FMOD_OK)
+    {
+        printf("Problem Creating: %s", explosionPath);
+    }
 }
 
 Model::~Model()
@@ -75,104 +91,6 @@ void Model::Draw()
 }
 
 
-void Model::Load(ci_istringstream& iss)
-{
-	ci_string line;
-
-	// Parse model line by line
-	while (std::getline(iss, line))
-	{
-		// Splitting line into tokens
-		ci_istringstream strstr(line);
-		istream_iterator<ci_string, char, ci_char_traits> it(strstr);
-		istream_iterator<ci_string, char, ci_char_traits> end;
-		vector<ci_string> token(it, end);
-
-		if (ParseLine(token) == false)
-		{
-			//fprintf(stderr, "Error loading scene file... token:  %s!", token[0]);
-			getchar();
-			exit(-1);
-		}
-	}
-}
-
-bool Model::ParseLine(const std::vector<ci_string> &token)
-{
-	if (token.empty() == false)
-	{
-		if (token[0].empty() == false && token[0][0] == '#')
-		{
-			return true;
-		}
-		else if (token[0] == "name")
-		{
-			assert(token.size() > 2);
-			assert(token[1] == "=");
-
-			mName = token[2];
-		}
-		else if (token[0] == "position")
-		{
-			assert(token.size() > 4);
-			assert(token[1] == "=");
-
-			mPosition.x = static_cast<float>(atof(token[2].c_str()));
-			mPosition.y = static_cast<float>(atof(token[3].c_str()));
-			mPosition.z = static_cast<float>(atof(token[4].c_str()));
-		}
-		else if (token[0] == "rotation")
-		{
-			assert(token.size() > 4);
-			assert(token[1] == "=");
-
-			mYAxis.x = static_cast<float>(atof(token[2].c_str()));
-			mYAxis.y = static_cast<float>(atof(token[3].c_str()));
-			mYAxis.z = static_cast<float>(atof(token[4].c_str()));
-			mYRotationAngleInDegrees = static_cast<float>(atof(token[5].c_str()));
-
-			glm::normalize(mYAxis);
-		}
-		else if (token[0] == "scaling")
-		{
-			assert(token.size() > 4);
-			assert(token[1] == "=");
-
-			mScaling.x = static_cast<float>(atof(token[2].c_str()));
-			mScaling.y = static_cast<float>(atof(token[3].c_str()));
-			mScaling.z = static_cast<float>(atof(token[4].c_str()));
-		}
-		else if (token[0] == "pathspeed")
-		{
-			assert(token.size() > 2);
-			assert(token[1] == "=");
-
-			float speed = static_cast<float>(atof(token[2].c_str()));
-			SetSpeed(speed);
-		}
-		else if (token[0] == "boundpath")
-		{
-			assert(token.size() > 2);
-			assert(token[1] == "=");
-
-			ci_string pathName = token[2];
-			World* w = World::GetInstance();
-			mPath = w->FindPath(pathName);
-
-			if (mPath != nullptr)
-			{
-				mPosition = mPath->GetWaypoint(0);
-			}
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	return true;
-}
-
 glm::mat4 Model::GetWorldMatrix() const
 {
 	mat4 worldMatrix(1.0f);
@@ -190,6 +108,9 @@ glm::mat4 Model::GetWorldMatrix() const
 	mat4 s = glm::scale(mat4(1.0f), mScaling);
 
 	worldMatrix = t * rcy * rcx * rcz * ry * rx * rz * s;
+
+	if (parent != NULL)
+		return parent->GetWorldMatrix() * worldMatrix;
 
 	return worldMatrix;
 }
@@ -252,36 +173,64 @@ void Model::SetCollisionRadius(float r)
 
 void Model::CheckCollisions(std::vector<Model*> &models)
 {
-	// Remove things at center, for debugging, removes asteroids that get stuck in the middle.
-//	if (glm::distance(mPosition, glm::vec3(0.0f, 0.0f, 0.0f)) < 1 && CollisionsOn)
-//		mDestroyed = true;
-	// Check the current model against all the rest
+	if (!CollisionsOn) // if collisions are off for this model, do nothing
+		return;
 
+	if (this->GetName() == "MANYASTEROIDS") // if this is an asteroid collection, check each child individually
+	{
+		vector<NewAsteroid*> parts = static_cast<CollectionAsteroid*>(this)->GetChildren();
+		for (int i = 0; i < parts.size(); ++i)
+		{
+			parts[i]->CheckCollisions(models);
+			if (parts[i]->IsDestroyed())
+			{
+				mDestroyed = true;
+				parts.erase(parts.begin() + i);
+			}
+		}
+		if (mDestroyed)
+			static_cast<CollectionAsteroid*>(this)->getDestroyed();
 
+		return;
+	}
+	vec3 adjusted_position = vec3(0, 0, 0);
 	for (std::vector<Model*>::iterator it = models.begin(); it < models.end(); ++it)
 	{
-		if ((*it) != this && CollisionsOn && (*it)->CollisionsOn) // Make sure the object isn't being compared to itself and that both objects are collidable.
+		if ((*it) != this && (*it)->CollisionsOn) // Make sure the object isn't being compared to itself and that both objects are collidable.
 		{
-			if (glm::distance(mPosition, (*it)->GetPosition()) <= (mCollisionRadius + (*it)->GetCollisionRadius())) // If the distance is less than the radii combined, collide.
+			if (!((*it)->GetName() == "ASTEROID" && this->GetName() == "ASTEROID"))
 			{
-				if (Collisions::collide_objects(this, (*it)))
-				{
-					if ((*it)->GetName() == "ASTEROID" && this->GetName() == "ASTEROID")
-					{
-							mDestroyed = true;
-							(*it)->SetDestroy(true);
-					}
-					if ((*it)->GetName() == "PROJECTILE" && this->GetName() == "ASTEROID")
-					{
-						mDestroyed = true;
-						(*it)->SetDestroy(true); // Set both destroyed flags to true so the collided objects are removed.
-						Game::GetInstance()->AddScore(100);
-					}
+				// adjust for the parent position
+				if (parent != NULL)
+					adjusted_position = mPosition + parent->GetPosition(); // if the object is relative to another instead of the origin, you need their combined positions
+				else
+					adjusted_position = mPosition;
 
-					if ((*it)->GetName() == "SHIP" && this->GetName() == "ASTEROID")
+				if (glm::distance(adjusted_position, (*it)->GetPosition()) <= (mCollisionRadius + (*it)->GetCollisionRadius())) // If the distance is less than the radii combined, collide.
+				{
+					if (Collisions::collide_objects(this, (*it)))
 					{
-						mDestroyed = true;
-						Game::GetInstance()->GetHit();
+
+						if ((*it)->GetName() == "PROJECTILE" && this->GetName() == "ASTEROID")
+						{
+							mDestroyed = true;
+							(*it)->SetDestroy(true); // Set both destroyed flags to true so the collided objects are removed.
+                            
+                            explosionResult = FMOD_System_PlaySound(Variables::fmodsystem,FMOD_CHANNEL_FREE, explosionSound, 0, &explosionChannel);
+                            if(explosionResult != FMOD_OK)
+                            {
+                                printf("Problem playing Explosion sound.");
+                            }
+                            FMOD_System_Update(Variables::fmodsystem);
+
+							Game::GetInstance()->AddScore(100);
+						}
+
+						if ((*it)->GetName() == "SHIP" && this->GetName() == "ASTEROID")
+						{
+							mDestroyed = true;
+							Game::GetInstance()->GetHit();
+						}
 					}
 				}
 			}

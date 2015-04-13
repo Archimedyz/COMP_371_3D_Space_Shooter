@@ -1,13 +1,11 @@
-/*
-Contributors:
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Nicholas Dudek
+// 
+//--------------------------------------------------------------------------------------------------------------
 
-Nicholas Dudek
+//Projectile texture from here: http://www.colorcombos.com/images/colors/FF0000.png
 
-
-
-
-
-*/
 
 #include "Projectile.h"
 #include "Variables.h"
@@ -16,7 +14,9 @@ Nicholas Dudek
 // Include GLEW - OpenGL Extension Wrangler
 #include <GL/glew.h>
 #include "Loader.h"
+#include "Texture.hpp"
 
+GLuint projectileTexture;
 
 time_t Projectile::LastFired = 0;
 std::vector<glm::vec3> Projectile::vArray;
@@ -29,11 +29,13 @@ std::vector<unsigned short> Projectile::indices;
 void Projectile::LoadBuffers()
 {
 #if defined(PLATFORM_OSX)
-	const char * modelPath = "Models/bullet.obj";
+	const char * modelPath = "Models/projectile.obj";
 #else
-	const char * modelPath = "../Resources/Models/bullet.obj";
+	const char * modelPath = "../Resources/Models/projectile.obj";
 #endif
 	Loader::loadModel(modelPath, Projectile::vArray, Projectile::vertexbuffer, Projectile::uvbuffer, Projectile::normalbuffer, Projectile::elementbuffer, Projectile::indices);
+
+	projectileTexture = loadBMP_custom("../Resources/Textures/ProjectileTexture.bmp");
 }
 
 
@@ -60,8 +62,9 @@ Projectile::Projectile(glm::vec3 o, glm::vec3 d)
 	mPosition = o;
 	mDirection = glm::normalize(d);
 	mCollisionRadius = 1;
-	mSpeed = 45;
+	mSpeed = 100;
 	name = "PROJECTILE";
+	SetScaling(vec3(5.0f, 5.0f, 5.0f));
 }
 
 void Projectile::Update(float dt)
@@ -76,6 +79,7 @@ void Projectile::Draw()
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 
+	glBindTexture(GL_TEXTURE_2D, projectileTexture);
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -88,24 +92,24 @@ void Projectile::Draw()
 		(void*)0            // array buffer offset
 		);
 
-	// 2nd attribute buffer : UVs
+	// 2nd attribute buffer : normals
 	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
 	glVertexAttribPointer(
 		1,                                // attribute
-		2,                                // size
+		3,                                // size
 		GL_FLOAT,                         // type
 		GL_FALSE,                         // normalized?
 		0,                                // stride
 		(void*)0                          // array buffer offset
 		);
 
-	// 3rd attribute buffer : normals
-	glEnableVertexAttribArray(2);
-	glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
+	// 4th attribute buffer : UVs
+	glEnableVertexAttribArray(3);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
 	glVertexAttribPointer(
-		2,                                // attribute
-		3,                                // size
+		3,                                // attribute
+		2,                                // size
 		GL_FLOAT,                         // type
 		GL_FALSE,                         // normalized?
 		0,                                // stride
@@ -123,9 +127,11 @@ void Projectile::Draw()
 		(void*)0           // element array buffer offset
 		);
 
+	glBindTexture(GL_TEXTURE_2D, 0);
+
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(2);
+	glDisableVertexAttribArray(3);
 }
 
 void Projectile::SetDirection(glm::vec3 dir)

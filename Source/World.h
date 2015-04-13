@@ -1,13 +1,11 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Nicholas Dudek
+// 
+//--------------------------------------------------------------------------------------------------------------
 
 #pragma once
+
 
 #include "ParsingHelper.h"
 #include <vector>
@@ -16,7 +14,6 @@
 class Camera;
 class Model;
 class Path;
-class BSpline;
 
 class World
 {
@@ -33,12 +30,6 @@ public:
 	void LoadScene(const char * scene_path);
     void LoadCameras();
 
-    Path* FindPath(ci_string pathName);
-    BSpline* FindSpline(ci_string pathName);
-    BSpline* FindSplineByIndex(unsigned int index);
-    Model* FindModelByIndex(unsigned int index);
-	Model* GetPlayer() { return player; }
-
 	void AddModel(Model*);
 
 private:
@@ -47,9 +38,7 @@ private:
 	Model* player;
 	std::vector<Model*> mModel;
     std::vector<Path*> mPath;
-    std::vector<BSpline*> mSpline;
 	std::vector<Camera*> mCamera;
 	unsigned int mCurrentCamera;
 
-	clock_t Clock;
 };

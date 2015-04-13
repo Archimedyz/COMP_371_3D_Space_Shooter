@@ -1,8 +1,15 @@
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Nicholas Dudek
+// 
+//--------------------------------------------------------------------------------------------------------------
+
+//Asteroid model from: https://www.filterforge.com/filters/3215.html
+
 #include "NewAsteroid.h"
 #include "Variables.h"
 #include "Renderer.h"
 #include <string>
-// Include GLEW - OpenGL Extension Wrangler
 #include <GL/glew.h>
 #include "Loader.h"
 #include "glm/ext.hpp"
@@ -18,8 +25,12 @@ unsigned int NewAsteroid::normalbuffer;
 unsigned int NewAsteroid::elementbuffer;
 std::vector<unsigned short> NewAsteroid::indices;
 
+GLuint mAsteroidTexture;
+
+
 NewAsteroid::NewAsteroid() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 0.5f, 0.5f), glm::vec3(0.0f, 0.0f, -1.0f))
 {
+	//initializing asteroid with lighting
 	ka = 0.5f;
 	kd = 0.3f;
 	ks = 0.7f;
@@ -31,7 +42,7 @@ NewAsteroid::NewAsteroid() : Model(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.5f, 
 	mCollisionRadius = 4;
 	CollisionsOn = true;
 	mSpeed = 100;
-}
+	}
 
 void NewAsteroid::LoadBuffers()
 {
@@ -41,6 +52,8 @@ void NewAsteroid::LoadBuffers()
 	const char * modelPath = "../Resources/Models/asteroid0.obj";
 #endif
 	Loader::loadModel(modelPath, NewAsteroid::vArray, NewAsteroid::vertexbuffer, NewAsteroid::uvbuffer, NewAsteroid::normalbuffer, NewAsteroid::elementbuffer, NewAsteroid::indices);
+
+	mAsteroidTexture = loadBMP_custom("../Resources/Textures/AsteroidTexture.bmp");
 }
 
 NewAsteroid::~NewAsteroid()
@@ -59,6 +72,8 @@ void NewAsteroid::Draw()
 	GLuint WorldMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "WorldTransform");
 	glUniformMatrix4fv(WorldMatrixLocation, 1, GL_FALSE, &GetWorldMatrix()[0][0]);
 
+	glBindTexture(GL_TEXTURE_2D, mAsteroidTexture);
+
 	// 1rst attribute buffer : vertices
 	glEnableVertexAttribArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
@@ -71,11 +86,23 @@ void NewAsteroid::Draw()
 		(void*)0            // array buffer offset
 		);
 
-	// 2nd attribute buffer : UVs
+	// 2nd attribute buffer : normals
 	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
 	glVertexAttribPointer(
 		1,                                // attribute
+		3,                                // size
+		GL_FLOAT,                         // type
+		GL_FALSE,                         // normalized?
+		0,                                // stride
+		(void*)0                          // array buffer offset
+		);
+
+	// 3rd attribute buffer : UVs
+	glEnableVertexAttribArray(3);
+	glBindBuffer(GL_ARRAY_BUFFER, uvbuffer);
+	glVertexAttribPointer(
+		3,                                // attribute
 		2,                                // size
 		GL_FLOAT,                         // type
 		GL_FALSE,                         // normalized?
@@ -83,17 +110,6 @@ void NewAsteroid::Draw()
 		(void*)0                          // array buffer offset
 		);
 
-	// 3rd attribute buffer : normals
-	glEnableVertexAttribArray(2);
-	glBindBuffer(GL_ARRAY_BUFFER, normalbuffer);
-	glVertexAttribPointer(
-		2,                                // attribute
-		3,                                // size
-		GL_FLOAT,                         // type
-		GL_FALSE,                         // normalized?
-		0,                                // stride
-		(void*)0                          // array buffer offset
-		);
 
 	// Index buffer
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementbuffer);
@@ -106,22 +122,11 @@ void NewAsteroid::Draw()
 		(void*)0           // element array buffer offset
 		);
 
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(2);
-}
-
-bool NewAsteroid::ParseLine(const std::vector<ci_string> &token)
-{
-	if (token.empty())
-	{
-		return true;
-	}
-	else
-	{
-		return Model::ParseLine(token);
-	}
+	glDisableVertexAttribArray(3);
 }
 
 void NewAsteroid::Destroy(){

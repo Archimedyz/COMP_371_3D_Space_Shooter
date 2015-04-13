@@ -1,16 +1,15 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 28/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Zackary Valenta
+// 
+//--------------------------------------------------------------------------------------------------------------
 
 #pragma once
 
 #include "Camera.h"
 #include "Model.h"
+#include "fmod/fmod.h"
+#include "Variables.h"
 
 class ThirdPersonCamera : public Camera
 {
@@ -44,19 +43,12 @@ private:
 	float mModelHorizontalSensitivity;
 	float mModelVerticalSensitivity;
 	float mModelStandardSpeed;
-	float mModelAcceleration;
+	float mModelAcceration;
 	float mModelDeceleration;
 	float mModelCurrentSpeed;
 	float mModelAnimationSpeed;
-	static const float STANDARD_SPEED;
-	static const float ACCELERATION;
-	static const float DECELERATION;
 	static const float SPEED_INCREASE_PERCENTAGE;
 	static const float SPEED_DECREASE_PERCENTAGE;
-
-	// control variables
-	static const float HORIZONTAL_SENSITIVITY;
-	static const float VERTICAL_SENSITIVITY;
 
 	// animation variables
 	float mModelCurrentPitch;
@@ -65,7 +57,6 @@ private:
 	static const float MAX_ANIMATION_PITCH_ANGLE;
 	static const float MAX_ANIMATION_YAW_ANGLE;
 	static const float MAX_ANIMATION_ROLL_ANGLE;
-	static const float ANIMATION_SPEED;
 
 	// player variables
 	static const float PLAYER_BOUNDING_GAME_RADIUS;

@@ -1,14 +1,15 @@
-//
-// COMP 371 Assignment Framework
-//
-// Created by Nicolas Bergeron on 8/7/14.
-// Updated by Gary Chang on 14/1/15
-//
-// Copyright (c) 2014-2015 Concordia University. All rights reserved.
-//
-#include <ctime>
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Nicholas Dudek
+// Skyler Wittman
+// Awais Ali
+// Zackary Valenta
+// each individual mostly instantiated their own parts and made sure references were correct
+//--------------------------------------------------------------------------------------------------------------
+
 
 #include "World.h"
+#include "ParsingHelper.h"
 #include "Renderer.h"
 #include "ParsingHelper.h"
 #include "StaticCamera.h"
@@ -16,42 +17,55 @@
 #include "FreeRoamCamera.h"
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
-#include "SphereModel.h"
-#include "Particle.h"
-#include "ThrusterParticles.h"
 #include "Path.h"
 #include "Projectile.h"
 #include "ShipModel.h"
+#include "SkyboxModel.h"
+#include "SpaceStationModel.h"
 #include "Loader.h"
+#include "Texture.hpp"
 #include "Text2D.h"
-
-#include <GLFW/glfw3.h>
 #include "EventManager.h"
 #include "NewAsteroid.h"
+#include <GLFW/glfw3.h>
+#include "CollectionAsteroid.h"
 
 using namespace std;
 using namespace glm;
 
+//declare pointers to models so we can reference them
 World* World::instance;
 int World::addCounter;
+SkyboxModel* skybox;
+ShipModel * ship_model;
+SpaceStationModel * station;
 
 // Light Coefficients. We are using directional light.
 const vec3 lightColor(1.0f, 1.0f, 1.0f);
 const float lightKc = 0.0f;
 const float lightKl = 1.0f;
 const float lightKq = 2.0f;
-const vec4 lightPosition(0.0f, 10.0f, 0.0f, 0.0f);
+const vec4 lightPosition(0.0f, 10.0f, 0.0f, 1.0f);
 
 World::World()
 {
     instance = this;
 	addCounter = 0;
-
+#if defined(PLATFORM_OSX)
+#else
+    //Text2D only works on PC
 	initText2D("../Resources/Textures/Holstein.dds");
-
+#endif
+    //create buffers for models so we can load them into world
 	NewAsteroid::LoadBuffers();
 	Projectile::LoadBuffers();
 	ShipModel::LoadBuffers();
+	SkyboxModel::LoadBuffers();
+	SpaceStationModel::LoadBuffers();
+    
+    //skybox creation
+	skybox = new SkyboxModel();
+	mModel.push_back(skybox);
 }
 
 World::~World()
@@ -77,8 +91,10 @@ World::~World()
 		delete *it;
 	}
 	mCamera.clear();
-
+#if defined(PLATFORM_OSX)
+#else
 	cleanupText2D();
+#endif
 }
 
 World* World::GetInstance()
@@ -152,6 +168,8 @@ void World::Update(float dt)
 			{
 				if (mModel[i]->GetName() != "SHIP")
 					mModel[i]->SetDestroy(true);
+				else
+					mModel[i]->SetPosition(vec3(0.0f, 0.0f, 0.0f));
 			}
 			if (mModel[i]->IsDestroyed())
 			{
@@ -163,9 +181,12 @@ void World::Update(float dt)
 		}
 
 		if (++addCounter > 100){
-			mModel.push_back(AsteroidFactory::createNewAsteroid(0));
+			mModel.push_back(AsteroidFactory::createCollection());
 			addCounter = 0;
 		}
+		//skybox position updates with ship position
+		vec3 tempPosition = vec3(ship_model->GetPosition());
+		skybox->SetPosition(tempPosition);
 	}
 }
 
@@ -188,6 +209,7 @@ void World::Draw()
 	GLuint LightMVPID = glGetUniformLocation(Renderer::GetShaderProgramID(), "lightMVP");
 
 	// Set shader to use
+	Renderer::SetShader(SHADER_PHONG);
 	glUseProgram(Renderer::GetShaderProgramID());
 
 	// This looks for the MVP Uniform variable in the Vertex Program
@@ -239,11 +261,6 @@ void World::Draw()
 
 	// Draw Path Lines
 	
-	// Set Shader for path lines
-	unsigned int prevShader = Renderer::GetCurrentShader();
-	Renderer::SetShader(SHADER_PATH_LINES);
-	glUseProgram(Renderer::GetShaderProgramID());
-
 	// Send the view projection constants to the shader
 	VPMatrixLocation = glGetUniformLocation(Renderer::GetShaderProgramID(), "ViewProjectionTransform");
 	glUniformMatrix4fv(VPMatrixLocation, 1, GL_FALSE, &VP[0][0]);
@@ -253,7 +270,8 @@ void World::Draw()
 		// Draw model
 		(*it)->Draw();
 	}
-
+#if defined(PLATFORM_OSX)
+#else
 	int hp_offset = 3;
 	char text[256];
 	char health[256];
@@ -269,19 +287,21 @@ void World::Draw()
 			health[i] = ' ';
 	}
 
-	sprintf_s(text, "%.2f", glfwGetTime());
-	printText2D(text, 10, 570, 24);
-	printText2D(health, 610, 570, 24);
+    sprintf_s(text, "%.2f", glfwGetTime());
+    printText2D(text, 10, 570, 24);
+    printText2D(health, 610, 570, 24);
+    
+    sprintf_s(score, "%i", Game::GetInstance()->GetScore());
+    printText2D(score, 305, 570, 24);
+    
 
-	sprintf_s(score, "%i", Game::GetInstance()->GetScore());
-	printText2D(score, 305, 570, 24);
 
-
+	
 	if (Game::GetInstance()->GameOver())
 		printText2D("You lose!", 305, 285, 40);
-
+#endif
+    
 	// Restore previous shader
-	Renderer::SetShader((ShaderType) prevShader);
 
 	// now we go about adding our shadow volumes
 	for (vector<Model*>::iterator it = mModel.begin(); it < mModel.end(); ++it)
@@ -299,65 +319,35 @@ void World::LoadScene(const char * scene_path)
 	// I moved it there since it's just extra clutter to keep it here commented out, it can probably
 	// be deleted. -Nick
     
-	mModel.push_back(AsteroidFactory::createNewAsteroid(0));
+	//mModel.push_back(AsteroidFactory::createNewAsteroid(0));
 
 	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
-
-	Projectile::SetLastFired(time(NULL)); // Start the timer of last fired to when the game starts.
-
-	//Loader::loadModel();
-
     LoadCameras();
 }
 
 void World::LoadCameras()
 {
+	srand(NULL);
     // Setup Camera
     mCamera.push_back(new StaticCamera(vec3(3.0f, 5.0f, 5.0f),  vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(10.0f, 30.0f, 10.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
 
-	// cube "space station" model at center on world
-	CubeModel * spaceStation_model = new CubeModel();
-	spaceStation_model->SetPosition(vec3(0.0f, 0.0f, 0.0f));
-	mModel.push_back(spaceStation_model);
-
-	// ship Character controlled with Third Person Camera
-	ShipModel * ship_model = new ShipModel();
+	// ship controlled with Third Person Camera
+	ship_model = new ShipModel();
 	player = ship_model;
-	ship_model->SetPosition(vec3(0.0f, -5.0f, 0.0f));
-	ship_model->ActivateCollisions(true);
+	ship_model->SetPosition(vec3(0.0f, 0.0f, -10.0f));
+	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
 
-	// test particle on space ship model
-	vec3 thrusterPosition = spaceStation_model->GetPosition() + vec3(0.0f, 1.0f, 0.0f);
-	cout << thrusterPosition.x << ", " << thrusterPosition.y << ", " << thrusterPosition.z << endl;
-	ThrusterParticles * test_thrusters = new ThrusterParticles(thrusterPosition, vec3(0.0f, 1.0f, 0.0f));		// orientation here may need to be changed to the opposite of the ship's look at
-	test_thrusters->setParentModel(spaceStation_model);
-	test_thrusters->SetName("TEST THRUSTERS");
-	mModel.push_back(test_thrusters);
+	station = new SpaceStationModel();
+	station->SetPosition(vec3(0.0f, -6.0f, 0.0f));
+	station->ActivateCollisions(false);
+	mModel.push_back(station);
 
     mCurrentCamera = 0;
-	
 	mCamera.push_back(new FreeRoamCamera(vec3(2.0f, 2.0f, 2.0f), vec3(-1.0f, -1.0f, -1.0f), vec3(0.0f, 1.0f, 0.0f)));
-}
-
-Path* World::FindPath(ci_string pathName)
-{
-    for(std::vector<Path*>::iterator it = mPath.begin(); it < mPath.end(); ++it)
-    {
-        if((*it)->GetCIName() == pathName)
-        {
-            return *it;
-        }
-    }
-    return nullptr;
-}
-
-Model* World::FindModelByIndex(unsigned int index)
-{
-    return mModel.size() > 0 ? mModel[index % mModel.size()] : nullptr;
 }
 
 void World::AddModel(Model* mdl)
