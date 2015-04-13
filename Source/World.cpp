@@ -18,6 +18,7 @@
 #include "AsteroidFactory.h"
 #include "CubeModel.h"
 #include "Path.h"
+#include "ExplosionParticles.h"
 #include "Projectile.h"
 #include "ShipModel.h"
 #include "SkyboxModel.h"
@@ -173,6 +174,19 @@ void World::Update(float dt)
 			}
 			if (mModel[i]->IsDestroyed())
 			{
+				if (mModel[i]->GetName().compare("ASTEROID") == 0)
+				{
+					// create ExplosionParticles (by Zackary Valenta)
+					vec3 modelPosition = mModel[i]->GetPosition();
+					ExplosionParticles* explosion = new ExplosionParticles(modelPosition);
+					mModel.push_back(explosion);
+				}
+				// create ExplosionParticles (by Zackary Valenta)
+				vec3 modelPosition = mModel[i]->GetPosition();
+				ExplosionParticles* explosion = new ExplosionParticles(modelPosition);
+				explosion->ActivateCollisions(false);
+				mModel.push_back(explosion);
+
 				// HANDLE COLLISIONS SOMEHOW
 				// Probably override a method from model which each type of object handles separately.
 				// Large asteroids fragment, projectiles explode, ship explodes and takes damage, etc.

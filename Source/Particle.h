@@ -6,7 +6,7 @@
 class Particle : public Model
 {
 public:
-	Particle(float size, glm::vec3 quadraticMovement, float speed, float roatationInDegrees, float duration);
+	Particle(float size, glm::vec3 quadraticMovement, float speed, float roatationInDegrees1, float roatationInDegrees2, float duration);
 	virtual ~Particle();
 
 	virtual void Update(float dt);
@@ -15,9 +15,8 @@ public:
 	bool isExpired() const;
 	float getXMovementValue();
 	float getYMovementValue(double xMovement);
-	float getRotationAngleInDegrees() { return rotation; }
-protected:
-	virtual bool ParseLine(const std::vector<ci_string> &token);
+	float getRotationInDegrees1() { return randomRotationInDegrees1; }
+	float getRotationInDegrees2() { return randomRotationInDegrees2; }
 
 private:
 	// The vertex format could be different for different types of models
@@ -31,7 +30,8 @@ private:
 	// particle attributes
 	glm::vec3 quadraticMovement;
 	float speed;
-	float rotation;
+	float randomRotationInDegrees1;
+	float randomRotationInDegrees2;
 	double startTime;
 	float duration;
 
