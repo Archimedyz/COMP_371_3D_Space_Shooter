@@ -1,7 +1,7 @@
 //--------------------------------------------------------------------------------------------------------------
 // Contributors
 // Nicholas Dudek
-// 
+// Awais Ali (Fixed order for sending vertex data to shaders.)
 //--------------------------------------------------------------------------------------------------------------
 
 //Asteroid model from: https://www.filterforge.com/filters/3215.html

@@ -1,5 +1,5 @@
 #version 330 core
-
+// Awais Ali (Implementation and tweaks for Textures.)
 
 // Light and Material Uniform Variables
 uniform vec4 materialCoefficients; // x: ambient   y: diffuse   z: specular   w: specular exponent
