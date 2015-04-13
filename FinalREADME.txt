@@ -18,6 +18,7 @@ FMOD (for sound)
 
 Changes since the presentation:
 
+Texture loading
 Added textured skybox
 Textured ship
 Textured asteroids
@@ -25,4 +26,4 @@ Textured space station
 Textured projectiles
 Added particles
 Added sounds
-Asteroids now break off into smaller ones when hit
+Asteroids now break off into smaller ones when hit due to hierarchical transforms holding them together
