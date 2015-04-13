@@ -1,3 +1,9 @@
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Zackary Valenta (all)
+// 
+//--------------------------------------------------------------------------------------------------------------
+
 #include "Particle.h"
 #include "Renderer.h"
 
@@ -210,6 +216,7 @@ void Particle::RenderShadowVolume(glm::vec4 lightPos)
 	}
 }
 
+// check if the particle's lifespan has run out
 bool Particle::isExpired() const
 {
 	double currentTime = glfwGetTime();
@@ -217,6 +224,8 @@ bool Particle::isExpired() const
 	return lifetime >= duration;
 }
 
+// get the distance along the quadratic equation's x-axis that this particle will move
+// done as a function of time elapsed
 float Particle::getXMovementValue()
 {
 	double currentTime = glfwGetTime();
@@ -224,6 +233,7 @@ float Particle::getXMovementValue()
 	return (dt * (speed/1000));
 }
 
+// gets the quadratic equation's y-value corresponding to the specified x-value
 float Particle::getYMovementValue(double xMovement)
 {
 	return ((quadraticMovement.x * xMovement * xMovement) + (quadraticMovement.y * xMovement) + (quadraticMovement.z));

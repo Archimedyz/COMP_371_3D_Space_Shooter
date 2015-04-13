@@ -1,3 +1,9 @@
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Zackary Valenta (all)
+// 
+//--------------------------------------------------------------------------------------------------------------
+
 #include "ExplosionParticles.h"
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -24,6 +30,7 @@ ExplosionParticles::ExplosionParticles(glm::vec3 position) : Model(position, vec
 ExplosionParticles::~ExplosionParticles()
 {}
 
+// move all paticles along their quadratic trajectory
 void ExplosionParticles::Update(float dt)
 {
 	vec3 particleXAxis = vec3(1.0f, 0.0f, 0.0f);
@@ -38,6 +45,7 @@ void ExplosionParticles::Update(float dt)
 			delete particles[i];
 			particles.erase(particles.begin() + i);
 		}
+		// otherwise calculate its displacement and move it
 		else
 		{
 			float particleXMovement = particles[i]->getXMovementValue();

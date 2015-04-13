@@ -2,7 +2,7 @@
 // Contributors
 // Nicholas Dudek (checkCollisions, some hierarchical stuff like the parent pointer and the getworldmatrix, and all the collision stuff like collisionsOn and vArray)
 // Awais Ali (Added Material Coefficient + RenderShadowVolume for shadows.)
-// 
+// Zackary Valenta (animation rotations, constructors with paramters)
 //--------------------------------------------------------------------------------------------------------------
 
 
