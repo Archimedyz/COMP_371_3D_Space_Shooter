@@ -19,6 +19,7 @@
 #include "SphereModel.h"
 #include "Particle.h"
 #include "ThrusterParticles.h"
+#include "ExplosionParticles.h"
 #include "Path.h"
 #include "Projectile.h"
 #include "ShipModel.h"
@@ -41,6 +42,8 @@ const float lightKc = 0.0f;
 const float lightKl = 1.0f;
 const float lightKq = 2.0f;
 const vec4 lightPosition(0.0f, 10.0f, 0.0f, 0.0f);
+
+ExplosionParticles* testExplosionParticles = NULL;
 
 World::World()
 {
@@ -146,7 +149,7 @@ void World::Update(float dt)
 		{
 			mModel[i]->Update(dt);
 
-			mModel[i]->CheckCollisions(mModel); // Check if the model is colliding with any other, and set their destroyed flags to true if they are.
+			//mModel[i]->CheckCollisions(mModel); // Check if the model is colliding with any other, and set their destroyed flags to true if they are.
 
 			if (glm::distance(mModel[i]->GetPosition(), vec3(0.0f, 0.0f, 0.0f)) >= 500) // if things are too far frm the center, delete them or move player back to center
 			{
@@ -162,9 +165,29 @@ void World::Update(float dt)
 			}
 		}
 
+		/**/
 		if (++addCounter > 100){
 			mModel.push_back(AsteroidFactory::createNewAsteroid(0));
 			addCounter = 0;
+		}
+		
+
+		if (testExplosionParticles != NULL && testExplosionParticles->IsDestroyed())
+		{
+			cout << "ExplosionParticles DESTROYED" << endl;
+
+			delete testExplosionParticles;
+			testExplosionParticles = NULL;
+		}
+
+		// we separate this condition from the above condition becasue of the case where an explosion hasn't been initialized
+		// we only create a test explosion if we are on camera 1 because explosions slow down the program
+		// the number of particles in the explosion is currently set to 500, but can be changed at the top of ExplosionParticles.cpp
+		if (testExplosionParticles == NULL && mCurrentCamera == 1)
+		{
+			testExplosionParticles = new ExplosionParticles(vec3(5.0f, 5.0f, 0.0f));
+			cout << "ExplosionParticles CREATED with " << testExplosionParticles->getNumberOfParticles() << " particles!!!" << endl;
+			mModel.push_back(testExplosionParticles);
 		}
 	}
 }
@@ -314,7 +337,7 @@ void World::LoadCameras()
 {
     // Setup Camera
     mCamera.push_back(new StaticCamera(vec3(3.0f, 5.0f, 5.0f),  vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
-    mCamera.push_back(new StaticCamera(vec3(10.0f, 30.0f, 10.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
+    mCamera.push_back(new StaticCamera(vec3(10.0f, 10.0f, -5.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
 
 	// cube "space station" model at center on world
@@ -330,7 +353,7 @@ void World::LoadCameras()
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
 
-	// test particle on space ship model
+	// test particle on central cube
 	vec3 thrusterPosition = spaceStation_model->GetPosition() + vec3(0.0f, 1.0f, 0.0f);
 	cout << thrusterPosition.x << ", " << thrusterPosition.y << ", " << thrusterPosition.z << endl;
 	ThrusterParticles * test_thrusters = new ThrusterParticles(thrusterPosition, vec3(0.0f, 1.0f, 0.0f));		// orientation here may need to be changed to the opposite of the ship's look at

@@ -1,3 +1,9 @@
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Zackary Valenta (all)
+// 
+//--------------------------------------------------------------------------------------------------------------
+
 #include "Particle.h"
 #include "Renderer.h"
 
@@ -7,8 +13,9 @@
 
 using namespace glm;
 
-Particle::Particle(float size, glm::vec3 quadraticMovement, float speed, float roatationInDegrees, float duration) :
-Model(), quadraticMovement(quadraticMovement), speed(speed), rotation(roatationInDegrees), duration(duration)
+Particle::Particle(float size, glm::vec3 quadraticMovement, float speed, float roatationInDegrees1, float roatationInDegrees2, float duration) :
+Model(), quadraticMovement(quadraticMovement), speed(speed), randomRotationInDegrees1(roatationInDegrees1),
+randomRotationInDegrees2(roatationInDegrees2), duration(duration)
 {
 	startTime = glfwGetTime();
 	ka = 0.5f;
@@ -164,18 +171,6 @@ void Particle::Draw()
 	glDisableVertexAttribArray(0);
 }
 
-bool Particle::ParseLine(const std::vector<ci_string> &token)
-{
-	if (token.empty())
-	{
-		return true;
-	}
-	else
-	{
-		return Model::ParseLine(token);
-	}
-}
-
 void Particle::RenderShadowVolume(glm::vec4 lightPos)
 {
 	// for each triangle compsing the model:
@@ -221,6 +216,7 @@ void Particle::RenderShadowVolume(glm::vec4 lightPos)
 	}
 }
 
+// check if the particle's lifespan has run out
 bool Particle::isExpired() const
 {
 	double currentTime = glfwGetTime();
@@ -228,6 +224,8 @@ bool Particle::isExpired() const
 	return lifetime >= duration;
 }
 
+// get the distance along the quadratic equation's x-axis that this particle will move
+// done as a function of time elapsed
 float Particle::getXMovementValue()
 {
 	double currentTime = glfwGetTime();
@@ -235,6 +233,7 @@ float Particle::getXMovementValue()
 	return (dt * (speed/1000));
 }
 
+// gets the quadratic equation's y-value corresponding to the specified x-value
 float Particle::getYMovementValue(double xMovement)
 {
 	return ((quadraticMovement.x * xMovement * xMovement) + (quadraticMovement.y * xMovement) + (quadraticMovement.z));

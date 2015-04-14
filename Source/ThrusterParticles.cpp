@@ -1,3 +1,9 @@
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Zackary Valenta (all)
+// 
+//--------------------------------------------------------------------------------------------------------------
+
 #include "ThrusterParticles.h"
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -48,7 +54,7 @@ void ThrusterParticles::Update(float dt)
 			float particleXMovement = particles[i]->getXMovementValue();
 			float particleYMovement = particles[i]->getYMovementValue(particleXMovement);
 			vec3 displacement = (particleXMovement * particleXAxis) + (particleYMovement * particleYAxis);
-			displacement = vec3(glm::rotate(mat4(1.0f), particles[i]->getRotationAngleInDegrees(), particleXAxis) * vec4(displacement, 0.0f));
+			displacement = vec3(glm::rotate(mat4(1.0f), particles[i]->getRotationInDegrees1(), particleXAxis) * vec4(displacement, 0.0f));
 			particles[i]->SetPosition(particles[i]->GetPosition() + displacement);
 		}
 	}
@@ -66,10 +72,10 @@ Particle* ThrusterParticles::generateNewParticle()
 {
 	double currentTime = glfwGetTime();
 	srand(currentTime * 1000);
-	float random = rand();
 	float randomSize = 0.1f / ((rand() % 4) + 1);		// size will be from 0.025 and 0.1
 	float randomDuration = ((rand() % 3) + 1);			// duration will be from 1 and 3
-	float randomAngle = (rand() % 360);					// angle will be between 0 and 359
+	float randomAngle1 = (rand() % 360);				// angle will be between 0 and 359
+	float randomAngle2 = (rand() % 360);				// angle will be between 0 and 359
 
-	return new Particle(randomSize, vec3(0.0f, 1.0f, 0.0f), 10.0f, randomAngle, randomDuration);	// TODO randomize the speed and the equation to something actually quadratic, this is linear
+	return new Particle(randomSize, vec3(0.0f, 1.0f, 0.0f), 10.0f, randomAngle1, randomAngle2, randomDuration);	// TODO randomize the speed and the equation to something actually quadratic, this is linear
 }

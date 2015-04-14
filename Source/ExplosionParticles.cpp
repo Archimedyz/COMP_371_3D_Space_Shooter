@@ -1,3 +1,9 @@
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Zackary Valenta (all)
+// 
+//--------------------------------------------------------------------------------------------------------------
+
 #include "ExplosionParticles.h"
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -8,32 +14,28 @@
 using namespace glm;
 using namespace std;
 
-ExplosionParticles::ExplosionParticles(glm::vec3 position, glm::vec3 orientation) : Model(position, vec3(1.0f, 1.0f, 1.0f)), orientation(orientation)
+const int ExplosionParticles::NUMBER_OF_EXPLOSION_PARTICLES = 500;
+
+ExplosionParticles::ExplosionParticles(glm::vec3 position) : Model(position, vec3(1.0f, 1.0f, 1.0f))
 {
 	particles = vector<Particle*>();
-}
 
-ExplosionParticles::~ExplosionParticles()
-{
-	parentModel = NULL;
-}
-
-void ExplosionParticles::Update(float dt)
-{
-	// check if we should add particles
-	// we want at most 40 particles at a time
-	// if there's less than 40, add a particle per frame
-
-	if (particles.size() < 40)
+	// create the number of particles in an explosion
+	for (int i = 0; i < NUMBER_OF_EXPLOSION_PARTICLES; ++i)
 	{
 		particles.push_back(generateNewParticle());
 	}
+}
 
-	mat4 parentWorldMatrix = parentModel->GetWorldMatrix();
-	mat4 t = glm::translate(mat4(1.0f), mPosition);
-	vec3 particleXAxis = vec3(0.0f, 1.0f, 0.0f); //glm::normalize(orientation);
-	vec3 particleYAxis = vec3(1.0f, 0.0f, 0.0f); //glm::normalize(parentModel->GetCamYAxis());
-	vector<int> expiredParticles = vector<int>();
+ExplosionParticles::~ExplosionParticles()
+{}
+
+// move all paticles along their quadratic trajectory
+void ExplosionParticles::Update(float dt)
+{
+	vec3 particleXAxis = vec3(1.0f, 0.0f, 0.0f);
+	vec3 particleYAxis = vec3(0.0f, 1.0f, 0.0f);
+	vec3 particleZAxis = vec3(0.0f, 0.0f, 1.0f);
 
 	for (int i = 0; i < particles.size(); ++i)
 	{
@@ -43,14 +45,21 @@ void ExplosionParticles::Update(float dt)
 			delete particles[i];
 			particles.erase(particles.begin() + i);
 		}
+		// otherwise calculate its displacement and move it
 		else
 		{
 			float particleXMovement = particles[i]->getXMovementValue();
-			float particleYMovement = particles[i]->getYMovementValue(particleXMovement);
-			vec3 displacement = (particleXMovement * particleXAxis) + (particleYMovement * particleYAxis);
-			displacement = vec3(glm::rotate(mat4(1.0f), particles[i]->getRotationAngleInDegrees(), particleXAxis) * vec4(displacement, 0.0f));
-			particles[i]->SetPosition(particles[i]->GetPosition() + displacement);
+			vec3 displacement = ((10 * particleXMovement) * particleXAxis);
+			mat4 yRotationMatrix = glm::rotate(mat4(1.0f), particles[i]->getRotationInDegrees1(), particleYAxis);
+			mat4 zRotationMatrix = glm::rotate(mat4(1.0f), particles[i]->getRotationInDegrees2(), particleZAxis);
+			displacement = vec3(zRotationMatrix * yRotationMatrix * vec4(displacement, 0.0f));
+			particles[i]->SetPosition(mPosition + displacement);
 		}
+	}
+
+	if (particles.size() == 0)
+	{
+		mDestroyed = true;
 	}
 }
 
@@ -64,12 +73,17 @@ void ExplosionParticles::Draw()
 
 Particle* ExplosionParticles::generateNewParticle()
 {
+	// randomize the values used to create the particle
 	double currentTime = glfwGetTime();
 	srand(currentTime * 1000);
-	float random = rand();
 	float randomSize = 0.1f / ((rand() % 4) + 1);		// size will be from 0.025 and 0.1
 	float randomDuration = ((rand() % 3) + 1);			// duration will be from 1 and 3
-	float randomAngle = (rand() % 360);					// angle will be between 0 and 359
+	float randomAngle1 = (rand() % 360);				// angle will be between 0 and 359
+	float randomAngle2 = (rand() % 360);				// angle will be between 0 and 359
 
-	return new Particle(randomSize, vec3(0.0f, 1.0f, 0.0f), 10.0f, randomAngle, randomDuration);	// TODO randomize the speed and the equation to something actually quadratic, this is linear
+	Particle* returnParticle = new Particle(randomSize, vec3(0.0f, 0.0f, 0.0f), 50.0f, randomAngle1, randomAngle2, randomDuration);	// TODO randomize the speed and the equation to something actually quadratic, this is linear
+
+	returnParticle->ActivateCollisions(false);
+
+	return returnParticle;
 }

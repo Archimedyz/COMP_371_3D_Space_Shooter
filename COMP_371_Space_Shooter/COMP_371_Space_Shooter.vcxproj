@@ -73,6 +73,7 @@
     <ClCompile Include="..\Source\Collisions.cpp" />
     <ClCompile Include="..\Source\CubeModel.cpp" />
     <ClCompile Include="..\Source\EventManager.cpp" />
+    <ClCompile Include="..\Source\ExplosionParticles.cpp" />
     <ClCompile Include="..\Source\FreeRoamCamera.cpp" />
     <ClCompile Include="..\Source\Game.cpp" />
     <ClCompile Include="..\Source\Loader.cpp" />
@@ -103,6 +104,7 @@
     <ClInclude Include="..\Source\Collisions.h" />
     <ClInclude Include="..\Source\CubeModel.h" />
     <ClInclude Include="..\Source\EventManager.h" />
+    <ClInclude Include="..\Source\ExplosionParticles.h" />
     <ClInclude Include="..\Source\FreeRoamCamera.h" />
     <ClInclude Include="..\Source\Game.h" />
     <ClInclude Include="..\Source\Loader.h" />

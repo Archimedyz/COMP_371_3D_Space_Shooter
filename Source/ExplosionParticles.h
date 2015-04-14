@@ -1,3 +1,9 @@
+//--------------------------------------------------------------------------------------------------------------
+// Contributors
+// Zackary Valenta (all)
+// 
+//--------------------------------------------------------------------------------------------------------------
+
 #pragma once
 
 #include "Particle.h"
@@ -6,18 +12,18 @@
 class ExplosionParticles : public Model
 {
 public:
-	ExplosionParticles(glm::vec3 position, glm::vec3 orientation);
+	ExplosionParticles(glm::vec3 position);
 	virtual ~ExplosionParticles();
 
-	void setParentModel(Model* model) { parentModel = model; }
 	virtual void Update(float dt);
 	virtual void Draw();
 	void RenderShadowVolume(glm::vec4 lightPos) {}
+	bool isExplosionOver() const;
+	int getNumberOfParticles() const { return particles.size(); }
 
 private:
 	Particle* generateNewParticle();
 
-	Model* parentModel;
-	glm::vec3 orientation;
 	std::vector<Particle*> particles;
+	static const int NUMBER_OF_EXPLOSION_PARTICLES;
 };
