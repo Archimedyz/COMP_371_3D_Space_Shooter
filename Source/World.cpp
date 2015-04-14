@@ -48,6 +48,8 @@ const float lightKc = 0.0f;
 const float lightKl = 1.0f;
 const float lightKq = 2.0f;
 const vec4 lightPosition(0.0f, 10.0f, 0.0f, 1.0f);
+const bool enableThrusterParticles = true;
+const bool enableExplosionParticles = true;
 
 World::World()
 {
@@ -175,18 +177,18 @@ void World::Update(float dt)
 			}
 			if (mModel[i]->IsDestroyed())
 			{
-				if (mModel[i]->GetName().compare("ASTEROID") == 0)
+				if (mModel[i]->GetName().compare("ASTEROID") == 0 && enableExplosionParticles)
 				{
-					/*
 					// create ExplosionParticles (by Zackary Valenta)
 					vec3 modelPosition = mModel[i]->GetPosition();
 					ExplosionParticles* explosion = new ExplosionParticles(modelPosition);
 					mModel.push_back(explosion);
-					*/
 				}
+
 				// HANDLE COLLISIONS SOMEHOW
 				// Probably override a method from model which each type of object handles separately.
 				// Large asteroids fragment, projectiles explode, ship explodes and takes damage, etc.
+				delete mModel[i];
 				mModel.erase(mModel.begin() + i); // Finally deletes model.
 			}
 		}
@@ -352,6 +354,12 @@ void World::LoadCameras()
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
 
+	// add thrusters to ship if enabled
+	{
+
+	}
+
+	// borg cube at middle of map
 	station = new SpaceStationModel();
 	station->SetPosition(vec3(0.0f, -6.0f, 0.0f));
 	station->ActivateCollisions(false);

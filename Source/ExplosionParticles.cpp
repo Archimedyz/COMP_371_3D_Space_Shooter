@@ -14,10 +14,11 @@
 using namespace glm;
 using namespace std;
 
-const int ExplosionParticles::NUMBER_OF_EXPLOSION_PARTICLES = 30;
+const int ExplosionParticles::NUMBER_OF_EXPLOSION_PARTICLES = 100;
 
 ExplosionParticles::ExplosionParticles(glm::vec3 position) : Model(position, vec3(1.0f, 1.0f, 1.0f))
 {
+	name = "ExplosionParticles";
 	particles = vector<Particle*>();
 
 	// create the number of particles in an explosion
@@ -28,7 +29,13 @@ ExplosionParticles::ExplosionParticles(glm::vec3 position) : Model(position, vec
 }
 
 ExplosionParticles::~ExplosionParticles()
-{}
+{
+	for (Particle* particle : particles)
+	{
+		delete particle;
+		particle = NULL;
+	}
+}
 
 // move all paticles along their quadratic trajectory
 void ExplosionParticles::Update(float dt)
@@ -81,8 +88,7 @@ Particle* ExplosionParticles::generateNewParticle()
 	float randomAngle1 = (rand() % 360);				// angle will be between 0 and 359
 	float randomAngle2 = (rand() % 360);				// angle will be between 0 and 359
 
-	Particle* returnParticle = new Particle(randomSize, vec3(0.0f, 0.0f, 0.0f), 50.0f, randomAngle1, randomAngle2, randomDuration);	// TODO randomize the speed and the equation to something actually quadratic, this is linear
-
+	Particle* returnParticle = new Particle(randomSize, vec3(0.0f, 0.0f, 0.0f), 300.0f, randomAngle1, randomAngle2, randomDuration);	// TODO randomize the speed and the equation to something actually quadratic, this is linear
 	returnParticle->ActivateCollisions(false);
 
 	return returnParticle;

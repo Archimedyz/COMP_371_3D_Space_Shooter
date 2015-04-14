@@ -37,8 +37,8 @@ void ThrusterParticles::Update(float dt)
 
 	mat4 parentWorldMatrix = parentModel->GetWorldMatrix();
 	mat4 t = glm::translate(mat4(1.0f), mPosition);
-	vec3 particleXAxis = vec3(0.0f, 1.0f, 0.0f); //glm::normalize(orientation);
-	vec3 particleYAxis = vec3(1.0f, 0.0f, 0.0f); //glm::normalize(parentModel->GetCamYAxis());
+	vec3 particleXAxis = glm::normalize(vec3(parentModel->GetWorldMatrix() * vec4(orientation, 0.0f)));
+	vec3 particleYAxis = glm::normalize(vec3(parentModel->GetWorldMatrix() * vec4(1.0f, 0.0f, 0.0f, 0.0f)));
 	vector<int> expiredParticles = vector<int>();
 	
 	for (int i = 0; i < particles.size(); ++i)
@@ -51,11 +51,12 @@ void ThrusterParticles::Update(float dt)
 		}
 		else
 		{
+			vec3 parentPosition = parentModel->GetPosition();
 			float particleXMovement = particles[i]->getXMovementValue();
 			float particleYMovement = particles[i]->getYMovementValue(particleXMovement);
 			vec3 displacement = (particleXMovement * particleXAxis) + (particleYMovement * particleYAxis);
 			displacement = vec3(glm::rotate(mat4(1.0f), particles[i]->getRotationInDegrees1(), particleXAxis) * vec4(displacement, 0.0f));
-			particles[i]->SetPosition(particles[i]->GetPosition() + displacement);
+			particles[i]->SetPosition(parentPosition + mPosition + displacement);
 		}
 	}
 }
