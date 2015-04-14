@@ -14,7 +14,7 @@
 using namespace glm;
 using namespace std;
 
-const int ExplosionParticles::NUMBER_OF_EXPLOSION_PARTICLES = 100;
+const int ExplosionParticles::NUMBER_OF_EXPLOSION_PARTICLES = 30;
 
 ExplosionParticles::ExplosionParticles(glm::vec3 position) : Model(position, vec3(1.0f, 1.0f, 1.0f))
 {
@@ -49,11 +49,11 @@ void ExplosionParticles::Update(float dt)
 		else
 		{
 			float particleXMovement = particles[i]->getXMovementValue();
-			vec3 displacement = (particleXMovement * particleXAxis);
+			vec3 displacement = ((10 * particleXMovement) * particleXAxis);
 			mat4 yRotationMatrix = glm::rotate(mat4(1.0f), particles[i]->getRotationInDegrees1(), particleYAxis);
 			mat4 zRotationMatrix = glm::rotate(mat4(1.0f), particles[i]->getRotationInDegrees2(), particleZAxis);
 			displacement = vec3(zRotationMatrix * yRotationMatrix * vec4(displacement, 0.0f));
-			particles[i]->SetPosition(particles[i]->GetPosition() + displacement);
+			particles[i]->SetPosition(mPosition + displacement);
 		}
 	}
 
@@ -76,12 +76,12 @@ Particle* ExplosionParticles::generateNewParticle()
 	// randomize the values used to create the particle
 	double currentTime = glfwGetTime();
 	srand(currentTime * 1000);
-	float randomSize = 0.1f / ((rand() % 4) + 1);		// size will be from 0.025 and 0.1
+	float randomSize = 0.1f * ((rand() % 3) + 1);		// size will be from 0.1 and 0.3
 	float randomDuration = ((rand() % 3) + 1);			// duration will be from 1 and 3
 	float randomAngle1 = (rand() % 360);				// angle will be between 0 and 359
 	float randomAngle2 = (rand() % 360);				// angle will be between 0 and 359
 
-	Particle* returnParticle = new Particle(randomSize, vec3(0.0f, 0.0f, 0.0f), 10.0f, randomAngle1, randomAngle2, randomDuration);	// TODO randomize the speed and the equation to something actually quadratic, this is linear
+	Particle* returnParticle = new Particle(randomSize, vec3(0.0f, 0.0f, 0.0f), 50.0f, randomAngle1, randomAngle2, randomDuration);	// TODO randomize the speed and the equation to something actually quadratic, this is linear
 
 	returnParticle->ActivateCollisions(false);
 

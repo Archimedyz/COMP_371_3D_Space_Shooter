@@ -19,6 +19,7 @@ public:
 	virtual void Draw();
 	void RenderShadowVolume(glm::vec4 lightPos) {}
 	bool isExplosionOver() const;
+	int getNumberOfParticles() const { return particles.size(); }
 
 private:
 	Particle* generateNewParticle();
