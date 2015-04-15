@@ -40,5 +40,4 @@ private:
     std::vector<Path*> mPath;
 	std::vector<Camera*> mCamera;
 	unsigned int mCurrentCamera;
-
 };

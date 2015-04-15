@@ -23,6 +23,7 @@
 #include "ShipModel.h"
 #include "SkyboxModel.h"
 #include "ExplosionParticles.h"
+#include "ThrusterParticles.h"
 #include "SpaceStationModel.h"
 #include "Loader.h"
 #include "Texture.hpp"
@@ -342,21 +343,24 @@ void World::LoadCameras()
 {
 	srand(NULL);
     // Setup Camera
-    mCamera.push_back(new StaticCamera(vec3(3.0f, 5.0f, 5.0f),  vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
+	mCamera.push_back(new StaticCamera(vec3(3.0f, 7.0f, -5.0f), vec3(0.0f, 5.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(10.0f, 30.0f, 10.0f), vec3(0.0f, 0.0f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
     mCamera.push_back(new StaticCamera(vec3(0.5f,  0.5f, 5.0f), vec3(0.0f, 0.5f, 0.0f), vec3(0.0f, 1.0f, 0.0f)));
 
 	// ship controlled with Third Person Camera
 	ship_model = new ShipModel();
 	player = ship_model;
-	ship_model->SetPosition(vec3(0.0f, 0.0f, -10.0f));
+	ship_model->SetPosition(vec3(0.0f, 5.0f, 0.0f));
 	ship_model->ActivateCollisions(false);
 	mCamera.push_back(new ThirdPersonCamera(ship_model));
 	mModel.push_back(ship_model);
 
 	// add thrusters to ship if enabled
+	if (enableThrusterParticles)
 	{
-
+		ThrusterParticles* thruster1 = new ThrusterParticles(vec3(0.0f, 0.0f, -1.0f), vec3(0.0f, 0.0f, -1.0f));
+		thruster1->setParentModel(ship_model);
+		mModel.push_back(thruster1);
 	}
 
 	// borg cube at middle of map

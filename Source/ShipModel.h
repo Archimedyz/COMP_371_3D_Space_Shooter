@@ -20,6 +20,13 @@ public:
 	static void LoadBuffers();
 	std::vector<glm::vec3> get_varray() { return ShipModel::vArray; }
 
+
+	static const glm::vec3 upperLeftLaserPosition;
+	static const glm::vec3 upperRightLaserPosition;
+	static const glm::vec3 lowerLeftLaserPosition;
+	static const glm::vec3 lowerRightLaserPosition;
+	static const glm::vec3 lowPolyShipThrusterPosition;
+
 protected:
 
 	// drawing buffers. each subclass has a set of these buffers which contain the modelspace coordinates of the vertices. 
@@ -29,10 +36,5 @@ protected:
 	static unsigned int normalbuffer;
 	static unsigned int elementbuffer;
 	static std::vector<unsigned short> indices;
-
-	static const glm::vec3 upperLeftLaserPosition;
-	static const glm::vec3 upperRightLaserPosition;
-	static const glm::vec3 lowerLeftLaserPosition;
-	static const glm::vec3 lowerRightLaserPosition;
 };
 
